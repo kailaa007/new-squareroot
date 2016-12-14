@@ -1,0 +1,17 @@
+%footer
+  .mainfooter
+    .tagline
+      %span The mission of Square Roots&trade; is to define and empower healthy birth.
+    .footer-buttons
+      = link_to 'Play Video', '#', :class => 'play-video'
+      = link_to 'Play Video', '#', :class => 'play-video-direct'
+      = mail_to 'info@squareroots.com', 'Contact Us', target: '_blank'
+
+.video-popup.reveal-modal{ data: { reveal: true } }
+  .inner
+    .close-modal.show-for-small= image_tag 'close.png', width: 27, height: 27
+    .clear
+    %video{ controls: 'controls', id: 'video', poster: image_path('video.jpg') }
+      %source{ src: '/video2.mp4', type: "video/mp4" }
+      %source{ src: '/video2.webm', type: "video/webm" }
+      %source{ src: '/video2.ogv', type: "video/ogg" }

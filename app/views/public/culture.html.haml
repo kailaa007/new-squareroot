@@ -1,0 +1,27 @@
+- title 'Framework'
+
+.framework-section.show-for-medium-up#wheel
+  .wheel-container
+    .wheel
+      = interchange_tag 'framework-3.png', width: 660, height: 598, usemap: '#map'
+      &nbsp;
+      %span.a= link_to 'Science', framework_path(anchor: 'wheel')
+      %span.b= link_to 'Solutions', solutions_path(anchor: 'wheel')
+      %span.c Culture
+      %span.d= link_to 'Policy', policy_path(anchor: 'wheel')
+  %map{ id: 'map', name: 'map' }
+    %area{ 'data-key' => 'a', shape: "poly", coords: "430,118,424,163,450,169,483,180,505,192,518,203,553,168,533,152,495,131,456,119,428,116", href: framework_path(anchor: 'wheel') }
+    %area{ 'data-key' => 'b', shape: "poly", coords: "520,206,558,165,576,197,594,227,609,288,610,295,560,294,556,265,541,231,525,210", href: solutions_path(anchor: 'wheel') }
+    %area{ 'data-key' => 'd', shape: "poly", coords: "430,430,430,482,495,468,534,448,558,426,519,389,493,414,459,427", href: policy_path(anchor: 'wheel') }
+  .content
+    %h2 CULTURE
+    %p Square Roots&trade; will work with its partners to pilot community programs across the country; thereby encouraging collaborations within the healthcare system to help improve maternal and infant healthcare.
+    %p By promoting and improving continuous physical and emotional birth support, together we can encourage a cultural shift in the way we think about the beginning of life.
+
+.row.hide-for-medium-up
+  .columns.small-12
+    %h2 CULTURE
+    %p Square Roots&trade; will work with its partners to pilot community programs across the country; thereby encouraging collaborations within the healthcare system to help improve maternal and infant healthcare.
+    %p By promoting and improving continuous physical and emotional birth support, together we can encourage a cultural shift in the way we think about the beginning of life.
+
+.clear

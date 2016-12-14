@@ -1,0 +1,11 @@
+= simple_form_for [ :admin, @news ] do |f|
+  .row
+    .columns.small-12.medium-6
+      = f.input :title
+      = f.input :author
+      = f.input :excerpt
+      = f.input :post_date, as: :string, input_html: { data: { date: true } }
+    .columns.small-12.medium-6
+      = f.input :link, as: :string
+      = f.association :tag
+      = f.button :button, :class => 'button radius pull-right'

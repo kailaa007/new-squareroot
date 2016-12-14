@@ -1,0 +1,42 @@
+.slide.visuals
+  .inner
+    .backdrop
+      %video{ autoplay: 'autoplay', loop: 'loop', id: 'visuals', poster: image_path('visuals.jpg'), data: { preloader: 70, duration: 8 } }
+        %source{ src: image_path('visuals.mp4'), type: "video/mp4" }
+        %source{ src: image_path('visuals.webm'), type: "video/webm" }
+        %source{ src: image_path('visuals.ogv'), type: "video/ogg" }
+    .row
+      .content{ data: { vertical: true } }
+        .logo= image_tag 'visuals-logo.png', width: 52, height: 92
+        .brand Square Roots&trade;
+      .tagline
+        %span.a The mission of Square Roots&trade; is to define and empower healthy birth.
+      .buttons
+        %span.a
+          = link_to 'Play Video', '#', class: 'play-video'
+        %span.b
+          = link_to 'What We Do', what_path
+        %span.c
+          = link_to 'The Facts', facts_path
+        %span.d
+          = link_to 'Framework', framework_path
+        %span.e
+          = link_to 'Team', team_path
+        %span.f
+          = link_to 'News', news_index_path
+        %span.g
+          = link_to 'Projects', projects_path
+
+    .row
+      .buttons
+        %span.bottom
+          = mail_to 'info@squareroots.com', 'Contact Us', :class => 'last', target: '_blank'
+
+.video-popup.reveal-modal{ data: { reveal: true } }
+  .inner
+    .close-modal.show-for-small= image_tag 'close.png', width: 27, height: 27
+    .clear
+    %video{ controls: 'controls', id: 'video', poster: image_path('video.jpg') }
+      %source{ src: '/video2.mp4', type: "video/mp4" }
+      %source{ src: '/video2.webm', type: "video/webm" }
+      %source{ src: '/video2.ogv', type: "video/ogg" }

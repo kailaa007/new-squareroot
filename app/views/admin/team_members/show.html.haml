@@ -1,0 +1,39 @@
+.row
+  .columns.small-12
+    %h2= @team_member
+
+    .key-value
+      .key Actions
+      .value
+        = link_to 'Edit', edit_admin_team_member_path(@team_member), :class => 'button tiny radius info'
+        = link_to 'Delete', admin_team_member_path(@team_member), method: :delete, data: { confirm: 'Are you sure?' }, :class => 'button tiny radius info'
+
+.row
+  .columns.small-12.medium-6
+    .key-value
+      .key Name
+      .value= @team_member.name
+
+    .key-value
+      .key Title
+      .value= @team_member.title
+
+    .key-value
+      .key Subtitle
+      .value= @team_member.subtitle
+
+    .key-value
+      .key Bio
+      .value= simple_format @team_member.bio
+
+  .columns.small-12.medium-6
+    .key-value
+      .key Role
+      .value= @team_member.role
+
+    .key-value
+      .key Photos
+      .value
+        = image_tag @team_member.photo.url(:standard_bw)
+        = image_tag @team_member.photo.url(:standard)
+

@@ -1,0 +1,12 @@
+= simple_form_for [ :admin, @team_member ] do |f|
+  .row
+    .columns.small-12.medium-6
+      = f.input :name
+      = f.input :title
+      = f.input :subtitle
+      = f.input :bio
+
+    .columns.small-12.medium-6
+      = f.input :role
+      = f.input :photo
+      = f.button :button, :class => 'button radius pull-right'

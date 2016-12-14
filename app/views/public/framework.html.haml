@@ -1,0 +1,25 @@
+- title 'Framework'
+
+.framework-section.show-for-medium-up#wheel
+  .wheel-container
+    .wheel
+      = image_tag 'framework-1.png', width: 610, height: 598, usemap: '#map'
+      &nbsp;
+      %span.a Science
+      %span.b= link_to 'Solutions', solutions_path(anchor: 'wheel')
+      %span.c= link_to 'Culture', culture_path(anchor: 'wheel')
+      %span.d= link_to 'Policy', policy_path(anchor: 'wheel')
+  %map{ id: 'map', name: 'map' }
+    %area{ 'data-key' => 'b', shape: "poly", coords: "519,206,557,169,578,199,590,219,601,244,607,270,606,295,561,296,559,276,548,241,535,225,518,204,518,205", href: solutions_path(anchor: 'wheel') }
+    %area{ 'data-key' => 'c', shape: "poly", coords: "561,296,607,293,606,315,605,342,590,384,559,426,523,389,549,358,560,321,561,294,560,297", href: culture_path(anchor: 'wheel') }
+    %area{ 'data-key' => 'd', shape: "poly", coords: "430,431,431,481,471,475,508,462,544,441,559,425,524,390,502,411,470,425,432,432", href: policy_path(anchor: 'wheel') }
+  .content
+    %h2 SCIENCE
+    %p Square Roots&trade; will create the first publicly accessible, evidence-based information portal for the most critical and up-to-date information on pregnancy, birth, and infancy.
+
+.row.hide-for-medium-up
+  .columns.small-12
+    %h2 SCIENCE
+    %p Square Roots&trade; will create the first publicly accessible, evidence-based information portal for the most critical and up-to-date information on pregnancy, birth, and infancy.
+
+.clear

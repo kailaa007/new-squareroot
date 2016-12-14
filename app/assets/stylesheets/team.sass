@@ -1,0 +1,145 @@
+.team-member
+  text-align: center
+  vertical-align: top
+  cursor: pointer
+  margin-bottom: 30px
+
+  .photo
+    height: 130px
+    width: 130px
+    margin: 0 auto 10px auto
+    position: relative
+    text-align: center
+
+    .color, .gray
+      position: absolute
+      left: 0px
+      top: 0px
+
+      img
+        border-radius: 50%
+
+    .color
+      z-index: 4
+      opacity: 0
+      @include transition(all)
+
+    .gray
+      z-index: 1
+      opacity: 1
+
+    &:hover
+      .color
+        opacity: 1
+
+  .name
+    margin-bottom: 5px
+    font-size: 14px
+    font-weight: 500
+    line-height: 14px
+
+  .subtitle
+    font-style: italic
+    margin-bottom: 6px
+
+  .role, .subtitle
+    font-size: 13px
+    font-weight: 400
+    line-height: 13px
+    color: #626262
+
+.reveal-modal
+  border-radius: 0px
+  border: 0
+
+.reveal-modal-bg
+  background: rgba(95, 87, 110, 0.45)
+
+.column + .column:last-child, .columns + .column:last-child, .column + .columns:last-child, .columns + .columns:last-child
+  float: left
+
+@media only screen and (min-width: 40.0625em)
+  .reveal-modal
+    width: 50%
+
+.reveal-modal
+  display: none
+
+  .inner
+    color: white
+    background: white
+    text-align: left
+    padding: 20px
+    padding-left: 170px
+    color: black
+    position: relative
+    min-height: 130px
+
+    @media only screen and (max-width: 40em)
+      padding-left: 0px
+      padding: 0px
+
+  .close-modal
+    position: absolute
+    top: -10px
+    right: -10px
+    width: 27px
+    height: 27px
+    cursor: pointer
+
+  .photo
+    position: absolute
+    left: 0px
+    top: 0px
+    height: 130px
+    width: 130px
+
+    img
+      border-radius: 50%
+
+    @media only screen and (max-width: 40em)
+      position: relative
+      margin: 0 auto 20px auto
+
+  .name
+    margin-bottom: 5px
+    font-size: 15px
+    font-weight: 500
+    line-height: 14px
+
+    @media only screen and (max-width: 40em)
+      text-align: center
+
+  .title
+    font-size: 15px
+    font-weight: 400
+    line-height: 14px
+    margin-bottom: 10px
+    text-align: left
+    color: $gray-color
+
+    @media only screen and (max-width: 40em)
+      text-align: center
+
+  .bio
+    margin-top: 15px
+    border-top: 1px solid white
+    padding-top: 15px
+
+    p
+      font-size: 14px
+      line-height: 20px
+
+.video-popup.reveal-modal
+  @media only screen and (min-width: 40.0625em)
+    width: 70%
+
+  .inner
+    padding: 4px
+
+    video
+      width: 100%
+      max-width: 100%
+
+      @media only screen and (max-width: 40em)
+        margin-top: 20px

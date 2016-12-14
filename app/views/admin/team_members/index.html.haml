@@ -1,0 +1,21 @@
+.row
+  .columns.small-12
+    = link_to 'New', new_admin_team_member_path, :class => 'button radius pull-right secondary'
+    %h2 News
+
+    %table.sortable-table{ data: { url: sort_admin_team_members_path } }
+      %thead
+        %tr
+          %th Position
+          %th Name
+          %th Role
+          %th{ width: '20%' }
+
+      %tbody
+        - @team_members.each do |tm|
+          %tr{ data: { id: tm.id } }
+            %td
+              %i.icon-move
+            %td= tm.name
+            %td= tm.role
+            %td.actions= link_to 'Open', admin_team_member_path(tm)

@@ -1,0 +1,75 @@
+.periodic-wrapper
+  h1
+    color: #919191
+    margin: 0px
+
+  .periodic-tabs 
+    width: 100%
+    border-top: 1px solid #2E4095
+    border-left: 1px solid #2E4095
+    
+    li.tab-title
+      width: 25%
+      border-right: 1px solid #2E4095
+      border-bottom: 1px solid #2E4095
+      position: relative
+      text-align: center
+      
+      &:nth-child(2):after, &:nth-child(3):after 
+        content: ""
+        display: block
+        position: absolute
+        background: #fff
+        height: 101%
+        width: 101%
+        top: -1%
+        left: 0px
+      
+      &:nth-child(3):after 
+        left: -1%
+      
+      &.active 
+        a 
+          color: #fff
+          background: #2E4095
+      a
+        padding: 2rem 0 0
+        color: #2E4095
+        font-size: 36px
+        background: #fff
+        height: 116px
+        line-height: 1.2
+        transition: all .5s linear
+
+        @media only screen and (max-width: 420px)
+          height: 75px
+          font-size: 1.2rem
+          padding-top: 1.2rem
+
+        &:hover
+          color: #fff
+          background: #2E4095
+
+        .number 
+          position: absolute
+          top: 3px
+          font-size: 14px
+          left: 10px
+          @media only screen and (max-width: 420px)
+            font-size: .6rem
+        .name 
+          font-size: 14px
+          line-height: 1.4
+          @media only screen and (max-width: 420px)
+            font-size: .6rem
+  .tabs-content 
+    & > .content
+      padding: 0px
+      min-height: 350px
+
+      h3 
+        margin: 0px
+        font-size: 24px
+
+hr.custom-margin
+  margin: 2.2rem 0

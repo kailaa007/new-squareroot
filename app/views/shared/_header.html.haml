@@ -1,0 +1,74 @@
+%aside.right-off-canvas-menu
+  .title Menu
+  %ul
+    %li= link_to 'Play Video', '#', class: 'play-video'
+    %li= link_to 'What We Do', what_path
+    %li= link_to 'The Facts', facts_path
+    / %li
+    /   = link_to 'Framework:', framework_path
+    /   %ul
+    /     %li= link_to 'Science', framework_path
+    /     %li= link_to 'Solutions', solutions_path
+    /     %li= link_to 'Culture', culture_path
+    /     %li= link_to 'Policy', policy_path
+    %li= link_to 'Team', team_path
+    %li= link_to 'News', news_index_path
+    / %li= link_to 'Projects', projects_path
+    %li= mail_to 'info@squareroots.com', 'Contact Us', :class => 'last', target: '_blank'
+
+%header.default
+  .logo.show-for-large-up= link_to image_tag('logo.png', width: 99, height: 56), video_path
+  .logo.hide-for-large-up= link_to image_tag('logo.png', width: 99, height: 56), what_path
+  .menu
+    %ul
+      %li
+        = link_to_unless_current 'Play Video', '#', class: 'play-video' do
+          %span Play Video
+
+      %li
+        = link_to_unless_current 'What We Do', what_path do
+          %span What We Do
+      %li
+        = link_to_unless_current 'The Facts', facts_path do
+          %span The Facts
+      %li
+        = link_to_unless_current 'Framework', framework_path do
+          %span Framework
+      %li
+        = link_to_unless_current 'Team', team_path do
+          %span Team
+      %li
+        = link_to_unless_current 'News', news_index_path do
+          %span News
+      %li
+        = link_to_unless_current 'Projects', projects_path do
+          %span Projects
+      %li
+        = mail_to 'info@squareroots.com', 'Contact Us', :class => 'last', target: '_blank'
+  .clear
+
+%header.mobile
+  = link_to image_tag('logo.png', width: 70, height: 40), root_path
+  = link_to '#', :class => 'right-off-canvas-toggle' do
+    %span MENU
+    %i.icon-menu
+  .clear
+
+.splash{ data: { imgliquid: true } }
+  - unless content_for(:no_splash)
+    = image_tag "#{action_name}-splash.jpg"
+
+.row
+  .columns.small-12
+
+    - unless content_for(:no_title)
+      .title
+        %h1= title
+
+    .quote
+      .open= image_tag 'quote-open.jpg', width: 50, height: 30
+      %blockquote
+        = t("quotes.#{action_name}.quote")
+        %cite= t("quotes.#{action_name}.cite")
+      .close= image_tag 'quote-close.jpg', width: 50, height: 30
+

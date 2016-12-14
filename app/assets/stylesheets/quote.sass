@@ -1,0 +1,40 @@
+.quote
+  color: black
+  font-family: 'AvrNx'
+  margin: 3rem 0 4rem 0
+  text-align: center
+
+  @media only screen and (max-width: 40em)
+    margin: 2rem 0
+
+  .open, .close
+    text-align: center
+    height: 30px
+    background: image-url('quote-back.jpg') repeat-x
+    background-size: 3px 30px
+
+  .open
+    margin-bottom: 25px
+
+  .close
+    margin-top: 25px
+
+  blockquote
+    font-size: 16px
+    line-height: 26px
+    margin: 0
+    padding: 0
+    border: 0
+    color: black
+    @include thinner
+
+    cite
+      font-style: normal
+      text-transform: uppercase
+      letter-spacing: 2px
+      margin-top: 10px
+
+      &:before
+        content: none
+
+

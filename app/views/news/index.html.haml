@@ -1,0 +1,19 @@
+- if defined?(@tag)
+  - title "Tag: #{@tag.name}"
+- else
+  - title 'News'
+
+.row
+  .columns.small-12.large-7
+    .posts= render @posts
+  .columns.large-4.large-offset-1.show-for-large-up
+    .posts-sidebar
+      %h4 News and announcements.
+      %h5 The latest on Square Roots.
+
+      .section
+        .heading Tags
+        .content
+          %ul
+            - Tag.order('name asc').each do |tag|
+              %li= link_to tag.name, tag_path(tag)

@@ -1,0 +1,202 @@
+.framework-section
+  width: 100%
+
+  .wheel-container
+    width: 700px
+    float: left
+    position: relative
+    height: 598px
+
+    .wheel
+      position: relative
+      height: 598px
+      opacity: 0
+
+      img
+        max-width: none
+        position: absolute
+        top: 0px
+        right: 100px
+        display: block
+
+      span
+        position: absolute
+        color: black
+        font-size: 12px
+        font-style: normal
+        text-transform: uppercase
+        letter-spacing: 2px
+
+        a
+          color: black
+
+  .content
+    padding: 80px 4% 0% 5%
+    overflow: hidden
+
+@media only screen and (min-width: 40.063em) and (max-width: 64em)
+  body.framework, body.policy
+    .wheel-container
+      width: 550px
+
+      .wheel img
+        width: 450px
+
+  body.solutions, body.culture
+    .wheel-container
+      width: 600px
+
+      .wheel img
+        width: 500px
+
+body.framework
+  .framework-section .wheel span
+
+    &.a
+      top: 110px
+      right: 160px
+
+    &.b
+      top: 210px
+      right: 45px
+
+    &.c
+      top: 360px
+      right: 60px
+
+    &.d
+      top: 460px
+      right: 180px
+
+    @media only screen and (min-width: 40.063em) and (max-width: 64em)
+      &.a
+        top: 70px
+        right: 140px
+
+      &.b
+        top: 160px
+        right: 30px
+
+      &.c
+        top: 260px
+        right: 50px
+
+      &.d
+        top: 340px
+        right: 160px
+
+body.solutions
+  .framework-section .wheel span
+
+    &.a
+      top: 120px
+      right: 220px
+
+    &.b
+      top: 210px
+      right: 75px
+
+    &.c
+      top: 350px
+      right: 105px
+
+    &.d
+      top: 460px
+      right: 230px
+
+  @media only screen and (min-width: 40.063em) and (max-width: 64em)
+    .framework-section .content
+      padding: 0% 4% 0% 0%
+
+    .framework-section .wheel span
+      &.a
+        top: 90px
+        right: 180px
+
+      &.b
+        top: 160px
+        right: 60px
+
+      &.c
+        top: 260px
+        right: 85px
+
+      &.d
+        top: 350px
+        right: 180px
+
+body.culture
+  .framework-section .wheel span
+
+    &.a
+      top: 120px
+      right: 220px
+
+    &.b
+      top: 225px
+      right: 85px
+
+    &.c
+      top: 360px
+      right: 90px
+
+    &.d
+      top: 460px
+      right: 230px
+
+  @media only screen and (min-width: 40.063em) and (max-width: 64em)
+    .framework-section .content
+      padding: 0% 4% 0% 0%
+
+    .framework-section .wheel span
+      &.a
+        top: 85px
+        right: 180px
+
+      &.b
+        top: 170px
+        right: 60px
+
+      &.c
+        top: 270px
+        right: 80px
+
+      &.d
+        top: 350px
+        right: 190px
+
+body.policy
+  .framework-section .wheel span
+
+    &.a
+      top: 130px
+      right: 160px
+
+    &.b
+      top: 210px
+      right: 40px
+
+    &.c
+      top: 360px
+      right: 55px
+
+    &.d
+      top: 480px
+      right: 170px
+
+    @media only screen and (min-width: 40.063em) and (max-width: 64em)
+      &.a
+        top: 85px
+        right: 140px
+
+      &.b
+        top: 160px
+        right: 30px
+
+      &.c
+        top: 260px
+        right: 50px
+
+      &.d
+        top: 350px
+        right: 160px

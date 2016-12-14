@@ -1,0 +1,9 @@
+= simple_form_for [ :admin, @administrator ] do |f|
+  .row
+    .columns.small-12.medium-6
+      = f.input :name
+      = f.input :password, required: true
+    .columns.small-12.medium-6
+      = f.input :email
+      = f.input :password_confirmation, required: true
+      = f.button :button, :class => 'button radius pull-right'

@@ -1,0 +1,166 @@
+body.facts
+  .splash 
+    
+  .stat
+    font-size: 30px
+    font-weight: 400
+    @include thinner
+    line-height: 40px
+    color: #2c415e
+
+    @media only screen and (max-width: 40em)
+      text-align: center
+
+    strong
+      font-weight: 500
+
+    span.super
+      font-size: 0.4em
+      vertical-align: super
+
+  .source
+    font-size: 13px
+    font-weight: 400
+    color: #2c415e
+    margin-top: 30px
+
+  .alternate-section
+    background: #dfe6eb
+    padding: 3.5rem 0
+    margin: 3.5rem 0
+
+  .map-fact
+    position: relative
+
+    .source
+      margin-top: 15px
+      padding-top: 15px
+      border-top: 1px solid #2c415e
+
+    .content
+      position: absolute
+      bottom: 20px
+      left: 20px
+
+      @media only screen and (max-width: 40em)
+        position: relative
+        bottom: initial
+        left: initial
+
+      .stat
+        margin-bottom: 30px
+
+      .keys
+        .head
+          font-style: normal
+          text-transform: uppercase
+          letter-spacing: 2px
+          font-size: 13px
+
+          @media only screen and (max-width: 40em)
+            text-align: center
+            margin-bottom: 5px
+            margin-top: -10px
+
+        ul
+          margin: 0
+          padding: 0
+          list-style-type: none
+
+          li
+            float: left
+            display: table
+            margin-right: 20px
+            font-size: 13px
+
+            @media only screen and (max-width: 40em)
+              display: block
+              text-align: center
+              margin: 0 auto 4px auto
+              width: 50%
+              float: none
+
+            span
+              display: table-cell
+              vertical-align: middle
+              color: #2c415e
+
+            span.key
+              width: 20px
+              height: 20px
+              background: blue
+              margin-right: 4px
+              font-size: 13px
+
+              &.us
+                background: #ffa800
+
+              &.dn
+                background: #ffdfa3
+
+              &.un
+                background: #e7e9ed
+
+  .fact-2
+    .women-fact
+      text-align: right
+      @media only screen and (max-width: 640px)
+        text-align: center
+        float: none !important
+        padding-top: 20px
+      
+      & > div 
+        display: inline-block
+        vertical-align: bottom
+        text-align: center
+        font-weight: bold
+        color: #fff
+      
+      .yellow
+        height: 300px
+        width: 300px
+        background: #FFA900
+        font-size: 98px
+        border-radius: 100%
+        line-height: 3.3
+        @media only screen and (max-width: 860px)
+          height: 195px
+          width: 195px
+          font-size: 60px
+          line-height: 3.3
+
+      .grey
+        height: 86px
+        width: 86px
+        border-radius: 100%
+        font-size: 30px
+        background: #98A2B2
+        line-height: 3.2
+
+  .country-facts 
+    .facts-inner
+      font-size: 13px
+      color: #98A2B2
+
+      .img
+        padding-bottom: 20px
+
+      h3 
+        text-transform: uppercase
+        color: #98A2B2
+        margin: 0
+        font-weight: bold
+        font-size: 24px
+
+        @media only screen and (max-width: 860px)
+          font-size: 1rem
+
+      .big-text 
+        font-size: 48px
+        font-weight: bold
+        padding: 5px
+
+      p
+        font-size: 13px
+        color: #98A2B2
+        margin-bottom: 0

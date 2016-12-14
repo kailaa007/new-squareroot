@@ -1,0 +1,123 @@
+$primary-color: #F4C552
+$contrast-color: #132449
+$gray-color: #888a8f
+$header-links-color: white
+$header-color: #004290
+$alternate-section-color: #8991a6
+
+@mixin thinner
+  -webkit-font-smoothing: antialiased
+  -moz-osx-font-smoothing: grayscale
+  -moz-font-smoothing: grayscale
+
+@mixin thickener
+  -webkit-font-smoothing: auto
+  -moz-osx-font-smoothing: auto
+  -moz-font-smoothing: auto
+
+.thinner
+  @include thinner
+
+@mixin transition($attribute)
+  transition: $attribute 0.5s ease
+  -moz-transition: $attribute 0.5s ease
+  -webkit-transition: $attribute 0.5s ease
+
+body
+  font-family: 'AvrNx'
+  background: white
+
+.clear
+  clear: both
+  float: none
+  width: 100%
+
+.spacer
+  height: 2rem
+
+.center
+  text-align: center
+
+.slide
+  position: fixed
+  width: 100%
+  height: 100%
+  z-index: 1
+  overflow: hidden
+  top: 0px
+  left: 0px
+
+  .row
+    position: relative
+    z-index: 2
+
+.section
+  font-family: 'AvrNx'
+
+p
+  font-size: 16px
+  line-height: 26px
+  color: black
+  font-weight: 400
+  @include thinner
+
+  @media only screen and (max-width: 40em)
+    font-size: 14px
+    line-height: 30px
+
+.title
+  text-align: center
+
+h1
+  color: $primary-color
+  font-size: 22px
+  @include thinner
+  font-weight: 400
+  margin-bottom: 0
+  text-transform: uppercase
+  font-family: 'AvrNx'
+  letter-spacing: 3px
+
+  @media only screen and (max-width: 40em)
+    font-size: 25px
+    margin-bottom: 15px
+
+h2
+  color: $primary-color
+  font-size: 20px
+  @include thinner
+  font-weight: 400
+  margin-bottom: 20px
+  text-transform: uppercase
+  letter-spacing: 3px
+  font-family: 'AvrNx'
+
+.section-subheading
+  font-weight: 500
+  font-family: 'AvrNx'
+
+.pull-right
+  float: right
+
+button
+  outline: 0
+
+video.stretch
+  width: 100%
+  max-width: 100%
+
+  @media only screen and (min-width: 64em)
+    height: 540px
+
+.flash-container
+  max-width: 1000px
+  margin: 1rem auto 2rem auto
+
+.full-width-padder
+  margin: 0 40px
+
+  @media only screen and (max-width: 40em)
+    margin: 0
+
+  .row.full-width
+    max-width: none

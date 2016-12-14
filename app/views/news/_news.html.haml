@@ -1,0 +1,15 @@
+.post
+  .post-title= link_to news.title, news_path(news), target: '_blank'
+  .author
+    %span.date= news.post_date.strftime("%-d %b %Y")
+    &bull;
+    %strong= news.author
+    - if news.tag
+      &bull;
+      Posted in #{ link_to news.tag.name, tag_path(news.tag) }.
+  .content
+    = news.excerpt
+    .link
+      = link_to news_path(news), target: '_blank' do
+        %span View full press release
+        %i.icon-right

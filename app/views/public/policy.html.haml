@@ -1,0 +1,27 @@
+- title 'Framework'
+
+.framework-section.show-for-medium-up#wheel
+  .wheel-container
+    .wheel
+      = interchange_tag 'framework-4.png', width: 610, height: 598, usemap: '#map'
+      &nbsp;
+      %span.a= link_to 'Science', framework_path(anchor: 'wheel')
+      %span.b= link_to 'Solutions', solutions_path(anchor: 'wheel')
+      %span.c= link_to 'Culture', culture_path(anchor: 'wheel')
+      %span.d Policy
+  %map{ id: 'map', name: 'map' }
+    %area{ 'data-key' => 'a', shape: "poly", coords: "430,118,429,163,476,176,511,197,519,203,555,169,518,143,483,126", href: framework_path(anchor: 'wheel') }
+    %area{ 'data-key' => 'b', shape: "poly", coords: "519,206,557,169,578,199,590,219,601,244,607,270,606,295,561,296,559,276,548,241,535,225,518,204,518,205", href: solutions_path(anchor: 'wheel') }
+    %area{ 'data-key' => 'c', shape: "poly", coords: "561,296,607,293,606,315,605,342,590,384,559,426,523,389,549,358,560,321,561,294,560,297", href: culture_path(anchor: 'wheel') }
+  .content
+    %h2 POLICY
+    %p Pioneered by Square Roots&trade;, the 2015 Annual U.S. Conference of Mayors was the first conference where a resolution centered on maternal and infant health was passed.
+    %p This resolution encourages our nation's government, health, technology, and wellness sectors to re-engineer the way they provide information, care, and solutions on pregnancy and infant care across all demographics.
+
+.row.hide-for-medium-up
+  .columns.small-12
+    %h2 POLICY
+    %p Pioneered by Square Roots&trade;, the 2015 Annual U.S. Conference of Mayors was the first conference where a resolution centered on maternal and infant health was passed.
+    %p This resolution encourages our nation's government, health, technology, and wellness sectors to re-engineer the way they provide information, care, and solutions on pregnancy and infant care across all demographics.
+
+.clear

@@ -1,0 +1,18 @@
+.row
+  .columns.small-12
+    = link_to 'New', new_admin_tag_path, :class => 'button radius pull-right secondary'
+    %h2 Tags
+
+    %table
+      %thead
+        %tr
+          %th Name
+          %th{ width: '20%' }
+
+      %tbody
+        - @tags.each do |tag|
+          %tr
+            %td= tag.name
+            %td.actions
+              = link_to 'Edit', edit_admin_tag_path(tag)
+              = link_to 'Delete', admin_tag_path(tag), method: :delete, data: { confirm: 'Are you sure?' }

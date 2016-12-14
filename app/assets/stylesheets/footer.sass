@@ -1,0 +1,62 @@
+footer
+  margin-top: 5rem
+  margin-bottom: 0
+  position: relative
+
+  .mainfooter
+    background: $primary-color
+    padding: 60px
+    text-align: center
+
+    .tagline
+      color: white
+      font-size: 16px
+      color: white
+      margin-bottom: 20px
+
+      span
+        display: inline-block
+        @include thinner
+        font-weight: 500
+
+        @media only screen and (max-width: 40em)
+          padding: 0px 5px
+
+    .footer-buttons
+      a
+        display: inline-block
+        text-transform: uppercase
+        color: white
+        padding: 10px 20px
+        border: 1px solid white
+        font-size: 12px
+        font-weight: 400
+        margin: 4px 10px 6px 10px
+        @include transition(all)
+        margin-top: 4px
+        letter-spacing: 2px
+
+        @media only screen and (max-width: 40em)
+          margin: 4px 0px 6px 0px
+          display: block
+
+        &:hover
+          background: white
+          color: $primary-color
+
+body.framework, body.solutions, body.culture, body.policy
+  footer
+    margin-top: 0
+
+.play-video
+  display: none !important
+
+  @media only screen and (min-width: 40em)
+    display: inline-block !important
+
+.play-video-direct
+  display: none !important
+
+  @media only screen and (max-width: 40em)
+    display: block !important
+

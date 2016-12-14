@@ -1,0 +1,57 @@
+- content_for(:no_splash, true)
+- content_for(:no_title, true)
+
+
+.row
+  .title
+    %h2 Team
+- @team_members.team.in_groups_of(4, nil) do |group|
+  .row
+    - if group.compact.size == 2
+      .columns.small-12.medium-3 &nbsp;
+    - group.compact.each do |member|
+      .columns.small-12.medium-3
+        .team-member{ data: { id: dom_id(member) } }
+          .photo
+            .color= interchange_tag member.photo.url(:standard), retina: member.photo.url(:retina), height: 130, width: 130
+            .gray= interchange_tag member.photo.url(:standard_bw), retina: member.photo.url(:retina_bw), height: 130, width: 130
+          .name= member.name
+          - if member.subtitle.present?
+            .subtitle= member.subtitle
+          .role= member.role
+    - if group.compact.size == 2
+      .columns.small-12.medium-3 &nbsp;
+
+%hr.large-8.large-offset-2
+
+.row
+  .title
+    %h2 Advisors
+- @team_members.advisors.in_groups_of(4, nil) do |group|
+  .row
+
+    - if group.compact.size == 2
+      .columns.small-12.medium-3 &nbsp;
+    - group.compact.each do |member|
+      .columns.small-12.medium-3
+        .team-member{ data: { id: dom_id(member) } }
+          .photo
+            .color= interchange_tag member.photo.url(:standard), retina: member.photo.url(:retina), height: 130, width: 130
+            .gray= interchange_tag member.photo.url(:standard_bw), retina: member.photo.url(:retina_bw), height: 130, width: 130
+          .name= member.name
+          - if member.subtitle.present?
+            .subtitle= member.subtitle
+          .role= member.role
+    - if group.compact.size == 2
+      .columns.small-12.medium-3 &nbsp;
+
+- @team_members.each do |member|
+  .team-member-overlay.reveal-modal{ :class => dom_id(member), data: { reveal: true } }
+    .inner
+      .close-modal= image_tag 'close.png', width: 27, height: 27
+      .photo= interchange_tag member.photo.url(:standard), retina: member.photo.url(:retina), height: 130, width: 130
+      .name= member.name
+      .title= member.title
+      - if member.bio.present?
+        .bio= simple_format member.bio
+      .clear

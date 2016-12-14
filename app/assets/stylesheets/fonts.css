@@ -1,0 +1,30 @@
+@font-face {
+  font-family: 'AvrNx';
+  src: font-url('AvenirNext-Medium.eot');
+  src: font-url('AvenirNext-Medium.eot?#iefix') format('embedded-opentype'),
+    font-url('AvenirNext-Medium.woff') format('woff'),
+    font-url('AvenirNext-Medium.ttf')  format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'AvrNx';
+  src: font-url('AvenirNext-Regular.eot');
+  src: font-url('AvenirNext-Regular.eot?#iefix') format('embedded-opentype'),
+    font-url('AvenirNext-Regular.woff') format('woff'),
+    font-url('AvenirNext-Regular.ttf')  format('truetype');
+  font-weight: 400;
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'AvrNx';
+  src: font-url('AvenirNext-UltraLight.eot');
+  src: font-url('AvenirNext-UltraLight.eot?#iefix') format('embedded-opentype'),
+    font-url('AvenirNext-UltraLight.woff') format('woff'),
+    font-url('AvenirNext-UltraLight.ttf')  format('truetype');
+  font-weight: 300;
+  font-style: normal;
+}

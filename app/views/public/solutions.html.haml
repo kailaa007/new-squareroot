@@ -1,0 +1,25 @@
+- title 'Framework'
+
+.framework-section.show-for-medium-up#wheel
+  .wheel-container
+    .wheel
+      = interchange_tag 'framework-2.png', width: 660, height: 598, usemap: '#map'
+      &nbsp;
+      %span.a= link_to 'Science', framework_path(anchor: 'wheel')
+      %span.b Solutions
+      %span.c= link_to 'Culture', culture_path(anchor: 'wheel')
+      %span.d= link_to 'Policy', policy_path(anchor: 'wheel')
+      %map{ id: 'map', name: 'map' }
+        %area{ 'data-key' => 'a', shape: "poly", coords: "430,118,424,163,450,169,483,180,505,192,518,203,553,168,533,152,495,131,456,119,428,116", href: framework_path(anchor: 'wheel') }
+        %area{ 'data-key' => 'c', shape: "poly", coords: "560,295,609,296,607,330,591,382,570,413,557,428,519,386,541,368,554,329,560,294", href: culture_path(anchor: 'wheel') }
+        %area{ 'data-key' => 'd', shape: "poly", coords: "430,430,430,482,495,468,534,448,558,426,519,389,493,414,459,427", href: policy_path(anchor: 'wheel') }
+  .content
+    %h2 SOLUTIONS
+    %p Square Roots&trade; will work with the best minds in science, medicine, and technology to find evidence-based solutions to help close the gaps that exist in the pregnancy care paradigm.
+
+.row.hide-for-medium-up
+  .columns.small-12
+    %h2 SOLUTIONS
+    %p Square Roots&trade; will work with the best minds in science, medicine, and technology to find evidence-based solutions to help close the gaps that exist in the pregnancy care paradigm.
+
+.clear

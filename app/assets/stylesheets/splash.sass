@@ -1,0 +1,32 @@
+.splash
+  height: 533px
+  margin-bottom: 4rem
+  position: relative
+  overflow: hidden
+  background: black
+
+  @media only screen and (max-width: 40em)
+    height: 400px
+    margin-bottom: 3rem
+
+  img
+    max-width: initial
+
+body.team .splash
+  background: image-url('team-splash.jpg')
+  background-size: cover
+
+body.facts .splash
+  overflow: auto
+  height: auto
+  text-align: center
+
+  img
+    width: 100%
+
+@media only screen and (max-width: 40em)
+  body.facts .splash
+    background-position: 70% 50% !important
+
+  body.what .splash
+    background-position: 70% 50% !important
