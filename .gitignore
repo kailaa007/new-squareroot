@@ -5,7 +5,7 @@
 #   git config --global core.excludesfile '~/.gitignore_global'
 
 # Ignore vendorized gems
-/vendor
+#/vendor
 
 # Ignore bundler config.
 /.bundle
