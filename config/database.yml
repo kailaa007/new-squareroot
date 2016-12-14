@@ -1,0 +1,22 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  timeout: 5000
+  username: postgres
+  password: postgres
+  host: localhost
+  port: 5432
+
+development:
+  <<: *default
+  database: squareroots
+
+production:
+  adapter: postgresql
+  host: ec2-54-225-118-55.compute-1.amazonaws.com
+  database: d4qv76f799m9bm
+  user: vafkhjtmxrbhsx
+  port: 5432
+  password: 54f46af8ae0f489be86d0ee9510385421ba9d31f5fff8a2a6f5e6656ee062494
+  uri: postgres://vafkhjtmxrbhsx:54f46af8ae0f489be86d0ee9510385421ba9d31f5fff8a2a6f5e6656ee062494@ec2-54-225-118-55.compute-1.amazonaws.com:5432/d4qv76f799m9bm
