@@ -31,9 +31,9 @@
       %li
         = link_to_unless_current 'The Facts', facts_path do
           %span The Facts
-      %li
-        = link_to_unless_current 'Framework', framework_path do
-          %span Framework
+      / %li
+      /   = link_to_unless_current 'Framework', framework_path do
+      /     %span Framework
       %li
         = link_to_unless_current 'Team', team_path do
           %span Team
@@ -41,7 +41,7 @@
         = link_to_unless_current 'News', news_index_path do
           %span News
       %li
-        = link_to_unless_current 'Projects', projects_path do
+        = link_to_unless_current 'Login', login_path do
           %span Projects
       %li
         = mail_to 'info@squareroots.com', 'Contact Us', :class => 'last', target: '_blank'
@@ -70,5 +70,4 @@
       %blockquote
         = t("quotes.#{action_name}.quote")
         %cite= t("quotes.#{action_name}.cite")
-      .close= image_tag 'quote-close.jpg', width: 50, height: 30
-
+.close= image_tag 'quote-close.jpg', width: 50, height: 30

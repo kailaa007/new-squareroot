@@ -17,6 +17,7 @@ gem 'quiet_assets'
 gem 'thin'
 gem 'jquery-ui-rails'
 gem 'jquery-slick-rails'
+gem 'devise'
 
 group :development, :test do
   gem 'byebug'

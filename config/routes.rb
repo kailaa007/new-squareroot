@@ -1,5 +1,14 @@
 Rails.application.routes.draw do
 
+  devise_for :users, path_names: {
+      password: 'forgot',
+      registration: 'register',
+      sign_up: 'signup'
+    }
+    
+  as :user do  
+    get '/login',  to: 'devise/sessions#new'  
+  end  
   namespace :admin do
     resources :administrators, :news, :tags
     resources :sessions, only: [ :new, :create, :destroy]
