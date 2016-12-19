@@ -7,5 +7,5 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 #
 
-Administrator.create(name: "admin1", email: "admin@mobikasa.com", password: "mobikasa1")
+Administrator.create(name: "admin1", email: "admin1@mobikasa.com", password: "mobikasa1", super_admin: true)
 puts "admin created"

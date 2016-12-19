@@ -7,10 +7,15 @@ Rails.application.routes.draw do
     }
     
   as :user do  
-    get '/login',  to: 'devise/sessions#new'  
+    get '/login', to: 'devise/sessions#new' 
+    post 'login', to: 'devise/sessions#new' 
+    get '/sign_up', to: 'devise/registrations#new'
+    get '/edit_profile', to: "devise/registrations#edit"
   end  
+  
   namespace :admin do
     resources :administrators, :news, :tags
+    resources :users
     resources :sessions, only: [ :new, :create, :destroy]
     resources :team_members do
       post :sort, on: :collection

@@ -1,25 +1,38 @@
 !!!
-<!--[if IE 9]><html class="lt-ie10" lang="en" > <![endif]-->
-%html{ :lang => "en", :class => 'no-js' }
+/[if IE 9] <html class="lt-ie10" lang="en" >
+%html.no-js{:lang => "en"}
   %head
-    %title= title
-    %meta{ :charset => "utf-8" }
-    %meta{ :name => "viewport", :content => "width=device-width, initial-scale=1.0" }
-    %meta{ :name => "keywords", :content => meta_keywords }
-    %meta{ :name => "description", :content => meta_description }
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title
+      = title
+    %meta{:charset => "utf-8"}/
+    %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
+    %meta{:content => meta_keywords, :name => "keywords"}/
+    %meta{:content => meta_description, :name => "description"}/
     = stylesheet_link_tag "application", :media => "all"
     = javascript_include_tag "modernizr"
     = javascript_include_tag "requisites"
     = javascript_include_tag "//cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"
     = csrf_meta_tags
-
-  %body{ :class => "#{params[:controller].split('/').last} #{params[:action]}" }
-    .off-canvas-wrap{ 'data-offcanvas' => true }
+  %body{:class => "#{params[:controller].split('/').last} #{params[:action]}"}
+    .off-canvas-wrap{"data-offcanvas" => "#{true}"}
       .inner-wrap
         = render 'shared/header'
+        .row
+          - if notice
+            %p.alert.alert-success= notice
+          - if alert
+            %p.alert.alert-danger= alert
+        - if user_signed_in?
+          Logged in as
+          = succeed "." do
+            %strong= current_user.email
+          = link_to 'Edit profile', edit_profile_path, :class => 'navbar-link'
+          |
+          \#{link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'}
+        - else
+          |
         = yield
         = render 'shared/footer'
         = link_to '', '', :class => 'exit-off-canvas'
-
     = javascript_include_tag "application"
-

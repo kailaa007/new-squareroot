@@ -2,6 +2,6 @@
   .columns.small-12.medium-6.medium-centered
     %h3 Login
     = simple_form_for :session, url: admin_sessions_path do |f|
-      = f.input :email
+      = f.input :username
       = f.input :password
       = f.button :button, 'Login', :class => 'button radius pull-right'

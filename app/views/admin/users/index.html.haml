@@ -1,0 +1,21 @@
+.row
+  .columns.small-12
+    /= link_to 'New', new_admin_administrator_path, :class => 'button radius pull-right secondary'
+    %h2 Users
+
+    %table
+      %thead
+        %tr
+          %th Name
+          %th Email
+          %th{ width: '20%' }
+
+      %tbody
+        - @users.each do |user|
+          %tr
+            %td= user.first_name + ' ' +user.last_name
+            %td= user.email
+            %td.actions
+              = link_to 'Show', admin_user_path(user)
+              /= link_to 'Edit', edit_admin_administrator_path(admin)
+              = link_to 'Delete', admin_user_path(user), method: :delete, data: { confirm: 'Are you sure?' }

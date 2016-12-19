@@ -1,0 +1,100 @@
+<aside class="right-off-canvas-menu">
+  <div class="title">Menu</div>
+  <ul>
+    <li>
+      <%= link_to 'Play Video', '#', class: 'play-video' %>
+    </li>
+    <li>
+      <%= link_to 'What We Do', what_path %>
+    </li>
+    <li>
+      <%= link_to 'The Facts', facts_path %>
+    </li>
+    <!-- %li
+    -->
+    <!--   = link_to 'Framework:', framework_path
+    -->
+    <!--   %ul
+    -->
+    <!--     %li= link_to 'Science', framework_path
+    -->
+    <!--     %li= link_to 'Solutions', solutions_path
+    -->
+    <!--     %li= link_to 'Culture', culture_path
+    -->
+    <!--     %li= link_to 'Policy', policy_path
+    -->
+    <li>
+      <%= link_to 'Team', team_path %>
+    </li>
+    <li>
+      <%= link_to 'News', news_index_path %>
+    </li>
+    <li>
+      <%= link_to 'login', login_path %>
+    </li>
+    <li>
+      <%= mail_to 'info@squareroots.com', 'Contact Us', :class => 'last', target: '_blank' %>
+    </li>
+  </ul>
+</aside>
+<header class="default">
+  <div class="logo show-for-large-up">
+    <%= link_to image_tag('logo.png', width: 99, height: 56), video_path %>
+  </div>
+  <div class="logo hide-for-large-up">
+    <%= link_to image_tag('logo.png', width: 99, height: 56), what_path %>
+  </div>
+  <div class="menu">
+    <ul>
+      <li>
+        <%= link_to_unless_current 'Play Video', '#', class: 'play-video' do %>
+          <span>Play Video</span>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to_unless_current 'What We Do', what_path do %>
+          <span>What We Do</span>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to_unless_current 'The Facts', facts_path do %>
+          <span>The Facts</span>
+        <% end %>
+      </li>
+      <!-- %li
+      -->
+      <!--   = link_to_unless_current 'Framework', framework_path do
+      -->
+      <!--     %span Framework
+      -->
+      <li>
+        <%= link_to_unless_current 'Team', team_path do %>
+          <span>Team</span>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to_unless_current 'News', news_index_path do %>
+          <span>News</span>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to_unless_current 'Login', login_path do %>
+          <span>Projects</span>
+        <% end %>
+      </li>
+      <li>
+        <%= mail_to 'info@squareroots.com', 'Contact Us', :class => 'last', target: '_blank' %>
+      </li>
+    </ul>
+  </div>
+  <div class="clear"></div>
+</header>
+<header class="mobile">
+  <%= link_to image_tag('logo.png', width: 70, height: 40), root_path %>
+  <%= link_to '#', :class => 'right-off-canvas-toggle' do %>
+    <span>MENU</span>
+    <i class="icon-menu"></i>
+  <% end %>
+  <div class="clear"></div>
+</header>

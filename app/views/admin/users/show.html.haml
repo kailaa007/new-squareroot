@@ -1,0 +1,27 @@
+.row
+  .columns.small-12
+    %h2= @user.first_name + @user.last_name
+
+    .key-value
+      .key Actions
+      .value
+        /= link_to 'Edit', edit_admin_team_member_path(@team_member), :class => 'button tiny radius info'
+        /= link_to 'Delete', admin_team_member_path(@team_member), method: :delete, data: { confirm: 'Are you sure?' }, :class => 'button tiny radius info'
+
+.row
+  .columns.small-12.medium-6
+    .key-value
+      .key First Name
+      .value= @user.first_name
+
+    .key-value
+      .key Last Name
+      .value= @user.last_name
+
+    .key-value
+      .key Email
+      .value= @user.email
+
+    .key-value
+      .key Age
+      .value= @user.age
