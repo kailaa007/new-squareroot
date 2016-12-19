@@ -11,7 +11,12 @@ class Admin::ApplicationController < ApplicationController
   helper_method :current_admin
 
   def require_admin!
-    redirect_to(admin_login_path) unless current_admin
+    if request["controller"] == "admin/password_resets"
+      redirect_to new_admin_password_reset_path
+      return
+    else
+      redirect_to(admin_login_path) unless current_admin
+    end  
   end
 
 end

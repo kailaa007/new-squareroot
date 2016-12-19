@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :administrators, :news, :tags
     resources :users
+    resources :password_resets
     resources :sessions, only: [ :new, :create, :destroy]
     resources :team_members do
       post :sort, on: :collection
