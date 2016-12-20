@@ -1,2 +1,9 @@
-%h1 Admin::PasswordResets#edit
-%p Find me in app/views/admin/password_resets/edit.html.haml
+.row
+  .columns.small-12.medium-6.medium-centered
+    %h3 Reset Password
+    = simple_form_for @admin, url: admin_password_reset_path(params[:id]) do |f|
+      = label_tag "new_password : "
+      = f.password_field :password, placeholder: "new password", required: true
+      = label_tag "confirm password : "
+      = f.password_field :password_confirmation, placeholder: "confirm password", required: true
+      = f.button :button, :class => 'button radius pull-right'

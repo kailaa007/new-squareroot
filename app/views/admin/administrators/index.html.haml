@@ -13,8 +13,8 @@
       %tbody
         - @administrators.each do |admin|
           %tr
-            %td= admin.name
-            %td= admin.email
+            %td= admin[:name]
+            %td= admin[:email]
             %td.actions
               = link_to 'Edit', edit_admin_administrator_path(admin)
               = link_to 'Delete', admin_administrator_path(admin), method: :delete, data: { confirm: 'Are you sure?' }

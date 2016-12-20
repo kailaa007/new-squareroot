@@ -36,17 +36,18 @@ class Admin::AdministratorsController < Admin::ApplicationController
 
   def index
     @administrators = Administrator.order('name asc')
+    puts "#{@administrators.inspect}"
   end
 
 
-  private
+
 
   def get_admin
     @administrator = Administrator.find(params[:id])
   end
 
   def admin_params
-    params.require(:administrator).permit(:name, :email, :password, :password_confirmation)
+    params.require(:administrator).permit(:name, :email, :password, :password_confirmation, :resent_sent_at, :reset_token)
   end
 
 end
