@@ -8,7 +8,6 @@ class Admin::PasswordResetsController < Admin::ApplicationController
     @admin = Administrator.find_by(email: params[:password_resets][:email].downcase)
     if @admin
       @admin.send_password_reset
-      #AdminMailer.password_reset(@admin).deliver_now
       flash[:info] = "Email sent with password reset instructions"
       redirect_to admin_login_path
     else
@@ -26,12 +25,15 @@ class Admin::PasswordResetsController < Admin::ApplicationController
 	  if @admin[:resent_sent_at] < 2.hours.ago
 	    redirect_to new_admin_password_reset_path, :alert => "Password &crarr; 
 	      reset has expired."
-	  elsif @admin.update_attributes(password: params[:administrator][:password],
-	  	                            password_confirmation: params[:administrator][:password_confirmation])
+	  elsif @admin.update_attributes!(admin_params)
 	    redirect_to admin_login_path, :notice => "Password has been reset."
 	  else
 	    render :edit
 	  end
 	end
+
+  def admin_params
+    params.require(:administrator).permit(:name, :email, :password, :password_confirmation, :resent_sent_at, :reset_token)
+  end
 
 end

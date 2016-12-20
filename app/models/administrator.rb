@@ -1,18 +1,17 @@
 class Administrator < ActiveRecord::Base
-  attr_accessor :name, :email, :password, :password_confirmation, :reset_token, :resent_sent_at
+  #attr_accessor :name, :email, :password, :password_confirmation, :reset_token, :resent_sent_at
   # Gems
   has_secure_password
 
   # Validations
-  validates :name, :email, presence: true, :allow_blank => true
-  validates :email, email: true, :allow_blank => true
-  validates_uniqueness_of :name
-  validates :password, confirmation: true
+  #validates :name, :email, presence: true, :allow_blank => true
+  #validates :email, email: true, :allow_blank => true
+  #validates_uniqueness_of :name
+  #validates :password, confirmation: true
 
   
 
 	def send_password_reset
-    byebug
 	  generate_token(:reset_token)
 	  self[:resent_sent_at] = Time.now
 	  save!
