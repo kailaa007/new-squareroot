@@ -6,8 +6,8 @@ class Administrator < ActiveRecord::Base
   # Validations
   #validates :name, :email, presence: true, :allow_blank => true
   #validates :email, email: true, :allow_blank => true
-  #validates_uniqueness_of :name
-  #validates :password, confirmation: true
+  validates_uniqueness_of :name
+  validates :password, confirmation: true
 
   
 
