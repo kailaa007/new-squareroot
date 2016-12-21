@@ -1,0 +1,20 @@
+.row
+  .columns.small-12
+    = link_to 'New', new_admin_question_path, :class => 'button radius pull-right secondary'
+    %h2 Questions
+
+    %table
+      %thead
+        %tr
+          %th Title
+          %th type
+          %th{ width: '20%' }
+
+      %tbody
+        - @questions.each do |question|
+          %tr
+            %td= question.title
+            %td=  get_ques_type(question.ques_type)
+            %td.actions
+              = link_to 'Edit', edit_admin_question_path(question)
+              = link_to 'Delete', admin_question_path(question), method: :delete, data: { confirm: 'Are you sure?' }

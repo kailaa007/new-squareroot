@@ -1,0 +1,26 @@
+<%= nested_form_for [ :admin, @question ] do |f| %>
+  <div class="row">
+    <div class="columns small-12 medium-6">
+      <%= f.label :title %>
+      <%= f.text_field :title, required: true %>
+      <%= f.label :question_type %>
+      <%= f.select :ques_type, Question::QUESTION_TYPES, :prompt => "Select question type", required: true %>
+      <%= f.label :required %>
+      <%= f.check_box :required %><br>
+      <%= f.label :description %>
+      <%= f.text_area :note %>
+      <div class="phase-fields">
+    	  <label>Options</label>
+    
+		    <ul id="ques-list" class="nested-list">
+		      <%= f.fields_for :options, wrapper_tag: 'li' %>
+		    </ul>
+
+		    <p class="indent" data-target="#faqs-list" id="ques_add">    
+		      <%= f.link_to_add "Add an Option", :options, class: 'button small' %>
+		    </p>
+      </div>
+      <%= f.submit "submit", :class => 'button radius pull-right' %>
+    </div>
+  </div>
+<% end %>

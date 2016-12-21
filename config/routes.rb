@@ -14,7 +14,12 @@ Rails.application.routes.draw do
   end  
   
   namespace :admin do
-    resources :administrators, :news, :tags
+    resources :administrators, :news, :tags, :questions
+    resources :birth_plans do
+      get "assign_ques", on: :member
+      post "assign_ques", on: :member
+      patch "assign_ques", on: :member
+    end  
     resources :users
     resources :password_resets
     resources :sessions, only: [ :new, :create, :destroy]

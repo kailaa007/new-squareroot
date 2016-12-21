@@ -1,0 +1,7 @@
+= simple_form_for [ :admin, @birth_plan ] do |f|
+  .row
+    .columns.small-12.medium-6
+      = f.input :title, required: true
+      = f.select :status, [['Active', true], ['Inactive', false]], :prompt => "Select Status"
+      = f.text_area :description
+      = f.button :button, :class => 'button radius pull-right'

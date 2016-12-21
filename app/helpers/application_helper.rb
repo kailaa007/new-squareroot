@@ -1,5 +1,21 @@
 module ApplicationHelper
 
+  def get_ques_type(number)
+    if number == 1
+      'Boolean'
+    elsif number == 2
+      'Single Select Question'
+    elsif number == 3
+      'In Multiple Select Question'
+    elsif number == 4
+      'Detail Answer'
+    elsif number == 5
+      'Email Field'
+    elsif number == 6
+      'Input Field'
+    end  
+  end
+
   def title(text = nil)
     if text
       content_for :title, text

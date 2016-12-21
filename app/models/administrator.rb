@@ -9,6 +9,8 @@ class Administrator < ActiveRecord::Base
   validates_uniqueness_of :name
   validates :password, confirmation: true
 
+  before_create { generate_token(:auth_token) }
+
   
 
 	def send_password_reset

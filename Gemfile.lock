@@ -120,6 +120,7 @@ GEM
     mimemagic (0.3.0)
     mini_portile (0.6.2)
     minitest (5.8.1)
+    nested_form (0.3.2)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-sftp (2.1.2)
@@ -227,6 +228,7 @@ DEPENDENCIES
   jquery-rails
   jquery-slick-rails
   jquery-ui-rails
+  nested_form
   paperclip!
   pg
   quiet_assets

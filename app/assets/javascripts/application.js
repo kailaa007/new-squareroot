@@ -14,5 +14,6 @@
 //= require preloader
 //= require sortable
 //= require slideshow
+//= require jquery_nested_form
 
 $(document).foundation();

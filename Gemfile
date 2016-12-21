@@ -18,6 +18,7 @@ gem 'thin'
 gem 'jquery-ui-rails'
 gem 'jquery-slick-rails'
 gem 'devise'
+gem "nested_form"
 
 group :development, :test do
   gem 'byebug'

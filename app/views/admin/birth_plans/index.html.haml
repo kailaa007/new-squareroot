@@ -1,0 +1,21 @@
+.row
+  .columns.small-12
+    = link_to 'New', new_admin_birth_plan_path, :class => 'button radius pull-right secondary'
+    %h2 Birth Plan
+
+    %table
+      %thead
+        %tr
+          %th Title
+          %th status
+          %th{ width: '30%' }
+
+      %tbody
+        - @birth_plans.each do |plan|
+          %tr
+            %td= plan.title
+            %td= plan.status ? "Active" : "Inactive"
+            %td.actions
+              = link_to "Assign Questions", assign_ques_admin_birth_plan_path(plan)
+              = link_to 'Edit', edit_admin_birth_plan_path(plan)
+              = link_to 'Delete', admin_birth_plan_path(plan), method: :delete, data: { confirm: 'Are you sure?' }
