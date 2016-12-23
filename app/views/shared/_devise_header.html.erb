@@ -31,7 +31,11 @@
       <%= link_to 'News', news_index_path %>
     </li>
     <li>
-      <%= link_to 'login', login_path %>
+      <% if current_user.present? %>
+        <%#= link_to 'logout', destroy_user_session_path %>
+      <% else %>
+         <%= link_to 'login', login_path %>
+      <% end %>  
     </li>
     <li>
       <%= mail_to 'info@squareroots.com', 'Contact Us', :class => 'last', target: '_blank' %>
@@ -79,8 +83,15 @@
         <% end %>
       </li>
       <li>
-        <%= link_to_unless_current 'Login', login_path do %>
-          <span>Projects</span>
+        <% if current_user.present? %>
+          <%#= link_to_unless_current 'Logout', destroy_user_session_path do %>
+          <%= link_to_unless_current 'Birth Plan', active_plan_birth_plans_path do %>
+            <span>Birth PLan</span>
+          <% end %>
+        <% else %>
+          <%= link_to_unless_current 'Login', login_path do %>
+            <span>Projects</span>
+          <% end %>
         <% end %>
       </li>
       <li>
