@@ -16,11 +16,16 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :administrators, :news, :tags, :questions
     resources :birth_plans do
-      get "assign_ques", on: :member
-      post "assign_ques", on: :member
-      patch "assign_ques", on: :member
+      get "assign_ques", on: :collection
+      post "assign_ques", on: :collection
+      patch "assign_ques", on: :collection
     end  
-    resources :users
+
+    resources :users do 
+      get 'birth_plan_report', on: :member
+      post 'birth_plan_report', on: :member
+    end
+
     resources :password_resets
     resources :sessions, only: [ :new, :create, :destroy]
     resources :team_members do
@@ -44,6 +49,8 @@ Rails.application.routes.draw do
     post 'answer', on: :member
   end  
 
+  resources :birth_plan_answers
+  
   root to: 'public#intro'
 
 end

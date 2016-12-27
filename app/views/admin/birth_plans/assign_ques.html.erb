@@ -1,23 +1,33 @@
-<div class="row"> 
-<h2>Assign Questions to <%= @birth_plan.title %></h2>
-
-<p>Please tick the check to include in your survey : </p>
-<%= form_for @birth_plan, url: assign_ques_admin_birth_plan_path do |f| %>
-  <table class="index-list">
- 
-      <% @questions.each do |question| %>
-        <tr>
-        <% plan_questions = @birth_plan.questions.pluck(:id) %>
-        <% if plan_questions.include?question.id %>
-          <td><input type="checkbox" name="<%=question.id%>" class='allchk' id="<%=question.id%>" checked /></td><td><%= question.title %></td>
-        <% else %>
-          <td><input type="checkbox" name="<%=question.id%>" class='allchk' id="<%=question.id%>" /></td><td><%= question.title %></td>
-        <% end %>
-          </tr>
-      <% end %> 
-
-  </table>  
-  <button class="action" type="submit">save</button>
-  <%= link_to "cancel", admin_birth_plans_path, class: 'button' %>
-<% end %>
+<div class="row">
+  <%= form_tag assign_ques_admin_birth_plans_path, :method => 'get' do %>
+    <p>
+      <%= text_field_tag :search, params[:search] %>
+      <%= submit_tag "Search", :name => nil %>
+    </p>
+  <% end %>
 </div>
+<% if @birth_plan.present? %>
+  <div class="row"> 
+  <h2>Assign Questions to <%= @birth_plan.title %></h2>
+
+  <p>Please tick the check to include in your survey : </p>
+  <%= form_for @birth_plan, url: assign_ques_admin_birth_plans_path do |f| %>
+    <%= hidden_field_tag 'birth_plan_id', @birth_plan.id %>
+    <table class="index-list">
+        <% @questions.each do |question| %>
+          <tr>
+          <% plan_questions = @birth_plan.questions.pluck(:id) %>
+          <% if plan_questions.include?question.id %>
+            <td><input type="checkbox" name="<%=question.id%>" class='allchk' id="<%=question.id%>" checked /></td><td><%= question.title %></td>
+          <% else %>
+            <td><input type="checkbox" name="<%=question.id%>" class='allchk' id="<%=question.id%>" /></td><td><%= question.title %></td>
+          <% end %>
+            </tr>
+        <% end %> 
+
+    </table>  
+    <button class="action" type="submit">save</button>
+    <%= link_to "cancel", admin_birth_plans_path, class: 'button' %>
+  <% end %>
+  </div>
+<% end %>  

@@ -16,6 +16,5 @@
             %td= plan.title
             %td= plan.status ? "Active" : "Inactive"
             %td.actions
-              = link_to "Assign Questions", assign_ques_admin_birth_plan_path(plan)
               = link_to 'Edit', edit_admin_birth_plan_path(plan)
               = link_to 'Delete', admin_birth_plan_path(plan), method: :delete, data: { confirm: 'Are you sure?' }

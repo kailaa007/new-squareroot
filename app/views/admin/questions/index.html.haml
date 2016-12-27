@@ -17,4 +17,5 @@
             %td=  get_ques_type(question.ques_type)
             %td.actions
               = link_to 'Edit', edit_admin_question_path(question)
-              = link_to 'Delete', admin_question_path(question), method: :delete, data: { confirm: 'Are you sure?' }
+              - if BirthPlanQuestion.where(question_id: question.id).empty?
+                = link_to 'Delete', admin_question_path(question), method: :delete, data: { confirm: 'Are you sure?' }

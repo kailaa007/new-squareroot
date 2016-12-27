@@ -1,7 +1,8 @@
 <div class="row">
   <h2><%= @birth_plan.title %></h2>
-<%= form_for @birth_plan, url: answer_birth_plan_path(@birth_plan), method: :post do |f| %>
+<%= form_for @birth_plan_answer, url: birth_plan_answers_path(@birth_plan), method: :post do |f| %>
   <div class="columns small-12 medium-12">
+    <%= hidden_field_tag :birth_plan_id, @birth_plan.id %>
    	<% @birth_plan.questions.each_with_index do |question, ind| %>
       <div class= "form-group">
         <label><b>Question  <%= ind+1 %>. &nbsp&nbsp<%= "*" if question.required? %><%= question.title %></b>
@@ -58,13 +59,13 @@
             <% if question.required? %>
               <input type="email" name="[plan][<%=question.id%>]"  class="form-control" required></input> 
             <% else %>
-              <input type="email" name="[plan][<%=question.id%>]"  class="form-control" required></input>  
+              <input type="email" name="[plan][<%=question.id%>]"  class="form-control"></input>  
             <% end %>
           <% when 6 %>
             <% if question.required? %>
               <input type="text" name="[plan][<%=question.id%>]"  class="form-control" required></input> 
             <% else %>
-              <input type="text" name="[plan][<%=question.id%>]"  class="form-control" required></input>  
+              <input type="text" name="[plan][<%=question.id%>]"  class="form-control"></input>  
             <% end %> 
           <% end %>
       </div>     

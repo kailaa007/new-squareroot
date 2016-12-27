@@ -1,6 +1,6 @@
 class Admin::BirthPlansController < Admin::ApplicationController
 
-  before_action :get_plan, only: [ :edit, :update, :destroy, :assign_ques ]
+  before_action :get_plan, only: [ :edit, :update, :destroy]
 
   def new
     @birth_plan = BirthPlan.new
@@ -40,7 +40,12 @@ class Admin::BirthPlansController < Admin::ApplicationController
 
   def assign_ques
     @questions = Question.all
+    if params[:search].present?
+      keyword = params[:search]
+      @birth_plan = BirthPlan.find_by_title(params[:search])
+    end  
     if request.patch?
+      @birth_plan = BirthPlan.find(params[:birth_plan_id].to_i)
       @questions.each do |ques|
         
         if params["#{ques.id.to_s}"] == 'on'
@@ -55,7 +60,7 @@ class Admin::BirthPlansController < Admin::ApplicationController
           end      
         end      
       end
-      redirect_to admin_birth_plans_path, notice: "Question are assigned to Survey Template page successfully." 
+      redirect_to :back, notice: "Question are assigned to Survey Template page successfully." 
     end
     
   end 

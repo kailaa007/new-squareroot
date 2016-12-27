@@ -46,7 +46,7 @@ class Admin::QuestionsController < Admin::ApplicationController
   end
 
   def question_params
-    params.require(:question).permit(:title, :ques_type, :note, options_attributes: [:id, :option_title, :question_id, :_destroy])
+    params.require(:question).permit(:title, :ques_type, :required, :note, options_attributes: [:id, :option_title, :question_id, :_destroy])
   end
 
 end
