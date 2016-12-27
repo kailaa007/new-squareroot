@@ -1,5 +1,7 @@
 class Tag < ActiveRecord::Base
 
+  self.per_page = 10
+
   # Gems
   extend FriendlyId
   friendly_id :name, use: :slugged

@@ -20,3 +20,5 @@
             %td.actions
               = link_to 'Edit', edit_admin_news_path(news)
               = link_to 'Delete', admin_news_path(news), method: :delete, data: { confirm: 'Are you sure?' }
+        %tr
+          %td= will_paginate @news

@@ -7,7 +7,9 @@ class Question < ActiveRecord::Base
     'Email Field' => 5,
     'Input Field' => 6,
   }
-  	
+  
+  self.per_page = 10
+
   #gems
   extend FriendlyId
   friendly_id :title, use: :slugged

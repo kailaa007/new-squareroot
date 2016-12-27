@@ -35,7 +35,7 @@ class Admin::TagsController < Admin::ApplicationController
   end
 
   def index
-    @tags = Tag.order('name asc')
+    @tags = Tag.order('name asc').paginate(:page => params[:page])
   end
 
 

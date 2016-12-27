@@ -19,3 +19,5 @@
               = link_to 'Birth Plan',birth_plan_report_admin_user_path(user)
               = link_to 'Show', admin_user_path(user)
               = link_to 'Delete', admin_user_path(user), method: :delete, data: { confirm: 'Are you sure?' }
+        %tr
+          %td= will_paginate @users

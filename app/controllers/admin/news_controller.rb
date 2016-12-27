@@ -35,7 +35,7 @@ class Admin::NewsController < Admin::ApplicationController
   end
 
   def index
-    @news = News.order('title asc')
+    @news = News.order('title asc').paginate(:page => params[:page])
   end
 
 

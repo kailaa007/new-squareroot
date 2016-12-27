@@ -1,4 +1,6 @@
 class News < ActiveRecord::Base
+  
+  self.per_page = 10
 
   # Gems
   extend FriendlyId
