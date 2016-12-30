@@ -35,7 +35,7 @@ class Admin::TeamMembersController < Admin::ApplicationController
   end
 
   def index
-    @team_members = TeamMember.order('position asc')
+    @team_members = TeamMember.order('position asc').paginate(:page => params[:page])
   end
 
   def show

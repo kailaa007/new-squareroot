@@ -10,6 +10,9 @@ class Question < ActiveRecord::Base
 
   after_create :set_order
   	
+  
+  self.per_page = 10
+
   #gems
   extend FriendlyId
   friendly_id :title, use: :slugged

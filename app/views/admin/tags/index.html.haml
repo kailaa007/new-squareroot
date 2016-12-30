@@ -16,3 +16,5 @@
             %td.actions
               = link_to 'Edit', edit_admin_tag_path(tag)
               = link_to 'Delete', admin_tag_path(tag), method: :delete, data: { confirm: 'Are you sure?' }
+        %tr
+          %td= will_paginate @tags

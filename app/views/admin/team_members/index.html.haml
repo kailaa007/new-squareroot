@@ -19,3 +19,5 @@
             %td= tm.name
             %td= tm.role
             %td.actions= link_to 'Open', admin_team_member_path(tm)
+        %tr
+          %td= will_paginate @team_members

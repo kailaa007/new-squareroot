@@ -1,5 +1,7 @@
 class TeamMember < ActiveRecord::Base
 
+  self.per_page = 10
+
   # Gems
   has_attached_file :photo,
     :styles => {

@@ -19,3 +19,5 @@
               = link_to 'Edit', edit_admin_question_path(question)
               - if BirthPlanQuestion.where(question_id: question.id).empty?
                 = link_to 'Delete', admin_question_path(question), method: :delete, data: { confirm: 'Are you sure?' }
+        %tr
+          %td= will_paginate @questions

@@ -57,7 +57,7 @@ class Admin::QuestionsController < Admin::ApplicationController
   end
 
   def index
-    @questions = Question.order('title asc')
+    @questions = Question.order('title asc').paginate(:page => params[:page])
   end
 
 
