@@ -15,10 +15,51 @@
 //= require sortable
 //= require slideshow
 //= require jquery_nested_form
+//= require best_in_place
+//= require jquery-ui
+//= require best_in_place.jquery-ui
 
 $(document).foundation();
 
 $(document).ready(function() {
+  $( ".restlink" ).click(function(){
+    setTimeout(function() { 
+     var qid = $('#quest').val();
+     $('#tr_'+qid).show();
+    }, 100);
+
+  });
+
+});
+
+
+$(document).on('change', '#quest', function (e) { 
+  $('#preview table.list-ques tr').hide();
+  var qid = $(this).val();  
+  $('#tr_'+qid).show();
+});
+
+$(document).on('click', '.base_question :checkbox', function (e) { 
+  if($(this).is(':checked')){
+    $(this).closest('tr').next('tr').hide();
+  }else{
+    $(this).closest('tr').next('tr').show();
+  }
+});
+
+$(document).ready(function() { 
+
+  $(".question-form").hide();
+
+  $("#show-form").click(function() {
+    $("#search-form").submit();
+    $(".question-form").toggle();
+  });
+
+  $('#get-ques').click(function() {
+    $("#search-form").submit();
+  });
+
 	var value = $( "select option:selected").val();
 	
 	if(value == 2 || value == 3){

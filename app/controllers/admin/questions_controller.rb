@@ -9,8 +9,14 @@ class Admin::QuestionsController < Admin::ApplicationController
   def create
     @question = Question.new(question_params)
     if @question.save
+      if @question.ques_type == 1
+        @question.options.create([
+          { option_title: 'true' },
+          { option_title: 'false' }
+        ])
+      end  
       flash[:success] = 'Question created successfully.'
-      redirect_to admin_questions_path
+      redirect_to admin_birth_plans_path
     else
       render :new
     end
@@ -20,9 +26,25 @@ class Admin::QuestionsController < Admin::ApplicationController
   end
 
   def update
-    if @question.update(question_params)
+    byebug
+    if @question.ques_type != 1 && params[:question][:ques_type].to_i == 1
+      @question.update(question_params)
+      @question.options.create([
+        { option_title: 'true' },
+        { option_title: 'false' }
+      ])
       flash[:success] = 'Question updated.'
-      redirect_to admin_questions_path
+      redirect_to admin_birth_plans_path
+      return
+    elsif @question.ques_type == 1 && params[:question][:ques_type].to_i != 1
+      @question.update(question_params)
+      @question.options.delete_all
+      flash[:success] = 'Question updated.'
+      redirect_to admin_birth_plans_path
+      return
+    elsif @question.update(question_params)
+      flash[:success] = 'Question updated.'
+      redirect_to admin_birth_plans_path
     else
       render :edit
     end
@@ -31,7 +53,7 @@ class Admin::QuestionsController < Admin::ApplicationController
   def destroy
     @question.destroy
     flash[:success] = 'Question destroyed.'
-    redirect_to admin_questions_path
+    redirect_to admin_birth_plans_path
   end
 
   def index
@@ -46,7 +68,7 @@ class Admin::QuestionsController < Admin::ApplicationController
   end
 
   def question_params
-    params.require(:question).permit(:title, :ques_type, :required, :note, options_attributes: [:id, :option_title, :question_id, :_destroy])
+    params.require(:question).permit(:title, :order,:ques_type, :required, :note, options_attributes: [:id, :option_title, :question_id, :_destroy])
   end
 
 end

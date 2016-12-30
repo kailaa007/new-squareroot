@@ -1,0 +1,26 @@
+<% @questions.each_with_index do |question,ind| %>
+  <tr data-id="<%="#{question.id}"%>">
+    <td><i class="icon-move"></i></td>
+    <td><%= question.title %></td>
+    <td><%= get_ques_type(question.ques_type) %></td>
+    <td>
+      <% unless ind == 0 %>
+        <%= link_to '+', get_question_admin_birth_plan_path(question.id), class: "btn btn-info btn-lg restlink", :remote => true, id: question.id %>
+      <% end %>  
+    </td>
+    <td class="actions" style="text-align: left;">
+      <% if RestrictQuestion.where(main_ques_id: question.id).empty? %>
+        <%= link_to 'Edit', edit_admin_question_path(question) %>
+        <% if BirthPlanQuestion.where(question_id: question.id).empty? %>
+          <%= link_to 'Delete', admin_question_path(question), method: :delete, data: { confirm: 'Are you sure?' }%>
+        <% end %>
+      <% else %>  
+        <%= link_to 'Edit', '#',data: { confirm: 'Please remove the restriction' }%>
+        <% if BirthPlanQuestion.where(question_id: question.id).empty? %>
+          <%= link_to 'Delete', '#', data: { confirm: 'Please remove the restriction'  }%>
+        <% end %>  
+      <% end %>
+    </td>
+  </tr>
+  <tr><td colspan="5"><hr></td></tr>
+<% end %> 

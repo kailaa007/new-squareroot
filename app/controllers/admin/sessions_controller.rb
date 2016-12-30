@@ -3,6 +3,9 @@ class Admin::SessionsController < Admin::ApplicationController
   skip_before_action :require_admin!
 
   def new
+    if current_admin.present?
+      redirect_to admin_root_path
+    end  
   end
 
   def create

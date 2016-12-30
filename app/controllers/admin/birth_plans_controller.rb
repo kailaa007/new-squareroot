@@ -1,6 +1,6 @@
 class Admin::BirthPlansController < Admin::ApplicationController
 
-  before_action :get_plan, only: [ :edit, :update, :destroy]
+  #before_action :get_plan, only: [:update, :destroy]
 
   def new
     @birth_plan = BirthPlan.new
@@ -17,6 +17,8 @@ class Admin::BirthPlansController < Admin::ApplicationController
   end
 
   def edit
+    @birth_plan = BirthPlan.find(params[:id])
+    @questions = Question.ordered
   end
 
   def update
@@ -28,52 +30,71 @@ class Admin::BirthPlansController < Admin::ApplicationController
     end
   end
 
-  def destroy
-    @birth_plan.destroy
-    flash[:success] = 'Birth Plan destroyed.'
-    redirect_to admin_birth_plans_path
-  end
+  def sort
+    params[:sort].each do |k, v|
+      question = Question.find(k)
+      if question.present?
+        question.update_attributes(order: v)
+      end  
+    end
+    head :ok
+  end  
 
   def index
-    @birth_plans = BirthPlan.order('title asc')
+    @birth_plan = BirthPlan.find(3)
+    @questions = Question.ordered
+    @question = Question.new
   end
 
-  def assign_ques
+  def get_question
+    @restricted_questions = []
+    @current_question = Question.find(params[:id])
+    @restricted = RestrictQuestion.where("base_ques_id = ?", @current_question.id)
     @questions = Question.all
-    if params[:search].present?
-      keyword = params[:search]
-      @birth_plan = BirthPlan.find_by_title(params[:search])
+     @questions.each do |ques|
+      if ques.order < @current_question.order
+        @restricted_questions << ques
+      end  
     end  
-    if request.patch?
-      @birth_plan = BirthPlan.find(params[:birth_plan_id].to_i)
-      @questions.each do |ques|
-        
-        if params["#{ques.id.to_s}"] == 'on'
-          
-          if @birth_plan.questions.any?
-            @birth_plan.questions.delete_all
-            @birth_plan_question = @birth_plan.birth_plan_questions.new(:question_id => ques.id, birth_plan_id: @birth_plan_id)
-            @birth_plan_question.save!   
-          else
-            @birth_plan_question = BirthPlanQuestion.create!(:question_id => ques.id, birth_plan_id: @birth_plan.id)
-            #@birth_plan_question.save!  
-          end      
-        end      
-      end
-      redirect_to :back, notice: "Question are assigned to Survey Template page successfully." 
+    #@restricted_questions = Question.where('order <  "#{question.order}"')
+    respond_to do | format |  
+      format.js {render :layout => false}  
     end
-    
+  end
+
+  def restrict
+    @restrict_questions = RestrictQuestion.where("base_ques_id = ?", params[:current_question_id])
+    @restrict_questions.delete_all
+
+    if params[:base_question].present?
+      params[:question].each do |id, value|
+        RestrictQuestion.create(main_ques_id: params[:question_id],
+                                main_option_id: value,
+                                base_ques_id: params[:base_question],
+                                ques_status: false)     
+      end  
+    end
+    if params[:base_option].present?
+      params[:question].each do |id, value|
+        params[:base_option].each do |opt, attribute|
+          RestrictQuestion.create(main_ques_id: params[:question_id],
+                                  main_option_id: value,
+                                  base_ques_id: params[:current_question_id],
+                                  base_option_id: opt,
+                                  ques_status: true,
+                                  option_status: false)     
+        end  
+      end 
+    end  
+
+    flash[:success] = 'Restriction Done'
+    redirect_to admin_birth_plans_path
   end 
-
-
+  
   private
 
-  def get_plan
-    @birth_plan = BirthPlan.find(params[:id])
-  end
-
   def birth_plan_params
-    params.require(:birth_plan).permit(:title, :status, :description)
+    params.require(:birth_plan).permit(:title, :status, :description, question_attributes: [:id])
   end
 
 end

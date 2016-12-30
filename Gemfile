@@ -20,6 +20,9 @@ gem 'jquery-slick-rails'
 gem 'devise'
 gem "nested_form"
 gem 'will_paginate', '~> 3.1.0'
+gem 'pdfkit'
+gem 'wkhtmltopdf-binary'
+gem 'best_in_place'
 
 group :development, :test do
   gem 'byebug'

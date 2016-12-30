@@ -15,17 +15,7 @@
           <%= link_to 'Tags', admin_tags_path %>
         </li>
         <li>
-          <div class="dropdown">
-            <button class="dropbtn">Manage Survey</button>
-              <div class="dropdown-content">
-                <%= link_to 'Manage Questions', admin_questions_path,
-                style:"color: black!important;font-size: 10px!important" %>
-                <%= link_to 'Manage Template', admin_birth_plans_path, style:"color: black!important; font-size: 10px!important"%>
-                <%= link_to 'Assign Question',  assign_ques_admin_birth_plans_path, style:"color: black!important; font-size: 10px!important"%>
-                <%= link_to 'Send Survey', admin_birth_plans_path, style:"color: black!important; font-size: 10px!important"%>
-              </div>
-          </div>
-          
+          <%= link_to 'Birth Plan', admin_birth_plans_path %>       
         </li>
         <li>
           <%= link_to 'Admins', admin_administrators_path %>

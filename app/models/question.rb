@@ -7,6 +7,8 @@ class Question < ActiveRecord::Base
     'Email Field' => 5,
     'Input Field' => 6,
   }
+
+  after_create :set_order
   	
   #gems
   extend FriendlyId
@@ -23,4 +25,13 @@ class Question < ActiveRecord::Base
   def selected_option
   	QUESTION_TYPES.invert
   end	
+
+  def self.ordered
+    order("questions.order")
+  end  
+
+  def set_order
+    self.order = Question.maximum('order') +1
+    self.save!
+  end  
 end

@@ -2,13 +2,13 @@ module ApplicationHelper
 
   def get_ques_type(number)
     if number == 1
-      'Boolean'
+      'True/False'
     elsif number == 2
-      'Single Select Question'
+      'Single Select'
     elsif number == 3
-      'In Multiple Select Question'
+      'Multiple Select'
     elsif number == 4
-      'Detail Answer'
+      'Detail Field'
     elsif number == 5
       'Email Field'
     elsif number == 6
