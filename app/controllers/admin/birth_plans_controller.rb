@@ -37,7 +37,8 @@ class Admin::BirthPlansController < Admin::ApplicationController
         question.update_attributes(order: v)
       end  
     end
-    head :ok
+    @questions = Question.ordered
+    redirect_to admin_birth_plans_path
   end  
 
   def index

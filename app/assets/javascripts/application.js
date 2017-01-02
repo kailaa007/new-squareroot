@@ -26,7 +26,7 @@ $(document).ready(function() {
     setTimeout(function() { 
      var qid = $('#quest').val();
      $('#tr_'+qid).show();
-    }, 100);
+    }, 600);
 
   });
 
