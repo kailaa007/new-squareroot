@@ -41,7 +41,7 @@ class Admin::BirthPlansController < Admin::ApplicationController
   end  
 
   def index
-    @birth_plan = BirthPlan.find(3)
+    @birth_plan = BirthPlan.first
     @questions = Question.ordered
     @question = Question.new
   end
