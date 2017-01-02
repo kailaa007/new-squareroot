@@ -1,5 +1,4 @@
-<p>
-  <%= f.label :title %>
-  <%= f.text_field :option_title, class: "option_title" %>
-  <%= f.link_to_remove "remove", class: "glyphicon glyphicon-remove" %> 
-</p>
+<div class="remove_option">
+  <%= f.text_field :option_title, class: "option_title", placeholder: "Option Title" %>
+  <%= f.link_to_remove "", class: "glyphicon glyphicon-remove cross_pos_add" %> 
+</div>

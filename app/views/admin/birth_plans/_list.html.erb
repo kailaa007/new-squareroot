@@ -7,7 +7,7 @@
     <td><%= get_ques_type(question.ques_type) %></td>
     <td>
       <% unless Question.minimum(:order) == question.order %>
-        <%= link_to '+', get_question_admin_birth_plan_path(question.id), class: "btn btn-info btn-lg restlink", :remote => true, id: question.id %>
+        <%= link_to '+', get_question_admin_birth_plan_path(question.id), class: "btn btn-info btn-lg restlink", :remote => true, id: question.id , style: "    padding: 0px 7px;"%>
       <% end %>  
     </td>
     <td class="actions" style="text-align: left;">
@@ -24,6 +24,5 @@
       <% end %>
     </td>
   </tr>
-  <tr><td colspan="5"><hr></td></tr>
 <% end %> 
 </div>

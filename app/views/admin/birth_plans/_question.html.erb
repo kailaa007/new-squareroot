@@ -7,27 +7,33 @@
 	  <%#= que.inspect %> 
   <% end %>
   <%= form_for BirthPlan.new, url: restrict_admin_birth_plans_path do |f| %>
-    <div>
-	    <%= hidden_field_tag "current_question_id", current_question.id %>
-	  	<select name="question_id" id="quest">
-	  	    <option value="">Select Question</option> 
-	  	  <% if @base_question.present? %>  
-	  	    <option value="<%= @base_question.id %>" selected><%= @base_question.title %></option> 
-	  	    <% question.each do |ques| %>
-	  	      <% unless ques.id == que.id %>
-			  	    <option value="<%= ques.id %>" data-qtype="<%= ques.ques_type %>" <% if ques.ques_type > 3 %> disabled="disabled" <% end %>><%= ques.title %></option> 
-			  	  <% end %>   
-			  	<% end %>
-	  	  <% else %>  
-			  	<% question.each do |ques| %>
-			  	  <option value="<%= ques.id %>" data-qtype="<%= ques.ques_type %>" <% if ques.ques_type > 3 %> disabled="disabled" <% end %>><%= ques.title %></option>  
-			  	<% end %>
-			  <% end %> 	
-	  	</select>
-  	<div>
-  	<table class="list-ques">  
+    <h6>Main Question</h6>
+  	<table class="list-ques"> 
+  	   <tr>
+  	   	<td>
+  	   		<div>
+			    <%= hidden_field_tag "current_question_id", current_question.id %>
+			  	<select name="question_id" id="quest">
+			  	    <option value="">Select Question</option> 
+			  	  <% if @base_question.present? %>  
+			  	    <option value="<%= @base_question.id %>" selected><%= @base_question.title %></option> 
+			  	    <% question.each do |ques| %>
+			  	      <% unless ques.id == que.id %>
+					  	    <option value="<%= ques.id %>" data-qtype="<%= ques.ques_type %>" <% if ques.ques_type > 3 %> disabled="disabled" <% end %>><%= ques.title %></option> 
+					  	  <% end %>   
+					  	<% end %>
+			  	  <% else %>  
+					  	<% question.each do |ques| %>
+					  	  <option value="<%= ques.id %>" data-qtype="<%= ques.ques_type %>" <% if ques.ques_type > 3 %> disabled="disabled" <% end %>><%= ques.title %></option>  
+					  	<% end %>
+					  <% end %> 	
+			  	</select>
+		  	<div>
+  	   	</td>
+  	   </tr> 
 			<% question.each do |ques| %> 
 			  <% main_ques = restricted.where(main_ques_id: ques) if restricted.present? %>
+
 				<tr id="tr_<%= ques.id %>" style="display: none;">
   				<td>
   				  <% options = Question.find(ques).options %>
@@ -80,12 +86,9 @@
 			  </tr>	
 			  <tr>	
 			    <td>
-			      <% if current_question.ques_type == 1 %>
-			        <label><input type="radio" name="[base_option]" value="true"> True 
-              <input type="radio"   name="[base_option]" value="false"> False</label>
-			      <% else %>
-							<% current_question.options.each do |opt|%>
-							  <% unless base_ques.where(base_option_id: opt).empty?  %>
+			     
+					<% current_question.options.each do |opt|%>
+				    	  <% unless base_ques.where(base_option_id: opt).empty?  %>
 								  <label><%= opt.option_title %></label>
 								  <input type="checkbox" name="[base_option]<%= opt.id %>" checked>
 								<% else %>
@@ -93,30 +96,27 @@
 								  <input type="checkbox" name="[base_option]<%= opt.id %>">
 								<% end %>  
 							<% end %>			
-			      <% end %>
 			    </td>
 			  </tr>
 			</table>
 	  <% else %>
+	  <h6>Base Question</h6>
 	    <table>
 			  <tr class="base_question">
 			  	<td>
-			  		<label><%= current_question.title %></label>
+			  		<p><%= current_question.title %></p>
 			  		<input type="checkbox" name="base_question"
 			  		 value='<%= "#{current_question.id}" %>'>
+			  		 <label>Hide Question</label>
 			  	</td>
 			  </tr>	
 			  <tr>	
 			    <td>
-			      <% if current_question.ques_type == 1 %>
-			        <label><input type="radio" name="[base_option]" value="true"> True 
-              <input type="radio"   name="[base_option]" value="false"> False</label>
-			      <% else %>
+			      
 							<% current_question.options.each do |opt|%>
-							  <label><%= opt.option_title %></label>
 							  <input type="checkbox" name="[base_option]<%= opt.id %>">
+							  <label><%= opt.option_title %></label>
 							<% end %>			
-			      <% end %>
 			    </td>
 			  </tr>
 			</table>
@@ -125,3 +125,15 @@
   <%= f.submit "Restrict", class: 'btn btn-info btn-lg' %>
   <% end %>
 </div>
+<style type="text/css">
+	input[type="checkbox"]{
+    margin: -2px 0 0 0;
+    vertical-align: middle;
+}
+ .radio-inline input[type=radio] {
+    position: absolute;
+    margin-top: 4px\9;
+    margin-left: -20px;
+    margin-top: 5px;
+}
+</style>

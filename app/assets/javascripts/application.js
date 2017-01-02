@@ -35,6 +35,7 @@ $(document).ready(function() {
 
 $(document).on('change', '#quest', function (e) { 
   $('#preview table.list-ques tr').hide();
+  $('#preview table.list-ques tr').eq(0).show();
   var qid = $(this).val();  
   $('#tr_'+qid).show();
 });
