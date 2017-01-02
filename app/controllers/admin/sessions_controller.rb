@@ -13,7 +13,7 @@ class Admin::SessionsController < Admin::ApplicationController
       puts "------------------------------------------------------------------"
       session[:admin_id] = admin.id
       puts "#{session[:admin_id]}================================"
-      redirect_to admin_root_path
+      redirect_to admin_news_index_path
     else
       flash.now[:alert] = 'Invalid login credentials.'
       render :new
