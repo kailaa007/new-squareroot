@@ -38,7 +38,9 @@ class Admin::BirthPlansController < Admin::ApplicationController
       end  
     end
     @questions = Question.ordered
-    redirect_to admin_birth_plans_path
+    respond_to do | format |  
+      format.js {render :layout => false}  
+    end
   end  
 
   def index

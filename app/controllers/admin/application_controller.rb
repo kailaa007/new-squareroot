@@ -9,7 +9,6 @@ class Admin::ApplicationController < ApplicationController
 
   def current_admin
     @current_admin ||= Administrator.find_by_id(session[:admin_id])
-    #@birth_plan = BirthPlan.first
   end 
 
   def require_admin!

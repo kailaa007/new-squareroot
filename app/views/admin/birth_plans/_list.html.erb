@@ -1,3 +1,5 @@
+<div id="list">
+<%# @questions = questions if questions.present?  %>
 <% @questions.each_with_index do |question,ind| %>
   <tr data-id="<%="#{question.id}"%>">
     <td><i class="icon-move"></i></td>
@@ -24,3 +26,4 @@
   </tr>
   <tr><td colspan="5"><hr></td></tr>
 <% end %> 
+</div>
