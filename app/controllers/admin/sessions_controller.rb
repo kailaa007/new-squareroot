@@ -8,7 +8,9 @@ class Admin::SessionsController < Admin::ApplicationController
 
   def create
     admin = Administrator.where('name = ?', params[:session][:username]).first
+    puts "====================================================================="
     if admin && admin.authenticate(params[:session][:password])
+      puts "------------------------------------------------------------------"
       session[:admin_id] = admin.id
       redirect_to admin_root_path
     else
