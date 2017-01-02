@@ -3,6 +3,10 @@
     .tagline
       %span The mission of Square Roots&trade; is to define and empower healthy birth.
     .footer-buttons
+      %button.btn.btn-info.btn-lg{"data-target" => "#loginModal", "data-toggle" => "modal", :type => "button"} Login
+      %button.btn.btn-info.btn-lg{"data-target" => "#signupModal", "data-toggle" => "modal", :type => "button"} Signup
+      %button.btn.btn-info.btn-lg{"data-target" => "#fgModal", "data-toggle" => "modal", :type => "button"} Forget Password
+      %button.btn.btn-info.btn-lg{"data-target" => "#recoverModal", "data-toggle" => "modal", :type => "button"} Resend confirmation instructions
       = link_to 'Play Video', '#', :class => 'play-video'
       = link_to 'Play Video', '#', :class => 'play-video-direct'
       = mail_to 'info@squareroots.com', 'Contact Us', target: '_blank'
@@ -15,3 +19,98 @@
       %source{ src: '/video2.mp4', type: "video/mp4" }
       %source{ src: '/video2.webm', type: "video/webm" }
       %source{ src: '/video2.ogv', type: "video/ogg" }
+
+/ Login Modal
+#loginModal.modal.fade{:role => "dialog"}
+  .modal-dialog{ :style => "width: 60%"}
+    / Modal content
+    .modal-content
+      %button.close{"data-dismiss" => "modal", :type => "button"} × 
+      .modal-body
+        .form-inputs.main_form_box_l
+          %h2.form_head Log in
+          = simple_form_for(resource, as: resource_name, url: session_path(resource_name), remote: true) do |f|
+            .one-full
+              = f.input :email, required: true, autofocus: true, label: false, placeholder: 'Email'
+            .one-full
+              = f.input :password, required: true, label: false, placeholder: 'Password'
+            .one-full
+              %span.term_class.squaredThree1
+                = f.check_box :remember_me, :id => "squaredThree1", :class => "input_box1"
+                %label{:for => "squaredThree1"}
+                Remember me?
+            .form-actions
+              = f.button :submit, "Log in"
+          = render "devise/shared/links"
+
+/ Signup Modal
+#signupModal.modal.fade{:role => "dialog"}
+  .modal-dialog{ :style => "width: 60%"}
+    / Modal content
+    .modal-content
+      %button.close{"data-dismiss" => "modal", :type => "button"} ×
+      .modal-body
+        .form-inputs.main_form_box
+          %h2.form_head SIGN UP NOW
+          = simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+            = f.error_notification
+            .mr_btm
+              .one-half
+                = f.input :first_name, required: true, label: false, placeholder: 'First Name', :input_html => {:class => "input_box1" }
+              .one-half
+                = f.input :last_name, required: true, label: false, placeholder: 'Last Name', :input_html => {:class => "input_box2" }
+            .one-full
+              = f.input :email, required: true, label: false, placeholder: 'Email', :input_html => {:class => "input_box3" }
+            .one-half
+              = f.input :password, required: true, label: false , placeholder: 'Password', :input_html => {:class => "input_box4" }
+            .one-half
+              = f.input :password_confirmation, required: true, label: false, placeholder: 'Confirm Password', :input_html => {:class => "input_box5" }
+            .one-half
+              = f.input :first_name, required: true, label: false, placeholder: 'Zip code', :input_html => {:class => "input_box6" }
+            .one-half
+              = f.input :last_name, required: true, label: false, placeholder: 'Due Date', :input_html => {:class => "due_date input_box7" }
+            .one-full
+              %span.term_class.squaredThree
+                %input{:type => "checkbox", :id => "squaredThree"}>/
+                %label{:for => "squaredThree"}
+                I agree to the Terms of use and Privacy Statement                
+            .form-actions
+              = f.button :submit, "Sign up"
+            .one-full
+              %p
+                Have an Account?
+                %a{:href => "/users/sign_in", :style => "color: #f4c553;margin-left: 10px;"} LOG IN
+
+/ forget password Modal
+#fgModal.modal.fade{:role => "dialog"}
+  .modal-dialog{ :style => "width: 60%"}
+    / Modal content
+    .modal-content
+      %button.close{"data-dismiss" => "modal", :type => "button"} × 
+      .modal-body
+        .form-inputs.main_form_box
+          %h2.form_head Forgot your password?
+          = simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
+            = f.error_notification
+            = f.input :email, required: true, autofocus: true, label:false, placeholder:"Email"
+            .form-actions
+              = f.button :submit, "Send me reset password instructions"
+          = render "devise/shared/links"
+
+
+/ Resend confirmation instructions Modal
+#recoverModal.modal.fade{:role => "dialog"}
+  .modal-dialog{ :style => "width: 60%"}
+    / Modal content
+    .modal-content
+      %button.close{"data-dismiss" => "modal", :type => "button"} × 
+      .modal-body
+        .form-inputs.main_form_box
+          %h2.form_head Resend confirmation instructions
+          = simple_form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f|
+            = f.error_notification
+            = f.full_error :confirmation_token
+            = f.input :email, required: true, autofocus: true,label:false, placeholder:"Email"
+            %div
+              = f.button :submit, "Resend confirmation instructions"
+          = render "devise/shared/links"
