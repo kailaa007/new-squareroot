@@ -9,10 +9,13 @@
     %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
     %meta{:content => meta_keywords, :name => "keywords"}/
     %meta{:content => meta_description, :name => "description"}/
+    = stylesheet_link_tag "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
     = stylesheet_link_tag "application", :media => "all"
     = javascript_include_tag "modernizr"
     = javascript_include_tag "requisites"
     = javascript_include_tag "//cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"
+    
+    =javascript_include_tag "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
     = csrf_meta_tags
   %body{:class => "#{params[:controller].split('/').last} #{params[:action]}"}
     .off-canvas-wrap{"data-offcanvas" => "#{true}"}

@@ -45,6 +45,7 @@ Rails.application.routes.draw do
   resources :news, only: [ :show, :index ]
   resources :tags, only: :show
   resources :birth_plans do
+    get 'index', to: 'birth_plans#index'
     get 'active_plan', on: :collection
     post 'answer', on: :member
   end  
