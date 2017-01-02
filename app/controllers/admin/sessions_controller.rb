@@ -12,6 +12,7 @@ class Admin::SessionsController < Admin::ApplicationController
     if admin && admin.authenticate(params[:session][:password])
       puts "------------------------------------------------------------------"
       session[:admin_id] = admin.id
+      puts "#{session[:admin_id]}================================"
       redirect_to admin_root_path
     else
       flash.now[:alert] = 'Invalid login credentials.'

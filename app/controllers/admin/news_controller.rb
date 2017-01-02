@@ -36,6 +36,7 @@ class Admin::NewsController < Admin::ApplicationController
 
   def index
     @news = News.order('title asc').paginate(:page => params[:page])
+     puts "#{session[:admin_id]}================================"
   end
 
 
