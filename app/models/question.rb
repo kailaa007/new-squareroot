@@ -34,7 +34,7 @@ class Question < ActiveRecord::Base
   end  
 
   def set_order
-    if Question.exists?
+    if Question.all.empty?
       self.order = Question.maximum('order') +1
       self.save!
     else
