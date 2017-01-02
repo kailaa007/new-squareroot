@@ -34,7 +34,7 @@ class Question < ActiveRecord::Base
   end  
 
   def set_order
-    unless Question.exsits?
+    unless Question.exists?
       self.order = 1
       self.save!
       return
