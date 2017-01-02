@@ -19,6 +19,11 @@ Rails.application.routes.draw do
       get "assign_ques", on: :collection
       post "assign_ques", on: :collection
       patch "assign_ques", on: :collection
+      post :sort, on: :collection
+      get :get_question, on: :member
+      post :get_question, on: :member
+      get "restrict", on: :collection
+      post "restrict", on: :collection
     end  
 
     resources :users do 

@@ -1,0 +1,25 @@
+<footer>
+  <div class="mainfooter">
+    <div class="tagline">
+      <span>The mission of Square Roots&trade; is to define and empower healthy birth.</span>
+    </div>
+    <div class="footer-buttons">
+      <%= link_to 'Play Video', '#', :class => 'play-video' %>
+      <%= link_to 'Play Video', '#', :class => 'play-video-direct' %>
+      <%= mail_to 'info@squareroots.com', 'Contact Us', target: '_blank' %>
+    </div>
+  </div>
+</footer>
+<div class="video-popup reveal-modal" data-reveal>
+  <div class="inner">
+    <div class="close-modal show-for-small">
+      <%= image_tag 'close.png', width: 27, height: 27 %>
+    </div>
+    <div class="clear"></div>
+    <video controls="controls" id="video" poster="<%= image_path('video.jpg') %>">
+      <source src="/video2.mp4" type="video/mp4"></source>
+      <source src="/video2.webm" type="video/webm"></source>
+      <source src="/video2.ogv" type="video/ogg"></source>
+    </video>
+  </div>
+</div>

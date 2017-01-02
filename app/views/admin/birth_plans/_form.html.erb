@@ -1,0 +1,53 @@
+<%= form_for [:admin, @birth_plan] do |f| %>
+  <div class="row">
+    <div class="columns small-12 medium-6">
+      <%= f.text_field :title, required: true %>
+    </div>
+    <%= f.submit "submit", :class => 'button radius pull-right' %>
+  </div>
+<% end %>  
+  <div class="row">
+    <label>Add Question</label>
+    <table class="index-list sortable-table ui-sortable" data-url="/admin/birth_plans/sort">
+      <tr>
+        <th>Order</th>
+        <th>Title</th>
+        <th>Type</th>
+        <th>Restriction</th>
+        <th>Action</th>
+      </tr>
+      <% @questions.each_with_index do |question,ind| %>
+        <tr data-id="<%="#{question.id}"%>">
+          <td><i class="icon-move"></i></td>
+          <td><%= question.title %></td>
+          <td><%= get_ques_type(question.ques_type) %></td>
+          <td> <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">+</button></td>
+          <td class="actions" style="text-align: left;">
+            <%= link_to 'Edit', edit_admin_question_path(question) %>
+            <% if BirthPlanQuestion.where(question_id: question.id).empty? %>
+              <%= link_to 'Delete', admin_question_path(question), method: :delete, data: { confirm: 'Are you sure?' }%>
+            <% end %>
+          </td>
+        </tr>
+      <% end %> 
+    </table>  
+  
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Modal Header</h4>
+        </div>
+        <div class="modal-body">
+          <p>Some text in the modal.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>

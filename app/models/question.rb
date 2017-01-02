@@ -7,6 +7,9 @@ class Question < ActiveRecord::Base
     'Email Field' => 5,
     'Input Field' => 6,
   }
+
+  after_create :set_order
+  	
   
   self.per_page = 10
 
@@ -25,4 +28,18 @@ class Question < ActiveRecord::Base
   def selected_option
   	QUESTION_TYPES.invert
   end	
+
+  def self.ordered
+    order("questions.order")
+  end  
+
+  def set_order
+    if Question.all.empty?
+      self.order = Question.maximum('order') +1
+      self.save!
+    else
+      self.order = 1
+      self.save!
+    end  
+  end  
 end

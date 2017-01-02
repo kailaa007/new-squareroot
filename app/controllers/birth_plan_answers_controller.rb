@@ -48,6 +48,17 @@ class BirthPlanAnswersController < ApplicationController
         next
       end
     end
+
+    respond_to do |format|
+      format.html
+      format.pdf do
+        html = render_to_string('<h1>Hello world</h1>', :layout => false)
+        pdf = PDFKit.new(html, :page_size => 'Letter')
+        file = kit.to_file(disposition: "inline", target: '_blank')
+        send_file Rails.root.join('private', 'birth_plan.pdf'), :type=>"application/pdf", :x_sendfile=>true
+        redirect_to :back
+      end
+    end
   end  
 
   def edit

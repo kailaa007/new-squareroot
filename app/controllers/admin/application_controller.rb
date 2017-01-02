@@ -2,13 +2,15 @@ class Admin::ApplicationController < ApplicationController
 
   before_action :require_admin!
   layout 'admin'
+ 
+  helper_method :current_admin
 
   private
 
   def current_admin
     @current_admin ||= Administrator.find_by_id(session[:admin_id])
+    #@birth_plan = BirthPlan.first
   end 
-  helper_method :current_admin
 
   def require_admin!
     if request["controller"] == "admin/password_resets"
