@@ -54,8 +54,12 @@ Rails.application.routes.draw do
     get 'active_plan', on: :collection
     post 'answer', on: :member
   end  
+  
+  get '/get_restriction', to: 'birth_plan_answers#get_restriction'
+  get "edit_questions" => "birth_plan_answers#edit"
 
-  resources :birth_plan_answers
+  resources :birth_plan_answers, :path => 'questions' do
+  end  
   
   root to: 'public#intro'
 

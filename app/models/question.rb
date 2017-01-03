@@ -35,10 +35,11 @@ class Question < ActiveRecord::Base
 
   def set_order
     if Question.all.empty?
-      self.order = Question.maximum('order') +1
+      puts "======================================"
+      self.order = 1
       self.save!
     else
-      self.order = 1
+      self.order = Question.maximum('order') +1
       self.save!
     end  
   end  

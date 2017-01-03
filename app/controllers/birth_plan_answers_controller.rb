@@ -1,8 +1,29 @@
 class BirthPlanAnswersController < ApplicationController
   layout 'devise'
+
+  def get_restriction
+    @restriction = []
+    @restriction << RestrictQuestion.where(base_ques_id: params[:ques])
+    @restriction << RestrictQuestion.where(main_ques_id: params[:ques])
+    @restriction1 = @restriction.to_json.html_safe
+    puts "#{@restriction.inspect}==================="
+    respond_to do | format |  
+      format.js {render :layout => false, json: @restriction1}  
+    end
+  end  
+
+  def new
+    @birth_plan_record = BirthPlanAnswer.find_by_user_id(current_user.id)
+    if @birth_plan_record.present?
+      redirect_to edit_questions_path
+    else
+      @birth_plan_answer = BirthPlanAnswer.find_by_user_id(current_user.id)
+      @birth_plan = BirthPlan.first
+    end  
+  end  
 	
   def create
-  	@birth_plan = BirthPlan.find(params[:birth_plan_id])
+  	@birth_plan = BirthPlan.first
   	
   	params[:plan].each do |id, attribute| 
   		

@@ -85,7 +85,7 @@
       <li>
         <% if current_user.present? %>
           <%#= link_to_unless_current 'Logout', destroy_user_session_path do %>
-          <%= link_to_unless_current 'Birth Plan', active_plan_birth_plans_path do %>
+          <%= link_to_unless_current 'Birth Plan', new_birth_plan_answer_path do %>
             <span>Birth PLan</span>
           <% end %>
         <% else %>

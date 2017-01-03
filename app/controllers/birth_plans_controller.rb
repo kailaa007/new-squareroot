@@ -10,6 +10,9 @@ class BirthPlansController < ApplicationController
       @birth_plan_answer = BirthPlanAnswer.new
     end  
   end
+ #{"ques"=>"29", "option"=>"38"}
+
+
 
   private
 

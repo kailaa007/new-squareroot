@@ -1,0 +1,83 @@
+<div>
+  <% restriction ||= ""%>
+  <%= restriction.inspect if restriction.present? %>
+  <% @question = Question.find(restriction.first.main_ques_id) if restriction.present? %>
+  <%#= question.title if question.present? %>
+</div>
+
+<%= form_for BirthPlanAnswer.new, method: :post, remote: true, html: {class: "form-control"} do |f| %>
+  <div class="columns small-12 medium-12">
+    <% Question.ordered.each_with_index do |question, ind| %>
+      <div class= "form-group">
+        <label class="form-control"><b>Question  <%= ind+1 %>. &nbsp&nbsp<%= "*" if question.required? %><%= question.title %></b>
+        </label>
+        <%= question.note if question.note.present? %>
+        <% ques_type = question.ques_type %>
+             
+        <% case ques_type %>
+          <% when 1 %>
+            <div class="radio">
+              <% if question.required? %>
+                <% question.options.each do |option| %>
+                  <label class="radio-inline"><input type="radio" name="[plan][<%=question.id%>]" value="<%= option.option_title %>" required class= "ques-form" id="<%= option.id %>" data-ques = "<%=question.id%>" ><%= option.option_title %> </label>
+                <% end %>
+              <% else %>
+                <% question.options.each do |option| %>
+                  <label class="radio-inline"><input type="radio" name="[plan][<%=question.id%>]" value="<%= option.option_title %>" class= "ques-form" id="<%= option.id %>" data-ques = "<%=question.id%>" ><%= option.option_title %> </label>
+                <% end %>
+              <% end %> 
+            </div>
+          <% when 2 %>
+            <div class="radio">
+              <% if question.required? %>
+                <% question.options.each do |option| %>
+                  <label class="radio-inline"><input type="radio" name="[plan][<%=question.id%>]" value="<%= option.option_title %>" class= "ques-form" id="<%= option.id %>" data-ques = "<%=question.id%>" required><%= option.option_title %> </label>
+                <% end %>
+              <% else %>
+                <% question.options.each do |option| %>
+                  <label class="radio-inline"><input type="radio" name="[plan][<%=question.id%>]" value="<%= option.option_title %>" class= "ques-form" id="<%= option.id %>" data-ques = "<%=question.id%>"><%= option.option_title %> </label>
+                <% end %>
+              <% end %> 
+            </div> 
+          <% when 3 %>
+            <% if question.required? %>
+              <div class="check">
+                <div class='check1'>
+                  <% question.options.each do |option| %>
+                    <label class="checkbox-inline"><input type="checkbox" name="[plan][<%=question.id%>][<%= option.id %>]" value="<%= option.option_title%>" class= "chk-required ques-form" id="<%= option.id %>" data-ques = "<%=question.id%>"><%= option.option_title %></label>
+                  <% end %>
+                </div>  
+              </div>
+            <% else %>
+              <div class="check">
+                <% question.options.each do |option| %> 
+                  <label class="checkbox-inline"><input type="checkbox" name="[plan][<%=question.id%>][<%= option.id %>]" value="<%= option.option_title%>" class= "ques-form" id="<%= option.id %>" data-ques = "<%=question.id%>"><%= option.option_title %></label>
+                <% end %>             
+              </div>
+            <% end %>  
+          <% when 4 %>
+            <% if question.required? %>
+              <textarea  rows="4" name="[plan][<%=question.id%>]"  class="form-control" required></textarea> 
+            <% else %>
+              <textarea rows="4" name="[plan][<%=question.id%>]" class="form-control" ></textarea> 
+            <% end %>
+          <% when 5 %>
+            <% if question.required? %>
+              <input type="email" name="[plan][<%=question.id%>]"  class="form-control" required></input> 
+            <% else %>
+              <input type="email" name="[plan][<%=question.id%>]"  class="form-control"></input>  
+            <% end %>
+          <% when 6 %>
+            <% if question.required? %>
+              <input type="text" name="[plan][<%=question.id%>]"  class="form-control" required></input> 
+            <% else %>
+              <input type="text" name="[plan][<%=question.id%>]"  class="form-control"></input>  
+            <% end %> 
+          <% end %>
+      </div>     
+    <% end %>
+  </div>
+  <div class="form-group">
+    <input class="btn btn-success" name="commit" type="submit" value="submit" />
+  </div>
+<% end %>  
