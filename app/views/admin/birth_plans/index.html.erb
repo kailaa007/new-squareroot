@@ -3,15 +3,16 @@
 </div>
 <%= form_for [:admin, @birth_plan] do |f| %>
   <div class="row">
-    <div class="columns small-12 medium-6">
-      <%= f.label :title %>
-      <%= f.text_field :title, required: true %>
+    <div class="columns small-12 medium-8 title_top">
+      <%= f.label :title, class: "label_top" %>
+      <%= f.text_field :title, required: true , class: "input_top" %>
+      <%= f.submit "submit", :class => 'button radius pull-right top_btm' %>
     </div>
-    <%= f.submit "submit", :class => 'button radius pull-right' %>
+    
   </div>
 <% end %>  
 <div class="row">
-  <button type="button" class="btn btn-info btn-lg" id="show-form">Add Question</button>
+  <button type="button" class="btn btn-info btn-lg add_button" id="show-form">Add Question</button>
   <div class="question-form">
     <table class="index-list">
     <tr>
@@ -23,24 +24,29 @@
         <div class="columns small-12 medium-6">
           <%= f.label :title %>
           <%= f.text_field :title, required: true %>
-          <%= f.label :question_type %>
-          <%= f.select :ques_type, Question::QUESTION_TYPES, :prompt => "Select question type", required: true %>
-          <div class="phase-fields">
-            <label>Options</label>
-        
-            <ul id="ques-list" class="nested-list">
-              <%= f.fields_for :options, wrapper_tag: 'li' %>
-            </ul>
-
-            <p class="indent" data-target="#faqs-list" id="ques_add">    
-              <%= f.link_to_add "Add an Option", :options, class: 'button small' %>
-            </p>
-          </div>
-          <%= f.label :required %>
-          <%= f.check_box :required %><br>
+          <%= f.check_box :required %>
+          <%= f.label :required %><br>
           <%= f.label :description %>
-          <%= f.text_area :note %>
-          <%= f.submit "submit", :class => 'button radius pull-right' %>
+          <%= f.text_area :note, class: "text_desc_add", maxlenght: "1000" %>
+        </div>
+        <div class="columns small-12 medium-6">
+          <%= f.label :question_type %>
+            <%= f.select :ques_type, Question::QUESTION_TYPES, :prompt => "Select question type", required: true %>
+            <div class="phase-fields">
+              <label>Options</label>
+          
+              <ul id="ques-list" class="nested-list">
+                <%= f.fields_for :options, wrapper_tag: 'li' %>
+              </ul>
+
+              <p class="indent" data-target="#faqs-list" id="ques_add">    
+                <%= f.link_to_add "Add an Option", :options, class: 'button small' %>
+              </p>
+            </div>
+        </div>
+        <div class="columns small-12 medium-12">
+        <hr>
+        <%= f.submit "submit", :class => 'button radius pull-right' %>
         </div>
       </div>
     <% end %>
@@ -51,7 +57,7 @@
 </div>
 
 <div class="row">
-  <table class="index-list sortable-table ui-sortable" data-url="/admin/birth_plans/sort">
+  <table class="index-list sortable-table ui-sortable custom_st" data-url="/admin/birth_plans/sort">
     <thead>
       <tr>
         <th>Order</th>
@@ -68,4 +74,32 @@
 
   <%= render 'dialog' %>
 </div>
+<style type="text/css">
+  .title_top{padding: 0;}
+  .label_top{display: inline !important;font-weight: 700;margin: 0 10px 0 0px;    font-size: 14px;}
+  .input_top{display: inline !important;width: 76% !important;}
+  .top_btm{padding: 0.6rem 1.6rem;margin:0 0 0 10px;}
+  .add_button{float: right;margin-bottom: 15px;}
+  table.custom_st{border:1px solid #ccc;}
+  table.custom_st  tr{border-top:1px solid #ccc;height:40px;}
+  table.custom_st  tr:last-child{border-bottom:1px solid #ccc;}
+.nested-list{margin:0;}
+input[type="checkbox"] + label, input[type="radio"] + label {
+  display: inline-block;
+  margin-left: 0.5rem;
+  margin-right: 1rem;
+  margin-bottom: 0;
+  vertical-align: top;
+}
+.remove_option{position: relative;}
+.cross_pos{position: absolute;right: 8px;top: 32%;color:#c70a0a;}
+.cross_pos:hover{position: absolute;right: 8px;top: 32%;color:#c70a0a;text-decoration: underline;}
+.cross_pos:focus {color: #c70a0a;}
+.text_desc{resize: none;height:150px;}
+
+.cross_pos_add{position: absolute;right: 8px;top: 32%;color:#c70a0a;}
+.cross_pos_add:hover{position: absolute;right: 8px;top: 32%;color:#c70a0a;text-decoration: underline;}
+.cross_pos_add:focus {color: #c70a0a;}
+.text_desc_add{resize: none;height:150px;}
+</style>
    

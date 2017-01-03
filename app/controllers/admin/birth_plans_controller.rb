@@ -22,6 +22,7 @@ class Admin::BirthPlansController < Admin::ApplicationController
   end
 
   def update
+    @birth_plan = BirthPlan.find(params[:id])
     if @birth_plan.update(birth_plan_params)
       flash[:success] = 'Birth Plan updated.'
       redirect_to admin_birth_plans_path

@@ -1,6 +1,10 @@
 class BirthPlansController < ApplicationController
   layout "devise"
 
+  def index
+    
+  end
+
   def active_plan
     birth_plan_record = BirthPlanAnswer.find_by_user_id(current_user.id)
     @birth_plan = BirthPlan.first
