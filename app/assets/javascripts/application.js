@@ -16,7 +16,6 @@
 //= require slideshow
 //= require jquery_nested_form
 //= require best_in_place
-//= require answer_form
 //= require jquery-ui
 //= require best_in_place.jquery-ui
 
