@@ -2,6 +2,16 @@ class Admin::BirthPlansController < Admin::ApplicationController
 
   #before_action :get_plan, only: [:update, :destroy]
 
+  def reset
+    @restrict_questions = RestrictQuestion.where("base_ques_id = ?", params[:ques_id])
+    if @restrict_questions.any?
+      @restrict_questions.delete_all
+      respond_to do | format |  
+        format.js {head :ok, content_type: "text/html"}  
+      end
+    end  
+  end  
+
   def new
     @birth_plan = BirthPlan.new
   end
@@ -69,16 +79,15 @@ class Admin::BirthPlansController < Admin::ApplicationController
   def restrict
     @restrict_questions = RestrictQuestion.where("base_ques_id = ?", params[:current_question_id])
     @restrict_questions.delete_all
-
-    if params[:base_question].present?
+    
+    if params[:base_question].present? && params[:base_question] != "yes"
       params[:question].each do |id, value|
         RestrictQuestion.create(main_ques_id: params[:question_id],
                                 main_option_id: value,
                                 base_ques_id: params[:base_question],
                                 ques_status: false)     
       end  
-    end
-    if params[:base_option].present?
+    elsif params[:base_option].present?
       params[:question].each do |id, value|
         params[:base_option].each do |opt, attribute|
           RestrictQuestion.create(main_ques_id: params[:question_id],

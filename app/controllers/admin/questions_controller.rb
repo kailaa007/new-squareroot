@@ -26,28 +26,38 @@ class Admin::QuestionsController < Admin::ApplicationController
   end
 
   def update
-    byebug
-    if @question.ques_type != 1 && params[:question][:ques_type].to_i == 1
-      @question.update(question_params)
-      @question.options.create([
-        { option_title: 'true' },
-        { option_title: 'false' }
-      ])
-      flash[:success] = 'Question updated.'
-      redirect_to admin_birth_plans_path
-      return
-    elsif @question.ques_type == 1 && params[:question][:ques_type].to_i != 1
-      @question.update(question_params)
-      @question.options.delete_all
-      flash[:success] = 'Question updated.'
-      redirect_to admin_birth_plans_path
-      return
-    elsif @question.update(question_params)
-      flash[:success] = 'Question updated.'
-      redirect_to admin_birth_plans_path
+    if @question.ques_type != params[:question][:ques_type].to_i
+      unless RestrictQuestion.where(main_ques_id: @question.id).empty?
+        flash[:error] = "Please remove your restriction first."
+        render :edit
+      else
+        if @question.ques_type != 1 && params[:question][:ques_type].to_i == 1
+          @question.update(question_params)
+          @question.options.create([
+            { option_title: 'true' },
+            { option_title: 'false' }
+          ])
+          flash[:success] = 'Question updated.'
+          redirect_to admin_birth_plans_path
+          return
+        elsif @question.ques_type == 1 && params[:question][:ques_type].to_i != 1
+          @question.update(question_params)
+          @question.options.delete_all
+          flash[:success] = 'Question updated.'
+          redirect_to admin_birth_plans_path
+          return
+        elsif @question.update(question_params)
+          flash[:success] = 'Question updated.'
+          redirect_to admin_birth_plans_path
+        else
+          render :edit
+        end
+      end  
     else
-      render :edit
-    end
+      @question.update(question_params)
+      flash[:success] = 'Question updated.'
+      redirect_to admin_birth_plans_path
+    end 
   end
 
   def destroy

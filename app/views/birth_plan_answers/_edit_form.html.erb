@@ -1,0 +1,14 @@
+<div class="row">
+  <%= form_for BirthPlanAnswer.new, url: birth_plan_answer_path(@birth_plan_answer), method: :patch do |f| %>
+    <div class="columns small-12 medium-12">
+      <% Question.ordered.each_with_index do |question, ind| %>
+        <% answers = @birth_plan_answer.where("question_id = ?", question.id) %>
+          
+        <%= answers.inspect %>
+      <% end %>
+    </div>
+    <div class="form-group">
+      <input class="btn btn-success" name="commit" type="submit" value="submit" />
+    </div>
+  <% end %>  	
+</div>

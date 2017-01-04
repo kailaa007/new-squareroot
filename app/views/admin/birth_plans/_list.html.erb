@@ -16,13 +16,12 @@
       <% end %>  
     </td>
     <td class="actions" style="text-align: left;">
+      <%= link_to 'Edit', edit_admin_question_path(question) %>
       <% if RestrictQuestion.where(main_ques_id: question.id).empty? %>
-        <%= link_to 'Edit', edit_admin_question_path(question) %>
         <% if BirthPlanQuestion.where(question_id: question.id).empty? %>
           <%= link_to 'Delete', admin_question_path(question), method: :delete, data: { confirm: 'Are you sure?' }%>
         <% end %>
       <% else %>  
-        <%= link_to 'Edit', '#',data: { confirm: 'Please remove the restriction' }%>
         <% if BirthPlanQuestion.where(question_id: question.id).empty? %>
           <%= link_to 'Delete', '#', data: { confirm: 'Please remove the restriction'  }%>
         <% end %>  

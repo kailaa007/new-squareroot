@@ -29,9 +29,38 @@ $(document).ready(function() {
     }, 600);
 
   });
-
 });
 
+$(document).on('click', '.main-ques-opt', function (e) { 
+  $("#res_type").show();
+});
+
+$(document).on('click', '.res_opt_type', function (e) { 
+	if ($(this).val()== "yes") {
+       $("#option-list").show();
+	}
+	else{
+		$("#option-list").hide();
+	}
+});
+
+$(document).on('click', '#reset_form', function (e) { 
+	var quesid = $('div#dialog #preview form#new_birth_plan #quest').val();
+	var id = $('tr.base_question .res_opt_type').val();
+	alert(id);
+	$('div#dialog #preview form#new_birth_plan')[0].reset();
+	$("table.list-ques tr#tr_"+quesid).hide(); 
+	$('div#res_type').hide();
+	$.ajax({
+      url: '/admin/birth_plans/reset',
+      data:  {ques_id: id},
+      cache: false,
+      type: "post",
+      //dataType: "text",
+      success: function(bdata){ 
+      }, 
+    }); 
+});
 
 $(document).on('change', '#quest', function (e) { 
   $('#preview table.list-ques tr').hide();
@@ -39,6 +68,7 @@ $(document).on('change', '#quest', function (e) {
   var qid = $(this).val();  
   $('#tr_'+qid).show();
 });
+
 
 $(document).on('click', '.base_question :checkbox', function (e) { 
   if($(this).is(':checked')){

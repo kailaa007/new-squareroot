@@ -1,16 +1,30 @@
+
 // Add the dialog title
 $('#dialog h3').html("<i class=' glyphicon glyphicon-pencil'></i> Restrictions");
 // Render the edit form
 $('.modal-body').html('<%= j render(:partial => "question", :locals => { :question => @restricted_questions, :current_question => @current_question, :restricted => @restricted } ) %>');
 // Show the dynamic dialog
 $('#dialog').modal("show");
+
 // Set focus to the first element
 $('#dialog').on('shown.bs.modal', function () {
-	  $('.first_input').focus();
+	
+	$('table .list-ques input:radio').each(function () {
+		alert($(this).val());
+		if ($(this).prop('checked')) { 
+		 
+		}else{ 
+		} 
+	});
+
+	//$("#res_type").hide();
+	$('.first_input').focus();
 	var atLeastOneIsChecked = $('input[name="base_question"]:checked').length > 0; 
   	if(atLeastOneIsChecked) { 
-		$('input[name="base_question"]:checked').parent().closest('tr').next('tr').hide();
+  		//$('input[name="base_question"]:checked').parent().closest('tr').next('tr').hide();
 	} else { 
-		$('input[name="base_question"]:checked').parent().closest('tr').next('tr').show();
+		//$('input[name="base_question"]:checked').parent().closest('tr').next('tr').show();
 	} 
 })
+
+

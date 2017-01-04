@@ -1,6 +1,7 @@
 class BirthPlanAnswersController < ApplicationController
   layout 'devise'
-
+  before_filter :authenticate_user!
+  
   def get_restriction
     @restriction = []
     @restriction << RestrictQuestion.where(base_ques_id: params[:ques])
@@ -83,10 +84,11 @@ class BirthPlanAnswersController < ApplicationController
   end  
 
   def edit
-    @birth_plan_answer = BirthPlan.first
-    @birth_plan = BirthPlan.first
-    @user = current_user
-    @answers = BirthPlanAnswer.where("user_id = ?", @user.id)
+    @birth_plan_answer = BirthPlanAnswer.where("user_id ?", current_user.id)
+    @birth_plan= BirthPlan.first
+   # @birth_plan = BirthPlan.first
+    #@user = current_user
+    #@answers = BirthPlanAnswer.where("user_id = ?", @user.id)
   end  
 
   def update

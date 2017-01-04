@@ -1,30 +1,57 @@
 <%= nested_form_for [ :admin, @question ] do |f| %>
-<div class="row">
-  <div class="columns small-12 medium-6">
-    <%= f.label :title %>
-    <%= f.text_field :title, required: true %>
- 
-    <%= f.check_box :required %>
-    <%= f.label :required %><br>
-    <%= f.label :description %>
-    <%= f.text_area :note, class: "text_desc", maxlenght: "1000"%>
-  </div>
-  <div class="columns small-12 medium-6">
-  <%= f.label :question_type %>
-    <%= f.select :ques_type, Question::QUESTION_TYPES, :prompt => "Select question type", required: true %>
-       <div class="phase-fields">
-      <label>Options</label>
-  
-      <ul id="ques-list" class="nested-list">
-        <%= f.fields_for :options, wrapper_tag: 'li' %>
-      </ul>
+  <div class="row">
+    <div class="columns small-12 medium-12">
+      <%= f.label :title %>
+      <%= f.text_field :title, required: true %>
+   
+      <%= f.check_box :required %>
+      <%= f.label :required %><br>
+      <%= f.label :question_type %>
+      <%= f.select :ques_type, Question::QUESTION_TYPES, :prompt => "Select question type", required: true %>
+      <div class="phase-fields">
+        <label>Options</label>
+    
+        <ul id="ques-list" class="nested-list">
+          <%= f.fields_for :options, wrapper_tag: 'li' %>
+        </ul>
 
-      <p class="indent" data-target="#faqs-list" id="ques_add">    
-        <%= f.link_to_add "Add an Option", :options, class: 'button small' %>
-      </p>
+        <p class="indent" data-target="#faqs-list" id="ques_add">    
+          <%= f.link_to_add "Add an Option", :options, class: 'button small' %>
+        </p>
+      </div>
+      <%= f.label :description %>
+      <%= f.text_area :note, class: "text_desc", maxlenght: "1000"%>
     </div>
+    <hr>
+    <%= f.submit "submit", :class => 'button radius pull-right' %>
   </div>
-  <hr>
-  <%= f.submit "submit", :class => 'button radius pull-right' %>
-</div>
 <% end %>
+<style type="text/css">
+  .title_top{padding: 0;}
+  .label_top{display: inline !important;font-weight: 700;margin: 0 10px 0 0px;    font-size: 14px;}
+  .input_top{display: inline !important;width: 76% !important;}
+  .top_btm{padding: 0.6rem 1.6rem;margin:0 0 0 10px;}
+  .add_button{float: right;margin-bottom: 15px;}
+  table.custom_st{border:1px solid #ccc;}
+  table.custom_st  tr{border-top:1px solid #ccc;height:40px;}
+  table.custom_st  tr:last-child{border-bottom:1px solid #ccc;}
+.nested-list{margin:0;}
+input[type="checkbox"] + label, input[type="radio"] + label {
+  display: inline-block;
+  margin-left: 0.5rem;
+  margin-right: 1rem;
+  margin-bottom: 0;
+  vertical-align: top;
+}
+.remove_option{position: relative;}
+.cross_pos{position: absolute;right: 8px;top: 32%;color:#c70a0a;}
+.cross_pos:hover{position: absolute;right: 8px;top: 32%;color:#c70a0a;text-decoration: underline;}
+.cross_pos:focus {color: #c70a0a;}
+.text_desc{resize: none;height:150px;}
+
+.cross_pos_add{position: absolute;right: 8px;top: 32%;color:#c70a0a;}
+.cross_pos_add:hover{position: absolute;right: 8px;top: 32%;color:#c70a0a;text-decoration: underline;}
+.cross_pos_add:focus {color: #c70a0a;}
+.text_desc_add{resize: none;height:150px;}
+</style>
+   

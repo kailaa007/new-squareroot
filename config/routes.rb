@@ -23,6 +23,7 @@ Rails.application.routes.draw do
       get :get_question, on: :member
       post :get_question, on: :member
       get "restrict", on: :collection
+      post "reset", on: :collection
       post "restrict", on: :collection
     end  
 
@@ -39,6 +40,7 @@ Rails.application.routes.draw do
 
     get '/login'  => 'sessions#new'
     get '/logout' => 'sessions#destroy'
+    #post '/admin/birth_plans/reset' => 'birth_plans#reset'
 
     root to: 'news#index'
   end

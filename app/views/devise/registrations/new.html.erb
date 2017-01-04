@@ -22,14 +22,14 @@
       <%= f.input :password_confirmation, required: true, label: false, placeholder: 'Confirm Password', :input_html => {:class => "input_box5" } %>
     </div>
     <div class="one-half">
-      <%= f.input :first_name, required: true, label: false, placeholder: 'Zip code', :input_html => {:class => "input_box6" } %>
+      <%= f.input :zipcode, required: true, label: false, placeholder: 'Zip code', :input_html => {:class => "input_box6" }, as: :string %>
     </div>
     <div class="one-half">
-      <%= f.input :last_name, required: true, label: false, placeholder: 'Due Date', :input_html => {:class => "due_date input_box7" } %>
+      <%= f.input :due_date, required: true, label: false, placeholder: 'Due Date', :input_html => {:class => "due_date input_box7 datepicker" }, as: :string %>
     </div>
     <div class="one-full">
       <label class="term_class">
-      <input type="checkbox">I agree to the Terms of use and Privacy Statement 
+      <%= f.check_box :terms_n_condition, required: true %>I agree to the Terms of use and Privacy Statement 
       </label>
     </div>
     <div class="form-actions">
