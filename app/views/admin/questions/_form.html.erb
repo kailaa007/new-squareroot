@@ -1,12 +1,12 @@
 <%= nested_form_for [ :admin, @question ] do |f| %>
   <div class="row">
     <div class="columns small-12 medium-12">
-      <%= f.label :title %>
-      <%= f.text_field :title, required: true %>
+      <%= f.label :title %><span style="color: red">*</span>
+      <%= f.text_field :title, required: true, class: 'ques_title'  %>
    
       <%= f.check_box :required %>
       <%= f.label :required %><br>
-      <%= f.label :question_type %>
+      <%= f.label :question_type %><span style="color: red">*</span>
       <%= f.select :ques_type, Question::QUESTION_TYPES, :prompt => "Select question type", required: true %>
       <div class="phase-fields">
         <label>Options</label>

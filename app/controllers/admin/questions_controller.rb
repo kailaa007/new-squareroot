@@ -7,6 +7,7 @@ class Admin::QuestionsController < Admin::ApplicationController
   end
 
   def create
+    
     @question = Question.new(question_params)
     if @question.save
       if @question.ques_type == 1
@@ -27,7 +28,7 @@ class Admin::QuestionsController < Admin::ApplicationController
 
   def update
     if @question.ques_type != params[:question][:ques_type].to_i
-      unless RestrictQuestion.where(main_ques_id: @question.id).empty?
+      unless RestrictQuestion.where("main_ques_id = ? OR base_ques_id = ?", @question.id, @question.id).empty?
         flash[:error] = "Please remove your restriction first."
         render :edit
       else
@@ -61,6 +62,7 @@ class Admin::QuestionsController < Admin::ApplicationController
   end
 
   def destroy
+    RestrictQuestion.where('base_ques_id = ?', @question.id).delete_all
     @question.destroy
     flash[:success] = 'Question destroyed.'
     redirect_to admin_birth_plans_path

@@ -105,10 +105,10 @@
 					      	<% current_question.options.each do |opt|%>
 						    	  <% unless base_ques.where(base_option_id: opt).empty?  %>
 										  <label><%= opt.option_title %></label>
-										  <input type="checkbox" name="[base_option]<%= opt.id %>" checked>
+										  <input class="chk_ol" type="checkbox" name="[base_option]<%= opt.id %>" checked>
 										<% else %>
 		                  <label><%= opt.option_title %></label>
-										  <input type="checkbox" name="[base_option]<%= opt.id %>">
+										  <input class="chk_ol" type="checkbox" name="[base_option]<%= opt.id %>">
 										<% end %>  
 									<% end %>					
 					    </td>
@@ -118,7 +118,7 @@
 					    <td colspan="2">
 					      
 									<% current_question.options.each do |opt|%>
-									  <input type="checkbox" name="[base_option]<%= opt.id %>">
+									  <input class="chk_ol" type="checkbox" name="[base_option]<%= opt.id %>">
 									  <label><%= opt.option_title %></label>
 									<% end %>			
 					    </td>

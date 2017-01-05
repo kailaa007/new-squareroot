@@ -22,6 +22,17 @@
 $(document).foundation();
 
 $(document).ready(function() {
+  
+  $('input.ques_title').on('keydown', function(event) {
+    if (this.selectionStart == 0 && event.keyCode >= 65 && event.keyCode <= 90 && !(event.shiftKey) && !(event.ctrlKey) && !(event.metaKey) && !(event.altKey)) {
+       var $t = $(this);
+       event.preventDefault();
+       var char = String.fromCharCode(event.keyCode);
+       $t.val(char + $t.val().slice(this.selectionEnd));
+       this.setSelectionRange(1,1);
+    }
+  });	
+
   $( ".restlink" ).click(function(){
     setTimeout(function() { 
      var qid = $('#quest').val();
@@ -47,10 +58,15 @@ $(document).on('click', '.res_opt_type', function (e) {
 $(document).on('click', '#reset_form', function (e) { 
 	var quesid = $('div#dialog #preview form#new_birth_plan #quest').val();
 	var id = $('tr.base_question .res_opt_type').val();
-	alert(id);
 	$('div#dialog #preview form#new_birth_plan')[0].reset();
 	$("table.list-ques tr#tr_"+quesid).hide(); 
 	$('div#res_type').hide();
+	$("#option-list").hide();
+	$("input[type = 'checkbox']").removeAttr("checked");
+	$("input[type = 'radio']").removeAttr("checked"); 
+    $("#quest").children().removeAttr("selected");
+    $("#quest option:nth-child(0)").attr("selected", "selected");
+
 	$.ajax({
       url: '/admin/birth_plans/reset',
       data:  {ques_id: id},
@@ -69,6 +85,21 @@ $(document).on('change', '#quest', function (e) {
   $('#tr_'+qid).show();
 });
 
+$(document).on('submit', '#new_birth_plan', function(e){ 
+  if ($('.res_opt_type:checked').val()== "yes") { 
+  	   var flag = false; 
+        $('tr#option-list td').filter(':has(:checkbox:checked)').each(function(){ 
+          flag = true;
+      	});
+        if (flag == false){ 
+        	alert("Please select an option");
+        	return false;
+        }else{
+        	
+        }
+
+  	}   
+});
 
 $(document).on('click', '.base_question :checkbox', function (e) { 
   if($(this).is(':checked')){

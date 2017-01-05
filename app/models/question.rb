@@ -7,12 +7,11 @@ class Question < ActiveRecord::Base
     'Email Field' => 5,
     'Input Field' => 6,
   }
-
-  after_create :set_order
-  	
-  
+  before_save :capitalize_title
+  before_create :set_order	
   self.per_page = 10
-
+  validates_presence_of :title, :ques_type
+  #validates_uniqueness_of :order
   #gems
   extend FriendlyId
   friendly_id :title, use: :slugged
@@ -29,17 +28,19 @@ class Question < ActiveRecord::Base
   	QUESTION_TYPES.invert
   end	
 
+  def capitalize_title
+    self.title = self.title.capitalize
+  end  
+
   def self.ordered
     order("questions.order")
   end  
 
-  def set_order
-    if Question.all.empty?
+  def set_order       
+    if !Question.first.present?
       self.order = 1
-      self.save!
     else
       self.order = Question.maximum('order') +1
-      self.save!
     end  
   end  
 end
