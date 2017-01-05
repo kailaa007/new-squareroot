@@ -110,6 +110,48 @@ $(document).on('click', '.base_question :checkbox', function (e) {
 });
 
 $(document).ready(function() { 
+  $( "table.index-list tbody#questions" ).sortable( {
+    update: function( event, ui ) { 
+      //$(this).children().each(function(index) {  
+        //$(this).find('td').last().html(index + 1)
+      //});
+    },
+    stop: function (event, ui) {  
+        var p = $('.not').offset().top; 
+        var Q = ui.position.top;
+
+        p = Math.round(p);
+        Q = Math.round(Q);
+         
+        if (Q < p) {
+          $('#sort_errors').html('<p style="color:red; font-size: 13px;margin-bottom: 0px;">You can not move. First you have to remove the restrictions and then try again.</p>').fadeIn();
+          setTimeout(function(){ $('#sort_errors').html('').fadeOut(); }, 3000);
+          return false;
+        }else{ 
+          var flag1 = false;
+          var flag2 = false;
+          $('table.index-list tr').each(function() {
+             var clsTR = $(this).attr('class');
+             if(clsTR != ''){
+              if(clsTR == 'enable'){
+                flag1 = true;
+              }
+              if(flag1 === true && clsTR == 'not'){
+                flag2 = true;
+              }
+             } 
+          });
+          if(flag1 === true && flag2 === true){
+            $('#sort_errors').html('<p style="color:red; font-size: 13px;margin-bottom: 0px;">You can not move. First you have to remove the restrictions and then try again.</p>').fadeIn();
+            setTimeout(function(){ $('#sort_errors').html('').fadeOut(); }, 3000);
+            return false;
+          }
+        }
+    },
+    cancel: '.not'
+  });
+ 
+
   //$('.btn-success').attr('disabled', 'disabled'); 
 
   $('.ques-form').on('click', function(){
