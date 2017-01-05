@@ -7,7 +7,6 @@ class BirthPlanAnswersController < ApplicationController
     @restriction << RestrictQuestion.where(base_ques_id: params[:ques])
     @restriction << RestrictQuestion.where(main_ques_id: params[:ques])
     @restriction1 = @restriction.to_json.html_safe
-    puts "#{@restriction.inspect}==================="
     respond_to do | format |  
       format.js {render :layout => false, json: @restriction1}  
     end
@@ -84,7 +83,7 @@ class BirthPlanAnswersController < ApplicationController
   end  
 
   def edit
-    @birth_plan_answer = BirthPlanAnswer.where("user_id ?", current_user.id)
+    @birth_plan_answer = BirthPlanAnswer.where("user_id = ?", current_user.id)
     @birth_plan= BirthPlan.first
    # @birth_plan = BirthPlan.first
     #@user = current_user

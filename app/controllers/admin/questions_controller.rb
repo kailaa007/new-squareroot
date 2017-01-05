@@ -6,8 +6,9 @@ class Admin::QuestionsController < Admin::ApplicationController
     @question = Question.new
   end
 
+  
   def create
-    
+
     @question = Question.new(question_params)
     if @question.save
       if @question.ques_type == 1

@@ -45,12 +45,17 @@ class Admin::BirthPlansController < Admin::ApplicationController
     params[:sort].each do |k, v|
       question = Question.find(k)
       if question.present?
-        question.update_attributes(order: v)
+        if question.update_attributes(order: v)
+          @questions = Question.ordered
+          flash[:notice] = "done"
+          redirect_to admin_birth_plans_path
+                    return
+        else
+          flash[:notice] = "jzsfgjskdgfk"
+          redirect_to admin_birth_plans_path
+          return
+        end  
       end  
-    end
-    @questions = Question.ordered
-    respond_to do | format |  
-      format.js {render :layout => false}  
     end
   end  
 

@@ -152,11 +152,22 @@ $(document).ready(function() {
                 } 
               });
 
+               $('#div_'+mainQuesId+' input:checkbox').each(function () {
+                if ($(this).prop('checked')) { 
+                  flag = true; 
+                }else{ 
+                } 
+              });
+
               if(flag === false){
                 $('#div_'+baseQuesId+' input:checkbox').each(function () {
                   $(this).attr('checked', false);
                 });
                 
+                $('#div_'+baseQuesId+' input:radio').each(function () {
+                  $(this).attr('checked', false);
+                });
+
                 var indx = $('#div_'+mainQuesId).attr('data-indx');
                 $('#div_'+baseQuesId+' .found_dend').remove(); 
                 $('#div_'+baseQuesId).append('<p class="found_dend" style="color:red;">This question is dependent on question no. '+indx+'</p>');
@@ -180,7 +191,12 @@ $(document).ready(function() {
               baseOptionStatus = value.option_status;
               if (baseQuesStatus == false){  
                 if(mainOption == option_id) {
-                  $('#div_'+baseQuesId).hide();
+                  //$('#div_'+baseQuesId).hide();  
+                  if(optionChecked === true){
+                    $('#div_'+baseQuesId).hide();  
+                  }else{
+                    $('#div_'+baseQuesId).show();   
+                  } 
                 }
                 else{
                   $('#div_'+baseQuesId).show();

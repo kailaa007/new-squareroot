@@ -25,7 +25,7 @@
       .modal-body
         .form-inputs.main_form_box_l
           %h2.form_head Log in
-          = simple_form_for(resource, as: resource_name, url: session_path(resource_name), remote: true) do |f|
+          = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
             .one-full
               = f.input :email, required: true, autofocus: true, label: false, placeholder: 'Email'
             .one-full

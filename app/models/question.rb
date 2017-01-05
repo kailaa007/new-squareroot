@@ -11,7 +11,7 @@ class Question < ActiveRecord::Base
   before_create :set_order	
   self.per_page = 10
   validates_presence_of :title, :ques_type
-  #validates_uniqueness_of :order
+  validates_uniqueness_of :order
   #gems
   extend FriendlyId
   friendly_id :title, use: :slugged
