@@ -42,14 +42,14 @@ class Admin::BirthPlansController < Admin::ApplicationController
   end
 
   def sort
+    #ques_order"=>[4, 5, 6, 7], "ques_id"=>["41", "37", "40", "42"]
+    params[:sort] =  Hash[params[:ques_id].zip params[:ques_order]]
     params[:sort].each do |k, v|
       question = Question.find(k)
       if question.present?
         if question.update_attributes(order: v)
           @questions = Question.ordered
           flash[:notice] = "done"
-          redirect_to admin_birth_plans_path
-                    return
         else
           flash[:notice] = "jzsfgjskdgfk"
           redirect_to admin_birth_plans_path

@@ -42,6 +42,7 @@ $(document).ready(function() {
   });
 });
 
+
 $(document).on('click', '.main-ques-opt', function (e) { 
   $("#res_type").show();
 });
@@ -145,6 +146,37 @@ $(document).ready(function() {
             $('#sort_errors').html('<p style="color:red; font-size: 13px;margin-bottom: 0px;">You can not move. First you have to remove the restrictions and then try again.</p>').fadeIn();
             setTimeout(function(){ $('#sort_errors').html('').fadeOut(); }, 3000);
             return false;
+          }
+          else{
+            //alert($(this).html());
+            var strSort = '{';
+            var orderArray = [];
+            var quesidArray = [];
+            $('table.index-list tr').each(function(index) {
+               var clsTR = $(this).attr('class');
+               var dataidTR = $(this).attr('data-id'); 
+                if(clsTR == 'enable' && dataidTR != ""){ 
+                  //var data_id = parseInt($(this).attr('data-id')); 
+                  orderArray.push(index);
+                  quesidArray.push(dataidTR);
+                }else{
+                   
+                } 
+            });    
+            $.ajax({
+              url: '/admin/birth_plans/sort',
+              cache: false,
+              type: "post",
+              dataType: 'json',
+              contentType: 'application/json',
+              //  Parameters: {"sort"=>{"40"=>"3", "41"=>"5", "42"=>"4"}}
+              
+              data: JSON.stringify({ques_order: orderArray, ques_id: quesidArray}),
+              //dataType: "text",
+              success: function(bdata){ 
+                alert('done');
+              },
+            });
           }
         }
     },

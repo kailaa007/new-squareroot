@@ -22,20 +22,14 @@
     -->
     <!--     %li= link_to 'Culture', culture_path
     -->
-    <!--     %li= link_to 'Policy', policy_path
-    -->
+    <li>
+      <%= link_to 'Birth Plan', birth_plans_path %>
+    </li>
     <li>
       <%= link_to 'Team', team_path %>
     </li>
     <li>
       <%= link_to 'News', news_index_path %>
-    </li>
-    <li>
-      <% if current_user.present? %>
-        <%#= link_to 'logout', destroy_user_session_path %>
-      <% else %>
-         <%= link_to 'login', login_path %>
-      <% end %>  
     </li>
     <li>
       <%= mail_to 'info@squareroots.com', 'Contact Us', :class => 'last', target: '_blank' %>
@@ -70,8 +64,12 @@
       -->
       <!--   = link_to_unless_current 'Framework', framework_path do
       -->
-      <!--     %span Framework
-      -->
+      <li>
+        <%= link_to_unless_current 'Birth Plan', birth_plans_path do %>
+          <span>Birth Plan</span>
+        <% end %>
+      </li>
+      
       <li>
         <%= link_to_unless_current 'Team', team_path do %>
           <span>Team</span>
@@ -80,18 +78,6 @@
       <li>
         <%= link_to_unless_current 'News', news_index_path do %>
           <span>News</span>
-        <% end %>
-      </li>
-      <li>
-        <% if current_user.present? %>
-          <%#= link_to_unless_current 'Logout', destroy_user_session_path do %>
-          <%= link_to_unless_current 'Birth Plan', new_birth_plan_answer_path do %>
-            <span>Birth PLan</span>
-          <% end %>
-        <% else %>
-          <%= link_to_unless_current 'Login', login_path do %>
-            <span>Projects</span>
-          <% end %>
         <% end %>
       </li>
       <li>
