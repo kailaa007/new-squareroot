@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
 
-  devise_for :users, path_names: {
+   devise_for :users,
+    controllers: {
+      confirmations: :confirmations,
+      registrations: :registrations,
+      passwords: :passwords,
+    },
+    path_names: {
       password: 'forgot',
       registration: 'register',
       sign_up: 'signup'
@@ -9,7 +15,7 @@ Rails.application.routes.draw do
   as :user do  
     get '/login', to: 'devise/sessions#new' 
     post 'login', to: 'devise/sessions#new' 
-    get '/sign_up', to: 'devise/registrations#new'
+    get '/sign_up', to: 'registrations#new'
     get '/edit_profile', to: "devise/registrations#edit"
   end  
   
@@ -61,8 +67,9 @@ Rails.application.routes.draw do
   get "edit_questions" => "birth_plan_answers#edit"
 
   resources :birth_plan_answers, :path => 'questions' do
+    get :report, on: :collection
   end  
   
-  root to: 'public#intro'
+  root to: 'public#video'
 
 end
