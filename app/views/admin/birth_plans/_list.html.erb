@@ -2,7 +2,7 @@
 <%# @questions = questions if questions.present?  %>
 <% @questions.each_with_index do |question,ind| %>
   <% if RestrictQuestion.where(main_ques_id: question.id).empty? %>
-    <tr data-id="<%="#{question.id}"%>" class="enable">
+    <tr data-id="<%="#{question.id}"%>">
       <td><i class="icon-move"></i></td>
   <% else %>
     <tr class="not">

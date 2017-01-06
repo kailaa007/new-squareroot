@@ -42,6 +42,35 @@ $(document).ready(function() {
   });
 });
 
+/*$(document).on('show.bs.modal', '.modal', function (event) { 
+    var zIndex = 1040 + (10 * $('.modal:visible').length);
+    $(this).css('z-index', zIndex);
+    setTimeout(function() {
+        $('.modal-backdrop').not('.modal-stack').css('z-index', zIndex - 1).addClass('modal-stack');
+    }, 0);
+});*/
+
+$(document).on('click', '.cls_modal', function (e) { 
+  var dataTarget = $(this).attr('data-target');
+  $("div.modal-backdrop").remove();
+  $('body.birth_plans').removeClass('modal-open');
+  $('body.birth_plans').css('padding-right', '');
+ 
+  $('div.modal.fade').each(function(index, item) { 
+    var currID = $(this).attr('id'); 
+    if(dataTarget == '#'+currID){   
+      $('body.birth_plans').addClass('modal-open');
+      $('body.birth_plans').css('padding-right', '14px');
+      $("body.birth_plans").append('<div class="modal-backdrop fade in"></div>');
+      $('div#'+currID).addClass('in'); 
+      $('div#'+currID).css('display', 'block'); 
+    }else{ 
+      $('div#'+currID).removeClass('in'); 
+      $('div#'+currID).css('display', 'none'); 
+    }
+  }); 
+});
+
 $(document).on('click', '.main-ques-opt', function (e) { 
   $("#res_type").show();
 });
@@ -145,6 +174,7 @@ $(document).ready(function() {
             $('#sort_errors').html('<p style="color:red; font-size: 13px;margin-bottom: 0px;">You can not move. First you have to remove the restrictions and then try again.</p>').fadeIn();
             setTimeout(function(){ $('#sort_errors').html('').fadeOut(); }, 3000);
             return false;
+          }else{ 
           }
         }
     },

@@ -39,9 +39,9 @@
               = f.button :submit, "Log in"
             .one-full
               %p
-                %a{"data-target" => "#signupModal", "data-toggle" => "modal", :type => "button", :style => "color: #f4c553;margin-left: 10px;"} SIGN UP
-                %a{"data-target" => "#fgModal", "data-toggle" => "modal", :type => "button", :style => "color: #f4c553;margin-left: 10px;"} FORGET PASSWORD    
-                %a{"data-target" => "#recoverModal", "data-toggle" => "modal", :type => "button", :style => "color: #f4c553;margin-left: 10px;"} RESEND CONFIRMATION INSTRUCTION
+                %a{"data-target" => "#signupModal", :type => "button", :style => "color: #f4c553;margin-left: 10px;", :class => "cls_modal"} SIGN UP
+                %a{"data-target" => "#fgModal", :type => "button", :style => "color: #f4c553;margin-left: 10px;", :class => "cls_modal"} FORGET PASSWORD    
+                %a{"data-target" => "#recoverModal", :type => "button", :style => "color: #f4c553;margin-left: 10px;", :class => "cls_modal"} RESEND CONFIRMATION INSTRUCTION
 
 / Signup Modal
 #signupModal.modal.fade{:role => "dialog"}
@@ -79,7 +79,7 @@
             .one-full
               %p
                 Have an Account?
-                %a{"data-target" => "#loginModal", "data-toggle" => "modal", :type => "button", :style => "color: #f4c553;margin-left: 10px;"}LOG IN
+                %a{"data-target" => "#loginModal", :type => "button", :style => "color: #f4c553;margin-left: 10px;", :class => "cls_modal"}LOG IN
 
 / forget password Modal
 #fgModal.modal.fade{:role => "dialog"}
@@ -97,9 +97,9 @@
               = f.button :submit, "Send me reset password instructions"
             .one-full
               %p
-                %a{"data-target" => "#loginModal", "data-toggle" => "modal", :type => "button", :style => "color: #f4c553;margin-left: 10px;"}LOG IN
-                %a{"data-target" => "#signupModal", "data-toggle" => "modal", :type => "button", :style => "color: #f4c553;margin-left: 10px;"} SIGN UP   
-                %a{"data-target" => "#recoverModal", "data-toggle" => "modal", :type => "button", :style => "color: #f4c553;margin-left: 10px;"} RESEND CONFIRMATION INSTRUCTION   
+                %a{"data-target" => "#loginModal", :type => "button", :style => "color: #f4c553;margin-left: 10px;", :class => "cls_modal"}LOG IN
+                %a{"data-target" => "#signupModal", :type => "button", :style => "color: #f4c553;margin-left: 10px;", :class => "cls_modal"} SIGN UP   
+                %a{"data-target" => "#recoverModal", :type => "button", :style => "color: #f4c553;margin-left: 10px;", :class => "cls_modal"} RESEND CONFIRMATION INSTRUCTION   
 
 
 / Resend confirmation instructions Modal
@@ -119,6 +119,6 @@
               = f.button :submit, "Resend confirmation instructions"
             .one-full
               %p
-                %a{"data-target" => "#loginModal", "data-toggle" => "modal", :type => "button", :style => "color: #f4c553;margin-left: 10px;"}LOG IN
-                %a{"data-target" => "#signupModal", "data-toggle" => "modal", :type => "button", :style => "color: #f4c553;margin-left: 10px;"} SIGN UP   
-                %a{"data-target" => "#fgModal", "data-toggle" => "modal", :type => "button", :style => "color: #f4c553;margin-left: 10px;"} FORGET PASSWORD      
+                %a{"data-target" => "#loginModal", :type => "button", :style => "color: #f4c553;margin-left: 10px;", :class => "cls_modal"}LOG IN
+                %a{"data-target" => "#signupModal", :type => "button", :style => "color: #f4c553;margin-left: 10px;", :class => "cls_modal"} SIGN UP   
+                %a{"data-target" => "#fgModal", :type => "button", :style => "color: #f4c553;margin-left: 10px;", :class => "cls_modal"} FORGET PASSWORD      
