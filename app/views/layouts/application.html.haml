@@ -21,20 +21,6 @@
     .off-canvas-wrap{"data-offcanvas" => "#{true}"}
       .inner-wrap
         = render 'shared/header'
-        .row
-          - if notice
-            %p.alert.alert-success= notice
-          - if alert
-            %p.alert.alert-danger= alert
-        - if user_signed_in?
-          Logged in as
-          = succeed "." do
-            %strong= current_user.email
-          = link_to 'Edit profile', edit_profile_path, :class => 'navbar-link'
-          |
-          \#{link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'}
-        - else
-          |
         = yield
         = render 'shared/footer'
         = link_to '', '', :class => 'exit-off-canvas'

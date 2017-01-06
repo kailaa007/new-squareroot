@@ -1,8 +1,8 @@
 <div id= "answer-ques">
-  <% restriction ||= ""%>
+  <% restriction ||= "fgg"%>
   <%= restriction.inspect if restriction.present? %>
-  <% question = Question.find(restriction.first.main_ques_id) if restriction.present? %>
-  <%= question.title if question.present? %>
+  <%# question = Question.find(restriction.first.main_ques_id) if restriction.present? %>
+  <%#= question.title if question.present? %>
 </div>
 <div class="row">
 <%= form_for BirthPlanAnswer.new, method: :post, html: {class: ""} do |f| %>

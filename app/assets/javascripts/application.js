@@ -42,14 +42,6 @@ $(document).ready(function() {
   });
 });
 
-/*$(document).on('show.bs.modal', '.modal', function (event) { 
-    var zIndex = 1040 + (10 * $('.modal:visible').length);
-    $(this).css('z-index', zIndex);
-    setTimeout(function() {
-        $('.modal-backdrop').not('.modal-stack').css('z-index', zIndex - 1).addClass('modal-stack');
-    }, 0);
-});*/
-
 $(document).on('click', '.cls_modal', function (e) { 
   var dataTarget = $(this).attr('data-target');
   $("div.modal-backdrop").remove();
@@ -176,6 +168,37 @@ $(document).ready(function() {
             return false;
           }else{ 
           }
+          else{
+            //alert($(this).html());
+            var strSort = '{';
+            var orderArray = [];
+            var quesidArray = [];
+            $('table.index-list tr').each(function(index) {
+               var clsTR = $(this).attr('class');
+               var dataidTR = $(this).attr('data-id'); 
+                if(clsTR == 'enable' && dataidTR != ""){ 
+                  //var data_id = parseInt($(this).attr('data-id')); 
+                  orderArray.push(index);
+                  quesidArray.push(dataidTR);
+                }else{
+                   
+                } 
+            });    
+            $.ajax({
+              url: '/admin/birth_plans/sort',
+              cache: false,
+              type: "post",
+              dataType: 'json',
+              contentType: 'application/json',
+              //  Parameters: {"sort"=>{"40"=>"3", "41"=>"5", "42"=>"4"}}
+              
+              data: JSON.stringify({ques_order: orderArray, ques_id: quesidArray}),
+              //dataType: "text",
+              success: function(bdata){ 
+                alert('done');
+              },
+            });
+          }
         }
     },
     cancel: '.not'
@@ -224,11 +247,22 @@ $(document).ready(function() {
                 } 
               });
 
+               $('#div_'+mainQuesId+' input:checkbox').each(function () {
+                if ($(this).prop('checked')) { 
+                  flag = true; 
+                }else{ 
+                } 
+              });
+
               if(flag === false){
                 $('#div_'+baseQuesId+' input:checkbox').each(function () {
                   $(this).attr('checked', false);
                 });
                 
+                $('#div_'+baseQuesId+' input:radio').each(function () {
+                  $(this).attr('checked', false);
+                });
+
                 var indx = $('#div_'+mainQuesId).attr('data-indx');
                 $('#div_'+baseQuesId+' .found_dend').remove(); 
                 $('#div_'+baseQuesId).append('<p class="found_dend" style="color:red;">This question is dependent on question no. '+indx+'</p>');
@@ -252,7 +286,12 @@ $(document).ready(function() {
               baseOptionStatus = value.option_status;
               if (baseQuesStatus == false){  
                 if(mainOption == option_id) {
-                  $('#div_'+baseQuesId).hide();
+                  //$('#div_'+baseQuesId).hide();  
+                  if(optionChecked === true){
+                    $('#div_'+baseQuesId).hide();  
+                  }else{
+                    $('#div_'+baseQuesId).show();   
+                  } 
                 }
                 else{
                   $('#div_'+baseQuesId).show();

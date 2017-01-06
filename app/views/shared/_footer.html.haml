@@ -17,7 +17,7 @@
       %source{ src: '/video2.ogv', type: "video/ogg" }
 
 / Login Modal
-#loginModal.modal.fade{:role => "dialog"}
+#loginModal.loginModalmodal.modal.fade{:role => "dialog"}
   .modal-dialog{ :style => "width: 60%"}
     / Modal content
     .modal-content
@@ -25,7 +25,7 @@
       .modal-body
         .form-inputs.main_form_box_l
           %h2.form_head Log in
-          = simple_form_for(resource, as: resource_name, url: session_path(resource_name), remote: true) do |f|
+          = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
             .one-full
               = f.input :email, required: true, autofocus: true, label: false, placeholder: 'Email'
             .one-full
@@ -44,7 +44,7 @@
                 %a{"data-target" => "#recoverModal", :type => "button", :style => "color: #f4c553;margin-left: 10px;", :class => "cls_modal"} RESEND CONFIRMATION INSTRUCTION
 
 / Signup Modal
-#signupModal.modal.fade{:role => "dialog"}
+#signupModal.modal.signupModalmodal.fade{:role => "dialog"}
   .modal-dialog{ :style => "width: 60%"}
     / Modal content
     .modal-content
@@ -99,7 +99,7 @@
               %p
                 %a{"data-target" => "#loginModal", :type => "button", :style => "color: #f4c553;margin-left: 10px;", :class => "cls_modal"}LOG IN
                 %a{"data-target" => "#signupModal", :type => "button", :style => "color: #f4c553;margin-left: 10px;", :class => "cls_modal"} SIGN UP   
-                %a{"data-target" => "#recoverModal", :type => "button", :style => "color: #f4c553;margin-left: 10px;", :class => "cls_modal"} RESEND CONFIRMATION INSTRUCTION   
+                %a{"data-target" => "#recoverModal", :type => "button", :style => "color: #f4c553;margin-left: 10px;", :class => "cls_modal"} RESEND CONFIRMATION INSTRUCTION
 
 
 / Resend confirmation instructions Modal
@@ -121,4 +121,4 @@
               %p
                 %a{"data-target" => "#loginModal", :type => "button", :style => "color: #f4c553;margin-left: 10px;", :class => "cls_modal"}LOG IN
                 %a{"data-target" => "#signupModal", :type => "button", :style => "color: #f4c553;margin-left: 10px;", :class => "cls_modal"} SIGN UP   
-                %a{"data-target" => "#fgModal", :type => "button", :style => "color: #f4c553;margin-left: 10px;", :class => "cls_modal"} FORGET PASSWORD      
+                %a{"data-target" => "#fgModal", :type => "button", :style => "color: #f4c553;margin-left: 10px;", :class => "cls_modal"} FORGET PASSWORD

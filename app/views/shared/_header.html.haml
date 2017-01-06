@@ -10,7 +10,7 @@
     /     %li= link_to 'Science', framework_path
     /     %li= link_to 'Solutions', solutions_path
     /     %li= link_to 'Culture', culture_path
-    /     %li= link_to 'Policy', policy_path
+    %li= link_to 'Birth Plan', birth_plans_path
     %li= link_to 'Team', team_path
     %li= link_to 'News', news_index_path
     / %li= link_to 'Projects', projects_path
@@ -25,26 +25,20 @@
         = link_to_unless_current 'Play Video', '#', class: 'play-video' do
           %span Play Video
       %li
-        = link_to_unless_current 'Birth Plan', '#', class: '' do
-          %span Play Video
-      %li
         = link_to_unless_current 'What We Do', what_path do
           %span What We Do
       %li
         = link_to_unless_current 'The Facts', facts_path do
           %span The Facts
-      / %li
-      /   = link_to_unless_current 'Framework', framework_path do
-      /     %span Framework
+      %li
+        = link_to_unless_current 'Birth PLan', birth_plans_path do
+          %span Birth Plan
       %li
         = link_to_unless_current 'Team', team_path do
           %span Team
       %li
         = link_to_unless_current 'News', news_index_path do
           %span News
-      %li
-        = link_to_unless_current 'Login', login_path do
-          %span Projects
       %li
         = mail_to 'info@squareroots.com', 'Contact Us', :class => 'last', target: '_blank'
   .clear
@@ -59,6 +53,21 @@
 .splash{ data: { imgliquid: true } }
   - unless content_for(:no_splash)
     = image_tag "#{action_name}-splash.jpg"
+
+.row
+  - if notice
+    %p.alert.alert-success= notice
+  - if alert
+    %p.alert.alert-danger= alert
+  - if user_signed_in?
+    Logged in as
+    = succeed "." do
+      %strong= current_user.email
+    = link_to 'Edit profile', edit_profile_path, :class => 'navbar-link'
+    |
+    \#{link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'}
+  - else
+    |
 
 .row
   .columns.small-12
