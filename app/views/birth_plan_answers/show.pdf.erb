@@ -1,0 +1,22 @@
+<div class="row">
+	<h2><%= @user.first_name %> Report</h2>
+    <%= link_to "edit", edit_birth_plan_answer_path(@birth_plan), class: "button" %>
+    <%= link_to "save as pdf", birth_plan_answer_path(@birth_plan, format: :pdf), class: "button" %>
+	<table>
+  	<% questions.each_with_index do |ques, ind| %>
+	    <tr>
+        <td>Question<%= ind+1 %>.&nbsp&nbsp<%=link_to ques.title %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <% answers = answers.where(question_id: ques) %>
+          <% answers.each do |answer| %>
+            Answer.&nbsp&nbsp <%= answer.answer %><br>
+          <% end %>
+          <hr>
+        </td>
+      </tr>    
+    <% end %>    
+  </table>
+</div>

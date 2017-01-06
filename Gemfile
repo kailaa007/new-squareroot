@@ -23,6 +23,7 @@ gem 'will_paginate', '~> 3.1.0'
 gem 'pdfkit'
 gem 'wkhtmltopdf-binary'
 gem 'best_in_place'
+gem 'wicked_pdf'
 
 group :development, :test do
   gem 'byebug'

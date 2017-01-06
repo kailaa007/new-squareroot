@@ -1,5 +1,5 @@
 class BirthPlanAnswersController < ApplicationController
-  layout 'devise'
+  #layout 'devise'
   before_filter :authenticate_user!
   
   def get_restriction
@@ -73,11 +73,10 @@ class BirthPlanAnswersController < ApplicationController
     respond_to do |format|
       format.html
       format.pdf do
-        html = render_to_string('<h1>Hello world</h1>', :layout => false)
-        pdf = PDFKit.new(html, :page_size => 'Letter')
-        file = kit.to_file(disposition: "inline", target: '_blank')
-        send_file Rails.root.join('private', 'birth_plan.pdf'), :type=>"application/pdf", :x_sendfile=>true
-        redirect_to :back
+        render pdf: "report",
+              template: "birth_plan_answers/show.pdf.erb",
+              layout: 'pdf',  
+              locals: {:answer => @answer, :question => @questions, user: @user}
       end
     end
   end  
