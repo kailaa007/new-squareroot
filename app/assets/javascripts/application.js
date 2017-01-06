@@ -166,9 +166,7 @@ $(document).ready(function() {
             $('#sort_errors').html('<p style="color:red; font-size: 13px;margin-bottom: 0px;">You can not move. First you have to remove the restrictions and then try again.</p>').fadeIn();
             setTimeout(function(){ $('#sort_errors').html('').fadeOut(); }, 3000);
             return false;
-          }else{ 
-          }
-          else{
+          }else{  
             //alert($(this).html());
             var strSort = '{';
             var orderArray = [];
