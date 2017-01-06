@@ -2,10 +2,8 @@ Rails.application.routes.draw do
 
    devise_for :users,
     controllers: {
-      confirmations: :confirmations,
-      registrations: :registrations,
-      passwords: :passwords,
-    },
+       registrations: :registrations,
+      },
     path_names: {
       password: 'forgot',
       registration: 'register',
@@ -17,6 +15,7 @@ Rails.application.routes.draw do
     post 'login', to: 'devise/sessions#new' 
     get '/sign_up', to: 'registrations#new'
     get '/edit_profile', to: "devise/registrations#edit"
+    get "/forgot/new", to: "devise/passwords#new"
   end  
   
   namespace :admin do

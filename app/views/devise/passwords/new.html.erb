@@ -1,16 +1,90 @@
-<div class="form-inputs">
-	
-	<h2>Forgot your password?</h2>
+<div class="form-inputs main_form_box_l"> 
+	<h2 class="form_head">Forgot your password?</h2>
+	    <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+	       <%= f.error_notification %>
 
-	<%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-	  <%= f.error_notification %>
-
-	    <%= f.input :email, required: true, autofocus: true %>
-
-	  <div class="form-actions">
+	  <div class="one-full">
+	    <%= f.input :email, required: true, autofocus: true, label: false, placeholder: 'Email' %>
+	  </div>
+	  
+	 <div class="form-actions">
 	    <%= f.button :submit, "Send me reset password instructions" %>
 	  </div>
 	<% end %>
 
 	<%= render "devise/shared/links" %>
 </div>
+<style type="text/css">
+  .form_head{
+    text-transform: uppercase;
+    font-weight: 400;
+    text-align: left;
+    color: #000;
+    font-size: 24px;
+  }
+  .main_form_box_l{
+    width: 55%;
+    margin: 5% auto;
+    border: 1px solid #ccc;
+    padding: 2% 5%;
+    display: table;
+  }
+  .one-full{
+    width: 100%;
+    display: inline-block;
+    float: left;
+    margin-bottom: 20px;
+  }
+  input[type="text"],input[type="password"],input[type="email"]{
+    height: 60px;
+    font-size: 16px;
+    color: #b3b3b3;
+    margin:0;
+    box-shadow: none !important;
+  }
+  input[type="text"]:focus,input[type="password"]:focus,input[type="email"]:focus{
+    border-top: 1px solid #f4c553 !important;
+    border-bottom: 1px solid #f4c553 !important;
+    border-left: 1px solid #f4c553 !important;
+    border-right: 1px solid #f4c553 !important;
+  }
+  .checkbox{
+    margin:0;
+    color: #090909;
+    font-size: 16px;
+    letter-spacing: 2px;
+  }
+  input[type="checkbox"]{
+    vertical-align: top;
+    margin-right: 5px;
+    margin-top: 2px;
+  }
+  
+  input[type="submit"]{    
+    width: 100%;
+    padding: 4%;
+    text-align: left;
+    border: 0;
+    color: #fff;
+    margin: -10px 0 1% 0;
+    font-size:16px;
+    background: #f4c553 url("/assets/arrow.png") no-repeat right top;
+    background-position: 92% center;
+    font-weight: 600;
+    background-size: 6%;
+  }
+  input::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    color: #b3b3b3;
+  }
+  input::-moz-placeholder { /* Firefox 19+ */
+    color: #b3b3b3;
+  }
+  input:-ms-input-placeholder { /* IE 10+ */
+    color: #b3b3b3;
+  }
+  input:-moz-placeholder { /* Firefox 18- */
+    color: #b3b3b3;
+  }
+  a{color:#f4c553; font-size: 16px; font-weight: 400;}
+  a:hover{color:#f4c553; font-size: 16px; font-weight: 400;text-decoration: underline;}
+</style>

@@ -5,7 +5,7 @@
 	<table>
   	<% @questions.each_with_index do |ques, ind| %>
 	    <tr>
-        <td>Question<%= ind+1 %>.&nbsp&nbsp<%=link_to ques.title %>
+        <td>Question&nbsp<%= ind+1 %>.&nbsp&nbsp<%= ques.title %>
         </td>
       </tr>
       <tr>

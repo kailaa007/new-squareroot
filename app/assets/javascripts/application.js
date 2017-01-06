@@ -22,6 +22,10 @@
 $(document).foundation();
 
 $(document).ready(function() {
+
+  
+  $( ".datepicker" ).datepicker({ dateFormat: 'yy-mm-dd' });
+  
   
   $('input.ques_title').on('keydown', function(event) {
     if (this.selectionStart == 0 && event.keyCode >= 65 && event.keyCode <= 90 && !(event.shiftKey) && !(event.ctrlKey) && !(event.metaKey) && !(event.altKey)) {

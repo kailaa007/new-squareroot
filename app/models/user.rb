@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
-  validates_presence_of :email, :password
+  #validates_presence_of :email, :password
 
   self.per_page = 10
 end

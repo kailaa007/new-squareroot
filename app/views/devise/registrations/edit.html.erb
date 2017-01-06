@@ -8,7 +8,7 @@
     <%= f.input :first_name, required: true %>
     <%= f.input :last_name, required: true %>
     <%= f.input :zipcode, required: true, as: :string %>
-    <%= f.input :due_date, class: 'datepicker', required: true, as: :string %>
+    <%= f.input :due_date, :input_html => {:class => "due_date input_box7 datepicker" }, required: true, as: :string %>
     <%= f.input :email, required: true, autofocus: true %>
 
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>

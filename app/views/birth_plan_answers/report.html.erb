@@ -1,16 +1,16 @@
 <div class="row">
 	<h2><%= @user.first_name %> Report</h2>
-  <table>
+  <table width="100%" style="font-family:'AvrNx';" >
     <% @questions.each_with_index do |ques, ind| %>
       <tr>
-        <td>Question<%= ind+1 %>.&nbsp&nbsp<%=link_to ques.title %>
+        <td><b>Question&nbsp<%= ind+1 %>.&nbsp&nbsp<%= ques.title %></b>
         </td>
       </tr>
       <tr>
         <td>
           <% answers = @answers.where(question_id: ques) %>
           <% answers.each do |answer| %>
-            Answer.&nbsp&nbsp <%= answer.answer %><br>
+            <b>Answer</b>&nbsp&nbsp <%= answer.answer %><br>
           <% end %>
           <hr>
         </td>

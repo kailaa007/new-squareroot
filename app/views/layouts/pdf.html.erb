@@ -6,6 +6,33 @@
     <meta content="<%= meta_keywords %>" name="keywords"/>
     <meta content="<%= meta_description %>" name="description"/>
     <%#= stylesheet_link_tag "application", :media => "all" %>
+    <style type="text/css">
+    		/* line 1, /home/mobikasa/work/squareroots/app/assets/stylesheets/header.sass */
+			header.default {
+			  background: #004290;
+			  padding: 10px 20px;
+			  position: relative;
+			  z-index: 99;
+			  height: 60px;
+			}
+
+			/* line 10, /home/mobikasa/work/squareroots/app/assets/stylesheets/header.sass */
+			header.default .logo {
+			  width: 10%;
+			  float: left;
+			}
+			footer {
+			  margin-top: 10px;
+			  margin-bottom: 0;
+			  position: relative;
+			}
+			/* line 6, /home/mobikasa/work/squareroots/app/assets/stylesheets/footer.sass */
+			footer .mainfooter {
+			  background: #F4C552;
+			  padding: 20px;
+			  text-align: center;
+			  color:#fff;				}
+		</style>
 </head>
 <body> 
   <%= render "shared/pdf_header" %>
