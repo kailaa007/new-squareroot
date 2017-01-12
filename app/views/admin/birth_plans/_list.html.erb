@@ -1,29 +1,26 @@
 <div id="list">
 <%# @questions = questions if questions.present?  %>
 <% @questions.each_with_index do |question,ind| %>
-  <% if RestrictQuestion.where(main_ques_id: question.id).empty? %>
-    <tr data-id="<%="#{question.id}"%>">
-      <td><i class="icon-move"></i></td>
-  <% else %>
-    <tr class="not">
-      <td></td>
-  <% end %>
+  <% #if RestrictQuestion.where(main_ques_id: question.id).empty? %>
+  <tr data-id="<%="#{question.id}"%>">
+    <td style="text-align: center;"><%= question.order %></td>
+   
     <td><%= question.title %></td>
     <td><%= get_ques_type(question.ques_type) %></td>
-    <td>
+    <td style="text-align: center;">
       <% unless Question.minimum(:order) == question.order %>
         <%= link_to '+', get_question_admin_birth_plan_path(question.id), class: "btn btn-info btn-lg restlink", :remote => true, id: question.id , style: "    padding: 0px 7px;"%>
       <% end %>  
     </td>
-    <td class="actions" style="text-align: left;">
-      <%= link_to 'Edit', edit_admin_question_path(question) %>
+    <td class="actions" style="text-align: center;">
+      <%= link_to 'Edit', edit_admin_question_path(question), class: "action_link" %>
       <% if RestrictQuestion.where(main_ques_id: question.id).empty? %>
         <% if BirthPlanQuestion.where(question_id: question.id).empty? %>
-          <%= link_to 'Delete', admin_question_path(question), method: :delete, data: { confirm: 'Are you sure?' }%>
+          <%= link_to 'Delete', admin_question_path(question), method: :delete, class: "action_link", data: { confirm: 'Are you sure?' }%>
         <% end %>
       <% else %>  
         <% if BirthPlanQuestion.where(question_id: question.id).empty? %>
-          <%= link_to 'Delete', '#', data: { confirm: 'Please remove the restriction'  }%>
+          <%= link_to 'Delete', '#', class: "action_link", data: { confirm: 'Please remove the restriction'  }%>
         <% end %>  
       <% end %>
     </td>

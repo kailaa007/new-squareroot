@@ -135,6 +135,53 @@ $(document).on('click', '.base_question :checkbox', function (e) {
 });
 
 $(document).ready(function() { 
+
+  $('form#new_question').submit(function(){
+    var qesTitle = $('#question_title').val();
+    var qesType = $('#question_ques_type').val();
+    var flag = false;
+    if(qesTitle == ""){
+      $('#question_title').css('border', '1px solid red');
+      flag = true;
+    }else{
+      $('#question_title').css('border', '1px solid #cccccc');
+    }
+
+    if(qesType == ""){
+      $('#question_ques_type').css('border', '1px solid red');
+      flag = true;
+    }else{
+      $('#question_ques_type').css('border', '1px solid #cccccc');
+    }
+
+    if(flag === true){
+      return false;
+    } 
+  });
+
+  $('form.edit_question').submit(function(){
+    var qesTitle = $('#question_title').val();
+    var qesType = $('#question_ques_type').val();
+    var flag = false;
+    if(qesTitle == ""){
+      $('#question_title').css('border', '1px solid red');
+      flag = true;
+    }else{
+      $('#question_title').css('border', '1px solid #cccccc');
+    }
+
+    if(qesType == ""){
+      $('#question_ques_type').css('border', '1px solid red');
+      flag = true;
+    }else{
+      $('#question_ques_type').css('border', '1px solid #cccccc');
+    }
+
+    if(flag === true){
+      return false;
+    } 
+  });
+
   $( "table.index-list tbody#questions" ).sortable( {
     update: function( event, ui ) { 
       //$(this).children().each(function(index) {  

@@ -1,5 +1,5 @@
 <div class="row">
-  <h2><%= @birth_plan.title %></h2>
+  <h2>Birth Plan<%#= @birth_plan.title %></h2>
 </div>
 <%= form_for [:admin, @birth_plan] do |f| %>
   <div class="row">
@@ -7,84 +7,97 @@
       <%= f.label :title, class: "label_top" %>
       <%= f.text_field :title, required: true , class: "input_top" %>
       <%= f.submit "submit", :class => 'button radius pull-right top_btm' %>
-    </div>
-    
+    </div> 
   </div>
-<% end %>  
+<% end %>   
+
 <div class="row">
-  <button type="button" class="btn btn-info btn-lg add_button" id="show-form">Add Question</button>
+  <div class="col-md-12" style="padding-left: 0;display: table;">
+    <h2 style="vertical-align: middle;display: table-cell;">Questions</h2>
+    <button type="button" class="btn btn-info btn-lg add_button" id="show-form">Add Question</button>
+  </div> 
+</div>
+
+<div class="row"> 
+  
   <div class="question-form">
     <table class="index-list">
     <tr>
-      <td>
-        
-      
-    <%= nested_form_for [ :admin, @question ] do |f| %>
-      <div class="row">
-        <div class="columns small-12 medium-12">
-          <%= f.label :title %><span style="color: red">*</span>
-          <%= f.text_field :title, required: true, class: 'ques_title' %>
-          <%= f.check_box :required %>
-          <%= f.label :required %><br>
-          <%= f.label :question_type %><span style="color: red">*</span>
-            <%= f.select :ques_type, Question::QUESTION_TYPES, { :include_blank => '-- Select Question Type --' }, required: true %>
-            <div class="phase-fields">
-              <label>Options</label>
-          
-              <ul id="ques-list" class="nested-list">
-                <%= f.fields_for :options, wrapper_tag: 'li' %>
-              </ul>
+      <td> 
+        <%= nested_form_for [ :admin, @question ], html: {novalidate: false} do |f| %>
+          <div class="row">
+            <div class="columns small-12 medium-12">
+              <%= f.label :title do %>
+                Title <span style="color: red">*</span>
+              <% end %>
+              <%= f.text_field :title, class: 'ques_title' %>
+               
+              <%= f.label :question_type do %>
+                Question Type <span style="color: red">*</span>
+              <% end %>
+              <%= f.select :ques_type, Question::QUESTION_TYPES, { :include_blank => '-- Select Question Type --' } %>
+              <div class="phase-fields">
+                <label>Options</label>
+            
+                <ul id="ques-list" class="nested-list">
+                  <%= f.fields_for :options, wrapper_tag: 'li' %>
+                </ul>
 
-              <p class="indent" data-target="#faqs-list" id="ques_add">    
-                <%= f.link_to_add "Add an Option", :options, class: 'button small' %>
-              </p>
+                <p class="indent" data-target="#faqs-list" id="ques_add">    
+                  <%= f.link_to_add "Add an Option", :options, class: 'button small' %>
+                </p>
+              </div>
+
+              <%= f.label :description %>
+              <%= f.text_area :note, class: "text_desc_add", maxlenght: "1000" %>
+              
+              <%= f.check_box :required %>
+              <%= f.label :required %>
+              
             </div>
-          <%= f.label :description %>
-          <%= f.text_area :note, class: "text_desc_add", maxlenght: "1000" %>
-  
-          
-        </div>
-        <div class="columns small-12 medium-12">
-        <hr>
-        <%= f.submit "submit", :class => 'button radius pull-right' %>
-        </div>
+            <div class="columns small-12 medium-12">
+              <hr>
+              <%= f.submit "Submit", :class => 'button radius pull-right top_btm' %>
+            </div>
+          </div>
+        <% end %>
+        </td>
+        </tr>
+        </table>
       </div>
-    <% end %>
-    </td>
-    </tr>
-    </table>
-  </div>
-</div>
+    </div>
 
-<div class="row">
-  <div id="sort_errors"></div>
-  <table class="index-list sortable-table ui-sortable custom_st" data-url="/admin/birth_plans/sort">
-    <thead>
-      <tr>
-        <th>Order</th>
-        <th>Title</th>
-        <th>Type</th>
-        <th>Restriction</th>
-        <th>Action</th>
-      </tr>
-    </thead>
-    <tbody id="questions">
-       <%= render 'list' %>
-    </tbody>
-  </table>  
+    <div class="row">
+      <div id="sort_errors"></div>
+      <table class="custom_st" data-url="/admin/birth_plans/sort" width="100%">
+        <thead>
+          <tr>
+            <th width="5%" style="text-align: center;">Order</th>
+            <th width="55%">Title</th>
+            <th width="15%">Type</th>
+            <th width="10%" style="text-align: center;">Restriction</th>
+            <th width="15%" style="text-align: center;">Action</th>
+          </tr>
+        </thead>
+        <tbody id="questions">
+           <%= render 'list' %>
+        </tbody>
+      </table>  
 
-  <%= render 'dialog' %>
-</div>
+      <%= render 'dialog' %>
+
+    </div>
+
 <style type="text/css">
   
-  .title_top{padding: 0;}
-  .label_top{display: inline !important;font-weight: 700;margin: 0 10px 0 0px;    font-size: 14px;}
-  .input_top{display: inline !important;width: 76% !important;}
-  .top_btm{padding: 0.6rem 1.6rem;margin:0 0 0 10px;}
-  .add_button{float: right;margin-bottom: 15px;}
-  table.custom_st{border:1px solid #ccc;}
-  table.custom_st  tr{border-top:1px solid #ccc;height:40px;}
-  table.custom_st  tr:last-child{border-bottom:1px solid #ccc;}
+.title_top{padding: 0;}
+.label_top{display: inline !important;font-weight: 700;margin: 0 10px 0 0px;    font-size: 14px;}
+.input_top{display: inline !important;width: 76% !important;}
+.top_btm{padding: 0.6rem 1.6rem;margin:0 0 0 10px;}
+.add_button{float: right;margin-bottom: 15px; font-size: 1rem;}
+table.custom_st{border:1px solid #ccc;}
+table.custom_st  tr{border-top:1px solid #ccc;height:40px;}
+table.custom_st  tr:last-child{border-bottom:1px solid #ccc;}
 .nested-list{margin:0;}
 input[type="checkbox"] + label, input[type="radio"] + label {
   display: inline-block;
@@ -103,5 +116,8 @@ input[type="checkbox"] + label, input[type="radio"] + label {
 .cross_pos_add:hover{position: absolute;right: 8px;top: 32%;color:#c70a0a;text-decoration: underline;}
 .cross_pos_add:focus {color: #c70a0a;}
 .text_desc_add{resize: none;height:150px;}
+.action_link {background-color: #5bc0de !important; border-color: #46b8da; color: #fff !important;}
+.action_link:hover {background-color: #31b0d5 !important; border-color: #269abc; color: #fff !important; text-decoration: none; } 
+.columns hr{ margin-top: 0; }
 </style>
    
