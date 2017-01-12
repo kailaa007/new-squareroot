@@ -134,7 +134,7 @@ $(document).on('click', '.base_question :checkbox', function (e) {
   }
 });
 
-$(document).ready(function() { 
+$(document).ready(function() {
 
   $('form#new_question').submit(function(){
     var qesTitle = $('#question_title').val();
