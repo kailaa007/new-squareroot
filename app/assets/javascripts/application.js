@@ -136,7 +136,7 @@ $(document).on('click', '.base_question :checkbox', function (e) {
 
 $(document).ready(function() { 
 
-  $('form#new_question').submit(function(){
+  $('form#new_question').submit(function(){ 
     var qesTitle = $('#question_title').val();
     var qesType = $('#question_ques_type').val();
     var flag = false;
