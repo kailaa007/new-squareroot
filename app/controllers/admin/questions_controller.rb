@@ -8,6 +8,7 @@ class Admin::QuestionsController < Admin::ApplicationController
 
   
   def create
+
     @question = Question.new(question_params)
     if @question.save
       if @question.ques_type == 1
@@ -38,17 +39,17 @@ class Admin::QuestionsController < Admin::ApplicationController
             { option_title: 'true' },
             { option_title: 'false' }
           ])
-          flash[:success] = 'Question updated successfully.'
+          flash[:success] = 'Question updated.'
           redirect_to admin_birth_plans_path
           return
         elsif @question.ques_type == 1 && params[:question][:ques_type].to_i != 1
           @question.update(question_params)
           @question.options.delete_all
-          flash[:success] = 'Question updated successfully.'
+          flash[:success] = 'Question updated.'
           redirect_to admin_birth_plans_path
           return
         elsif @question.update(question_params)
-          flash[:success] = 'Question updated successfully.'
+          flash[:success] = 'Question updated.'
           redirect_to admin_birth_plans_path
         else
           render :edit
@@ -56,7 +57,7 @@ class Admin::QuestionsController < Admin::ApplicationController
       end  
     else
       @question.update(question_params)
-      flash[:success] = 'Question updated successfully.'
+      flash[:success] = 'Question updated.'
       redirect_to admin_birth_plans_path
     end 
   end
@@ -64,7 +65,7 @@ class Admin::QuestionsController < Admin::ApplicationController
   def destroy
     RestrictQuestion.where('base_ques_id = ?', @question.id).delete_all
     @question.destroy
-    flash[:success] = 'Question destroyed successfully.'
+    flash[:success] = 'Question destroyed.'
     redirect_to admin_birth_plans_path
   end
 

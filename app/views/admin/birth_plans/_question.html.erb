@@ -107,7 +107,7 @@
 										  <label><%= opt.option_title %></label>
 										  <input class="chk_ol" type="checkbox" name="[base_option]<%= opt.id %>" checked>
 										<% else %>
-		                  					<label><%= opt.option_title %></label>
+		                  <label><%= opt.option_title %></label>
 										  <input class="chk_ol" type="checkbox" name="[base_option]<%= opt.id %>">
 										<% end %>  
 									<% end %>					
@@ -115,11 +115,12 @@
 					  </tr>
 					<% else %>
 					  <tr id="option-list" style="display: none;">	
-					    <td colspan="2"> 
-							<% current_question.options.each do |opt|%>
-							  <input class="chk_ol" type="checkbox" name="[base_option]<%= opt.id %>">
-							  <label><%= opt.option_title %></label>
-							<% end %>			
+					    <td colspan="2">
+					      
+									<% current_question.options.each do |opt|%>
+									  <input class="chk_ol" type="checkbox" name="[base_option]<%= opt.id %>">
+									  <label><%= opt.option_title %></label>
+									<% end %>			
 					    </td>
 				    </tr>
 					<% end %>  
@@ -152,11 +153,12 @@
 				  	</td>
 				  </tr>
 				  <tr id="option-list" style="display: none;">	
-				    <td colspan="2"> 
-						<% current_question.options.each do |opt|%>
-						  <input type="checkbox" name="[base_option]<%= opt.id %>">
-						  <label><%= opt.option_title %></label>
-						<% end %>			
+				    <td colspan="2">
+				      
+								<% current_question.options.each do |opt|%>
+								  <input type="checkbox" name="[base_option]<%= opt.id %>">
+								  <label><%= opt.option_title %></label>
+								<% end %>			
 				    </td>
 				  </tr>
 				<% end %>  
@@ -164,15 +166,12 @@
 	    </div>
 	  <% end %>		
 	  <div class="res_errors" style="display: none; color: red; font-size: 11px;">All Restriction has been removed</div>
-	  <%= f.submit "Submit", class: 'btn btn-info btn-lg', style: "border-radius: 6px; margin-right: 5px;" %>
+	  <%= f.submit "Submit", class: 'btn btn-info btn-lg' %>
 	  <input name="commit" value="Reset" id="reset_form" class="btn btn-info btn-lg" type="button">
-	  <div class="">
-	  	<small class="qnote"><strong>* NOTE:</strong> Restriction apply only on radio & checkbox type questions.</small> 
-	  </div>
   <% end %>
 </div>
 <style type="text/css">
-input[type="checkbox"]{
+	input[type="checkbox"]{
     margin: -2px 0 0 0;
     vertical-align: middle;
 }
@@ -182,5 +181,4 @@ input[type="checkbox"]{
     margin-left: -20px;
     margin-top: 5px;
 }
-small.qnote{color: red; font-size: 11px;}
 </style>
