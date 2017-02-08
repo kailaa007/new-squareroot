@@ -40,7 +40,7 @@
 						<% if ques.ques_type == 2 || ques.ques_type == 1 %>
 						  <% options.each do |option| %>
 						    <% if main_ques.present? %>
-	                <% unless main_ques.where(main_option_id: option.id).empty? %> 
+	                			<% unless main_ques.where(main_option_id: option.id).empty? %> 
 							      <label class="radio-inline"><input class="main-ques-opt" type="radio" name="[question][<%=ques.id%>]" value="<%= option.id %>" checked><%= option.option_title %> </label>
 							    <% else %>
 							     	<label class="radio-inline"><input class="main-ques-opt" type="radio" name="[question][<%=ques.id%>]" value="<%= option.id %>"><%= option.option_title %> </label>
@@ -75,13 +75,13 @@
 			  		Question Hide 
 			  	</td>
 			  	<td>	
-			  	  <% unless base_ques.first.ques_status?  %>
+			  	  	<% unless base_ques.first.ques_status?  %>
 				  		<input type="radio" class="res_opt_type" name="base_question"
 				  		 value='<%= "#{current_question.id}" %>' checked>
-			  	  <% else %>
-			  		  <input type="radio" class="res_opt_type" name="base_question"
+			  	  	<% else %>
+			  		  	<input type="radio" class="res_opt_type" name="base_question"
 			  		 value='<%= "#{current_question.id}" %>'>
-            <% end %>			  		
+            		<% end %>			  		
 			  	</td>
 			  </tr>
 			  <% if current_question.ques_type < 4 %>	
@@ -90,27 +90,26 @@
 				  		Question Options Hide 
 				  	</td>
 				  	<td>
-							<% if base_ques.first.option_status == false  %>
-							  <input type="radio" class="res_opt_type" name="base_question"
-				  		   value='yes' checked>
-							<% else %>  
-				  		  <input type="radio" class="res_opt_type" name="base_question"
+						<% if base_ques.first.option_status == false  %>
+							<input type="radio" class="res_opt_type" name="base_question" value='yes' checked>
+						<% else %>  
+				  		  	<input type="radio" class="res_opt_type" name="base_question"
 				  		   value='yes'>
-							<% end %>
+						<% end %>
 				  	</td>
 				  </tr>
 				  <% if base_ques.first.option_status == false  %>
 					  <tr id="option-list">	
 					    <td colspan="2">
 					      	<% current_question.options.each do |opt|%>
-						    	  <% unless base_ques.where(base_option_id: opt).empty?  %>
-										  <label><%= opt.option_title %></label>
-										  <input class="chk_ol" type="checkbox" name="[base_option]<%= opt.id %>" checked>
-										<% else %>
-		                  					<label><%= opt.option_title %></label>
-										  <input class="chk_ol" type="checkbox" name="[base_option]<%= opt.id %>">
-										<% end %>  
-									<% end %>					
+						    	<% unless base_ques.where(base_option_id: opt).empty?  %>
+								  <label><%= opt.option_title %></label>
+								  <input class="chk_ol" type="checkbox" name="[base_option]<%= opt.id %>" checked>
+								<% else %>
+                  					<label><%= opt.option_title %></label>
+								  <input class="chk_ol" type="checkbox" name="[base_option]<%= opt.id %>">
+								<% end %>  
+							<% end %>					
 					    </td>
 					  </tr>
 					<% else %>

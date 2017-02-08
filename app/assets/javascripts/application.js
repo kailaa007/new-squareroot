@@ -18,7 +18,7 @@
 //= require best_in_place
 //= require jquery-ui
 //= require best_in_place.jquery-ui
-
+//= require jquery.custom-scrollbar
 $(document).foundation();
 
 $(document).ready(function() {
@@ -182,7 +182,7 @@ $(document).ready(function() {
     } 
   });
 
-  $( "table.index-list tbody#questions" ).sortable( {
+  /*$( "table.index-list_111 tbody#questions_111" ).sortable( {
     update: function( event, ui ) { 
       //$(this).children().each(function(index) {  
         //$(this).find('td').last().html(index + 1)
@@ -251,7 +251,7 @@ $(document).ready(function() {
         }
     },
     cancel: '.not'
-  });
+  });*/
  
 
   //$('.btn-success').attr('disabled', 'disabled'); 
@@ -425,3 +425,181 @@ $(document).ready(function() {
 
     });
 });
+
+jQuery(document).ready(function(){
+
+  $("form#signUpForm").bind("ajax:success", function(e, data, status, xhr) {
+    console.log(data);
+    if (data.success) {
+      //$('#sign_in').modal('hide');
+      //$('#sign_in_button').hide();
+      //return $('#submit_comment').slideToggle(1000, "easeOutBack");
+      return alert('success!');
+    } else {
+      return alert('failure11!');
+    }
+  });
+
+  jQuery("#frmSignUp_123").click(function(){
+    var user_first_name = jQuery("#user_first_name").val();
+    var user_last_name = jQuery("#user_last_name").val();
+    var user_email = jQuery("#user_email").val();
+    var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+    var user_password = jQuery("#user_password").val();
+    var user_password_confirmation = jQuery("#user_password_confirmation").val();
+    var user_zipcode = jQuery("#user_zipcode").val();
+    var user_due_date = jQuery("#user_due_date").val();
+    var iAgree = jQuery("#iAgree").val();
+    
+    var flag = false;
+
+    if(user_first_name == ""){
+      jQuery("#user_first_name").css("border", "1px solid red");
+      flag = true;
+    }else{
+      jQuery("#user_first_name").css("border", "1px solid #969696");
+    }
+
+    if(user_last_name == ""){
+      jQuery("#user_last_name").css("border", "1px solid red");
+      flag = true;
+    }else{
+      jQuery("#user_last_name").css("border", "1px solid #969696");
+    }
+
+    if(user_email == ""){
+      jQuery("#user_email").css("border", "1px solid red");
+      flag = true;
+    }else{
+      if(!regex.test(user_email)){
+        jQuery("#user_email").css("border", "1px solid red");
+        flag = true;
+      }else{
+        jQuery("#user_email").css("border", "1px solid #969696");
+      } 
+    }
+
+    if(user_password == ""){
+      jQuery("#user_password").css("border", "1px solid red");
+      flag = true;
+    }else{
+      jQuery("#user_password").css("border", "1px solid #969696");
+    }
+
+    if(user_password_confirmation == ""){
+      jQuery("#user_password_confirmation").css("border", "1px solid red");
+      flag = true;
+    }else{
+      jQuery("#user_password_confirmation").css("border", "1px solid #969696");
+    }
+
+    if(user_password != "" && user_password_confirmation != ""){
+      if(user_password != user_password_confirmation){
+        jQuery("#user_password").css("border", "1px solid red");
+        jQuery("#user_password_confirmation").css("border", "1px solid red");
+        flag = true;
+      }else{
+        jQuery("#user_password").css("border", "1px solid #969696");
+        jQuery("#user_password_confirmation").css("border", "1px solid #969696");
+      }
+    }
+
+    if(user_zipcode == ""){
+      jQuery("#user_zipcode").css("border", "1px solid red");
+      flag = true;
+    }else{
+      jQuery("#user_zipcode").css("border", "1px solid #969696");
+    }
+
+    if(user_due_date == ""){
+      jQuery("#user_due_date").css("border", "1px solid red");
+      flag = true;
+    }else{
+      jQuery("#user_due_date").css("border", "1px solid #969696");
+    }
+
+    if($("#iAgree").is(':checked')){ 
+      //jQuery("#iAgree").css("border", "1px solid red");
+      flag = true;
+    }else{ 
+      //jQuery("#iAgree").css("border", "1px solid #969696");
+    }
+
+    if(flag === true){
+      return false;
+    }
+    
+  });
+
+  getpopupHeight();
+  jQuery("#user_due_date").datepicker();
+
+  jQuery("#loginForm input").keydown(function(){
+      if(jQuery(this).val() != '') {
+          jQuery(this).addClass("datafill")
+      }
+  });
+
+  jQuery(document).on("click",function(){
+      var getFormsPopupH = jQuery("#forms-popup").innerHeight()/2;
+      jQuery("#forms-popup").css("marginTop", -getFormsPopupH);
+      var getTermofusePopupH = jQuery("#termofuse-popup").innerHeight()/2;
+      jQuery("#termofuse-popup").css("marginTop", -getTermofusePopupH);
+  });
+
+  jQuery("#getStarted").on("click", function(){
+      jQuery("#forms-popup, .login-form").fadeIn();
+  });
+
+  jQuery(".sign-up-link").on("click", function(){
+      jQuery(".login-form").hide();
+      jQuery(".sign-up-form").fadeIn();
+  });
+
+  jQuery(".login-link").on("click", function(){
+      jQuery(".sign-up-form").hide();
+      jQuery(".login-form").fadeIn();
+  });
+
+  jQuery(".close-login-form, .close-signup-form").on("click", function(){
+      jQuery("#forms-popup, .sign-up-form").hide();
+      jQuery(".login-form").fadeIn();
+  });
+
+  jQuery(".termsofuse-link").on("click", function(){
+      jQuery("#forms-popup, .sign-up-form").hide();
+      jQuery(".login-form").fadeIn();
+      jQuery("#termofuse-popup").addClass("showtermofuse");
+  });
+
+  jQuery(".close-termofuse-form").on("click", function(){
+      jQuery("#termofuse-popup").removeClass("showtermofuse");
+  });
+
+  jQuery(".back-termofuse-form").on("click", function(){  
+      jQuery("#termofuse-popup").removeClass("showtermofuse");          
+      jQuery(".login-form").hide();
+      jQuery("#forms-popup, .sign-up-form").fadeIn();
+  });
+
+  jQuery(".frgt-pswd-link").on("click", function(){
+      jQuery(".login-form").hide();
+      jQuery(".forget-pswd-form").fadeIn();
+  });
+
+  jQuery(".close-forget-pswd-form").on("click", function(){
+      jQuery("#forms-popup, .forget-pswd-form").hide();
+
+  });
+});
+
+jQuery(window).resize(function(){
+  getpopupHeight();
+})
+
+function getpopupHeight() {
+  var getpopupH = jQuery("#birth-intro-popup").innerHeight()/2;  
+  jQuery("#birth-intro-popup").css("marginTop",  -getpopupH);
+  var getFormsPopupH = jQuery("#forms-popup").innerHeight()/2;
+  jQuery("#forms-popup").css("marginTop", -getFormsPopupH);
+}

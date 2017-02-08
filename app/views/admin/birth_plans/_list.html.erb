@@ -2,8 +2,13 @@
 <%# @questions = questions if questions.present?  %>
 <% @questions.each_with_index do |question,ind| %>
   <% #if RestrictQuestion.where(main_ques_id: question.id).empty? %>
+  <% if RestrictQuestion.count <= 0 %>
   <tr data-id="<%="#{question.id}"%>">
-    <td style="text-align: center;"><%= question.order %></td>
+    <td style="text-align: center;"><i class="icon-move"></i></td>
+  <% else %>
+  <tr data-id="<%="#{question.id}"%>" class="not">
+    <td style="text-align: center;"><%="#{question.order}"%></td>
+  <% end %>     
    
     <td><%= question.title %></td>
     <td><%= get_ques_type(question.ques_type) %></td>
