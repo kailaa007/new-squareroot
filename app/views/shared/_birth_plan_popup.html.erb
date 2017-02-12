@@ -20,7 +20,7 @@
             <%= simple_form_for(resource, as: resource_name, url: user_session_path, validate: true, :html => {:id => "loginForm"}) do |f|%>    
             <%= f.error_notification %>
             <div class='one-full'>
-                <%= f.input :email, autofocus: true, label: false, placeholder: 'nadineazzouk@gmail.com' %>
+                <%= f.input :email, autofocus: true, label: false, placeholder: 'Email' %>
             </div>
             <div class='one-full'>
                 <%= f.input :password, label: false, placeholder: 'Password' %>
@@ -42,7 +42,7 @@
             <%= f.error_notification %>
             <%= f.input :email, required: true, autofocus: true, label:false, placeholder:"Email" %>
             <%= button_tag "Submit", class: 'button expand forget-submit-btn' do %>Submit
-            <span class="sign-in-btn-icon"><%= image_tag 'arrow.png' %></span>
+                <span class="sign-in-btn-icon"><%= image_tag 'arrow.png' %></span>
             <% end %>
             <% end %>                
         </div>
@@ -89,7 +89,7 @@
                 <% end %>
             </a>
             <% end %> 
-            <p class="login-link-label">Have an Account? <a href="javascript:void(0);" class="login-link">Log In</a></p> 
+            <p class="login-link-label" style="font-weight: 500;">Have an Account? <a href="javascript:void(0);" class="login-link">Log In</a></p> 
         </div>
     </div>
 </div>
