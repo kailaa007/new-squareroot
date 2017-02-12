@@ -26,12 +26,12 @@ gem 'best_in_place'
 gem 'wicked_pdf'
 gem 'client_side_validations'
 gem 'client_side_validations-simple_form'
-gem 'mailcatcher'
 
 group :development, :test do
   gem 'byebug'
   gem 'web-console', '~> 2.0'
-  gem 'spring'
+  gem 'spring'  
+  gem 'mailcatcher'
 end
 
 gem 'unicorn'

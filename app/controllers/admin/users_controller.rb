@@ -30,7 +30,5 @@ class Admin::UsersController < Admin::ApplicationController
       end
     end   
   end  
-  def profile
-    
-  end
+  
 end
