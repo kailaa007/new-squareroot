@@ -1,6 +1,6 @@
 <div class="form-inputs main_form_box_l"> 
 <h2 class="form_head">Log in</h2>
-<%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+<%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), validate: true) do |f| %>
   <div class="one-full">
     <%= f.input :email, required: true, autofocus: true, label: false, placeholder: 'Email' %>
   </div>

@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
    devise_for :users,
     controllers: {
-       registrations: :registrations,
+       registrations: :registrations, sessions: :sessions
       },
     path_names: {
       password: 'forgot',
@@ -11,8 +11,8 @@ Rails.application.routes.draw do
     }
     
   as :user do  
-    get '/login', to: 'devise/sessions#new' 
-    post 'login', to: 'devise/sessions#new' 
+    get '/login', to: 'sessions#new' 
+    post 'login', to: 'sessions#new' 
     get '/sign_up', to: 'registrations#new'
     get '/edit_profile', to: "devise/registrations#edit"
     get "/forgot/new", to: "devise/passwords#new"
@@ -34,7 +34,7 @@ Rails.application.routes.draw do
 
     resources :users do 
       get 'birth_plan_report', on: :member
-      post 'birth_plan_report', on: :member
+      post 'birth_plan_report', on: :member      
     end
 
     resources :password_resets
@@ -68,7 +68,9 @@ Rails.application.routes.draw do
   resources :birth_plan_answers, :path => 'questions' do
     get :report, on: :collection
   end  
-  
+  namespace :users do
+    get 'profile'
+  end
   root to: 'public#video'
 
 end

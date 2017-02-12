@@ -1,6 +1,4 @@
-//= require jquery-ui/datepicker
-//= require jquery-ui/sortable
-//= require jquery-ui/effect-highlight
+//= require jquery-ui
 //= require fastclick
 //= require jquery.cookie
 //= require placeholder
@@ -16,9 +14,13 @@
 //= require slideshow
 //= require jquery_nested_form
 //= require best_in_place
-//= require jquery-ui
 //= require best_in_place.jquery-ui
 //= require jquery.custom-scrollbar
+//= require rails.validations
+//= require rails.validations.simple_form
+//= require rails.validations.customValidatiors
+//= require welcome
+
 $(document).foundation();
 
 $(document).ready(function() {
@@ -602,4 +604,14 @@ function getpopupHeight() {
   jQuery("#birth-intro-popup").css("marginTop",  -getpopupH);
   var getFormsPopupH = jQuery("#forms-popup").innerHeight()/2;
   jQuery("#forms-popup").css("marginTop", -getFormsPopupH);
+  
+  $(".ques_info, .help").hover(function() {
+      // var getTooltipBoxH = jQuery(this).find(".tooltip_box").innerHeight()/2;
+      // jQuery(this).find(".tooltip_box").css("bottom", -getTooltipBoxH-4);
+      jQuery(this).find(".tooltip_box").addClass("showtooltipbox")
+  },
+  function() {
+      jQuery(this).find(".tooltip_box").removeClass("showtooltipbox")
+  });
 }
+

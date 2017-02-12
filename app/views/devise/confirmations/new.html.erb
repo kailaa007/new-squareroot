@@ -1,6 +1,6 @@
 <div class="form-inputs main_form_box_l"> 
 	<h2 class="form_head">Resend confirmation instructions</h2>
-	    <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+	    <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }, validate: true) do |f| %>
 	       <%= f.error_notification %>
 
 	  <div class="one-full">
