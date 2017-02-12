@@ -26,7 +26,7 @@
                 <%= f.input :password, label: false, placeholder: 'Password' %>
             </div>
             <%= button_tag "Sign In", class: 'button expand sign-in-btn' do %>Sign In
-            <span class="sign-in-btn-icon"><img src="assets/arrow.png"></span>
+            <span class="sign-in-btn-icon"><%= image_tag 'arrow.png' %></span>
             <% end %>
             <% end %>
             <p class="text-center"><a class="frgt-pswd-link" href="#">Forgot password ?</a></p> 
@@ -42,7 +42,7 @@
             <%= f.error_notification %>
             <%= f.input :email, required: true, autofocus: true, label:false, placeholder:"Email" %>
             <%= button_tag "Submit", class: 'button expand forget-submit-btn' do %>Submit
-            <span class="sign-in-btn-icon"><img src="assets/arrow.png"></span>
+            <span class="sign-in-btn-icon"><%= image_tag 'arrow.png' %></span>
             <% end %>
             <% end %>                
         </div>
@@ -75,7 +75,7 @@
                 <div class="small-6 columns padnone lastinput brdtoptrans">
                     <%= f.input :due_date, required: true, label: false, placeholder: 'Due Date', :input_html => {:class => "due_date datepicker", id: 'duedate-cal' }, as: :string %>
                     <a href="javascript:void(0);" class="duedate-calender">
-                        <img src="assets/calendar_icon.png" alt="">
+                        <%= image_tag 'calendar_icon.png' %>
                     </a>
                 </div>
             </div>                         
@@ -85,7 +85,7 @@
             <label for="iAgree">I agree to the <a class="termsofuse-link" href="javascript:void(0);">Terms of Use</a> and <a class="privacy-link" href="javascript:void(0);">Privacy Statement</a>.</label></p>
             <a>
                 <%= button_tag "Next", class: 'button expand sign-in-btn' do %>Next
-                    <span class="sign-in-btn-icon"><img src="assets/arrow.png"></span>
+                    <span class="sign-in-btn-icon"><%= image_tag 'arrow.png' %></span>
                 <% end %>
             </a>
             <% end %> 

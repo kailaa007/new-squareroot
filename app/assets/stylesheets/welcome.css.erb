@@ -1,6 +1,5 @@
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
 
-@import url(https://s3.amazonaws.com/icomoon.io/25595/squareroots/style.css);
 html {
   font-family: sans-serif;
   -ms-text-size-adjust: 100%;
@@ -12345,7 +12344,7 @@ body.facts .country-facts .facts-inner p {
 }
 .birth-intro{
   height: 100vh;
-  background:url('/assets/bp-bg.jpg') no-repeat center center;
+  background:url(<%= asset_path('bp-bg.jpg') %>) no-repeat center center;
   background-size:cover;
 }
 .birth-intro-popup{
@@ -12412,7 +12411,7 @@ body.facts .country-facts .facts-inner p {
   width: 40px;
   height: 40px;
   text-indent: -9999px;
-  background: url('close_btn.png') no-repeat center center;
+  background: url(<%= asset_path('close_btn.png') %>) no-repeat center center;
   background-size: cover;
 }
 .forms-popup h4{
@@ -12524,12 +12523,12 @@ input#duedate-cal{
 .ui-datepicker .ui-datepicker-prev span{
   text-indent: -9999px;
   width: 24px;
-  background: url('arrow-left.png') no-repeat center center;
+  background: url(<%= asset_path('arrow-left.png') %>) no-repeat center center;
 }
 .ui-datepicker .ui-datepicker-next span{
   text-indent: -9999px;
   width: 24px;
-  background: url('arrow-right.png') no-repeat center center;
+  background: url(<%= asset_path('arrow-right.png') %>) no-repeat center center;
 }
 .duedate-calender{
   position: absolute;
@@ -12567,7 +12566,7 @@ input:checked.iagree + label[for="iAgree"]:after{
   top: 3px;
   line-height: 1;
   text-align: center;
-  background: url('check.png')no-repeat center center;
+  background: url(<%= asset_path('check.png') %>) no-repeat center center;
 }
 .termofuse-container{
   height: 100%;
@@ -12617,7 +12616,7 @@ input:checked.iagree + label[for="iAgree"]:after{
   left: -5px;
   width: 25px;
   height: 25px;   
-  background: url(back.png) no-repeat center center;
+  background: url(<%= asset_path('back.png') %>) no-repeat center center;
   background-size: contain;
 }
 .termofuse-container {
@@ -12737,7 +12736,7 @@ input[type="tel"], input[type="time"], input[type="url"], input[type="color"], t
   position: absolute;
   width: 10px;
   height: 10px;
-  background: url('oval_small.png') no-repeat center center;
+  background: url(<%= asset_path('oval_small.png') %>) no-repeat center center;
   background-size: cover;
   left: -5px;
   top: -5px;
@@ -12749,7 +12748,7 @@ input[type="tel"], input[type="time"], input[type="url"], input[type="color"], t
 }
 
 .progress-bar ul li .large-oval{
-  background: url('oval_big.png') no-repeat center center;
+  background: url(<%= asset_path('oval_big.png') %>) no-repeat center center;
   width: 17px;
   height: 17px;
   background-size: cover;
@@ -12799,7 +12798,7 @@ right: -8.5px;
   height: 137px;
   top: -150px;
   left: -65px;
-  background: url('active_step.png') no-repeat center center;
+  background: url(<%= asset_path('active_step.png') %>) no-repeat center center;
   background-size: cover;
   display: table;
   text-align: center;
@@ -12849,7 +12848,7 @@ right: -8.5px;
   position: absolute;
   width: 27px;
   height: 27px;
-  background: url('help_icon.png')no-repeat center center;
+  background: url(<%= asset_path('help_icon.png') %>) no-repeat center center;
   background-size:cover;
 }
 .birth_plan_welcome_help{
@@ -12881,7 +12880,7 @@ right: -8.5px;
   position: absolute;
   width: 17px;
   height: 17px;
-  background: url('info_icon.png')no-repeat center center;
+  background: url(<%= asset_path('info_icon.png') %>) no-repeat center center;
   background-size:cover;
   margin-left: 10px;
   margin-top: 4px;
@@ -12961,7 +12960,7 @@ right: -8.5px;
   top: 5px;
   line-height: 1;
   text-align: center;
-  background: url('check.png') no-repeat center center;
+  background: url(<%= asset_path('check.png')%>) no-repeat center center;
 }
 .birth_plan_ques_section input[type="text"]{
   max-width: 527px;
@@ -12990,7 +12989,7 @@ right: -8.5px;
   margin-top: 15px;
   width: 20px;
   height: 20px;
-  background: url('add_icon.svg') no-repeat center center;
+  background: url(<%= asset_path('add_icon.svg') %>) no-repeat center center;
   background-size: cover;
   cursor: pointer;
 }
@@ -13179,7 +13178,7 @@ transition: 0.2s ease-in-out;*/
   width: 40px;
   height: 40px;
   text-indent: -9999px;
-  background: url(close_btn.png) no-repeat center center;
+  background: url(<%= asset_path('close_btn.png')%>) no-repeat center center;
   background-size: cover;
 }
 .checklist-popup input[type="radio"], .checklist-popup input[type="checkbox"] {
@@ -13211,7 +13210,7 @@ transition: 0.2s ease-in-out;*/
   top: 5px;
   line-height: 1;
   text-align: center;
-  background: url(check.png) no-repeat center center;
+  background: url(<%= asset_path('check.png') %>) no-repeat center center;
 }
 .checklist-popup input[type="radio"] + label:before {
   content: '';
@@ -13364,7 +13363,7 @@ transition: 0.2s ease-in-out;*/
   line-height: 1.5;
   margin: 0px;
   padding:0 0 0 50px;
-  background: url('user.png')no-repeat center left;
+  background: url(<%= asset_path('user.png') %>)no-repeat center left;
   background-size: contain;
   font-size: 24px;
 }
