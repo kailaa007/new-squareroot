@@ -14,11 +14,11 @@ class SessionsController < Devise::SessionsController
 	end
 
 	def after_sign_in_path_for(resource)
-		birth_plans_path
+		profile_path
 	end
 
 	def after_sign_up_path_for(resource)		
-		birth_plans_path
+		profile_path
 	end
 
 	# The path used after sign up for inactive accounts.

@@ -68,9 +68,7 @@ Rails.application.routes.draw do
   resources :birth_plan_answers, :path => 'questions' do
     get :report, on: :collection
   end  
-  namespace :users do
-    get 'profile'
-  end
+  get "/profile", to: "users#profile", as: "profile"
   root to: 'public#video'
 
 end

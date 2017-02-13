@@ -6,7 +6,7 @@
     <p>We are excited to help you with your journey!</p>
     <div class="text-center">
         <% if user_signed_in? %>
-            <%= link_to 'GET STARTED',edit_profile_path, class: 'btn btn-common' %>
+            <%= link_to 'GET STARTED', profile_path, class: 'btn btn-common' %>
         <% else %>
             <a id="getStarted" href="javascript:void(0);" class="btn btn-common">GET STARTED</a>
         <% end %>
