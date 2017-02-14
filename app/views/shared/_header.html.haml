@@ -67,7 +67,7 @@
     |
     \#{link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'}
   - else
-    |
+    
 
 .row
   .columns.small-12
@@ -76,9 +76,9 @@
       .title
         %h1= title
 
-    .quote
-      .open= image_tag 'quote-open.jpg', width: 50, height: 30
-      %blockquote
-        = t("quotes.#{action_name}.quote")
-        %cite= t("quotes.#{action_name}.cite")
-.close= image_tag 'quote-close.jpg', width: 50, height: 30
+      .quote
+        .open= image_tag 'quote-open.jpg', width: 50, height: 30
+        %blockquote
+          = t("quotes.#{action_name}.quote")
+          %cite= t("quotes.#{action_name}.cite")
+        .open= image_tag 'quote-close.jpg', width: 50, height: 30

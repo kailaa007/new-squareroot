@@ -2,7 +2,7 @@ class BirthPlansController < ApplicationController
   layout "devise"
 
   def index
-    
+
   end
 
   def active_plan
@@ -16,12 +16,14 @@ class BirthPlansController < ApplicationController
   end
  #{"ques"=>"29", "option"=>"38"}
 
+  def set_birth_plan
+    
+  end
 
+ private
 
-  private
-
-   def birth_plan_params
-     params.require(:birth_plan).permit(:title, :status, :description, birth_plan_answer_attributes: [:id, :question, :answer, :ques_type, :user_id])
-   end
+ def birth_plan_params
+   params.require(:birth_plan).permit(:title, :status, :description, birth_plan_answer_attributes: [:id, :question, :answer, :ques_type, :user_id])
+ end
 
 end
