@@ -1,6 +1,6 @@
 <% if user_signed_in? %>
 <div class='birth-plan-splash'>
-	<img src="assets/profile-pic.jpg" alt="Profile" />
+	<%= image_tag 'profile-pic.jpg' %>
 </div>
 <div class='row'>
 	<div class='columns small-12 user-profile-area'>
@@ -16,18 +16,18 @@
 	<div class='user-profile-options'>
 		<div class="columns small-12 large-7">
 			<div class="profile-options options-edit">
-				<a href="/set_birth_plan" title=""><span class="profile-options-icon"><img src="assets/edit_summery.png" alt="" /></span>Edit Birth Plan Summary</a>
+				<a href="/set_birth_plan" title=""><span class="profile-options-icon"><%= image_tag 'edit_summery.png' %></span>Edit Birth Plan Summary</a>
 			</div>
 			<div class="profile-options options-print">
-				<a href="javascript:void(0);" title=""><span class="profile-options-icon"><img src="assets/print.png" alt="" /></span>Print</a>
+				<a href="javascript:void(0);" title=""><span class="profile-options-icon"><%= image_tag 'print.png' %></span>Print</a>
 			</div>
 		</div>
 		<div class="columns large-4 large-offset-1">
 			<div  class="profile-options options-download">
-				<a href="javascript:void(0);" title=""><span class="profile-options-icon"><img src="assets/download.png" alt="" /></span>Download PDF</a>
+				<a href="javascript:void(0);" title=""><span class="profile-options-icon"><%= image_tag 'download.png' %></span>Download PDF</a>
 			</div>
 			<div class="profile-options options-email">
-				<a href="javascript:void(0);" title=""><span class="profile-options-icon"><img src="assets/email.png" alt="" /></span>Email</a>
+				<a href="javascript:void(0);" title=""><span class="profile-options-icon"><%= image_tag 'email.png' %></span>Email</a>
 			</div>
 		</div>
 	</div>
@@ -36,7 +36,7 @@
 			<h2>Square root birth plan</h2>
 			<div class="birth-plan-summery-heading">
 				<div class="summery-heading-area">
-					<span class="summery-heading-icon left"><img src="assets/logo_white.png" alt="" /></span>
+					<span class="summery-heading-icon left"><%= image_tag 'logo_white.png'%></span>
 					<div class="doc-name"><%= "#{(current_user.try(:first_name)).try(:humanize)} #{(current_user.try(:last_name)).try(:humanize)}" %>,</div>
 					<div class="doc-caption">Birth Plan Summary</div>
 					<!-- <span class="summery-heading-icon right"><img src="assets/.png" alt="" /></span> -->
