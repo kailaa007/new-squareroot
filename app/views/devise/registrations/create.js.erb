@@ -1,0 +1,7 @@
+<% resource.errors.each do |k, v| %>
+	$("#signup-error").html("<%=  v %>");
+	$("#signup-error").addClass("error");
+<% end %>
+<% if resource.errors.blank? %>
+window.location.replace("/profile");
+<% end %>

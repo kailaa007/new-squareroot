@@ -23,6 +23,7 @@
     </video>
   </div>
 </div>
+<% if current_user.present? %>
 <div id="checklist-popup" class="checklist-popup" style="margin-top: -232.5px;">
         <div class="row checklist-section">
             <a href="javascript:void(0);" class="close-checklist-form close-btn">close</a>            
@@ -176,6 +177,7 @@
             </div>
         </div>
     </div>
+    <% end %>
     <script type="text/javascript">
        $(document).ready(function(){
             $("#termofuse-content, #checklist-content").customScrollbar();

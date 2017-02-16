@@ -430,18 +430,6 @@ $(document).ready(function() {
 
 jQuery(document).ready(function(){
 
-  $("form#signUpForm").bind("ajax:success", function(e, data, status, xhr) {
-    console.log(data);
-    if (data.success) {
-      //$('#sign_in').modal('hide');
-      //$('#sign_in_button').hide();
-      //return $('#submit_comment').slideToggle(1000, "easeOutBack");
-      return alert('success!');
-    } else {
-      return alert('failure11!');
-    }
-  });
-
   jQuery("#frmSignUp_123").click(function(){
     var user_first_name = jQuery("#user_first_name").val();
     var user_last_name = jQuery("#user_last_name").val();

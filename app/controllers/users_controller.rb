@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
 	layout 'devise'
-  def profile
-  end
+	before_action :authenticate_user!
+	def profile
+	end
 end
