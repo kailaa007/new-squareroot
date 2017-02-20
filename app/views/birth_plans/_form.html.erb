@@ -1,7 +1,3 @@
-
-<div class="restriction">
-  <%= render 'restriction' %>
-</div>
 <%= form_for @birth_plan_answer, url: birth_plan_answers_path, method: :post, html: {class: "form-control"} do |f| %>
   <div class="columns small-12 medium-12">
     <%= hidden_field_tag :birth_plan_id, @birth_plan.id %>

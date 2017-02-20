@@ -5,7 +5,7 @@
     <div class="progress-bar">
         <div class="row">
             <ul>
-                <li class="step-1 first active">
+                <li class="step-1 first <%= 'active' if @cat_id == 0 %>">
                     <h4>WHO &amp; WHERE</h4>
                     <span class="small-oval"></span>
                     <span class="large-oval"></span>
@@ -14,7 +14,7 @@
                         <div class="active-oval-text">WHO<br>&amp;<br>WHERE</div>
                     </span>
                 </li>
-                <li class="step-2">
+                <li class="step-2 <%= 'active' if @cat_id == 1 %>">
                     <h4>ENVIRONMENT</h4>
                     <span class="small-oval"></span>
                     <span class="large-oval"></span>
@@ -23,7 +23,7 @@
                         <div class="active-oval-text">ENVIRONMENT</div>
                     </span>
                 </li>
-                <li class="step-3">
+                <li class="step-3 <%= 'active' if @cat_id == 2 %>">
                     <h4>In Labor</h4>
                     <span class="small-oval"></span>
                     <span class="large-oval"></span>
@@ -32,7 +32,7 @@
                         <div class="active-oval-text">In Labor</div>
                     </span>
                 </li>
-                <li class="step-4 ">
+                <li class="step-4 <%= 'active' if @cat_id == 3 %>">
                     <h4>IMMEDIATELY AFTER BIRTH</h4>
                     <span class="small-oval"></span>
                     <span class="large-oval"></span>
@@ -41,7 +41,7 @@
                         <div class="active-oval-text">IMMEDIATELY<br>AFTER<br>BIRTH</div>
                     </span>
                 </li>
-                <li class="step-5 last">
+                <li class="step-5 last <%= 'active' if @cat_id == 4 %>">
                     <h4>YOUR NEWBORN</h4>
                     <span class="small-oval"></span>
                     <span class="large-oval"></span>
@@ -72,7 +72,7 @@
             <hr><hr>
         </div>
         <div class="birth_plan_ques_section">
-            <form>
+            <%= form_for @birth_plan_answer, url: birth_plan_answers_path, method: :post do |f| %>
                 <ol>
                     <li>
                         <h2>Use our <a href="javascript:void(0);" class="checklist-link">Hospital Checklist</a> to create a list of things you would like to bring with you to bring with you to the hospital</h2>
@@ -84,34 +84,34 @@
                             </ul>
                         </div>
                     </li>
+                   <!--  <%# @questions.ordered.each_with_index do |question, ind| %>
                     <li>
                         <h2>
-                            Where do you want to give birth?
+                            <%#= "*" if question.required? %><%#= question.title %>
                             <a class="ques_info" href="javascript:void(0);" title="">
                                 <div class="tooltip_box">
-                                    Regardless of your decision below, we recommend that you spend some time researching, as not all hospital or birth center settings and statistics are the same. In fact, you can schedule yourself a tour at many facilities.  First, consider what is important to you. Do you want a water birth? To have an epidural? To avoid a c-section? We recommend looking into the related statistics for your hospital, which can be found HERE. The higher the rates are, the more likely you too will receive that intervention.
+                                   <%#= question.note if question.note.present? %>
                                 </div>
                             </a>
                         </h2>
                         <div class="option-area">
-                            <ul>
-                                <li>                                                    
-                                    <input type="radio" name="question-1" class="options" id="option1-1">
-                                    <label for="option1-1">Hospital<a class="ques_info" href="javascript:void(0);" title="">
-                                        <div class="tooltip_box">
+                        <ul>
+                            <%# question.options.each do |option| %>
+                            <li>                                                    
+                                <input type="radio" name="question-1" class="options" id="option1-1">
+                                <label for="option1-1"><%#= option.try(:option_title) %><a class="ques_info" href="javascript:void(0);" title="">
+                                    <div class="tooltip_box">
                                             We hope that you ﬁnd this helpful and leave feeling more prepared for your big day! If at any point you would like more information.
                                         </div>
                                     </a>
                                     
                                 </label>
                             </li>
-                            <li>                                                    
-                                <input type="radio" name="question-1" class="options" id="option1-2">
-                                <label for="option1-2">Hospital<a class="ques_info" href="javascript:void(0);" title=""></a></label>
-                            </li>
+                            <%# end %>                            
                         </ul>
                     </div>
                 </li>
+                <%# end %> -->
                 <li>
                     <h2>What types of positions do you expect to want to be in?<a class="ques_info" href="javascript:void(0);" title=""></a></h2>
                     <div class="option-area">
@@ -163,7 +163,7 @@
                     </div>
                 </li>
             </ol>
-        </form>                            
+        <% end %>                            
     </div>
     <div class="birth_plan_pagination desktop">
         <div class="paggingDiv">

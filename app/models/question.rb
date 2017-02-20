@@ -7,10 +7,20 @@ class Question < ActiveRecord::Base
     'Email Field' => 5,
     'Input Field' => 6,
   }
+
+  CATEGORY_TYPES = [
+    'WHO & WHERE',
+    'ENVIRONMENT',
+    'IN LABOR',
+    'IMMEDIATELY AFTER BIRTH',
+    'YOUR NEW BORN'
+  ].freeze
+  
   before_save :capitalize_title
   before_create :set_order	
   self.per_page = 10
   validates_presence_of :title, :ques_type
+  validates :category, presence: true
   validates_uniqueness_of :order, allow_nil: true, allow_blank: true
   #gems
   extend FriendlyId
@@ -42,5 +52,5 @@ class Question < ActiveRecord::Base
     else
       self.order = Question.maximum('order') +1
     end  
-  end  
+  end 
 end

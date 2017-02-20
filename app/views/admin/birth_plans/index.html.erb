@@ -27,6 +27,8 @@
         <%= nested_form_for [ :admin, @question ], html: {novalidate: false} do |f| %>
           <div class="row">
             <div class="columns small-12 medium-12">
+              <label>Category Type <span style="color: red">*</span></label>
+              <%= f.select :category, Question::CATEGORY_TYPES, :prompt => "Select category type", required: true %>
               <%= f.label :title do %>
                 Title <span style="color: red">*</span>
               <% end %>
@@ -73,7 +75,8 @@
         <thead>
           <tr>
             <th width="5%" style="text-align: center;">Order</th>
-            <th width="55%">Title</th>
+            <th width="40%">Title</th>
+            <th width="15%">Category</th>
             <th width="15%">Type</th>
             <th width="10%" style="text-align: center;">Restriction</th>
             <th width="15%" style="text-align: center;">Action</th>

@@ -56,6 +56,7 @@ class Admin::QuestionsController < Admin::ApplicationController
         end
       end  
     else
+
       @question.update(question_params)
       flash[:success] = 'Question updated successfully.'
       redirect_to admin_birth_plans_path
@@ -81,7 +82,7 @@ class Admin::QuestionsController < Admin::ApplicationController
   end
 
   def question_params
-    params.require(:question).permit(:title, :order,:ques_type, :required, :note, options_attributes: [:id, :option_title, :question_id, :_destroy])
+    params.require(:question).permit(:title, :order,:ques_type, :required, :note, :category, options_attributes: [:id, :option_title, :question_id, :_destroy])
   end
 
 end
