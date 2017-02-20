@@ -20,6 +20,8 @@
 //= require rails.validations.simple_form
 //= require rails.validations.customValidatiors
 //= require welcome
+//= require jquery.validationEngine.js
+//= require jquery.validationEngine-en.js
 
 $(document).foundation();
 
@@ -602,4 +604,6 @@ function getpopupHeight() {
       jQuery(this).find(".tooltip_box").removeClass("showtooltipbox")
   });
 }
-
+function closePopup() {
+  window.location.replace("/birth_plans");
+}

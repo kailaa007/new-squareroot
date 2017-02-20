@@ -14,17 +14,16 @@
 </div>
 <div id="forms-popup" class="forms-popup">
     <div class="row login-form">
-        <a href="javascript:void(0);" class="close-login-form close-btn">close</a>
+        <a href="javascript:closePopup();" class="close-login-form close-btn">close</a>
         <div class="medium-centered large-centered">
-            <h4 class="">Login</h4>
-            <span id='login-error'></span>
-            <%= simple_form_for(resource, as: resource_name, url: user_session_path, validate: true, remote: true, :html => {:id => "loginForm"}) do |f|%>    
+            <h4 class="">Login</h4> 
+            <%= simple_form_for(resource, as: resource_name, url: user_session_path, validate: false, remote: true, :html => {:id => "loginForm"}) do |f|%>    
             <%= f.error_notification %>
             <div class='one-full'>
-                <%= f.input :email, autofocus: true, label: false, placeholder: 'Email' %>
+                <%= f.input :email, autofocus: true, label: false, placeholder: 'Email', :input_html => {:class => "validate[required],custom[email]" } %>
             </div>
             <div class='one-full'>
-                <%= f.input :password, label: false, placeholder: 'Password' %>
+                <%= f.input :password, label: false, placeholder: 'Password', :input_html => {:class => "validate[required]" } %>
             </div>
             <%= button_tag "Sign In", class: 'button expand sign-in-btn' do %>Sign In
             <span class="sign-in-btn-icon"><%= image_tag 'arrow.png' %></span>
@@ -35,96 +34,100 @@
         </div>
     </div>
     <div class="row forget-pswd-form">
-        <a href="javascript:void(0);" class="close-forget-pswd-form close-btn">close</a>
+        <a href="javascript:closePopup();" class="close-forget-pswd-form close-btn">close</a>
         <div class="medium-centered large-centered">
             <h4 class="">Forget Password</h4> 
             <span id='password-error'></span>  
             <p>Enter you email address to reset your password. You may need to check your spam folder or unblock noreply@squareroots.com</p>  
-            <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), remote: true, html: { id: 'forgetPasswordForm', method: :post }, validate: true) do |f| %>
-                <%= f.error_notification %>
-                <%= f.input :email, required: true, autofocus: true, label:false, placeholder:"Email" %>
-                <%= button_tag "Submit", class: 'button expand forget-submit-btn' do %>Submit
-                <span class="sign-in-btn-icon"><%= image_tag 'arrow.png' %></span>
+            <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), remote: true, html: { id: 'forgetPasswordForm', method: :post }, validate: false) do |f| %>
+            <%= f.error_notification %>
+            <%= f.input :email, autofocus: true, label:false, placeholder:"Email", :input_html => {:class => "validate[required],custom[email]" } %>
+            <%= button_tag "Submit", class: 'button expand forget-submit-btn' do %>Submit
+            <span class="sign-in-btn-icon"><%= image_tag 'arrow.png' %></span>
             <% end %>
             <% end %>                
         </div>
     </div>
     <div class="row sign-up-form">
-        <a href="javascript:void(0);" class="close-signup-form close-btn">close</a>
+        <a href="javascript:closePopup();" class="close-signup-form close-btn">close</a>
         <div class="medium-centered large-centered">
             <h4 class="">Sign up now</h4> 
-            <span id='signup-error'></span>
             <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), remote: true, validate: false, :html => {:id => "signUpForm"}) do |f| %> 
             <%= f.error_notification %>
             <div class="input-area name-area">
                 <div class="small-12 medium-6 large-6 columns padnone">
-                    <%= f.input :first_name, required: true, label: false, placeholder: 'First Name', :input_html => {:class => "half" } %>
+                    <%= f.input :first_name, label: false, placeholder: 'First Name', :input_html => {:class => "half validate[required]" } %>
                 </div>
                 <div class="small-12 medium-6 large-6 columns padnone lastinput">
-                    <%= f.input :last_name, required: true, label: false, placeholder: 'Last Name', :input_html => {:class => "half" } %>
+                    <%= f.input :last_name, label: false, placeholder: 'Last Name', :input_html => {:class => "half" } %>
                 </div>
             </div>
             <div class="input-area pswd-area">                    
-                <%= f.input :email, required: true, label: false, placeholder: 'Email'%>                    
+                <%= f.input :email, label: false, placeholder: 'Email', :input_html => {:class => "validate[required],custom[email]" } %>                    
                 <div class="small-12 medium-6 large-6 columns padnone brdtoptrans">
-                    <%= f.input :password, required: true, label: false , placeholder: 'Password' %>
+                    <%= f.input :password, label: false , placeholder: 'Password', :input_html => {:class => "validate[required]", id: 'password' } %>
                 </div>
                 <div class="small-12 medium-6 large-6 columns padnone lastinput brdtoptrans">
-                    <%= f.input :password_confirmation, required: true, label: false, placeholder: 'Confirm Password' %>                        
+                    <%= f.input :password_confirmation, label: false, placeholder: 'Confirm Password', :input_html => {:class => "validate[required],equals[password]" } %>                        
                 </div>
                 <div class="small-6 columns padnone brdtoptrans">
-                    <%= f.input :zipcode, required: true, label: false, placeholder: 'Zip code', as: :string %>
+                    <%= f.input :zipcode, label: false, placeholder: 'Zip code', as: :string, :input_html => {:class => "validate[required]" } %>
                 </div>
                 <div class="small-6 columns padnone lastinput brdtoptrans">
-                    <%= f.input :due_date, required: true, label: false, placeholder: 'Due Date', :input_html => {:class => "due_date datepicker", id: 'duedate-cal' }, as: :string %>
+                    <%= f.input :due_date, label: false, placeholder: 'Due Date', :input_html => {:class => "due_date datepicker validate[required]", id: 'duedate-cal' }, as: :string %>
                     <a href="javascript:void(0);" class="duedate-calender">
                         <%= image_tag 'calendar_icon.png' %>
                     </a>
                 </div>
             </div>                         
 
-            <p>
-                <%= f.check_box :terms_n_condition, id: "iAgree", class: 'iagree', checked: true %>
-                <label for="iAgree">I agree to the <a class="termsofuse-link" href="javascript:void(0);">Terms of Use</a> and <a class="privacy-link" href="javascript:void(0);">Privacy Statement</a>.</label></p>
-                <a>
-                    <%= button_tag "Next", class: 'button expand sign-in-btn' do %>Next
-                    <span class="sign-in-btn-icon"><%= image_tag 'arrow.png' %></span>
-                    <% end %>
-                </a>
-                <% end %> 
-                <p class="login-link-label" style="font-weight: 500;">Have an Account? <a href="javascript:void(0);" class="login-link">Log In</a></p> 
+            <div>                
+                <%= f.check_box :terms_n_condition, id: "iAgree", class: "validate[required] iagree", data: {prompt: {position: "bottomRight"}, errormessage: "* Terms & Conditon not checked."}, style: "visibility: hidden", jqtop:"500" %>
+                <label for="iAgree">I agree to the <a class="termsofuse-link" href="javascript:void(0);">Terms of Use</a> and <a class="privacy-link" href="javascript:void(0);">Privacy Statement</a>.</label>
+            </div>
+            <a>
+                <%= button_tag "Next", class: 'button expand sign-in-btn' do %>Next
+                <span class="sign-in-btn-icon"><%= image_tag 'arrow.png' %></span>
+                <% end %>
+            </a>
+            <% end %> 
+            <p class="login-link-label" style="font-weight: 500;">Have an Account? <a href="javascript:void(0);" class="login-link">Log In</a></p> 
+        </div>
+    </div>
+</div>
+<div id="termofuse-popup" class="termofuse-popup">
+    <div class="row termofuse-section">
+        <a href="javascript:void(0);" class="close-termofuse-form close-btn">close</a>
+        <a href="javascript:void(0);" class="back-termofuse-form back-btn"><span class="back-btn-icons"></span>Back</a>
+        <div class="medium-centered large-centered">
+            <h4 class="text-center">Square Root Terms of Use</h4> 
+            <h6 class="text-center">Last Updated: September 12, 2016</h6>                  
+            <div id="termofuse-content" class="termofuse-container">
+                <ol>
+                    <li>
+                        <h2>Account Registration</h2>
+                        <p>To make a purchase on Jet, you must register for an account here. You must be at least 18 years old to register for an account. Only one account is permitted per household.</p>
+                        <p>You agree that all of your registration information will be true and complete, and you will keep your account information current and up-to-date. You agree to keep your Jet username and password conﬁdential, and to access the Jet Sites from devices that have up-to-date operating systems and security software. You agree not to allow anybody else to use your account, including in any way that is meant to circumvent these Terms of Use. You will be responsible for all purchases made, and anything else that occurs, through your account.</p>
+                        <p>Please notify us immediately of any suspected unauthorized activity on your account by sending an email to privacy@squareroots.com.</p>
+                    </li>
+                    <li>
+                        <h2>Privacy</h2>
+                        <p>You consent to the collection, use, disclosure and other handling of information as described in our Privacy Notice, which may be updated from time to time. You consent to our monitoring and recording of telephone calls, emails, and texts (and other forms of communications) between you and us, no matter who initiates the communication. (Monitoring and recording calls and emails helps us get better at helping you!)</p>
+                    </li>
+                </ol>
             </div>
         </div>
     </div>
-    <div id="termofuse-popup" class="termofuse-popup">
-        <div class="row termofuse-section">
-            <a href="javascript:void(0);" class="close-termofuse-form close-btn">close</a>
-            <a href="javascript:void(0);" class="back-termofuse-form back-btn"><span class="back-btn-icons"></span>Back</a>
-            <div class="medium-centered large-centered">
-                <h4 class="text-center">Square Root Terms of Use</h4> 
-                <h6 class="text-center">Last Updated: September 12, 2016</h6>                  
-                <div id="termofuse-content" class="termofuse-container">
-                    <ol>
-                        <li>
-                            <h2>Account Registration</h2>
-                            <p>To make a purchase on Jet, you must register for an account here. You must be at least 18 years old to register for an account. Only one account is permitted per household.</p>
-                            <p>You agree that all of your registration information will be true and complete, and you will keep your account information current and up-to-date. You agree to keep your Jet username and password conﬁdential, and to access the Jet Sites from devices that have up-to-date operating systems and security software. You agree not to allow anybody else to use your account, including in any way that is meant to circumvent these Terms of Use. You will be responsible for all purchases made, and anything else that occurs, through your account.</p>
-                            <p>Please notify us immediately of any suspected unauthorized activity on your account by sending an email to privacy@squareroots.com.</p>
-                        </li>
-                        <li>
-                            <h2>Privacy</h2>
-                            <p>You consent to the collection, use, disclosure and other handling of information as described in our Privacy Notice, which may be updated from time to time. You consent to our monitoring and recording of telephone calls, emails, and texts (and other forms of communications) between you and us, no matter who initiates the communication. (Monitoring and recording calls and emails helps us get better at helping you!)</p>
-                        </li>
-                    </ol>
-                </div>
-            </div>
-        </div>
-    </div>
-    <script type="text/javascript">
-        $(document).ready(function(){
-            $("#termofuse-content").customScrollbar();
-        });        
-        $(".forms-popup").on('click', function() {
-            $('form[data-validate]').enableClientSideValidations();
-        });
-    </script>
+</div>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#termofuse-content").customScrollbar();
+    });        
+    $(".forms-popup").on('click', function() {
+        $('form[data-validate]').enableClientSideValidations();
+        $("#loginForm").validationEngine();
+        $("#signUpForm").validationEngine({validateNonVisibleFields: true,
+        updatePromptsPosition:false});
+        $("#forgetPasswordForm").validationEngine();
+    });
+</script>
