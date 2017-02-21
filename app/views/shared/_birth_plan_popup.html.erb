@@ -65,13 +65,13 @@
             <div class="input-area pswd-area">                    
                 <%= f.input :email, label: false, placeholder: 'Email', :input_html => {:class => "validate[required],custom[email]" } %>                    
                 <div class="small-12 medium-6 large-6 columns padnone brdtoptrans">
-                    <%= f.input :password, label: false , placeholder: 'Password', :input_html => {:class => "validate[required]", id: 'password' } %>
+                    <%= f.input :password, label: false , placeholder: 'Password', :input_html => {:class => "validate[required],minSize[6]", id: 'password' } %>
                 </div>
                 <div class="small-12 medium-6 large-6 columns padnone lastinput brdtoptrans">
                     <%= f.input :password_confirmation, label: false, placeholder: 'Confirm Password', :input_html => {:class => "validate[required],equals[password]" } %>                        
                 </div>
                 <div class="small-6 columns padnone brdtoptrans">
-                    <%= f.input :zipcode, label: false, placeholder: 'Zip code', as: :string, :input_html => {:class => "validate[required]" } %>
+                    <%= f.input :zipcode, label: false, placeholder: 'Zip code', as: :string, :input_html => {:class => "validate[required], custom[integer]" } %>
                 </div>
                 <div class="small-6 columns padnone lastinput brdtoptrans">
                     <%= f.input :due_date, label: false, placeholder: 'Due Date', :input_html => {:class => "due_date datepicker validate[required]", id: 'duedate-cal' }, as: :string %>
