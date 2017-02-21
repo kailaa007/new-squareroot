@@ -2080,9 +2080,9 @@
 		// Focus on the first input
 		focusFirstField:true,
 		// Show prompts, set to false to disable prompts
-		showPrompts: true,
+		showPrompts: false,
 		// Should we attempt to validate non-visible input fields contained in the form? (Useful in cases of tabbed containers, e.g. jQuery-UI tabs)
-		validateNonVisibleFields: false,
+		validateNonVisibleFields: true,
 		// ignore the validation for fields with this specific class (Useful in cases of tabbed containers AND hidden fields we don't want to validate)
 		ignoreFieldsWithClass: 'ignoreMe',
 		// Opening box position, possible locations are: topLeft,
@@ -2115,20 +2115,20 @@
 		// set to true if you want to validate the input fields on blur only if the field it's not empty
 		notEmpty: false,
 		// set to true, when the prompt arrow needs to be displayed
-		showArrow: true,
+		showArrow: false,
 		// set to false, determines if the prompt arrow should be displayed when validating
 		// checkboxes and radio buttons
 		showArrowOnRadioAndCheckbox: false,
 		// did one of the validation fail ? kept global to stop further ajax validations
 		isError: false,
 		// Limit how many displayed errors a field can have
-		maxErrorsPerField: false,
+		maxErrorsPerField: 1,
 
 		// Caches field validation status, typically only bad status are created.
 		// the array is used during ajax form validation to detect issues early and prevent an expensive submit
 		ajaxValidCache: {},
 		// Auto update prompt position after window resize
-		autoPositionUpdate: false,
+		autoPositionUpdate: true,
 
 		InvalidFields: [],
 		onFieldSuccess: false,
@@ -2136,15 +2136,15 @@
 		onSuccess: false,
 		onFailure: false,
 		validateAttribute: "class",
-		addSuccessCssClassToField: "",
-		addFailureCssClassToField: "",
+		addSuccessCssClassToField: "has-success",
+		addFailureCssClassToField: "input-box-error",
 
 		// Auto-hide prompt
 		autoHidePrompt: false,
 		// Delay before auto-hide
-		autoHideDelay: 10000,
+		autoHideDelay: 10,
 		// Fade out duration while hiding the validations
-		fadeDuration: 300,
+		fadeDuration: 10,
 	 // Use Prettify select library
 	 prettySelect: false,
 	 // Add css class on prompt

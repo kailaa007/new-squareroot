@@ -17,13 +17,14 @@
         <a href="javascript:closePopup();" class="close-login-form close-btn">close</a>
         <div class="medium-centered large-centered">
             <h4 class="">Login</h4> 
+            <span id='login-error'></span>
             <%= simple_form_for(resource, as: resource_name, url: user_session_path, validate: false, remote: true, :html => {:id => "loginForm"}) do |f|%>    
             <%= f.error_notification %>
             <div class='one-full'>
-                <%= f.input :email, autofocus: true, label: false, placeholder: 'Email', :input_html => {:class => "validate[required],custom[email]" } %>
+                <%= f.input :email, autofocus: true, label: false, placeholder: 'Email', :input_html => {:class => "validate[required],custom[email] login-email-id" } %>
             </div>
             <div class='one-full'>
-                <%= f.input :password, label: false, placeholder: 'Password', :input_html => {:class => "validate[required]" } %>
+                <%= f.input :password, label: false, placeholder: 'Password', :input_html => {:class => "validate[required],minSize[6], maxSize[12] login-pswd" } %>
             </div>
             <%= button_tag "Sign In", class: 'button expand sign-in-btn' do %>Sign In
             <span class="sign-in-btn-icon"><%= image_tag 'arrow.png' %></span>
@@ -41,7 +42,7 @@
             <p>Enter you email address to reset your password. You may need to check your spam folder or unblock noreply@squareroots.com</p>  
             <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), remote: true, html: { id: 'forgetPasswordForm', method: :post }, validate: false) do |f| %>
             <%= f.error_notification %>
-            <%= f.input :email, autofocus: true, label:false, placeholder:"Email", :input_html => {:class => "validate[required],custom[email]" } %>
+            <%= f.input :email, autofocus: true, label:false, placeholder:"Email", :input_html => {:class => "validate[required],custom[email] forgot-email-id" } %>
             <%= button_tag "Submit", class: 'button expand forget-submit-btn' do %>Submit
             <span class="sign-in-btn-icon"><%= image_tag 'arrow.png' %></span>
             <% end %>
@@ -52,26 +53,27 @@
         <a href="javascript:closePopup();" class="close-signup-form close-btn">close</a>
         <div class="medium-centered large-centered">
             <h4 class="">Sign up now</h4> 
+            <span id='signup-error'></span>
             <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), remote: true, validate: false, :html => {:id => "signUpForm"}) do |f| %> 
             <%= f.error_notification %>
             <div class="input-area name-area">
                 <div class="small-12 medium-6 large-6 columns padnone">
-                    <%= f.input :first_name, label: false, placeholder: 'First Name', :input_html => {:class => "half validate[required]" } %>
+                    <%= f.input :first_name, label: false, placeholder: 'First Name', :input_html => {:class => "half validate[required], maxSize[25]" } %>
                 </div>
                 <div class="small-12 medium-6 large-6 columns padnone lastinput">
-                    <%= f.input :last_name, label: false, placeholder: 'Last Name', :input_html => {:class => "half" } %>
+                    <%= f.input :last_name, label: false, placeholder: 'Last Name', :input_html => {:class => "half, validate[required], maxSize[25]" } %>
                 </div>
             </div>
             <div class="input-area pswd-area">                    
                 <%= f.input :email, label: false, placeholder: 'Email', :input_html => {:class => "validate[required],custom[email]" } %>                    
                 <div class="small-12 medium-6 large-6 columns padnone brdtoptrans">
-                    <%= f.input :password, label: false , placeholder: 'Password', :input_html => {:class => "validate[required],minSize[6]", id: 'password' } %>
+                    <%= f.input :password, label: false , placeholder: 'Password', :input_html => {:class => "validate[required],minSize[6], maxSize[12]", id: 'password' } %>
                 </div>
                 <div class="small-12 medium-6 large-6 columns padnone lastinput brdtoptrans">
-                    <%= f.input :password_confirmation, label: false, placeholder: 'Confirm Password', :input_html => {:class => "validate[required],equals[password]" } %>                        
+                    <%= f.input :password_confirmation, label: false, placeholder: 'Confirm Password', :input_html => {:class => "validate[required],equals[password], minSize[6], maxSize[12]" } %>                        
                 </div>
                 <div class="small-6 columns padnone brdtoptrans">
-                    <%= f.input :zipcode, label: false, placeholder: 'Zip code', as: :string, :input_html => {:class => "validate[required], custom[integer]" } %>
+                    <%= f.input :zipcode, label: false, placeholder: 'Zip code', as: :string, :input_html => {:class => "validate[required], custom[integer], minSize[5], maxSize[5]" } %>
                 </div>
                 <div class="small-6 columns padnone lastinput brdtoptrans">
                     <%= f.input :due_date, label: false, placeholder: 'Due Date', :input_html => {:class => "due_date datepicker validate[required]", id: 'duedate-cal' }, as: :string %>
@@ -83,7 +85,7 @@
 
             <div>                
                 <%= f.check_box :terms_n_condition, id: "iAgree", class: "validate[required] iagree", data: {prompt: {position: "bottomRight"}, errormessage: "* Terms & Conditon not checked."}, style: "visibility: hidden", jqtop:"500" %>
-                <label for="iAgree">I agree to the <a class="termsofuse-link" href="javascript:void(0);">Terms of Use</a> and <a class="privacy-link" href="javascript:void(0);">Privacy Statement</a>.</label>
+                <label for="iAgree" id='terms-form-signup'>I agree to the <a class="termsofuse-link" href="javascript:void(0);">Terms of Use</a> and <a class="privacy-link" href="javascript:void(0);">Privacy Statement</a>.</label>
             </div>
             <a>
                 <%= button_tag "Next", class: 'button expand sign-in-btn' do %>Next

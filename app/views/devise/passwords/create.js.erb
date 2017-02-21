@@ -1,2 +1,6 @@
+<% if @not_found.present? %>
+$(".forgot-email-id").addClass("input-box-error");
+<% else %>
 $("#password-error").html("You will receive an email with instructions on how to reset your password in a few minutes.");
-$("#password-error").addClass("error");
+$("#password-error").addClass("alert-success");
+<% end %>
