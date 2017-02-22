@@ -21,7 +21,7 @@
             <%= simple_form_for(resource, as: resource_name, url: user_session_path, validate: false, remote: true, :html => {:id => "loginForm"}) do |f|%>    
             <%= f.error_notification %>
             <div class='one-full'>
-                <%= f.input :email, autofocus: true, label: false, placeholder: 'Email', :input_html => {:class => "validate[required],custom[email] login-email-id" } %>
+                <%= f.input :email, autofocus: true, label: false, placeholder: 'Email', :input_html => {id: 'login-email-id',:class => "validate[required],custom[email] login-email-id" } %>
             </div>
             <div class='one-full'>
                 <%= f.input :password, label: false, placeholder: 'Password', :input_html => {:class => "validate[required],minSize[6], maxSize[12] login-pswd" } %>
@@ -42,7 +42,7 @@
             <p>Enter you email address to reset your password. You may need to check your spam folder or unblock noreply@squareroots.com</p>  
             <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), remote: true, html: { id: 'forgetPasswordForm', method: :post }, validate: false) do |f| %>
             <%= f.error_notification %>
-            <%= f.input :email, autofocus: true, label:false, placeholder:"Email", :input_html => {:class => "validate[required],custom[email] forgot-email-id" } %>
+            <%= f.input :email, autofocus: true, label:false, placeholder:"Email", :input_html => {id: 'forgot-email-id', :class => "validate[required],custom[email] forgot-email-id" } %>
             <%= button_tag "Submit", class: 'button expand forget-submit-btn' do %>Submit
             <span class="sign-in-btn-icon"><%= image_tag 'arrow.png' %></span>
             <% end %>
@@ -65,7 +65,7 @@
                 </div>
             </div>
             <div class="input-area pswd-area">                    
-                <%= f.input :email, label: false, placeholder: 'Email', :input_html => {:class => "validate[required],custom[email]" } %>                    
+                <%= f.input :email, label: false, placeholder: 'Email', :input_html => {id: 'signup-email-id',:class => "validate[required],custom[email]" } %>                    
                 <div class="small-12 medium-6 large-6 columns padnone brdtoptrans">
                     <%= f.input :password, label: false , placeholder: 'Password', :input_html => {:class => "validate[required],minSize[6], maxSize[12]", id: 'password' } %>
                 </div>

@@ -1,10 +1,10 @@
 <% resource.errors.each do |k, v| %>
-	$("#signup-error").html("<%=  v == 'has already been taken' ? 'This email id has already been registered' : v %>");
+	$("#signup-error").html("<%=  v == 'has already been taken' ? 'This email id has already been registered.' : v %>");
 	$("#signup-error").addClass("error");
 	setTimeout(function(){
             $("#signup-error").removeClass('error');
             $("#signup-error").html('');
-    }, 5000);
+    }, 10000);
 <% end %>
 <% if resource.errors.blank? %>
 window.location.replace("/profile");

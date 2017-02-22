@@ -22,6 +22,7 @@
 //= require welcome
 //= require jquery.validationEngine.js
 //= require jquery.validationEngine-en.js
+//= require jquery.alphanum.js
 
 $(document).foundation();
 
@@ -604,6 +605,41 @@ function getpopupHeight() {
       jQuery(this).find(".tooltip_box").removeClass("showtooltipbox")
   });
 }
+
 function closePopup() {
-  window.location.replace("/birth_plans");
+  $('#signUpForm')[0].reset();
+  $('#loginForm')[0].reset();
+  $('#forgetPasswordForm')[0].reset();
+  $(".formError").remove();
+  $('input').removeClass('input-box-error');
+  $('email').removeClass('input-box-error');
 }
+
+$("#user_zipcode").numeric({
+    allowSpace: false, 
+    maxDigits: 5
+  });
+
+$("#password").alphanum({
+    allowSpace: false, 
+    allow :    '~!@#$%^&*()_+{}:">?<,./;'
+  });
+
+$("#user_password_confirmation").alphanum({
+    allowSpace: false, 
+    allow :    '~!@#$%^&*()_+{}:">?<,./;'
+  });
+
+$("#user_password").alphanum({
+    allowSpace: false, 
+    allow :    '~!@#$%^&*()_+{}:">?<,./;'
+  });
+
+$("#user_first_name").alpha({
+    allowSpace: false, 
+    maxLength: 15
+  });
+$("#user_last_name").alpha({
+    allowSpace: false, 
+    maxLength: 25
+  });
