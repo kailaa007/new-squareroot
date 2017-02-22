@@ -2078,7 +2078,7 @@
 		// Automatically scroll viewport to the first error
 		scroll: true,
 		// Focus on the first input
-		focusFirstField:true,
+		focusFirstField:false,
 		// Show prompts, set to false to disable prompts
 		showPrompts: false,
 		// Should we attempt to validate non-visible input fields contained in the form? (Useful in cases of tabbed containers, e.g. jQuery-UI tabs)

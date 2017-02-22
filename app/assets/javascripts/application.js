@@ -636,10 +636,26 @@ $("#user_password").alphanum({
   });
 
 $("#user_first_name").alpha({
-    allowSpace: false, 
+    allowSpace: true, 
     maxLength: 15
   });
 $("#user_last_name").alpha({
-    allowSpace: false, 
+    allowSpace: true, 
     maxLength: 25
   });
+
+$('#signUpForm').submit(function() {
+  if ($("#iAgree").is(':checked') == false){
+    $("#terms-form-signup").addClass("input-box-error");
+  };
+});
+
+$('#iAgree').on("click", function(){
+  if ($("#iAgree").is(':checked') == true){
+    $("#terms-form-signup").removeClass("input-box-error");
+  }
+  else{
+    $("#terms-form-signup").addClass("input-box-error");
+  }
+  ;
+})

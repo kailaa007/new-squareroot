@@ -83,10 +83,10 @@
                 </div>
             </div>                         
 
-            <div>                
-                <%= f.check_box :terms_n_condition, id: "iAgree", class: "validate[required] iagree", data: {prompt: {position: "bottomRight"}, errormessage: "* Terms & Conditon not checked."}, style: "visibility: hidden", jqtop:"500" %>
+            <p>                
+                <%= f.check_box :terms_n_condition, id: "iAgree", class: "validate[required] iagree" %>
                 <label for="iAgree" id='terms-form-signup'>I agree to the <a class="termsofuse-link" href="javascript:void(0);">Terms of Use</a> and <a class="privacy-link" href="javascript:void(0);">Privacy Statement</a>.</label>
-            </div>
+            </p>
             <a>
                 <%= button_tag "Next", class: 'button expand sign-in-btn' do %>Next
                 <span class="sign-in-btn-icon"><%= image_tag 'arrow.png' %></span>
