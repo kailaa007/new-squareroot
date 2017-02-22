@@ -613,6 +613,7 @@ function closePopup() {
   $(".formError").remove();
   $('input').removeClass('input-box-error');
   $('email').removeClass('input-box-error');
+  $('#terms-form-signup').removeClass('input-box-error');
 }
 
 $("#user_zipcode").numeric({
