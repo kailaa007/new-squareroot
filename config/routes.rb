@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
 
   
-  resources :checklist_answers
+  resources :checklist_answers do
+    post 'toggle', on: :collection
+  end
   resources :checklists
    devise_for :users,
     controllers: {

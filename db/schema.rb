@@ -62,6 +62,7 @@ ActiveRecord::Schema.define(version: 20170224153700) do
     t.string   "title"
     t.integer  "user_id"
     t.integer  "checklist_id"
+    t.string   "category"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
   end

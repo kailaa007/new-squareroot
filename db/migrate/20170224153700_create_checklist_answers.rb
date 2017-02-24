@@ -4,6 +4,7 @@ class CreateChecklistAnswers < ActiveRecord::Migration
       t.string :title
       t.integer :user_id
       t.integer :checklist_id
+      t.string :category
 
       t.timestamps null: false
     end

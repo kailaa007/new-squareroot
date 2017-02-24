@@ -85,17 +85,5 @@
         jQuery(document).on("click", ".add_fields", function(){
             jQuery(this).closest("ul").append(addFiles);
             jQuery(this).css("display", "none");
-        });
-        jQuery(document).on("click", ".add-checklist", function(){
-            var getinputVal = jQuery(this).closest(".add-checklistitem").find("input#add-checklistitem-text").val();
-            var addchecklist_item = '<div class="checklist-item">';
-            addchecklist_item +='<input type="checkbox" name="" class="options" id="">' ;                                       
-            addchecklist_item +='<label for="">' + getinputVal +'</label>';
-            addchecklist_item +=' </div>';
-            
-            jQuery(this).closest(".add-checklistitem").prev().after(addchecklist_item);
-            setTimeout(function(){
-                jQuery("input#add-checklistitem-text").val('');
-            },10);
-        });
+        });        
     });

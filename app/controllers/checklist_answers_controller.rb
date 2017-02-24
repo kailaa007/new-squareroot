@@ -45,6 +45,17 @@ class ChecklistAnswersController < ApplicationController
     redirect_to checklist_answers_url, notice: 'Checklist answer was successfully destroyed.'
   end
 
+  def toggle
+    checklist = Checklist.find_by(title: params[:title])
+    checklist ||= ChecklistAnswer.find_by(title: params[:title])
+    if params[:is_checked] == 'true' && checklist.present?      
+      current_user.checklist_answers.create(title: checklist.title, checklist_id: checklist.id, category: checklist.category)
+    elsif params[:is_checked] == 'true' && checklist.blank? 
+      current_user.checklist_answers.create(title: params[:title], category: params[:category])
+    elsif params[:is_checked] == 'false' && checklist.present? 
+      current_user.checklist_answers.find_by(title: checklist.title).destroy
+    end
+  end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_checklist_answer
@@ -53,6 +64,6 @@ class ChecklistAnswersController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def checklist_answer_params
-      params.require(:checklist_answer).permit(:title, :user_id, :checklist_id)
+      params.require(:checklist_answer).permit(:title, :user_id, :checklist_id, :category)
     end
 end

@@ -1,0 +1,9 @@
+var addchecklist_item = '<div class="checklist-item">';
+addchecklist_item +="<input type='checkbox' name=<%= @checklist_answer.title %> class='options' id=<%= @checklist_answer.id %> checked>" ;                                       
+addchecklist_item +='<label for="">' + <%= @checklist_answer.title %> +'</label>';
+addchecklist_item +=' </div>';
+
+jQuery(this).closest(".add-checklistitem").prev().after(addchecklist_item);
+setTimeout(function(){
+    jQuery("input#add-checklistitem-text").val('');
+},10);
