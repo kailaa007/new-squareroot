@@ -638,7 +638,7 @@ $("#user_password").alphanum({
 
 $("#user_first_name").alpha({
     allowSpace: true, 
-    maxLength: 15
+    maxLength: 25
   });
 $("#user_last_name").alpha({
     allowSpace: true, 

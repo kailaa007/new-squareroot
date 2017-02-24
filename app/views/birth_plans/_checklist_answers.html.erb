@@ -4,9 +4,9 @@
     </div>
     <div class="viewport" style="height: 320px; width: 667px;">
         <div class="overview" style="top: 0px; left: 0px;">
-            <% @category.each do |cat| %>
+            <% @category.each_with_index do |cat, index| %>
             <h6 class=""><%= cat %></h6>     
-            <div class="checklist-content-section-1">
+            <div class="checklist-content-section-<%= index+1 %>">
                 <% @checklists.each do |checklist| %>
                 <% if checklist.category == cat %>
                 <div class="checklist-item">
@@ -34,7 +34,7 @@
                 <% end %>
                 <% end %>
                 <div class="add-checklistitem">
-                    <%= form_for ChecklistAnswer.new, remote: true do |f|%>
+                    <%= form_for ChecklistAnswer.new, remote: true, html: {id: "form-#{index+1}"} do |f|%>
                     <%= f.hidden_field :user_id, value: current_user.id %>
                     <%= f.hidden_field :category, value: cat %>
                     <%= f.text_field :title, class: 'options', placeholder: 'Add Your Own', id: 'add-checklistitem-text' %>
