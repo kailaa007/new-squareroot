@@ -1,0 +1,9 @@
+= simple_form_for [:admin, @checklist] do |f|
+  = f.error_notification
+  .row
+    .columns.small-12.medium-6
+      = f.input :title
+      = f.input :category, :collection => ['For Labor', 'For the birth partner'],:include_blank => false
+      = f.input :sub_category
+      = f.button :button, :class => 'button radius pull-right'
+    .columns.small-12.medium-6

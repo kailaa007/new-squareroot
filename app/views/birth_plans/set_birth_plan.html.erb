@@ -60,123 +60,19 @@
             <div class="birth_plan_welcome">
                 <a class="birth_plan_welcome_help help" href="javascript:void(0);" title="">
                     <div class="tooltip_box">
-                     For any medical questions, please refer to your care provider. We would, however, love your feedback on the birth plan itself. If you have any questions or concerns regarding the content or formatting of this page, please let us know by emailing Katie@squareroots.com
-                 </div>
-             </a>
-             <hr><hr>
-             <div class="text-center birth_plan_welcome_text">
+                       For any medical questions, please refer to your care provider. We would, however, love your feedback on the birth plan itself. If you have any questions or concerns regarding the content or formatting of this page, please let us know by emailing Katie@squareroots.com
+                   </div>
+               </a>
+               <hr><hr>
+               <div class="text-center birth_plan_welcome_text">
                 <p>Hello and welcome to your birth plan!</p>
                 <p>We hope that you ﬁnd this helpful and leave feeling more prepared for your big day! If at any point you would like more information, you can click the (i) to read more about your options. You can also skip any questions that you are unsure about, and if you run out of time, you can always save your progress to return to ﬁll it in later.</p>
                 <p>Thank you and congratulations!</p>
             </div>
             <hr><hr>
         </div>
-        <div class="birth_plan_ques_section">
-            <%= form_for @birth_plan_answer, url: birth_plan_answers_path, method: :post do |f| %>
-                <ol>
-                    <li>
-                        <h2>Use our <a href="javascript:void(0);" class="checklist-link">Hospital Checklist</a> to create a list of things you would like to bring with you to bring with you to the hospital</h2>
-                        <div class="option-area">
-                            <ul>
-                                <li>                                                    
-                                    <input type="text" name="question-1" class="options" id="option3-1">
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-                   <!--  <%# @questions.ordered.each_with_index do |question, ind| %>
-                    <li>
-                        <h2>
-                            <%#= "*" if question.required? %><%#= question.title %>
-                            <a class="ques_info" href="javascript:void(0);" title="">
-                                <div class="tooltip_box">
-                                   <%#= question.note if question.note.present? %>
-                                </div>
-                            </a>
-                        </h2>
-                        <div class="option-area">
-                        <ul>
-                            <%# question.options.each do |option| %>
-                            <li>                                                    
-                                <input type="radio" name="question-1" class="options" id="option1-1">
-                                <label for="option1-1"><%#= option.try(:option_title) %><a class="ques_info" href="javascript:void(0);" title="">
-                                    <div class="tooltip_box">
-                                            We hope that you ﬁnd this helpful and leave feeling more prepared for your big day! If at any point you would like more information.
-                                        </div>
-                                    </a>
-                                    
-                                </label>
-                            </li>
-                            <%# end %>                            
-                        </ul>
-                    </div>
-                </li>
-                <%# end %> -->
-                <li>
-                    <h2>What types of positions do you expect to want to be in?<a class="ques_info" href="javascript:void(0);" title=""></a></h2>
-                    <div class="option-area">
-                        <ul>
-                            <li>                                                    
-                                <input type="checkbox" name="question-2" class="options" id="option2-1">
-                                <label for="option2-1">Hospital<a class="ques_info" href="javascript:void(0);" title=""></a></label>
-                            </li>
-                            <li>                                                    
-                                <input type="checkbox" name="question-2" class="options" id="option2-2">
-                                <label for="option2-2">Hospital<a class="ques_info" href="javascript:void(0);" title=""></a></label>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-                <li>
-                    <h2>Where do you want to give birth?<a class="ques_info" href="javascript:void(0);" title=""></a></h2>
-                    <div class="option-area">
-                        <ul>
-                            <li>                                                    
-                                <input type="text" name="question-1" class="options" id="option3-1">
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-                <li>
-                    <h2>Where do you want to give birth?<a class="ques_info" href="javascript:void(0);" title=""></a></h2>
-                    <div class="option-area">
-
-                        <ul>
-                            <li>                                                    
-                                <input type="text" name="question-1" class="options small" id="option4-1">
-                                <input type="text" name="question-1" class="options small" id="option4-1">
-                                <label class="add_multiple_fields"><a class="add_fields" href="javascript:void(0);" title=""></a></label>
-                                <a class="add_fields mobile btn" href="javascript:void(0);" title="">Add</a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-                <li>
-                    <h2>Where do you want to give birth?<a class="ques_info" href="javascript:void(0);" title=""></a></h2>
-                    <div class="option-area">
-                        <ul>
-                            <li>                                                    
-                                <input type="radio" name="question-1" class="options" id="option5-1">
-                                <label for="option5-1">Hospital<input type="text" name="" class="respective_input"></label>
-                            </li>                                                
-                        </ul>
-                    </div>
-                </li>
-            </ol>
-        <% end %>                            
-    </div>
-    <div class="birth_plan_pagination desktop">
-        <div class="paggingDiv">
-            <span class="currentPage page">1</span> OF <span class="totalPages page">9</span> PAGES
-        </div>
-        <div class="paggingDiv second">
-            save
-        </div>
-        <div class="paggingDiv">
-            <a href="javascript:void(0);" title="" class="button nxt-btn">Next</a>                                
-        </div>
-    </div>
-</div>                    
+        <%= render 'birth_plans/form' %>
+    </div>                    
 </div>
 </div>
 <div class="birth_plan_pagination mobile">

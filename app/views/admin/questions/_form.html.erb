@@ -2,7 +2,7 @@
   <div class="row">
     <div class="columns small-12 medium-12">
       <label>Category Type <span style="color: red">*</span></label>
-      <%= f.select :category, Question::CATEGORY_TYPES, :prompt => "Select category type", required: true %>
+      <%= f.select :category, Question::CATEGORY_TYPES, :prompt => "Select category type" %>
       <%= f.label :title do %>
         Titile <span style="color: red">*</span>
       <% end %>

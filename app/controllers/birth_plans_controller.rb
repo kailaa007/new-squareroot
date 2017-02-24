@@ -18,7 +18,9 @@ class BirthPlansController < ApplicationController
 
   def set_birth_plan
     birth_plan_record = BirthPlanAnswer.find_by_user_id(current_user.id)
-    @birth_plan = BirthPlan.first
+    @birth_plan       = BirthPlan.first
+    @checklists       = Checklist.order(:category)
+    @category         = @checklists.map(&:category).uniq.compact
     @cat_id = params[:c_id].present? ? params[:c_id].to_i : 0
     @questions  = Question.where(category: Question::CATEGORY_TYPES[@cat_id])
     if birth_plan_record.present?

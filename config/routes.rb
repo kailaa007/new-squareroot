@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  
+  resources :checklist_answers
+  resources :checklists
    devise_for :users,
     controllers: {
        registrations: :registrations, sessions: :sessions, passwords: :passwords
@@ -19,7 +22,7 @@ Rails.application.routes.draw do
   end  
   
   namespace :admin do
-    resources :administrators, :news, :tags, :questions
+    resources :administrators, :news, :tags, :questions, :checklists   
     resources :birth_plans do
       get "assign_ques", on: :collection
       post "assign_ques", on: :collection

@@ -28,92 +28,9 @@
         <div class="row checklist-section">
             <a href="javascript:void(0);" class="close-checklist-form close-btn">close</a>            
             <div class="medium-centered large-centered">
-                <h4 class="">Hospital checklist</h4> 
-                <h6 class="">For Labor</h6>                  
-                <div id="checklist-content" class="checklist-container scrollable" tabindex="-1"><div class="scroll-bar vertical" style="height: 320px; display: block;"><div class="thumb" style="top: 0px; height: 118.794px;"></div></div><div class="viewport" style="height: 320px; width: 667px;"><div class="overview" style="top: 0px; left: 0px;">
-                    <div class="checklist-content-section-1">
-                       <div class="checklist-item">
-                            <input type="checkbox" name="question-2" class="options" id="checklistitem-1">
-                            <label for="checklistitem-1">Your birth plan</label>
-                       </div>
-                       <div class="checklist-item">
-                            <input type="checkbox" name="question-2" class="options" id="checklistitem-2">
-                            <label for="checklistitem-2">Picture ID, insurance card any additional hospital paper work</label>
-                       </div>
-                       <div class="checklist-item">
-                            <input type="checkbox" name="question-2" class="options" id="checklistitem-3">
-                            <label for="checklistitem-3">Money or credit cart</label>
-                       </div>
-                       <div class="checklist-item">
-                            <p>Dressing gown/bathrobe/nightgown</p>
-                            <ul>
-                                <li>
-                                    <input type="checkbox" name="question-2" class="options" id="checklistitem-4-1">
-                                    <label for="checklistitem-4-1">Change for vendin machines</label>
-                                </li>
-                                <li>
-                                    <input type="checkbox" name="question-2" class="options" id="checklistitem-4-2">
-                                    <label for="checklistitem-4-2">Change for vendin machines</label>
-                                </li>
-                            </ul>
-                            
-                       </div>
-
-                       <div class="checklist-item">
-                            <input type="checkbox" name="question-2" class="options" id="checklistitem-5">
-                            <label for="checklistitem-5">Cell phone + charger</label>
-                       </div>
-                       <div class="checklist-item">
-                            <input type="checkbox" name="question-2" class="options" id="checklistitem-6">
-                            <label for="checklistitem-6">Your birth plan</label>
-                       </div>
-                       <div class="checklist-item">
-                            <input type="checkbox" name="question-2" class="options" id="checklistitem-7">
-                            <label for="checklistitem-7">Picture ID, insurance card any additional hospital paper work</label>
-                       </div>
-                       <div class="checklist-item">
-                            <input type="checkbox" name="question-2" class="options" id="checklistitem-8">
-                            <label for="checklistitem-8">Money or credit cart</label>
-                       </div>
-                       <div class="checklist-item">
-                            <input type="checkbox" name="question-2" class="options" id="checklistitem-9">
-                            <label for="checklistitem-9">Change for vendin machines</label>
-                       </div>
-
-                       <div class="checklist-item">
-                            <input type="checkbox" name="question-2" class="options" id="checklistitem-10">
-                            <label for="checklistitem-10">Cell phone + charger</label>
-                       </div>
-                       <div class="checklist-item">
-                            <input type="checkbox" name="question-2" class="options" id="checklistitem-11">
-                            <label for="checklistitem-11">Your birth plan</label>
-                       </div>
-                       <div class="checklist-item">
-                            <input type="checkbox" name="question-12" class="options" id="checklistitem-12">
-                            <label for="checklistitem-12">Picture ID, insurance card any additional hospital paper work</label>
-                       </div>
-                       <div class="add-checklistitem">
-                           <input type="text" name="" class="options" placeholder="Add Your Own" id="add-checklistitem-text">
-                            <a href="javascript:void(0);" class="button add-checklist">add</a>
-                       </div>
-                   </div>
-                    <h6 class="">For the birth partner</h6>
-                    <div class="checklist-content-section-2">
-                       <div class="checklist-item">
-                            <input type="checkbox" name="question-12" class="options" id="checklistitem-13">
-                            <label for="checklistitem-13">Money or credit cart</label>
-                       </div>
-                       <div class="checklist-item">
-                            <input type="checkbox" name="question-12" class="options" id="checklistitem-14">
-                            <label for="checklistitem-14">Change for vendin machines</label>
-                       </div>
-
-                       <div class="checklist-item">
-                            <input type="checkbox" name="question-15" class="options" id="checklistitem-15">
-                            <label for="checklistitem-15">Cell phone + charger</label>
-                       </div>
-                   </div>
-                </div></div><div class="scroll-bar horizontal" style="width: 667px; display: none;"><div class="thumb" style="left: 0px; width: 667px;"></div></div></div>
+                <h4 class="">Hospital checklist</h4>                 
+                <%= render 'birth_plans/checklist_answers' %>
+                
                 <div class="checklist-action">
                     <a href="javascript:void(0);" class="checklist-btn button">Save</a>
                 </div>

@@ -401,7 +401,7 @@ $(document).ready(function() {
 	    $('.phase-fields').css("display", "none");
 	}
 
-	$('select').on('change', function() {
+	$('#question_ques_type').on('change', function() {
 	    var ques_type =  this.value;
 	    if(ques_type==2 || ques_type == 3){
 	      $('.phase-fields').css("display", "block");
