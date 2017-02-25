@@ -1,3 +1,4 @@
+<% if @category.present? %>
 <div id="checklist-content" class="checklist-container scrollable" tabindex="-1">
     <div class="scroll-bar vertical" style="height: 320px; display: block;">
         <div class="thumb" style="top: 0px; height: 118.794px;"></div>
@@ -37,7 +38,7 @@
                     <%= form_for ChecklistAnswer.new, remote: true, html: {id: "form-#{index+1}"} do |f|%>
                     <%= f.hidden_field :user_id, value: current_user.id %>
                     <%= f.hidden_field :category, value: cat %>
-                    <%= f.text_field :title, class: 'options', placeholder: 'Add Your Own', id: 'add-checklistitem-text' %>
+                    <%= f.text_field :title, class: 'options validate[required]', placeholder: 'Add Your Own', id: 'add-checklistitem-text' %>
                     <%= f.submit 'Add', class: "button add-checklist" %>
                     <% end %>
                 </div>
@@ -64,7 +65,9 @@
   }); 
 
     $(document).on("click", ".add-checklist", function(){
+
             var getinputVal = jQuery(this).closest(".add-checklistitem").find("input#add-checklistitem-text").val();
+            if (getinputVal.trim().length > 0){
             var addchecklist_item = '<div class="checklist-item">';
             addchecklist_item +="<input type='checkbox' name=" + getinputVal + " class='options' id=" + getinputVal + " checked>" ;                                       
             addchecklist_item +='<label for='+ getinputVal +">" + getinputVal +'</label>';
@@ -74,5 +77,8 @@
             setTimeout(function(){
                 jQuery("input#add-checklistitem-text").val('');
             },10);
+        }
         });
+
 </script>
+<% end %>

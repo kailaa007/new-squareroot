@@ -660,4 +660,3 @@ $('#iAgree').on("click", function(){
   }
   ;
 })
-
