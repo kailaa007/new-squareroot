@@ -24,31 +24,22 @@ class BirthPlanAnswersController < ApplicationController
 	
   def create
   	@birth_plan = BirthPlan.first
-  	byebug
-  	params[:plan].each do |id, attribute| 
-  		
-      question_id = id.to_i
-      @question = Question.find(question_id)
-      @ques_type = @question.ques_type
-      if @ques_type == 3
-        attribute.each  do |option, value|  
-          answer = BirthPlanAnswer.new
-          answer.question_id = @question.id
-          answer.question = @question.title
-          answer.user_id = current_user.id
-          answer.ques_type = @ques_type
-          answer.answer =  value
-          answer.birth_plan_id = @birth_plan.id
-          answer.save
-        end   
-      else 
-        answer = BirthPlanAnswer.create!(question: @question.title,
-                                          user_id: current_user.id,
-        	                                ques_type: @ques_type,
-        	                                answer: attribute,
-        	                                birth_plan_id: @birth_plan.id, 
-        	                                question_id: @question.id)
-      end      
+    params[:answers].each do |q_id, values|
+      @question = Question.find(q_id)
+      usr_quest = current_user.birth_plan_answers.find_by(question_id: @question.id)
+      usr_quest.destroy if usr_quest.present?
+      values.each do |typ, content|
+        case typ
+        when 'radio'
+          current_user.birth_plan_answers.create(question_id: @question.id, question: @question.title, ques_type: @question.ques_type, birth_plan_id: @birth_plan.id, answer_options_attributes: [option_id: content]) if content.present?
+        when 'checkbox'
+          content.keys.each do |checkb|
+            current_user.birth_plan_answers.create(question_id: @question.id, question: @question.title, ques_type: @question.ques_type, birth_plan_id: @birth_plan.id, answer_options_attributes: [option_id: checkb]) if checkb.present?
+          end
+        when 'textbox'
+            current_user.birth_plan_answers.create(question_id: @question.id, question: @question.title, ques_type: @question.ques_type, birth_plan_id: @birth_plan.id, answer: content ) if content.present?
+        end
+      end
     end
     redirect_to birth_plan_answer_path(@birth_plan), :notice => "Your response has been successfully submitted"
   end
@@ -130,6 +121,6 @@ class BirthPlanAnswersController < ApplicationController
   private
 
   def answer_params
-  	params(:birth_plan_answer).permit(:id, :user_id, :answer, :question, :ques_type, :birth_plan_id)
+  	params(:birth_plan_answer).permit(:id, :user_id, :answer, :question, :ques_type, :birth_plan_id, answer_options_attributes: [:option_id, :birth_plan_answer_id])
   end 	
 end

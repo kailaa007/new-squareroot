@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
   has_many :checklist_answers
+  has_many :birth_plan_answers
   #validates_presence_of :email, :password
   validates :terms_n_condition, presence: true
   self.per_page = 10

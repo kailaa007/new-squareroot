@@ -1,4 +1,4 @@
-<%= form_for @birth_plan_answer, url: birth_plan_answers_path, remote: true, method: :post do |f| %>
+<%= form_for @birth_plan, url: birth_plan_answers_path, remote: true, method: :post do |f| %>
 <div class="birth_plan_ques_section">
     <ol>
         <%= hidden_field_tag :birth_plan_id, @birth_plan.id %>
@@ -15,7 +15,7 @@
                     <% when 1, 2 %>
                     <% question.options.each_with_index do |option, index| %>
                     <li id="li-option-<%= option.id %>">
-                        <input type="radio" name="question[<%= question.id %>]" class="options radio" id="<%= question.id %>--<%= option.id %>--<%= ind+1 %>options">
+                        <input type="radio" name="answers[<%= question.id %>][radio]" value="<%= option.id %>" class="options radio" id="<%= question.id %>--<%= option.id %>--<%= ind+1 %>options" <%= current_user.birth_plan_answers.map(&:answer_options).flatten.map(&:option_id).flatten.compact.include?(option.id) ? 'checked=checked' : ''%>>
                         <label for="<%= question.id %>--<%= option.id %>--<%= ind+1 %>options"><%= option.option_title.titleize %><a class="ques_info" href="javascript:void(0);" title>
                             <div class="tooltip_box">We hope that you ﬁnd this helpful and leave feeling more prepared for your big day! If at any point you would like more information.</div></a>
                         </label>
@@ -24,13 +24,13 @@
                     <% when 3 %>
                     <% question.options.each_with_index do |option, index| %>
                     <li id="li-option-<%= option.id %>">                                             
-                        <input type="checkbox" name="question[<%= question.id %>][<%= option.id %>]" class="options checkbox-cl" id="<%= question.id %>--<%= option.id %>--<%= ind+1 %>options" >
+                        <input type="checkbox" name="answers[<%= question.id %>][checkbox][<%= option.id %>]" class="options checkbox-cl" id="<%= question.id %>--<%= option.id %>--<%= ind+1 %>options" value="<%= option.id %>" <%= current_user.birth_plan_answers.map(&:answer_options).flatten.map(&:option_id).flatten.compact.include?(option.id) ? 'checked=checked' : ''%>>
                         <label for="<%= question.id %>--<%= option.id %>--<%= ind+1 %>options"><%= option.option_title %><a class="ques_info" href="javascript:void(0);" title><%= question.note if question.note.present? %></a></label>
                     </li>
                     <% end %>  
                     <% when 4, 5, 6 %>
                     <li>                      
-                        <input type="text" name="question[<%= question.id %>][textbox]" class="options" id="option4-<%= ind+1 %>">
+                        <input type="text" name="answers[<%= question.id %>][textbox]" class="options" id="option4-<%= ind+1 %>" value=<%= current_user.birth_plan_answers.find_by(:question_id => question.id).try(:answer) %>>
                     </li>                    
                     <% end %>
                 </ul>

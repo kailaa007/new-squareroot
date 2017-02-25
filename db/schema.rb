@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170224153700) do
+ActiveRecord::Schema.define(version: 20170225092642) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,11 @@ ActiveRecord::Schema.define(version: 20170224153700) do
     t.string   "reset_token"
     t.datetime "resent_sent_at"
     t.string   "auth_token"
+  end
+
+  create_table "answer_options", force: :cascade do |t|
+    t.integer "birth_plan_answer_id"
+    t.integer "option_id"
   end
 
   create_table "birth_plan_answers", force: :cascade do |t|

@@ -17,7 +17,7 @@ class BirthPlansController < ApplicationController
  #{"ques"=>"29", "option"=>"38"}
 
   def set_birth_plan
-    birth_plan_record   = BirthPlanAnswer.find_by_user_id(current_user.id)
+    @birth_plan_answer   = BirthPlanAnswer.where(user_id: current_user.id)
     @birth_plan         = BirthPlan.first
     @checklists         = Checklist.order(:category)
     @category           = @checklists.map(&:category).uniq.compact
@@ -25,11 +25,8 @@ class BirthPlansController < ApplicationController
     @self_checklists    = current_user.checklist_answers.where(checklist_id: [nil, ''])
     @cat_id             = params[:c_id].present? ? params[:c_id].to_i : 0
     @questions          = Question.where(category: Question::CATEGORY_TYPES[@cat_id])
-    if birth_plan_record.present?
-      redirect_to birth_plan_answer_path(@birth_plan)
-    else
-      @birth_plan_answer = BirthPlanAnswer.new
-    end  
+    @birth_plan         = BirthPlanAnswer.new
+     
   end
 
  private
