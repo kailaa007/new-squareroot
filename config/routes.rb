@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   
   resources :checklist_answers do
     post 'toggle', on: :collection
+    post 'restrictions', on: :collection    
   end
   resources :checklists
    devise_for :users,

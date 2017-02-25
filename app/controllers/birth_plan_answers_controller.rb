@@ -24,7 +24,7 @@ class BirthPlanAnswersController < ApplicationController
 	
   def create
   	@birth_plan = BirthPlan.first
-  	
+  	byebug
   	params[:plan].each do |id, attribute| 
   		
       question_id = id.to_i
