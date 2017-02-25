@@ -26,22 +26,24 @@ class BirthPlanAnswersController < ApplicationController
   	@birth_plan = BirthPlan.first
     params[:answers].each do |q_id, values|
       @question = Question.find(q_id)
-      usr_quest = current_user.birth_plan_answers.find_by(question_id: @question.id)
-      usr_quest.destroy if usr_quest.present?
+      usr_quest = current_user.birth_plan_answers.where(question_id: @question.id)
+      usr_quest.destroy_all if usr_quest.present?
       values.each do |typ, content|
         case typ
         when 'radio'
           current_user.birth_plan_answers.create(question_id: @question.id, question: @question.title, ques_type: @question.ques_type, birth_plan_id: @birth_plan.id, answer_options_attributes: [option_id: content]) if content.present?
         when 'checkbox'
+          bp = current_user.birth_plan_answers.create(question_id: @question.id, question: @question.title, ques_type: @question.ques_type, birth_plan_id: @birth_plan.id)
           content.keys.each do |checkb|
-            current_user.birth_plan_answers.create(question_id: @question.id, question: @question.title, ques_type: @question.ques_type, birth_plan_id: @birth_plan.id, answer_options_attributes: [option_id: checkb]) if checkb.present?
+            AnswerOption.create(option_id: checkb, birth_plan_answer_id: bp.id) if checkb.present?
           end
         when 'textbox'
             current_user.birth_plan_answers.create(question_id: @question.id, question: @question.title, ques_type: @question.ques_type, birth_plan_id: @birth_plan.id, answer: content ) if content.present?
         end
       end
     end
-    redirect_to birth_plan_answer_path(@birth_plan), :notice => "Your response has been successfully submitted"
+    current_user.update(:birth_plan_status => true)
+    redirect_to profile_path, :notice => "Your response has been successfully submitted"
   end
 
   def show
@@ -63,22 +65,8 @@ class BirthPlanAnswersController < ApplicationController
   end  
 
   def report
-    @birth_plan = BirthPlan.first
-    @user = current_user
-    @answers = BirthPlanAnswer.where("user_id = ?", @user.id)
-    #attachments.inline['logo.png'] = File.read(Rails.root.join('app/assets/images/logo.png')) 
-    @questions = []
-    questions = @answers.pluck(:question_id).uniq 
-
-    questions.each do |ques|
-      begin
-        @questions <<  Question.find(ques)
-      rescue Exception => e
-        logger.error e.message    
-        next
-      end
-    end
-
+    @user       = current_user
+    @birth_plan_answers    = current_user.birth_plan_answers
     respond_to do |format|
       format.html do 
         render  layout: 'pdf'
@@ -100,7 +88,7 @@ class BirthPlanAnswersController < ApplicationController
                     layout:   'pdf',  
                 }
               },
-              locals: {:answer => @answer, :question => @questions, user: @user}
+              locals: {:birth_plan_answers => @birth_plan_answers, user: @user}
       end
     end
 

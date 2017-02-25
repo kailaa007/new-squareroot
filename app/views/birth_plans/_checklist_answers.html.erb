@@ -38,11 +38,28 @@
                     <%= form_for ChecklistAnswer.new, remote: true, html: {id: "form-#{index+1}"} do |f|%>
                     <%= f.hidden_field :user_id, value: current_user.id %>
                     <%= f.hidden_field :category, value: cat %>
-                    <%= f.text_field :title, class: 'options validate[required]', placeholder: 'Add Your Own', id: 'add-checklistitem-text' %>
-                    <%= f.submit 'Add', class: "button add-checklist" %>
+                    <%= f.text_field :title, class: 'options validate[required]', placeholder: 'Add Your Own', id: "add-checklistitem-text-#{index+1}" %>
+                    <%= f.submit 'Add', class: "button add-checklist", id: "add-checklist-#{index+1}" %>
                     <% end %>
                 </div>
             </div>
+            <script type="text/javascript">
+                $(document).on("click", "#add-checklist-<%= index+1 %>", function(){
+
+            var getinputVal = jQuery(this).closest(".checklist-content-section-<%= index+1 %>").find("input#add-checklistitem-text-<%= index+1 %>").val();
+            var addchecklist_item = '<div class="checklist-item">';
+            addchecklist_item +="<input type='checkbox' name=" + getinputVal + " class='options' id=" + getinputVal + " checked>" ;                                       
+            addchecklist_item +='<label for='+ getinputVal +">" + getinputVal +'</label>';
+            addchecklist_item +=' </div>';
+            
+            jQuery(this).closest(".add-checklistitem").prev().after(addchecklist_item);
+            setTimeout(function(){
+                jQuery("input#add-checklistitem-text-<%= index+1 %>").val('');
+            },10);
+        
+        });
+
+            </script>
             <% end %>
         </div>
     </div>
@@ -62,23 +79,7 @@
       type: 'POST',
       data: {"completed": this.checked}
     });
-  }); 
-
-    $(document).on("click", ".add-checklist", function(){
-
-            var getinputVal = jQuery(this).closest(".add-checklistitem").find("input#add-checklistitem-text").val();
-            if (getinputVal.trim().length > 0){
-            var addchecklist_item = '<div class="checklist-item">';
-            addchecklist_item +="<input type='checkbox' name=" + getinputVal + " class='options' id=" + getinputVal + " checked>" ;                                       
-            addchecklist_item +='<label for='+ getinputVal +">" + getinputVal +'</label>';
-            addchecklist_item +=' </div>';
-            
-            jQuery(this).closest(".add-checklistitem").prev().after(addchecklist_item);
-            setTimeout(function(){
-                jQuery("input#add-checklistitem-text").val('');
-            },10);
-        }
-        });
+  });     
 
 </script>
 <% end %>

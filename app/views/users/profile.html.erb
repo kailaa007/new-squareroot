@@ -24,7 +24,9 @@
 		</div>
 		<div class="columns large-4 large-offset-1">
 			<div  class="profile-options options-download">
-				<a href="javascript:void(0);" title=""><span class="profile-options-icon"><%= image_tag 'download.png' %></span>Download PDF</a>
+				<%= link_to report_birth_plan_answers_path(format: 'pdf') do%>
+					<span class="profile-options-icon"><%= image_tag 'download.png' %></span>Download PDF
+				<% end %>
 			</div>
 			<div class="profile-options options-email">
 				<a href="javascript:void(0);" title=""><span class="profile-options-icon"><%= image_tag 'email.png' %></span>Email</a>

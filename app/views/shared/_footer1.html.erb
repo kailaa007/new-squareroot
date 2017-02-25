@@ -61,7 +61,9 @@
                             <div class="confirmation-img">
                                 <div class="confirmation-pic"><%= image_tag 'download.png' %></div>
                             </div>
-                            <div class="confirmation-caption">Download</div>
+                            <div class="confirmation-caption">
+                                <%= link_to "Download", report_birth_plan_answers_path(format: 'pdf') %>
+                            </div>
                         </li>
                     </ul>
                     <a href="javascript:void(0);" class="btn" title="">Save Answer</a>

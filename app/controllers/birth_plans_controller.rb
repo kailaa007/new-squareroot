@@ -2,7 +2,9 @@ class BirthPlansController < ApplicationController
   layout "devise"
   before_action :authenticate_user!, except: [:index]
   def index
-
+    if current_user.present?
+      redirect_to set_birth_plan_path
+    end
   end
 
   def active_plan

@@ -1,18 +1,21 @@
 <div class="row">
-	<h2><%= @user.first_name %> Report</h2>
+	<h2><%= @user.first_name.titleize %> Report</h2>
   <table width="100%" style="font-family:'AvrNx';" >
-    <% @questions.each_with_index do |ques, ind| %>
+    <% @birth_plan_answers.each_with_index do |ques, ind| %>
       <tr>
-        <td><b>Question&nbsp<%= ind+1 %>.&nbsp&nbsp<%= ques.title %></b>
+        <td><b>Question <%= ind+1 %>. <%= ques.try(:question) %></b>
         </td>
       </tr>
       <tr>
         <td>
-          <% answers = @answers.where(question_id: ques) %>
-          <% answers.each do |answer| %>
-            <b>Answer</b>&nbsp&nbsp <%= answer.answer %><br>
+        <% if ques.answer.present? %>
+          <%= ques.answer %>
+        <% else %>
+          
+          <% ques.answer_options.each do |answer| %>
+            <%= answer.option.option_title %><br>
           <% end %>
-          <hr>
+          <% end %>
         </td>
       </tr>    
     <% end %>    
