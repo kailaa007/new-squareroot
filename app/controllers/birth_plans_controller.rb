@@ -19,14 +19,16 @@ class BirthPlansController < ApplicationController
  #{"ques"=>"29", "option"=>"38"}
 
   def set_birth_plan
-    @birth_plan_answer   = BirthPlanAnswer.where(user_id: current_user.id)
     @birth_plan         = BirthPlan.first
     @checklists         = Checklist.order(:category)
     @category           = @checklists.map(&:category).uniq.compact
     @checklist_answers  = current_user.checklist_answers
     @self_checklists    = current_user.checklist_answers.where(checklist_id: [nil, ''])
     @cat_id             = params[:c_id].present? ? params[:c_id].to_i : 0
-    @questions          = Question.where(category: Question::CATEGORY_TYPES[@cat_id])
+    #@questions          = Question.where(category: Question::CATEGORY_TYPES[@cat_id])
+    @restricted_questions  = Question.where(id: current_user.birth_plan_answers.map(&:question_id)).map(&:restrict_questions).flatten.compact.select{|x| x.ques_status == false}.map(&:base_ques_id)
+    @restricted_options  = RestrictQuestion.where( main_option_id: current_user.birth_plan_answers.map(&:answer_options).flatten.map(&:option_id), option_status: false).map(&:base_option_id)
+    @questions          = Question.ordered
     @birth_plan         = BirthPlanAnswer.new
      
   end

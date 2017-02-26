@@ -5,7 +5,7 @@
         <li>
             <h2>Use our <a href="javascript:void(0);" class="checklist-link">Hospital Checklist</a> to create a list of things you would like to bring with you to bring with you to the hospital</h2>            
         </li>
-        <% Question.ordered.each_with_index do |question, ind| %>
+        <% @questions.each_with_index do |question, ind| %>
         <li id="li-<%= question.id%>">
             <h2><%= "*" if question.required? %><%= question.title %> <% if question.note.present? %><a class="ques_info" style="display: inline-block;" href="javascript:void(0);" title><div class="tooltip_box"><%= question.note%></div></a><% end %></h2>            
             <% ques_type = question.ques_type %>
@@ -15,7 +15,7 @@
                     <% when 1, 2 %>
                     <% question.options.each_with_index do |option, index| %>
                     <li id="li-option-<%= option.id %>">
-                        <input type="radio" name="answers[<%= question.id %>][radio]" value="<%= option.id %>" class="options radio" id="<%= question.id %>--<%= option.id %>--<%= ind+1 %>options" <%= current_user.birth_plan_answers.map(&:answer_options).flatten.map(&:option_id).flatten.compact.include?(option.id) ? 'checked=checked' : ''%>>
+                        <input type="radio" name="answers[<%= question.id %>][radio]" value="<%= option.id %>" class="options radio radio-<%=question.id %>" id="<%= question.id %>--<%= option.id %>--<%= ind+1 %>options" <%= current_user.birth_plan_answers.map(&:answer_options).flatten.map(&:option_id).flatten.compact.include?(option.id) ? 'checked=checked' : ''%>>
                         <label for="<%= question.id %>--<%= option.id %>--<%= ind+1 %>options"><%= option.option_title.titleize %></label>
 
                     </li>
@@ -23,14 +23,14 @@
                     <% when 3 %>
                     <% question.options.each_with_index do |option, index| %>
                     <li id="li-option-<%= option.id %>">                                             
-                        <input type="checkbox" name="answers[<%= question.id %>][checkbox][<%= option.id %>]" class="options checkbox-cl" id="<%= question.id %>--<%= option.id %>--<%= ind+1 %>options" value="<%= option.id %>" <%= current_user.birth_plan_answers.map(&:answer_options).flatten.map(&:option_id).flatten.compact.include?(option.id) ? 'checked=checked' : ''%>>
+                        <input type="checkbox" name="answers[<%= question.id %>][checkbox][<%= option.id %>]" class="options checkbox-cl checkbox-<%=question.id %>" id="<%= question.id %>--<%= option.id %>--<%= ind+1 %>options" value="<%= option.id %>" <%= current_user.birth_plan_answers.map(&:answer_options).flatten.map(&:option_id).flatten.compact.include?(option.id) ? 'checked=checked' : ''%>>
                         
                         <label for="<%= question.id %>--<%= option.id %>--<%= ind+1 %>options"><%= option.option_title %></label>
                     </li>
                     <% end %>  
                     <% when 4, 5, 6 %>
                     <li>                      
-                        <input type="text" name="answers[<%= question.id %>][textbox]" class="options" id="option4-<%= ind+1 %>" value=<%= current_user.birth_plan_answers.find_by(:question_id => question.id).try(:answer) %>>
+                        <input type="text" name="answers[<%= question.id %>][textbox]" class="options" id="textbox-<%= question.id %>" value=<%= current_user.birth_plan_answers.find_by(:question_id => question.id).try(:answer) %>>
                     </li>                    
                     <% end %>
                 </ul>
@@ -71,6 +71,15 @@
       data: {"completed": ''}
     });
   }); 
-
+    <% if @restricted_questions.present? %>
+        <% @restricted_questions.each do |rq| %>
+            $("#li-<%= rq %>").hide();
+        <% end %>
+    <% end %>
+     <% if @restricted_options.present? %>
+        <% @restricted_options.each do |ro| %>
+            $("#li-option-<%= ro %>").hide();
+        <% end %>
+    <% end %>
 </script>
 <% end %>  

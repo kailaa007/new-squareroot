@@ -27,11 +27,12 @@ class Question < ActiveRecord::Base
   friendly_id :title, use: :slugged
 
   #attr_accessor :title, :type, :note
-  has_many :options, dependent: :destroy
+  has_many :options
 
-  has_many :birth_plan_questions, dependent: :destroy
+  has_many :birth_plan_questions
   has_many :birth_plans, through: :birth_plan_questions
-  has_one :restrict_question, :class_name => "RestrictQuestion",
+
+  has_many :restrict_questions, :class_name => "RestrictQuestion",
     :foreign_key => 'main_ques_id', :dependent => :destroy
 
   accepts_nested_attributes_for :options, allow_destroy: true

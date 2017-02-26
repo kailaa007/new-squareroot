@@ -1,4 +1,21 @@
-$("#li-<%= @hide_question %>").hide();
-$("#li-<%= @show_question %>").show();
-$("#li-option-<%= @hide_option %>").hide();
-$("#li-option-<%= @show_option %>").show();
+<% @hide_question.each do |hide_question| %>
+	$("#li-<%= hide_question %>").hide();
+<% end %>
+
+<% @show_question.each do |show_question| %>
+	$("#li-<%= show_question %>").show();
+<% end %>
+
+<% @hide_option.each do |hide_option| %>
+	$("#li-option-<%= hide_option %>").hide();
+<% end %>
+
+<% @show_option.each do |show_option| %>
+	$("#li-option-<%= show_option %>").show();
+<% end %>
+
+<% @restrict_questions.each do |restrict_question| %>
+	$(".radio-<%= restrict_question.base_ques_id %>").removeAttr("checked");
+	$(".checkbox-<%= restrict_question.base_ques_id %>").removeAttr("checked");
+	$("#textbox-<%= restrict_question.base_ques_id %>").val('');
+<% end %>

@@ -59,32 +59,37 @@ class ChecklistAnswersController < ApplicationController
 
   def restrictions
     question = Question.find(params[:ques_id])
-    restrict_question = question.restrict_question
-    if restrict_question.present?
-      if params[:type] == 'checkbox'
-        if restrict_question.ques_status == false && restrict_question.main_option_id == params[:opt_id].to_i && params[:checked] == 'true'
-          @hide_question = restrict_question.base_ques_id      
-        elsif restrict_question.ques_status == false && restrict_question.main_option_id == params[:opt_id].to_i && params[:checked] == 'false'
-          @show_question = restrict_question.base_ques_id
-        end 
-        if restrict_question.option_status == false && restrict_question.main_option_id == params[:opt_id].to_i && params[:checked] == 'true'
-          @hide_option = restrict_question.base_option_id
-        elsif restrict_question.option_status == false && restrict_question.main_option_id == params[:opt_id].to_i && params[:checked] == 'false'
-          @show_option = restrict_question.base_option_id
-        end  
-      elsif params[:type] == 'radio'
-        if restrict_question.ques_status == false && restrict_question.main_option_id == params[:opt_id].to_i && params[:checked] == 'true'
-          @hide_question = restrict_question.base_ques_id
-        elsif restrict_question.ques_status == false && restrict_question.main_option_id != params[:opt_id].to_i
-          @show_question = restrict_question.base_ques_id
-        end    
-        if restrict_question.option_status == false && restrict_question.main_option_id == params[:opt_id].to_i
-          @hide_option = restrict_question.base_option_id
-        elsif restrict_question.option_status == false && restrict_question.main_option_id != params[:opt_id].to_i
-          @show_option = restrict_question.base_option_id
-        end  
+    @hide_question = []
+    @show_question = []
+    @hide_option = []
+    @show_option = []
+    @restrict_questions = question.restrict_questions
+    if @restrict_questions.present?
+      @restrict_questions.each do |restrict_question|
+        if params[:type] == 'checkbox'
+          if restrict_question.ques_status == false && restrict_question.main_option_id == params[:opt_id].to_i && params[:checked] == 'true'
+            @hide_question << restrict_question.base_ques_id      
+          elsif restrict_question.ques_status == false && restrict_question.main_option_id == params[:opt_id].to_i && params[:checked] == 'false'
+            @show_question << restrict_question.base_ques_id
+          end 
+          if restrict_question.option_status == false && restrict_question.main_option_id == params[:opt_id].to_i && params[:checked] == 'true'
+            @hide_option << restrict_question.base_option_id
+          elsif restrict_question.option_status == false && restrict_question.main_option_id == params[:opt_id].to_i && params[:checked] == 'false'
+            @show_option << restrict_question.base_option_id
+          end  
+        elsif params[:type] == 'radio'
+          if restrict_question.ques_status == false && restrict_question.main_option_id == params[:opt_id].to_i && params[:checked] == 'true'
+            @hide_question << restrict_question.base_ques_id
+          elsif restrict_question.ques_status == false && restrict_question.main_option_id != params[:opt_id].to_i
+            @show_question << restrict_question.base_ques_id
+          end    
+          if restrict_question.option_status == false && restrict_question.main_option_id == params[:opt_id].to_i
+            @hide_option << restrict_question.base_option_id
+          elsif restrict_question.option_status == false && restrict_question.main_option_id != params[:opt_id].to_i
+            @show_option << restrict_question.base_option_id
+          end  
+        end
       end
-      
     end
   end
   private

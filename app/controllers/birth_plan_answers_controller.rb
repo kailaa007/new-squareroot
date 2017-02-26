@@ -24,10 +24,9 @@ class BirthPlanAnswersController < ApplicationController
 	
   def create
   	@birth_plan = BirthPlan.first
+    current_user.birth_plan_answers.destroy_all if params[:answers].present?
     params[:answers].each do |q_id, values|
-      @question = Question.find(q_id)
-      usr_quest = current_user.birth_plan_answers.where(question_id: @question.id)
-      usr_quest.destroy_all if usr_quest.present?
+      @question = Question.find(q_id)     
       values.each do |typ, content|
         case typ
         when 'radio'
