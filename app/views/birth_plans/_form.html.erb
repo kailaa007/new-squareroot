@@ -1,6 +1,6 @@
-<%= form_for @birth_plan, url: birth_plan_answers_path, method: :post do |f| %>
+ <%= form_for @birth_plan, url: birth_plan_answers_path, method: :post do |f| %>
 <div class="birth_plan_ques_section">
-    <ol>
+    <ol id='quest-pagination'>
         <%= hidden_field_tag :birth_plan_id, @birth_plan.id %>
         <li>
             <h2>Use our <a href="javascript:void(0);" class="checklist-link">Hospital Checklist</a> to create a list of things you would like to bring with you to bring with you to the hospital</h2>            
@@ -17,7 +17,6 @@
                     <li id="li-option-<%= option.id %>">
                         <input type="radio" name="answers[<%= question.id %>][radio]" value="<%= option.id %>" class="options radio radio-<%=question.id %>" id="<%= question.id %>--<%= option.id %>--<%= ind+1 %>options" <%= current_user.birth_plan_answers.map(&:answer_options).flatten.map(&:option_id).flatten.compact.include?(option.id) ? 'checked=checked' : ''%>>
                         <label for="<%= question.id %>--<%= option.id %>--<%= ind+1 %>options"><%= option.option_title.titleize %></label>
-
                     </li>
                     <% end %> 
                     <% when 3 %>
@@ -36,7 +35,8 @@
                 </ul>
             </div>
         </li>     
-        <% end %>
+        <% end %>        
+         
     </ol>
 </div>
 </div>
@@ -45,10 +45,11 @@
         <span class="currentPage page">1</span> OF <span class="totalPages page">9</span> PAGES
     </div>
     <div class= "paggingDiv second"><%= f.submit 'Save' %> </div>
-    <div class="paggingDiv">
-        <a href="javascript:void(0);" title="" class="button nxt-btn">Next</a>                                
+    <div class="paggingDiv" id='last-paging-div'>
+       <!--  <a href="javascript:void(0);" title="" class="button nxt-btn">Next</a>   -->                              
     </div>
 </div>
+<% end %> 
 <script type="text/javascript">
     $('.radio').on('click', function() {        
     var chk = $("#"+this.id).prop('checked')
@@ -81,5 +82,9 @@
             $("#li-option-<%= ro %>").hide();
         <% end %>
     <% end %>
+    $(document).ready(function() {
+        $('#quest-pagination').paginate();
+       
+        $(".paginate-pagination paginate-pagination-0").appendTo("#last-paging-div");
+    });
 </script>
-<% end %>  

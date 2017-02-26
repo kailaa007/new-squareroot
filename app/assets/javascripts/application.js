@@ -23,6 +23,7 @@
 //= require jquery.validationEngine.js
 //= require jquery.validationEngine-en.js
 //= require jquery.alphanum.js
+//= require jquery.pagination.js
 
 $(document).foundation();
 
