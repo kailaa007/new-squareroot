@@ -67,10 +67,7 @@
            jQuery("#checklist-popup").removeClass("showchecklist"); 
            jQuery(".common-overlay").hide();
         });
-        jQuery(".nxt-btn").on("click", function(){
-            jQuery(".common-overlay, #confirmation-popup").fadeIn();
-            
-        });
+        
          jQuery(".deactive-1").on("click", function(){
             jQuery(".common-overlay, #confirmation-popup").fadeIn();
             

@@ -24,7 +24,9 @@ class BirthPlanAnswersController < ApplicationController
 	
   def create
   	@birth_plan = BirthPlan.first
-    current_user.birth_plan_answers.destroy_all if params[:answers].present?
+    @cat_id = params[:birth_plan_answer][:c_id].to_i
+    ques = Question.where(category: Question::CATEGORY_TYPES[@cat_id-1]).pluck(:id)
+    current_user.birth_plan_answers.where(question_id: ques) .destroy_all if params[:answers].present?
     params[:answers].each do |q_id, values|
       @question = Question.find(q_id)     
       values.each do |typ, content|

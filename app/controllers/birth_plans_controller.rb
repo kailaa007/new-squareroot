@@ -24,11 +24,11 @@ class BirthPlansController < ApplicationController
     @category           = @checklists.map(&:category).uniq.compact
     @checklist_answers  = current_user.checklist_answers
     @self_checklists    = current_user.checklist_answers.where(checklist_id: [nil, ''])
-    @cat_id             = params[:c_id].present? ? params[:c_id].to_i : 0
-    #@questions          = Question.where(category: Question::CATEGORY_TYPES[@cat_id])
+    @cat_id             = params[:c_id].present? ? params[:c_id].to_i : 1
+    @questions          = Question.where(category: Question::CATEGORY_TYPES[@cat_id-1])
     @restricted_questions  = Question.where(id: current_user.birth_plan_answers.map(&:question_id)).map(&:restrict_questions).flatten.compact.select{|x| x.ques_status == false}.map(&:base_ques_id)
     @restricted_options  = RestrictQuestion.where( main_option_id: current_user.birth_plan_answers.map(&:answer_options).flatten.map(&:option_id), option_status: false).map(&:base_option_id)
-    @questions          = Question.ordered
+    
     @birth_plan         = BirthPlanAnswer.new
      
   end

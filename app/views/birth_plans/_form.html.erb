@@ -1,4 +1,3 @@
- <%= form_for @birth_plan, url: birth_plan_answers_path, method: :post do |f| %>
 <div class="birth_plan_ques_section">
     <ol id='quest-pagination'>
         <%= hidden_field_tag :birth_plan_id, @birth_plan.id %>
@@ -15,21 +14,61 @@
                     <% when 1, 2 %>
                     <% question.options.each_with_index do |option, index| %>
                     <li id="li-option-<%= option.id %>">
-                        <input type="radio" name="answers[<%= question.id %>][radio]" value="<%= option.id %>" class="options radio radio-<%=question.id %>" id="<%= question.id %>--<%= option.id %>--<%= ind+1 %>options" <%= current_user.birth_plan_answers.map(&:answer_options).flatten.map(&:option_id).flatten.compact.include?(option.id) ? 'checked=checked' : ''%>>
+                        <input type="radio" name="answers[<%= question.id %>][radio]" value="<%= option.id %>" class="options radio radio-<%=question.id %> <%= question.required == true ? 'validate[required]' : '' %>" id="<%= question.id %>--<%= option.id %>--<%= ind+1 %>options" <%= current_user.birth_plan_answers.map(&:answer_options).flatten.map(&:option_id).flatten.compact.include?(option.id) ? 'checked=checked' : ''%>>
                         <label for="<%= question.id %>--<%= option.id %>--<%= ind+1 %>options"><%= option.option_title.titleize %></label>
                     </li>
+                    <% if question.required == true %>
+                    <script type="text/javascript">
+                        $('#new_birth_plan_answer').submit(function() {
+                          if ($("#<%= question.id %>--<%= option.id %>--<%= ind+1 %>options").is(':checked') == false){
+                            $("#li-<%= question.id%>").addClass("input-box-error");
+                          };
+                        });
+
+                        $('#<%= question.id %>--<%= option.id %>--<%= ind+1 %>options').on("click", function(){
+                          if ($("#<%= question.id %>--<%= option.id %>--<%= ind+1 %>options").is(':checked') == true){
+                            $("#li-<%= question.id%>").removeClass("input-box-error");
+                          }
+                          else{
+                            $("#li-<%= question.id%>").addClass("input-box-error");
+                          };
+                        })
+                    </script>
+                    <% end %>
                     <% end %> 
                     <% when 3 %>
                     <% question.options.each_with_index do |option, index| %>
                     <li id="li-option-<%= option.id %>">                                             
-                        <input type="checkbox" name="answers[<%= question.id %>][checkbox][<%= option.id %>]" class="options checkbox-cl checkbox-<%=question.id %>" id="<%= question.id %>--<%= option.id %>--<%= ind+1 %>options" value="<%= option.id %>" <%= current_user.birth_plan_answers.map(&:answer_options).flatten.map(&:option_id).flatten.compact.include?(option.id) ? 'checked=checked' : ''%>>
+                        <input type="checkbox" name="answers[<%= question.id %>][checkbox][<%= option.id %>]" class="options checkbox-cl checkbox-<%=question.id %> <%= question.required == true ? 'validate[minCheckbox[1]]' : '' %>" id="<%= question.id %>--<%= option.id %>--<%= ind+1 %>options" value="<%= option.id %>" <%= current_user.birth_plan_answers.map(&:answer_options).flatten.map(&:option_id).flatten.compact.include?(option.id) ? 'checked=checked' : ''%>>
                         
                         <label for="<%= question.id %>--<%= option.id %>--<%= ind+1 %>options"><%= option.option_title %></label>
                     </li>
-                    <% end %>  
+                     <% if question.required == true %>
+                     <script type="text/javascript">
+                        $('#new_birth_plan_answer').submit(function() {
+                          if ($("#<%= question.id %>--<%= option.id %>--<%= ind+1 %>options").is(':checked') == false){
+                            if ($(".checkbox-<%= question.id%>").is(':checked') == false){
+                                $("#li-<%= question.id%>").addClass("input-box-error"); 
+                            };
+                          };
+                        });
+
+                        $('#<%= question.id %>--<%= option.id %>--<%= ind+1 %>options').on("click", function(){
+                          if ($("#<%= question.id %>--<%= option.id %>--<%= ind+1 %>options").is(':checked') == true){
+                            $("#li-<%= question.id%>").removeClass("input-box-error");
+                          }
+                          else{
+                            $("#li-<%= question.id%>").addClass("input-box-error");
+                          };
+
+                        })
+                    </script>
+                    <% end %>
+                    <% end %> 
+                    
                     <% when 4, 5, 6 %>
                     <li>                      
-                        <input type="text" name="answers[<%= question.id %>][textbox]" class="options" id="textbox-<%= question.id %>" value=<%= current_user.birth_plan_answers.find_by(:question_id => question.id).try(:answer) %>>
+                        <input type="text" name="answers[<%= question.id %>][textbox]" class="options <%= question.required == true ? 'validate[required]' : '' %>" id="textbox-<%= question.id %>" value=<%= current_user.birth_plan_answers.find_by(:question_id => question.id).try(:answer) %>>
                     </li>                    
                     <% end %>
                 </ul>
@@ -42,14 +81,17 @@
 </div>
 <div class="birth_plan_pagination desktop">
     <div class="paggingDiv">
-        <span class="currentPage page">1</span> OF <span class="totalPages page">9</span> PAGES
+        <span class="currentPage page"><%= @cat_id %></span> OF <span class="totalPages page">5</span> PAGES
     </div>
     <div class= "paggingDiv second"><%= f.submit 'Save' %> </div>
-    <div class="paggingDiv" id='last-paging-div'>
-       <!--  <a href="javascript:void(0);" title="" class="button nxt-btn">Next</a>   -->                              
+    <div class="paggingDiv">
+        <% if @cat_id == 5 %>        
+            <a href="javascript:void(0);" title="" class="button nxt-btn deactive-1">Next</a>
+        <% else %>
+            <%= link_to "Next", set_birth_plan_path(c_id: @cat_id+1), class: "button nxt-btn #{@cat_id == 5 ? 'deactive-1' : ''}" %> 
+        <% end %>                                
     </div>
 </div>
-<% end %> 
 <script type="text/javascript">
     $('.radio').on('click', function() {        
     var chk = $("#"+this.id).prop('checked')
@@ -81,12 +123,5 @@
         <% @restricted_options.each do |ro| %>
             $("#li-option-<%= ro %>").hide();
         <% end %>
-    <% end %>
-
-
-    $(document).ready(function() {
-        $('#quest-pagination').paginate();
-
-        $(".paginate-pagination paginate-pagination-0").appendTo("#last-paging-div");         
-    });
+    <% end %>    
 </script>

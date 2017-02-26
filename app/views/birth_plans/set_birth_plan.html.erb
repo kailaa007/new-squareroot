@@ -1,11 +1,11 @@
 <div class="birth-plan-splash">
     <%= image_tag('quetion_header.jpg') %>
     <h2 class="_splash_heading">Your Birth Plan Journey</h2>
-    <div class="progress-bar-mobile">Who &amp; Where <span>1/5</span></div>
+    <div class="progress-bar-mobile">Who &amp; Where <span><%= @cat_id %>/5</span></div>
     <div class="progress-bar">
         <div class="row">
             <ul>
-                <li class="step-1 first <%= 'active' if @cat_id == 0 %>">
+                <li class="step-1 first <%= 'active' if @cat_id == 1 %>">
                     <h4>WHO &amp; WHERE</h4>
                     <span class="small-oval"></span>
                     <span class="large-oval"></span>
@@ -14,7 +14,7 @@
                         <div class="active-oval-text">WHO<br>&amp;<br>WHERE</div>
                     </span>
                 </li>
-                <li class="step-2 <%= 'active' if @cat_id == 1 %>">
+                <li class="step-2 <%= 'active' if @cat_id == 2 %>">
                     <h4>ENVIRONMENT</h4>
                     <span class="small-oval"></span>
                     <span class="large-oval"></span>
@@ -23,7 +23,7 @@
                         <div class="active-oval-text">ENVIRONMENT</div>
                     </span>
                 </li>
-                <li class="step-3 <%= 'active' if @cat_id == 2 %>">
+                <li class="step-3 <%= 'active' if @cat_id == 3 %>">
                     <h4>In Labor</h4>
                     <span class="small-oval"></span>
                     <span class="large-oval"></span>
@@ -32,7 +32,7 @@
                         <div class="active-oval-text">In Labor</div>
                     </span>
                 </li>
-                <li class="step-4 <%= 'active' if @cat_id == 3 %>">
+                <li class="step-4 <%= 'active' if @cat_id == 4 %>">
                     <h4>IMMEDIATELY AFTER BIRTH</h4>
                     <span class="small-oval"></span>
                     <span class="large-oval"></span>
@@ -41,7 +41,7 @@
                         <div class="active-oval-text">IMMEDIATELY<br>AFTER<br>BIRTH</div>
                     </span>
                 </li>
-                <li class="step-5 last <%= 'active' if @cat_id == 4 %>">
+                <li class="step-5 last <%= 'active' if @cat_id == 5 %>">
                     <h4>YOUR NEWBORN</h4>
                     <span class="small-oval"></span>
                     <span class="large-oval"></span>
@@ -54,6 +54,8 @@
         </div>
     </div>
 </div>
+<%= form_for @birth_plan, url: birth_plan_answers_path, method: :post do |f| %>
+<%= f.hidden_field :c_id, value: @cat_id %>
 <div class="birth_plan_process section">
     <div class="row">
         <div class="columns small-12">
@@ -71,18 +73,22 @@
             </div>
             <hr><hr>
         </div>
-        <%= render 'birth_plans/form' %>
+        <%= render 'birth_plans/form', f: f %>
     </div>                    
 </div>
 </div>
 <div class="birth_plan_pagination mobile">
     <div class="row">
         <div class="paggingDiv">
-            <span class="currentPage page">1</span> OF <span class="totalPages page">9</span> PAGES
+            <span class="currentPage page"><%= @cat_id %></span> OF <span class="totalPages page">9</span> PAGES
         </div>                            
         <div class="paggingDiv">
-            <a href="javascript:void(0);" title="" class="button nxt-btn">Save and Countinue</a>
-            <!-- <a href="javascript:void(0);" title="" class="button nxt-btn mobile">Save and Countinue</a> -->
+            <% if @cat_id == 5 %>        
+                <a href="javascript:void(0);" title="" class="button nxt-btn deactive-1">Save and Countinue</a>
+            <% else %>
+                <%= link_to "Next", set_birth_plan_path(c_id: @cat_id+1), class: "button nxt-btn #{@cat_id == 5 ? 'deactive-1' : ''}" %> 
+            <% end %> 
         </div>
     </div>
 </div>
+<% end %> 

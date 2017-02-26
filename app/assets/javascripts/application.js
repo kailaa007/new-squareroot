@@ -23,7 +23,6 @@
 //= require jquery.validationEngine.js
 //= require jquery.validationEngine-en.js
 //= require jquery.alphanum.js
-//= require jquery.pagination.js
 
 $(document).foundation();
 
@@ -660,4 +659,5 @@ $('#iAgree').on("click", function(){
     $("#terms-form-signup").addClass("input-box-error");
   }
   ;
+
 })
