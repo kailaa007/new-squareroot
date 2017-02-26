@@ -6,7 +6,7 @@
 			#Defaults
 		*/
         	var defaults = {
-            		perPage:			5, 		//how many items per page
+            		perPage:			15, 		//how many items per page
             		autoScroll:			true, 		//boolean: scroll to top of the container if a user clicks on a pagination link
             		scope:				'', 		//which elements to target 
 			paginatePosition:		['bottom'],	//defines where the pagination will be displayed
@@ -46,8 +46,7 @@
 			}
 						
 			if($.inArray('bottom', plugin.settings.paginatePosition) > -1) {
-				$("#last-paging-div").html(paginationHTML);
-				
+				$("#last-paging-div").html(paginationHTML);				
 			}
 			
 			$element.addClass("paginate");
@@ -112,13 +111,17 @@
 
 			//Deactive next button			
 			if(page == maxPage) {
-				$('.paginate-pagination-' + plugin_index).find('.page-next').addClass("deactive");
+				$('.paginate-pagination-' + plugin_index).find('.page-next').addClass("deactive-1");
+				jQuery(".deactive-1").on("click", function(){
+		            jQuery(".common-overlay, #confirmation-popup").fadeIn();		            
+		        });
 			} else {
-				$('.paginate-pagination-' + plugin_index).find('.page-next').removeClass("deactive");	
+				$('.paginate-pagination-' + plugin_index).find('.page-next').removeClass("deactive-1");	
 			}
 								
 			curPage = page;
-			
+			$(".currentPage").html(curPage);
+			$(".totalPages").html(maxPage);
 			return curPage;	
 			
         }
@@ -142,18 +145,18 @@
 		var paginationEl = '<' + plugin.settings.containerTag + ' class="paginate-pagination paginate-pagination-' + plugin_index + '" data-parent="' + plugin_index + '">';
 		paginationEl += '<' + plugin.settings.paginationTag + '>';
 		
-		paginationEl += '<' + plugin.settings.itemTag + '>';
-		paginationEl += '<' + plugin.settings.linkTag + ' href="#" data-page="prev" class="page page-prev">&laquo;</' + plugin.settings.linkTag + '>';
-		paginationEl += '</' + plugin.settings.itemTag + '>';
+		// paginationEl += '<' + plugin.settings.itemTag + '>';
+		// paginationEl += '<' + plugin.settings.linkTag + ' href="#" data-page="prev" class="page page-prev">&laquo;</' + plugin.settings.linkTag + '>';
+		// paginationEl += '</' + plugin.settings.itemTag + '>';
 
-		for(i = 1; i <= maxPage; i++) {
-			paginationEl += '<' + plugin.settings.itemTag + '>';
-			paginationEl += '<' + plugin.settings.linkTag + ' href="#paginate-' + i + '" data-page="' + i + '" class="page page-' + i + '">' + i + '</' + plugin.settings.linkTag + '>';
-			paginationEl += '</' + plugin.settings.itemTag + '>';
-		}
+		// for(i = 1; i <= maxPage; i++) {
+		// 	paginationEl += '<' + plugin.settings.itemTag + '>';
+		// 	paginationEl += '<' + plugin.settings.linkTag + ' href="#paginate-' + i + '" data-page="' + i + '" class="page page-' + i + '">' + i + '</' + plugin.settings.linkTag + '>';
+		// 	paginationEl += '</' + plugin.settings.itemTag + '>';
+		// }
 
 		paginationEl += '<' + plugin.settings.itemTag + '>';				
-		paginationEl += '<' + plugin.settings.linkTag + ' href="#" data-page="next" class="page page-next">&raquo;</' + plugin.settings.linkTag + '>';
+		paginationEl += '<' + plugin.settings.linkTag + ' href="#" data-page="next" class="page page-next">Next</' + plugin.settings.linkTag + '>';
 		paginationEl += '</' + plugin.settings.itemTag + '>';	
 					
 		paginationEl += '</' + plugin.settings.paginationTag + '>';		

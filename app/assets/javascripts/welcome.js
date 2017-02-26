@@ -71,6 +71,10 @@
             jQuery(".common-overlay, #confirmation-popup").fadeIn();
             
         });
+         jQuery(".deactive-1").on("click", function(){
+            jQuery(".common-overlay, #confirmation-popup").fadeIn();
+            
+        });
         jQuery(".close-confirmation-form").on("click", function(){
             jQuery("#confirmation-popup, .common-overlay").fadeOut();
             
