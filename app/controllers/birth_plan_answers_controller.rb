@@ -43,8 +43,12 @@ class BirthPlanAnswersController < ApplicationController
         end
       end
     end
-    current_user.update(:birth_plan_status => true)
-    redirect_to profile_path, :notice => "Your response has been successfully submitted"
+    current_user.update(:birth_plan_status => true) if @cat_id == 5
+    if @cat_id == 5
+      redirect_to profile_path
+    else
+      redirect_to set_birth_plan_path(c_id: @cat_id) 
+    end
   end
 
   def show

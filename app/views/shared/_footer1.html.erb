@@ -37,40 +37,7 @@
             </div>
         </div>
     </div>
-    <div id="confirmation-popup" class="confirmation-popup" style="margin-top: -257.5px;">
-        <div class="row termofuse-section">
-            <a href="javascript:void(0);" class="close-confirmation-form close-btn">close</a>            
-            <div class="medium-centered large-centered">
-                <h4 class="text-center">Congratulations</h4> 
-                <p class="text-center">You just completed your birth plan!<br>You can always login to print, email or download it!</p>
-                <div id="confirmation-content" class="confirmation-container text-center">
-                    <ul>
-                        <li>
-                            <div class="confirmation-img">
-                                <div class="confirmation-pic"><%= image_tag 'print.png' %></div>
-                            </div>
-                            <div class="confirmation-caption">Print</div>
-                        </li>
-                        <li>
-                            <div class="confirmation-img">
-                                <div class="confirmation-pic"><%= image_tag 'email.png' %></div>
-                            </div>
-                            <div class="confirmation-caption">Email</div>
-                        </li>
-                        <li>
-                            <div class="confirmation-img">
-                                <div class="confirmation-pic"><%= image_tag 'download.png' %></div>
-                            </div>
-                            <div class="confirmation-caption">
-                                <%= link_to "Download", report_birth_plan_answers_path(format: 'pdf') %>
-                            </div>
-                        </li>
-                    </ul>
-                    <a href="javascript:void(0);" class="btn" title="">Save Answer</a>
-                </div>
-            </div>
-        </div>
-    </div>
+    
     <div class="common-overlay" style="display: none;"></div>
     <div id="termofuse-popup" class="termofuse-popup" style="margin-top: -232.5px;">
         <div class="row termofuse-section">
