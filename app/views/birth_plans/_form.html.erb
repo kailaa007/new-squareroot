@@ -1,9 +1,11 @@
 <div class="birth_plan_ques_section">
     <ol id='quest-pagination'>
         <%= hidden_field_tag :birth_plan_id, @birth_plan.id %>
+        <% if @cat_id == 1%>
         <li>
             <h2>Use our <a href="javascript:void(0);" class="checklist-link">Hospital Checklist</a> to create a list of things you would like to bring with you to bring with you to the hospital</h2>            
         </li>
+        <% end %>
         <% @questions.each_with_index do |question, ind| %>
         <li id="li-<%= question.id%>">
             <h2><%= "*" if question.required? %><%= question.title %> <% if question.note.present? %><a class="ques_info" style="display: inline-block;" href="javascript:void(0);" title><div class="tooltip_box"><%= question.note%></div></a><% end %></h2>            
