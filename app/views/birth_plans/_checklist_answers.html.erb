@@ -29,8 +29,8 @@
                  <% @self_checklists.each do |checklist| %>
                  <% if checklist.category == cat %>
                 <div class="checklist-item">
-                    <input type="checkbox" name="<%= checklist.title %>--<%= cat %>" class="options checkbox-popup" id="checklistitem-<%= checklist.id %>" <%= 'checked' if @checklist_answers.map(&:title).include?("#{checklist.title}")%>>
-                        <label for="checklistitem-<%= checklist.id %>"><%= checklist.title %></label>
+                    <input type="checkbox" name="<%= checklist.title %>--<%= cat %>" class="options checkbox-popup" id="checklistitem-<%= checklist.id %>-<%= cat %>" <%= 'checked' if @checklist_answers.map(&:title).include?("#{checklist.title}")%>>
+                        <label for="checklistitem-<%= checklist.id %>-<%= cat %>"><%= checklist.title %></label>
                 </div>
                 <% end %>
                 <% end %>

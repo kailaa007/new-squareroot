@@ -3,7 +3,7 @@ class BirthPlansController < ApplicationController
   before_action :authenticate_user!, except: [:index]
   def index
     if current_user.present?
-      redirect_to set_birth_plan_path
+      redirect_to profile_path
     end
   end
 

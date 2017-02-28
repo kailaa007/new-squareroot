@@ -10,7 +10,7 @@
     /     %li= link_to 'Science', framework_path
     /     %li= link_to 'Solutions', solutions_path
     /     %li= link_to 'Culture', culture_path
-    %li= link_to 'Birth Plan', birth_plans_path
+    %li= link_to 'Birth Plan', profile_path
     %li= link_to 'Team', team_path
     %li= link_to 'News', news_index_path
     / %li= link_to 'Projects', projects_path
@@ -31,7 +31,7 @@
         = link_to_unless_current 'The Facts', facts_path do
           %span The Facts
       %li
-        = link_to_unless_current 'Birth PLan', birth_plans_path do
+        = link_to_unless_current 'Birth PLan', profile_path do
           %span Birth Plan
       %li
         = link_to_unless_current 'Team', team_path do
