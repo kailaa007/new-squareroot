@@ -12,14 +12,14 @@
                 <% if checklist.category == cat %>
                 <div class="checklist-item">
                     <% if checklist.sub_category.blank? %>
-                        <input type="checkbox" name="<%= checklist.title %>--<%= cat %>" class="options checkbox-popup" id="checklistitem-<%= checklist.id %>" <%= 'checked' if @checklist_answers.map(&:title).include?("#{checklist.title}")%>>
-                        <label for="checklistitem-<%= checklist.id %>"><%= checklist.title %></label>
+                        <input type="checkbox" name="<%= cat.parameterize.underscore %>" class="checkbox-options options checkbox-popup" id="checklistitem-<%= checklist.id %>" <%= 'checked' if @checklist_answers.map(&:title).include?("#{checklist.title}")%>>
+                        <label for="checklistitem-<%= checklist.id %>" id="l-checklistitem-<%= checklist.id %>"><%= checklist.title %></label>
                     <% else %>
                         <p><%= checklist.sub_category %></p>
                         <ul>
                             <li>
-                                <input type="checkbox" name="<%= checklist.title %>" class="options checkbox-popup" id="checklistitem_sub-<%= checklist.id %>" <%= 'checked' if @checklist_answers.map(&:title).include?("#{checklist.title}")%>>
-                                <label for="checklistitem_sub-<%= checklist.id %>"><%= checklist.title %></label>
+                                <input type="checkbox" name="<%= cat.parameterize.underscore %>" class="checkbox-options options checkbox-popup" id="checklistitem_sub-<%= checklist.id %>" <%= 'checked' if @checklist_answers.map(&:title).include?("#{checklist.title}")%>>
+                                <label for="checklistitem_sub-<%= checklist.id %>" id="l-checklistitem_sub-<%= checklist.id %>"><%= checklist.title %></label>
                             </li>
                         </ul>
                     <% end %>
@@ -29,27 +29,24 @@
                  <% @self_checklists.each do |checklist| %>
                  <% if checklist.category == cat %>
                 <div class="checklist-item">
-                    <input type="checkbox" name="<%= checklist.title %>--<%= cat %>" class="options checkbox-popup" id="checklistitem-<%= checklist.id %>-<%= cat %>" <%= 'checked' if @checklist_answers.map(&:title).include?("#{checklist.title}")%>>
-                        <label for="checklistitem-<%= checklist.id %>-<%= cat %>"><%= checklist.title %></label>
+                    <input type="checkbox" name="<%= cat.parameterize.underscore %>" class="checkbox-options options checkbox-popup" id="checklistitem-<%= checklist.id %>-<%= cat %>" <%= 'checked' if @checklist_answers.map(&:title).include?("#{checklist.title}")%>>
+                        <label for="checklistitem-<%= checklist.id %>-<%= cat %>" id="l-checklistitem-<%= checklist.id %>"><%= checklist.title %></label>
                 </div>
                 <% end %>
                 <% end %>
                 <div class="add-checklistitem">
-                    <%= form_for ChecklistAnswer.new, remote: true, html: {id: "form-#{index+1}"} do |f|%>
-                    <%= f.hidden_field :user_id, value: current_user.id %>
-                    <%= f.hidden_field :category, value: cat %>
-                    <%= f.text_field :title, class: 'options validate[required]', placeholder: 'Add Your Own', id: "add-checklistitem-text-#{index+1}" %>
-                    <%= f.submit 'Add', class: "button add-checklist", id: "add-checklist-#{index+1}" %>
-                    <% end %>
+                <input type="text" name="" class="options" placeholder="Add Your Own" id="add-checklistitem-text-<%= index+1 %>" />
+                <a href="javascript:void(0);" class="button add-checklist" id="add-checklist-<%= index+1 %>">add</a>
+
                 </div>
             </div>
             <script type="text/javascript">
                 $(document).on("click", "#add-checklist-<%= index+1 %>", function(){
-
+                    var rno = Math.floor((Math.random() * 10000) + 1);
             var getinputVal = jQuery(this).closest(".checklist-content-section-<%= index+1 %>").find("input#add-checklistitem-text-<%= index+1 %>").val();
             var addchecklist_item = '<div class="checklist-item">';
-            addchecklist_item +="<input type='checkbox' name=" + getinputVal + " class='options' id=" + getinputVal + " checked>" ;                                       
-            addchecklist_item +='<label for='+ getinputVal +">" + getinputVal +'</label>';
+            addchecklist_item +="<input type='checkbox' name=" + "<%= cat.parameterize.underscore %>" +" class='options checkbox-options new_options' id=" +rno + " checked>" ;                                       
+            addchecklist_item +='<label for='+ rno + " id=l-" + rno + ">" + getinputVal +'</label>';
             addchecklist_item +=' </div>';
             
             jQuery(this).closest(".add-checklistitem").prev().after(addchecklist_item);
@@ -69,17 +66,27 @@
         </div>
     </div>
 </div>
-<script type="text/javascript">
-    $('.checkbox-popup').on('change', function() {
-    var chk = $("#"+this.id).prop('checked')
-    var cat = this.name.split("--")[1]
-    var name = this.name.split("--")[0]
-    $.ajax({
-      url: '/checklist_answers/toggle?title='+name+'&&is_checked='+chk+'&&category='+cat,
-      type: 'POST',
-      data: {"completed": this.checked}
-    });
-  });     
 
+
+<div class="checklist-action">
+    <a href="javascript:void(0);" class="checklist-btn button">Save</a>
+</div>
+<script type="text/javascript">
+
+     $('.checklist-btn').on('click', function() {
+        obj = $(".checkbox-options")
+        $.each(obj,function( i, val ) {
+            var chk = val.checked;            
+            var cat = val.name;
+            var name = $("#l-"+val.id).text()
+            $.ajax({
+              url: '/checklist_answers/toggle?title='+name+'&&is_checked='+chk+'&&category='+cat,
+              type: 'POST',
+              data: {"completed": this.checked}
+            });
+         
+        });
+
+     });
 </script>
 <% end %>

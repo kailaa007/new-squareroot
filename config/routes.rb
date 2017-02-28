@@ -75,7 +75,7 @@ Rails.application.routes.draw do
     get :report, on: :collection
   end  
   get "/profile", to: "users#profile", as: "profile"
-  get "/set_birth_plan", to: "birth_plans#set_birth_plan", as: "set_birth_plan"
+  get "/set_birth_plan", to: "birth_plans#set_birth_plan", as: "set_birth_plan"  
   root to: 'public#video'
 
 end

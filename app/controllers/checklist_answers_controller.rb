@@ -47,13 +47,16 @@ class ChecklistAnswersController < ApplicationController
 
   def toggle
     checklist = Checklist.find_by(title: params[:title])
+
     checklist ||= ChecklistAnswer.find_by(title: params[:title])
     if params[:is_checked] == 'true' && checklist.present?      
       current_user.checklist_answers.create(title: checklist.title, checklist_id: checklist.id, category: checklist.category)
     elsif params[:is_checked] == 'true' && checklist.blank? 
-      current_user.checklist_answers.create(title: params[:title], category: params[:category])
+
+      current_user.checklist_answers.create(title: params[:title], category: params[:category] == 'for_labor' ? 'For Labor' : 'For the birth partner')
     elsif params[:is_checked] == 'false' && checklist.present? 
-      current_user.checklist_answers.find_by(title: checklist.title).destroy
+      x = current_user.checklist_answers.find_by(title: checklist.title)
+      x.destroy if x.present?
     end
   end
 
