@@ -33,6 +33,9 @@ class BirthPlansController < ApplicationController
      
   end
 
+  def send_email_report    
+    UserMailer.send_report(current_user).deliver
+  end
  private
 
  def birth_plan_params

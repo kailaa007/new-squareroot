@@ -40,7 +40,7 @@ Rails.application.routes.draw do
 
     resources :users do 
       get 'birth_plan_report', on: :member
-      post 'birth_plan_report', on: :member      
+      post 'birth_plan_report', on: :member
     end
 
     resources :password_resets
@@ -66,6 +66,7 @@ Rails.application.routes.draw do
     get 'index', to: 'birth_plans#index'
     get 'active_plan', on: :collection
     post 'answer', on: :member
+    get 'send_email_report', on: :member  
   end  
   
   get '/get_restriction', to: 'birth_plan_answers#get_restriction'

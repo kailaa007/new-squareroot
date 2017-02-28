@@ -108,8 +108,8 @@
                         <li>
                             <div class="confirmation-img">
                                 <div class="confirmation-pic"><%= image_tag 'email.png' %></div>
-                            </div>
-                            <div class="confirmation-caption">Email</div>
+                            </div>                            
+                            <div class="confirmation-caption"><%= link_to "Email", send_email_report_birth_plan_path(current_user.id), remote: true %></div>
                         </li>
                         <li>
                             <div class="confirmation-img">

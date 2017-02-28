@@ -24,12 +24,22 @@
 		</div>
 		<div class="columns large-4 large-offset-1">
 			<div  class="profile-options options-download">
+			<% if current_user.birth_plan_status == true %>
 				<%= link_to report_birth_plan_answers_path(format: 'pdf') do%>
 					<span class="profile-options-icon"><%= image_tag 'download.png' %></span>Download PDF
 				<% end %>
+			<% else %>
+				<a><span class="profile-options-icon"><%= image_tag 'download.png' %></span>Download PDF</a>
+			<% end %>
 			</div>
 			<div class="profile-options options-email">
+			<% if current_user.birth_plan_status == true %>
+				<%= link_to send_email_report_birth_plan_path(current_user.id), remote: true do%>
+					<span class="profile-options-icon"><%= image_tag 'email.png' %></span>Email
+				<% end %>
+			<% else %>
 				<a href="javascript:void(0);" title=""><span class="profile-options-icon"><%= image_tag 'email.png' %></span>Email</a>
+			<% end %>
 			</div>
 		</div>
 	</div>
