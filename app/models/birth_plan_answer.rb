@@ -6,6 +6,7 @@ class BirthPlanAnswer < ActiveRecord::Base
   has_many :answer_options, dependent: :destroy
 
   validates_presence_of :question
+  validates :user_id, :uniqueness => {:scope => :question_id}
 
   accepts_nested_attributes_for :answer_options
 end

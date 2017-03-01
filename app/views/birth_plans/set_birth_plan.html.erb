@@ -54,7 +54,7 @@
         </div>
     </div>
 </div>
-<%= form_for @birth_plan, url: birth_plan_answers_path, method: :post do |f| %>
+<%= form_for @birth_plan, url: birth_plan_answers_path, remote: true, method: :post do |f| %>
 <%= f.hidden_field :c_id, value: @cat_id %>
 <div class="birth_plan_process section">
     <div class="row">
@@ -83,11 +83,7 @@
             <span class="currentPage page"><%= @cat_id %></span> OF <span class="totalPages page">9</span> PAGES
         </div>                            
         <div class="paggingDiv">
-            <% if @cat_id == 5 %>        
-                <a href="javascript:void(0);" title="" class="button nxt-btn deactive-1">Save and Countinue</a>
-            <% else %>
-                <%= link_to "Next", set_birth_plan_path(c_id: @cat_id+1), class: "button nxt-btn #{@cat_id == 5 ? 'deactive-1' : ''}" %> 
-            <% end %> 
+            <%= f.submit 'Next', class: "button nxt-btn #{@cat_id == 5 ? 'deactive-1' : ''}" %>
         </div>
     </div>
 </div>
@@ -126,3 +122,48 @@
         </div>
     </div>
 <% end %> 
+<script type="text/javascript">
+    $('.checkbox-cl').on('change', function() {
+        $(this.form).submit();
+    });
+
+    $('.radio').on('change', function() {
+        $(this.form).submit();
+    });
+
+    $('.text-form').on('keyup', function() {
+        $(this.form).submit();
+    });
+
+    $('.radio').on('click', function() {        
+    var chk = $("#"+this.id).prop('checked')
+    var opt_id = this.id.split("--")[1]
+    var ques_id = this.id.split("--")[0]
+    $.ajax({
+      url: '/checklist_answers/restrictions?type=radio&&ques_id='+ques_id+'&&opt_id='+opt_id+'&&checked='+chk,
+      type: 'POST',
+      data: {"completed": ''}
+    });
+  }); 
+
+    $('.checkbox-cls').on('change', function() {        
+    var chk = $("#"+this.id).prop('checked')
+    var opt_id = this.id.split("--")[1]
+    var ques_id = this.id.split("--")[0]
+    $.ajax({
+      url: '/checklist_answers/restrictions?type=checkbox&&ques_id='+ques_id+'&&opt_id='+opt_id+'&&checked='+chk,
+      type: 'POST',
+      data: {"completed": ''}
+    });
+  }); 
+    <% if @restricted_questions.present? %>
+        <% @restricted_questions.each do |rq| %>
+            $("#li-<%= rq %>").hide();
+        <% end %>
+    <% end %>
+     <% if @restricted_options.present? %>
+        <% @restricted_options.each do |ro| %>
+            $("#li-option-<%= ro %>").hide();
+        <% end %>
+    <% end %>    
+</script>

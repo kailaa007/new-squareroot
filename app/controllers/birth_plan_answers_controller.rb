@@ -25,30 +25,17 @@ class BirthPlanAnswersController < ApplicationController
   def create
   	@birth_plan = BirthPlan.first
     @cat_id = params[:birth_plan_answer][:c_id].to_i
-    ques = Question.where(category: Question::CATEGORY_TYPES[@cat_id-1]).pluck(:id)
-    current_user.birth_plan_answers.where(question_id: ques) .destroy_all if params[:answers].present?
-    params[:answers].each do |q_id, values|
-      @question = Question.find(q_id)     
-      values.each do |typ, content|
-        case typ
-        when 'radio'
-          current_user.birth_plan_answers.create(question_id: @question.id, question: @question.title, ques_type: @question.ques_type, birth_plan_id: @birth_plan.id, answer_options_attributes: [option_id: content]) if content.present?
-        when 'checkbox'
-          bp = current_user.birth_plan_answers.create(question_id: @question.id, question: @question.title, ques_type: @question.ques_type, birth_plan_id: @birth_plan.id)
-          content.keys.each do |checkb|
-            AnswerOption.create(option_id: checkb, birth_plan_answer_id: bp.id) if checkb.present?
-          end
-        when 'textbox'
-            current_user.birth_plan_answers.create(question_id: @question.id, question: @question.title, ques_type: @question.ques_type, birth_plan_id: @birth_plan.id, answer: content ) if content.present?
+    if params[:answers].present?
+      params[:answers].keys.each do |k|
+        if session[:answers].blank?
+          session[:answers] = params[:answers] 
+        else 
+          session[:answers][k] = params[:answers][k]
         end
       end
     end
-    current_user.update(:birth_plan_status => true) if @cat_id == 5
-    if @cat_id == 5
-      redirect_to profile_path
-    else
-      redirect_to set_birth_plan_path(c_id: @cat_id) 
-    end
+    cat_id = @cat_id.present? ? @cat_id+1 : 1
+    redirect_to set_birth_plan_path(c_id: cat_id) 
   end
 
   def show
@@ -110,6 +97,46 @@ class BirthPlanAnswersController < ApplicationController
   def update
 
   end  
+
+  def save_session
+    @birth_plan = BirthPlan.first
+    if session[:answers].present?
+      session[:answers].each do |q_id, values|
+        @question = Question.find(q_id)     
+        values.each do |typ, content|
+          case typ
+          when 'radio'
+            current_user.birth_plan_answers.create(question_id: @question.id, question: @question.title, ques_type: @question.ques_type, birth_plan_id: @birth_plan.id, answer_options_attributes: [option_id: content]) if content.present?
+          when 'checkbox'
+              content = content.reject { |c| c.empty? }
+              x = current_user.birth_plan_answers.find_by(question_id: @question.id)
+              x.destroy if x.present?
+              bp = current_user.birth_plan_answers.create(question_id: @question.id, question: @question.title, ques_type: @question.ques_type, birth_plan_id: @birth_plan.id)
+              if content.present?
+                content.each do |checkb|
+                  AnswerOption.create(option_id: checkb, birth_plan_answer_id: bp.id) if checkb.present?
+                end
+              else
+                bp.destroy
+              end
+          when 'textbox'
+            if content.blank?
+              x = current_user.birth_plan_answers.find_by(question_id: @question.id)
+              x.destroy if x.present?
+            else
+              current_user.birth_plan_answers.create(question_id: @question.id, question: @question.title, ques_type: @question.ques_type, birth_plan_id: @birth_plan.id, answer: content ) if content.present?
+            end
+          end
+        end
+      end
+    end
+    if @cat_id == 5
+      current_user.update(:birth_plan_status => true) 
+      redirect_to profile_path
+    else
+      redirect_to set_birth_plan_path(c_id: @cat_id) 
+    end
+  end
 
   private
 

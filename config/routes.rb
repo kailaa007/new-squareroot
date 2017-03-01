@@ -74,6 +74,7 @@ Rails.application.routes.draw do
 
   resources :birth_plan_answers, :path => 'questions' do
     get :report, on: :collection
+    get 'save_session', on: :collection
   end  
   get "/profile", to: "users#profile", as: "profile"
   get "/set_birth_plan", to: "birth_plans#set_birth_plan", as: "set_birth_plan"  
