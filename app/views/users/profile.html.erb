@@ -19,7 +19,11 @@
 				<a href="/set_birth_plan" title=""><span class="profile-options-icon"><%= image_tag 'edit_summery.png' %></span><%= current_user.birth_plan_answers.present? ? 'Edit Birth Plan Summary' : 'Start Birth Plan' %></a>
 			</div>
 			<div class="profile-options options-print">
-				<a href="javascript:void(0);" title=""><span class="profile-options-icon"><%= image_tag 'print.png' %></span>Print</a>
+				<% if current_user.birth_plan_status == true %>
+					<a href='' onclick='printDiv();'><span class="profile-options-icon" ><%= image_tag 'print.png' %></span>Print</a>
+				<% else %>
+					<a href=''><span class="profile-options-icon" ><%= image_tag 'print.png' %></span>Print</a>
+			<% end %>
 			</div>
 		</div>
 		<div class="columns large-4 large-offset-1">
