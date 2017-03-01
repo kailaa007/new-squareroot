@@ -60,6 +60,7 @@
         </div>
     </div>
     <% end %>
+    <% if current_user.present? && current_user.birth_plan_answers.present? %>
     <div style='display: none'>
     <div id='DivIdToPrint'>
         <div class="row">
@@ -87,6 +88,7 @@
       </div>
     </div>
   </div>
+  <% end %>
     <script type="text/javascript">
        $(document).ready(function(){
             $("#termofuse-content, #checklist-content").customScrollbar();
