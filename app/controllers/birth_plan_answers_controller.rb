@@ -130,7 +130,8 @@ class BirthPlanAnswersController < ApplicationController
         end
       end
     end
-    if @cat_id == 5
+    @cat_id = params[:c_id].to_i
+    if @cat_id == 6
       current_user.update(:birth_plan_status => true) 
       redirect_to profile_path
     else

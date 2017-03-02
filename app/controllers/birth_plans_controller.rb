@@ -20,7 +20,7 @@ class BirthPlansController < ApplicationController
 
   def set_birth_plan
     @birth_plan         = BirthPlan.first
-    @checklists         = Checklist.order(:category)
+    @checklists         = Checklist.order(:category, :sub_category)
     @category           = @checklists.map(&:category).uniq.compact
     @checklist_answers  = current_user.checklist_answers
     @self_checklists    = current_user.checklist_answers.where(checklist_id: [nil, ''])

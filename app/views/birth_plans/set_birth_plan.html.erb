@@ -87,6 +87,7 @@
         </div>
     </div>
 </div>
+<% if @cat_id == 5 %>
 <div id="confirmation-popup" class="confirmation-popup" style="margin-top: -257.5px;">
         <div class="row termofuse-section">
             <a href="javascript:void(0);" class="close-confirmation-form close-btn">close</a>            
@@ -105,22 +106,23 @@
                             <div class="confirmation-img">
                                 <div class="confirmation-pic"><%= image_tag 'email.png' %></div>
                             </div>                            
-                            <div class="confirmation-caption"><%= link_to "Email", send_email_report_birth_plan_path(current_user.id), remote: true %></div>
+                            <div class="confirmation-caption"><%= link_to "Email", send_email_report_birth_plan_path(current_user.id), remote: true, class: 'email-send-btn', onclick: "$('.email-send-btn').html('Email Sent');" %></div>
                         </li>
                         <li>
                             <div class="confirmation-img">
                                 <div class="confirmation-pic"><%= image_tag 'download.png' %></div>
                             </div>
                             <div class="confirmation-caption">
-                                <%= link_to "Download", report_birth_plan_answers_path(format: 'pdf') %>
+                                <%= link_to "Download", report_birth_plan_answers_path(format: 'pdf'), target: :_blank %>
                             </div>
                         </li>
                     </ul>
-                    <%= link_to "Save Answer", save_session_birth_plan_answers_path(c_id: @cat_id+1), class: "btn", remote: true %>
+                    <%= link_to "Save Answer", save_session_birth_plan_answers_path(c_id: 5), class: "btn save-btn", remote: true %>
                 </div>
             </div>
         </div>
     </div>
+    <% end %>
 <% end %> 
 <script type="text/javascript">
     $('.checkbox-cl').on('change', function() {

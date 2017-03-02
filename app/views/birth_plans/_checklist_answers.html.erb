@@ -1,4 +1,5 @@
 <% if @category.present? %>
+<% s_cat = '--' %>
 <div id="checklist-content" class="checklist-container scrollable" tabindex="-1">
     <div class="scroll-bar vertical" style="height: 320px; display: block;">
         <div class="thumb" style="top: 0px; height: 118.794px;"></div>
@@ -9,22 +10,36 @@
             <h6 class=""><%= cat %></h6>     
             <div class="checklist-content-section-<%= index+1 %>">
                 <% @checklists.each do |checklist| %>
-                <% if checklist.category == cat %>
-                <div class="checklist-item">
-                    <% if checklist.sub_category.blank? %>
-                        <input type="checkbox" name="<%= cat.parameterize.underscore %>" class="checkbox-options options checkbox-popup" id="checklistitem-<%= checklist.id %>" <%= 'checked' if @checklist_answers.map(&:title).include?("#{checklist.title}")%>>
-                        <label for="checklistitem-<%= checklist.id %>" id="l-checklistitem-<%= checklist.id %>"><%= checklist.title %></label>
-                    <% else %>
-                        <p><%= checklist.sub_category %></p>
-                        <ul>
-                            <li>
-                                <input type="checkbox" name="<%= cat.parameterize.underscore %>" class="checkbox-options options checkbox-popup" id="checklistitem_sub-<%= checklist.id %>" <%= 'checked' if @checklist_answers.map(&:title).include?("#{checklist.title}")%>>
-                                <label for="checklistitem_sub-<%= checklist.id %>" id="l-checklistitem_sub-<%= checklist.id %>"><%= checklist.title %></label>
-                            </li>
-                        </ul>
-                    <% end %>
-                </div> 
-                <% end %>           
+                    <% if checklist.category == cat %>
+                        
+                        <% if checklist.sub_category.blank? %>
+                            <div class="checklist-item">
+                                <input type="checkbox" name="<%= cat.parameterize.underscore %>" class="checkbox-options options checkbox-popup" id="checklistitem-<%= checklist.id %>" <%= 'checked' if @checklist_answers.map(&:title).include?("#{checklist.title}")%>>
+                                <label for="checklistitem-<%= checklist.id %>" id="l-checklistitem-<%= checklist.id %>"><%= checklist.title %></label>
+                            </div> 
+                        <% elsif checklist.sub_category.present? %>
+                            <% if s_cat == checklist.sub_category %>
+                                <li id="new-<%=checklist.sub_category.parameterize.underscore %><%= cat.parameterize.underscore %>">
+                                    <input type="checkbox" name="<%= cat.parameterize.underscore %>" class="checkbox-options options checkbox-popup" id="checklistitem_sub-<%= checklist.id %>" <%= 'checked' if @checklist_answers.map(&:title).include?("#{checklist.title}")%>>
+                                    <label for="checklistitem_sub-<%= checklist.id %>" id="l-checklistitem_sub-<%= checklist.id %>"><%= checklist.title %></label>
+                                </li>
+                                <script type="text/javascript">
+                                    $("#new-<%=checklist.sub_category.parameterize.underscore %><%= cat.parameterize.underscore %>").appendTo(".<%=checklist.sub_category.parameterize.underscore %><%= cat.parameterize.underscore %>");
+                                </script>
+                            <% else %>
+                                <div class="checklist-item" id="d-<%=checklist.sub_category.parameterize.underscore %>">
+                                    <p><%= checklist.sub_category %></p>
+                                    <ul class="<%=checklist.sub_category %><%= cat.parameterize.underscore %>">
+                                        <li>
+                                            <input type="checkbox" name="<%= cat.parameterize.underscore %>" class="checkbox-options options checkbox-popup" id="checklistitem_sub-<%= checklist.id %>" <%= 'checked' if @checklist_answers.map(&:title).include?("#{checklist.title}")%>>
+                                            <label for="checklistitem_sub-<%= checklist.id %>" id="l-checklistitem_sub-<%= checklist.id %>"><%= checklist.title %></label>
+                                        </li>
+                                    </ul>
+                                </div> 
+                            <% end %>
+                        <% end %>
+                    <% s_cat = checklist.sub_category %>
+                    <% end %>           
                 <% end %>
                  <% @self_checklists.each do |checklist| %>
                  <% if checklist.category == cat %>
