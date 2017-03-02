@@ -140,7 +140,7 @@ $(document).on('click', '.base_question :checkbox', function (e) {
 });
 
 $(document).ready(function() { 
-
+  
   $('form#new_question').submit(function(){
     var qesTitle = $('#question_title').val();
     var qesType = $('#question_ques_type').val();
@@ -410,6 +410,13 @@ $(document).ready(function() {
 	      $('.phase-fields').css("display", "none");
 	    }    
 	}); 
+
+  var eqt = $('form.edit_question #question_ques_type').val();
+  if(eqt != '' && eqt != 'undefined'){  
+    if(eqt == 2 || eqt == 3){ 
+      $('#question_ques_type').trigger('change'); 
+    } 
+  } 
 
 	$(".new_question, .edit_question").submit(function(e){
       var selectOption = $("#question_ques_type").find(":selected").val();
