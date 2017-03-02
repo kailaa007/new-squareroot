@@ -1,3 +1,6 @@
 <% unless @cat_id == 7 %>
 	$(".save-btn").html("Saved");
 <% end %>
+<% if @cat_id < 6 %>
+	alert("Birth Plan Saved Successfully.");
+<% end %>
