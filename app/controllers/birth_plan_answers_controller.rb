@@ -106,18 +106,19 @@ class BirthPlanAnswersController < ApplicationController
         values.each do |typ, content|
           case typ
           when 'radio'
+            x = current_user.birth_plan_answers.find_by(question_id: @question.id)
+            x.destroy if x.present?
             current_user.birth_plan_answers.create(question_id: @question.id, question: @question.title, ques_type: @question.ques_type, birth_plan_id: @birth_plan.id, answer_options_attributes: [option_id: content]) if content.present?
           when 'checkbox'
+            
               content = content.reject { |c| c.empty? }
               x = current_user.birth_plan_answers.find_by(question_id: @question.id)
               x.destroy if x.present?
-              bp = current_user.birth_plan_answers.create(question_id: @question.id, question: @question.title, ques_type: @question.ques_type, birth_plan_id: @birth_plan.id)
               if content.present?
+                bp = current_user.birth_plan_answers.create(question_id: @question.id, question: @question.title, ques_type: @question.ques_type, birth_plan_id: @birth_plan.id)
                 content.each do |checkb|
                   AnswerOption.create(option_id: checkb, birth_plan_answer_id: bp.id) if checkb.present?
                 end
-              else
-                bp.destroy
               end
           when 'textbox'
             if content.blank?
@@ -133,9 +134,6 @@ class BirthPlanAnswersController < ApplicationController
     @cat_id = params[:c_id].to_i
     if @cat_id == 6
       current_user.update(:birth_plan_status => true) 
-      redirect_to profile_path
-    else
-      redirect_to set_birth_plan_path(c_id: @cat_id) 
     end
   end
 
