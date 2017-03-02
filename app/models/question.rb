@@ -16,7 +16,7 @@ class Question < ActiveRecord::Base
     'YOUR NEW BORN'
   ].freeze
   
-  before_save :capitalize_title
+  #before_save :capitalize_title
   before_create :set_order	
   self.per_page = 10
   validates_presence_of :title, :ques_type
