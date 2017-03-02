@@ -78,7 +78,7 @@
               <% else %>
                 
                 <% ques.answer_options.each do |answer| %>
-                  <%= answer.option.option_title %><br>
+                  <%= answer.option.try(:option_title) %><br>
                 <% end %>
                 <% end %>
               </td>
