@@ -4,6 +4,7 @@ class Admin::ChecklistsController < Admin::ApplicationController
   # GET /checklists
   def index
     @checklists = Checklist.all
+    @birth_plan = BirthPlan.first
   end
 
   # GET /checklists/1

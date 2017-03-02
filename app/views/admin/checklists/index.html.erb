@@ -1,9 +1,14 @@
 <div class="row">
   <h2>Listing checklists</h2>
 </div>
-
 <div class="row">
-  <div id="sort_errors"><%= link_to 'New Checklist', new_admin_checklist_path, class: 'button radius pull-right secondary' %></div>
+  <div id="sort_errors">
+    <%= form_for [:admin, @birth_plan] do |f| %>
+      <%= f.select :checklist_on, Question::CATEGORY_TYPES, :prompt => "Select category type", onclick: "javascript:void(0);" %>
+      <%= f.submit %> 
+    <% end %>
+    <%= link_to 'New Checklist', new_admin_checklist_path, class: 'button radius pull-right secondary' %>
+  </div>
   <table class="sortable-table ui-sortable" data-url="/admin/birth_plans/sort" width="100%">
     <thead>
       <tr>

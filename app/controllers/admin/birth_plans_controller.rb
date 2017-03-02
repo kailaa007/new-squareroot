@@ -35,7 +35,11 @@ class Admin::BirthPlansController < Admin::ApplicationController
     @birth_plan = BirthPlan.find(params[:id])
     if @birth_plan.update(birth_plan_params)
       flash[:success] = 'Birth Plan updated.'
-      redirect_to admin_birth_plans_path
+      if params[:birth_plan][:checklist_on].present?
+        redirect_to admin_checklists_path
+      else
+        redirect_to admin_birth_plans_path
+      end
     else
       render :edit
     end
@@ -112,7 +116,7 @@ class Admin::BirthPlansController < Admin::ApplicationController
   private
 
   def birth_plan_params
-    params.require(:birth_plan).permit(:title, :status, :description, question_attributes: [:id])
+    params.require(:birth_plan).permit(:title, :status, :description, :checklist_on, question_attributes: [:id])
   end
 
 end
