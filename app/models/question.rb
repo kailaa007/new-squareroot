@@ -21,7 +21,7 @@ class Question < ActiveRecord::Base
   self.per_page = 10
   validates_presence_of :title, :ques_type
   validates :category, presence: true
-  validates_uniqueness_of :order, allow_nil: true, allow_blank: true
+  #validates_uniqueness_of :order, allow_nil: true, allow_blank: true
   #gems
   extend FriendlyId
   friendly_id :title, use: :slugged
