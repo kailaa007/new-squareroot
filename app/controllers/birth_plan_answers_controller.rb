@@ -34,8 +34,6 @@ class BirthPlanAnswersController < ApplicationController
         end
       end
     end
-    cat_id = @cat_id.present? ? @cat_id+1 : 1
-    redirect_to set_birth_plan_path(c_id: cat_id) 
   end
 
   def show
@@ -124,10 +122,10 @@ class BirthPlanAnswersController < ApplicationController
                 end
               end
           when 'textbox'
-            if content.blank?
-              x = current_user.birth_plan_answers.where(question_id: @question.id)
-              x.destroy_all if x.present?
-            else
+            
+            x = current_user.birth_plan_answers.where(question_id: @question.id)
+            x.destroy_all if x.present?
+            if content.present?
               current_user.birth_plan_answers.create(question_id: @question.id, question: @question.title, ques_type: @question.ques_type, birth_plan_id: @birth_plan.id, answer: content.to_s )
             end
           end

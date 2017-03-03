@@ -66,26 +66,38 @@
         <div class="row">
         <h2><%= current_user.first_name.titleize %> Report</h2>
         <table width="100%" style="font-family:'AvrNx';" >
-          <% current_user.birth_plan_answers.each_with_index do |ques, ind| %>
-            <tr>
-              <td><b>Question <%= ind+1 %>. <%= ques.try(:question) %></b>
-              </td>
-            </tr>
-            <tr>
-              <td>
-              <% if ques.answer.present? %>
-                <%= ques.answer %>
-              <% else %>
-                
-                <% ques.answer_options.each do |answer| %>
-                  <%= answer.option.try(:option_title) %><br>
-                <% end %>
-                <% end %>
-              </td>
-            </tr>    
-          <% end %>    
+          <% Question::CATEGORY_TYPES.each do |cat| %>
+          <tr><td></td></tr>
+          <tr><td>
+          <h3 align='center'><b><u><%= cat %></u></b></h3>
+            <% c_quest = Question.where(:category => cat).pluck(:id) %>
+            <% current_user.birth_plan_answers.where(:question_id => c_quest).each_with_index do |ques, ind| %>
+              <tr>
+                <td><%= ind+1 %>) <%= ques.try(:question) %></td>
+              </tr>
+              <tr>
+                <td>
+                    <% if ques.answer.present? %>
+                        <%= ques.answer %>
+                    <% else %>
+                        <% if  ques.answer_options.present? %>
+                            <% ques.answer_options.each do |answer| %>
+                                <%= answer.option.try(:option_title) %>
+                                <% if answer.textbox_answer.present? %>
+                                    : <b><%= answer.textbox_answer %></b>
+                                <% end %><br>
+                            <% end %>
+                        <% end %>
+                    <% end %>
+                </td>
+              </tr>  
+              <tr><td></td></tr>  
+            <% end %>
+          <% end %>
+          </td>
+        </tr>
         </table>
-      </div>
+        </div>
     </div>
   </div>
   <% end %>
@@ -101,7 +113,7 @@
 
           var divToPrint=document.getElementById('DivIdToPrint');
 
-          var newWin=window.open('','Print-Window');
+          var newWin=window.open('','_self');
 
           newWin.document.open();
 
