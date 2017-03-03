@@ -47,8 +47,16 @@
     <div class="paggingDiv">
         <span class="currentPage page"><%= @cat_id %></span> OF <span class="totalPages page">5</span> PAGES
     </div>
-    <div class= "paggingDiv second"><%= link_to "Save", save_session_birth_plan_answers_path(c_id: @cat_id), class: "button nxt-btn", remote: true %>  </div>
-    <div class="paggingDiv">
-        <%= link_to "Next", set_birth_plan_path(c_id: @cat_id+1), class: "button nxt-btn #{@cat_id == 5 ? 'deactive-1' : ''}", remote: (@cat_id == 5 ? true : false)  %>
-    </div>
+    <% unless @cat_id == 5 %>
+        <div class= "paggingDiv second"><%= link_to "Save", save_session_birth_plan_answers_path(c_id: @cat_id), class: "button nxt-btn", remote: true %>
+        </div>
+        <div class="paggingDiv">
+            <%= link_to "Next", set_birth_plan_path(c_id: @cat_id+1), class: "button nxt-btn #{@cat_id == 5 ? 'deactive-1' : ''}", remote: (@cat_id == 5 ? true : false)  %>
+        </div>
+    <% else %>
+        <div class= "paggingDiv second">
+            <%= link_to "Save", set_birth_plan_path(c_id: @cat_id+1), class: "button nxt-btn #{@cat_id == 5 ? 'deactive-1' : ''}", remote: (@cat_id == 5 ? true : false) %>
+        </div>
+        <div class="paggingDiv"></div>
+    <% end %>
 </div>
