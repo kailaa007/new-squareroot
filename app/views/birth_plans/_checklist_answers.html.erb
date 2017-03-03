@@ -29,7 +29,7 @@
                             <% else %>
                                 <div class="checklist-item" id="d-<%=checklist.sub_category.parameterize.underscore %>">
                                     <p><%= checklist.sub_category %></p>
-                                    <ul class="<%=checklist.sub_category %><%= cat.parameterize.underscore %>">
+                                    <ul class="<%=checklist.sub_category.parameterize.underscore %><%= cat.parameterize.underscore %>">
                                         <li>
                                             <input type="checkbox" name="<%= cat.parameterize.underscore %>" class="checkbox-options options checkbox-popup" id="checklistitem_sub-<%= checklist.id %>" <%= 'checked' if @checklist_answers.map(&:title).include?("#{checklist.title}")%>>
                                             <label for="checklistitem_sub-<%= checklist.id %>" id="l-checklistitem_sub-<%= checklist.id %>"><%= checklist.title %></label>
