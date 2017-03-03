@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170303063623) do
+ActiveRecord::Schema.define(version: 20170303091923) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 20170303063623) do
   create_table "answer_options", force: :cascade do |t|
     t.integer "birth_plan_answer_id"
     t.integer "option_id"
+    t.text    "textbox_answer"
   end
 
   create_table "birth_plan_answers", force: :cascade do |t|

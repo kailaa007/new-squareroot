@@ -16,9 +16,22 @@
                     <% when 1, 2 %>
                     <% question.options.each_with_index do |option, index| %>
                     <li id="li-option-<%= option.id %>">
-                        <input type="radio" name="answers[<%= question.id %>][radio]" value="<%= option.id %>" class="options radio radio-<%=question.id %>" id="<%= question.id %>--<%= option.id %>--<%= ind+1 %>options" <%= current_user.birth_plan_answers.map(&:answer_options).flatten.map(&:option_id).flatten.compact.include?(option.id) ? 'checked=checked' : ''%>>
-                        <label for="<%= question.id %>--<%= option.id %>--<%= ind+1 %>options"><%= option.option_title %><% if question.note.present? %><a class="ques_info" style="display: inline-block;" href="javascript:void(0);" title><div class="tooltip_box"><%= question.note%></div></a><% end %></label>
+                        <input type="radio" name="answers[<%= question.id %>][radio][option_id]" value="<%= option.id %>" class="options radio radio-<%=question.id %>" id="<%= question.id %>--<%= option.id %>--<%= ind+1 %>options" <%= current_user.birth_plan_answers.map(&:answer_options).flatten.map(&:option_id).flatten.compact.include?(option.id) ? 'checked=checked' : ''%>>
+                        <label for="<%= question.id %>--<%= option.id %>--<%= ind+1 %>options"><%= option.option_title %></label>
+                            <% if option.description.present? %><a class="ques_info" style="display: inline-block;" href="javascript:void(0);" title>   <div class="tooltip_box" ><%= option.description %></div></a>
+                            <% end %>
+                            <% if option.textbox_enable == true %>
+                                <input type="text" name="answers[<%= question.id %>][radio][text]" class="textfield options opt-<%= question.id %>" id="te<%= question.id %>--<%= option.id %>--<%= ind+1 %>options" value="<%= current_user.birth_plan_answers.find_by(:question_id => question.id).answer_options.find_by(option_id: option.id).try(:textbox_answer) %>">
+                            <% end %>
+                        
                     </li>
+                    <script type="text/javascript">
+                        $(".radio-<%=question.id %>").on('click', function() {
+
+                            $(".opt-<%= question.id %>").val('');
+                        });
+
+                    </script>
                     <% end %> 
                     <% when 3 %>
                     <% question.options.each_with_index do |option, index| %>
@@ -26,7 +39,12 @@
                     <%= hidden_field_tag "answers[#{question.id}][checkbox][]", nil %>                                          
                         <input type="checkbox" name="answers[<%= question.id %>][checkbox][]" class="options checkbox-cl checkbox-<%=question.id %>" id="<%= question.id %>--<%= option.id %>--<%= ind+1 %>options" value="<%= option.id %>" <%= current_user.birth_plan_answers.map(&:answer_options).flatten.map(&:option_id).flatten.compact.include?(option.id) ? 'checked=checked' : ''%>>
                         
-                        <label for="<%= question.id %>--<%= option.id %>--<%= ind+1 %>options"><%= option.option_title %><% if question.note.present? %><a class="ques_info" style="display: inline-block;" href="javascript:void(0);" title><div class="tooltip_box"><%= question.note%></div></a><% end %></label>
+                        <label for="<%= question.id %>--<%= option.id %>--<%= ind+1 %>options"><%= option.option_title %>
+                        </label>
+                        <% if option.description.present? %>
+                         <a class="ques_info" style="display: inline-block;" href="javascript:void(0);" title><div class="tooltip_box"><%= option.description%></div></a>
+                        <% end %>
+                        
                     </li>
                     <% end %> 
                     

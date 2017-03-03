@@ -106,9 +106,12 @@ class BirthPlanAnswersController < ApplicationController
         values.each do |typ, content|
           case typ
           when 'radio'
+            option_id = content["option_id"]
             x = current_user.birth_plan_answers.where(question_id: @question.id)
             x.destroy_all if x.present?
-            current_user.birth_plan_answers.create(question_id: @question.id, question: @question.title, ques_type: @question.ques_type, birth_plan_id: @birth_plan.id, answer_options_attributes: [option_id: content]) if content.present?
+            if option_id.present?
+              current_user.birth_plan_answers.create(question_id: @question.id, question: @question.title, ques_type: @question.ques_type, birth_plan_id: @birth_plan.id, answer_options_attributes: [option_id: option_id, textbox_answer: content["text"]]) if option_id.present?
+            end
           when 'checkbox'
             
               content = content.reject { |c| c.empty? }
