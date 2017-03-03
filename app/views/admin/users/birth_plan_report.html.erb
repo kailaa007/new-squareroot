@@ -1,12 +1,12 @@
 <div class="row">
-    <h2><%= current_user.first_name.titleize %> Report</h2>
+    <h2><%= @user.first_name.titleize %> Report</h2>
     <table width="100%" style="font-family:'AvrNx';" >
       <% Question::CATEGORY_TYPES.each do |cat| %>
       <tr><td></td></tr>
       <tr><td>
       <h2 align='center'><b><u><%= cat %></u></b></h2>
         <% c_quest = Question.where(:category => cat).pluck(:id) %>
-        <% current_user.birth_plan_answers.where(:question_id => c_quest).each_with_index do |ques, ind| %>
+        <% @birth_plan_answers.where(:question_id => c_quest).each_with_index do |ques, ind| %>
           <tr>
             <td><%= ind+1 %>) <%= ques.try(:question) %></td>
           </tr>
