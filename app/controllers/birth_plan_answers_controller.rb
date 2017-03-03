@@ -106,14 +106,14 @@ class BirthPlanAnswersController < ApplicationController
         values.each do |typ, content|
           case typ
           when 'radio'
-            x = current_user.birth_plan_answers.find_by(question_id: @question.id)
-            x.destroy if x.present?
+            x = current_user.birth_plan_answers.where(question_id: @question.id)
+            x.destroy_all if x.present?
             current_user.birth_plan_answers.create(question_id: @question.id, question: @question.title, ques_type: @question.ques_type, birth_plan_id: @birth_plan.id, answer_options_attributes: [option_id: content]) if content.present?
           when 'checkbox'
             
               content = content.reject { |c| c.empty? }
-              x = current_user.birth_plan_answers.find_by(question_id: @question.id)
-              x.destroy if x.present?
+              x = current_user.birth_plan_answers.where(question_id: @question.id)
+              x.destroy_all if x.present?
               if content.present?
                 bp = current_user.birth_plan_answers.create(question_id: @question.id, question: @question.title, ques_type: @question.ques_type, birth_plan_id: @birth_plan.id)
                 content.each do |checkb|
@@ -122,10 +122,10 @@ class BirthPlanAnswersController < ApplicationController
               end
           when 'textbox'
             if content.blank?
-              x = current_user.birth_plan_answers.find_by(question_id: @question.id)
-              x.destroy if x.present?
+              x = current_user.birth_plan_answers.where(question_id: @question.id)
+              x.destroy_all if x.present?
             else
-              current_user.birth_plan_answers.create(question_id: @question.id, question: @question.title, ques_type: @question.ques_type, birth_plan_id: @birth_plan.id, answer: content ) if content.present?
+              current_user.birth_plan_answers.create(question_id: @question.id, question: @question.title, ques_type: @question.ques_type, birth_plan_id: @birth_plan.id, answer: content.to_s )
             end
           end
         end
