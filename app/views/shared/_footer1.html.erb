@@ -66,26 +66,30 @@
         <div class="row">
         <h2><%= current_user.first_name.titleize %> Report</h2>
         <table width="100%" style="font-family:'AvrNx';" >
-          <% current_user.birth_plan_answers.each_with_index do |ques, ind| %>
+            <% current.user.birth_plan_answers.each_with_index do |ques, ind| %>
             <tr>
-              <td><b>Question <%= ind+1 %>. <%= ques.try(:question) %></b>
-              </td>
+                <td><b>Question <%= ind+1 %>. <%= ques.try(:question) %></b>
+            </td>
             </tr>
-            <tr>
-              <td>
-              <% if ques.answer.present? %>
-                <%= ques.answer %>
-              <% else %>
-                
-                <% ques.answer_options.each do |answer| %>
-                  <%= answer.option.try(:option_title) %><br>
-                <% end %>
-                <% end %>
-              </td>
-            </tr>    
-          <% end %>    
+                <tr>
+                    <td>
+                        <% if ques.answer.present? %>
+                            <%= ques.answer %>
+                        <% else %>
+                            <% if  ques.answer_options.present? %>
+                                <% ques.answer_options.each do |answer| %>
+                                    <%= answer.option.try(:option_title) %>
+                                    <% if answer.textbox_answer.present? %>
+                                        : <b><%= answer.textbox_answer %></b>
+                                    <% end %><br>
+                                <% end %>
+                            <% end %>
+                        <% end %>
+                    </td>
+                </tr>    
+            <% end %>    
         </table>
-      </div>
+        </div>
     </div>
   </div>
   <% end %>
