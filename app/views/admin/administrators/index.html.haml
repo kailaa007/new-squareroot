@@ -1,6 +1,6 @@
 .row
   .columns.small-12
-    = link_to 'New', new_admin_administrator_path, :class => 'button radius pull-right secondary'
+    =# link_to 'New', new_admin_administrator_path, :class => 'button radius pull-right secondary'
     %h2 Administrators
 
     %table
@@ -18,4 +18,4 @@
             %td.actions
               = link_to 'Edit', edit_admin_administrator_path(admin)
               - unless admin.super_admin?
-                = link_to 'Delete', admin_administrator_path(admin), method: :delete, data: { confirm: 'Are you sure?' }
+                =# link_to 'Delete', admin_administrator_path(admin), method: :delete, data: { confirm: 'Are you sure?' }

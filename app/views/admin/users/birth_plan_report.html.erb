@@ -1,21 +1,36 @@
 <div class="row">
-	<h2><%= @user.first_name %> Report</h2>
- 
-	<table>
-  	<% @questions.each_with_index do |ques, ind| %>
-	    <tr>
-        <td>Question<%= ind+1 %>.&nbsp&nbsp<%=link_to ques.title %>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <% answers = @answers.where(question_id: ques) %>
-          <% answers.each do |answer| %>
-            Answer.&nbsp&nbsp <%= answer.answer %><br>
-          <% end %>
-          <hr>
-        </td>
-      </tr>    
-    <% end %>    
-  </table>
+    <h2><%= current_user.first_name.titleize %> Report</h2>
+    <table width="100%" style="font-family:'AvrNx';" >
+      <% Question::CATEGORY_TYPES.each do |cat| %>
+      <tr><td></td></tr>
+      <tr><td>
+      <h2 align='center'><b><u><%= cat %></u></b></h2>
+        <% c_quest = Question.where(:category => cat).pluck(:id) %>
+        <% current_user.birth_plan_answers.where(:question_id => c_quest).each_with_index do |ques, ind| %>
+          <tr>
+            <td><%= ind+1 %>) <%= ques.try(:question) %></td>
+          </tr>
+          <tr>
+            <td>
+                <% if ques.answer.present? %>
+                    <%= ques.answer %>
+                <% else %>
+                    <% if  ques.answer_options.present? %>
+                        <% ques.answer_options.each do |answer| %>
+                            <%= answer.option.try(:option_title) %>
+                            <% if answer.textbox_answer.present? %>
+                                : <b><%= answer.textbox_answer %></b>
+                            <% end %><br>
+                        <% end %>
+                    <% end %>
+                <% end %>
+            </td>
+          </tr>  
+          <tr><td></td></tr>  
+        <% end %>
+      <% end %>
+      </td>
+    </tr>
+    </table>
+    </div>
 </div>
