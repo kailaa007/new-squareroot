@@ -34,6 +34,9 @@ class BirthPlanAnswersController < ApplicationController
         end
       end
     end
+    @@session = session[:answers]
+    session[:restricted_question_id] = Question.where(id: @@session.keys).map(&:restrict_questions).flatten.compact.select{|x| x.ques_status == false}.map(&:base_ques_id)
+    @restricted_questions = session[:restricted_question_id]
   end
 
   def show
@@ -98,8 +101,8 @@ class BirthPlanAnswersController < ApplicationController
 
   def save_session
     @birth_plan = BirthPlan.first
-    if session[:answers].present?
-      session[:answers].each do |q_id, values|
+    if @@session.present?
+      @@session.each do |q_id, values|
         @question = Question.find(q_id)     
         values.each do |typ, content|
           case typ

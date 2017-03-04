@@ -1,0 +1,5 @@
+<% if @restricted_questions.present? %>
+    <% @restricted_questions.each do |rq| %>
+        $("#li-<%= rq %>").hide();
+    <% end %>
+<% end %>

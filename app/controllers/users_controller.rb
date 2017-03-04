@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 	layout 'devise'
 	before_action :authenticate_user!
-	before_action :clear_session, except: [:set_birth_plan, :index, :send_email_report]
+	before_action :clear_session, only: [:profile]
 	
 	def profile
 	end
