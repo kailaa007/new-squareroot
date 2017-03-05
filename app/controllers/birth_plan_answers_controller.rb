@@ -37,7 +37,9 @@ class BirthPlanAnswersController < ApplicationController
     @@session = session[:answers]
     @restricted_main_option_ids = session[:answers].inject([]){|x,y| x << y.last['checkbox'] || y.last['radio'] }.flatten.compact
     session[:restricted_question_id] = RestrictQuestion.where(main_ques_id: @@session.keys, ques_status: false, main_option_id: @restricted_main_option_ids).pluck(:base_ques_id)
+    session[:restricted_option_ids] = RestrictQuestion.where(main_ques_id: @@session.keys, option_status: false, main_option_id: @restricted_main_option_ids).pluck(:base_option_id)
     @restricted_questions   = session[:restricted_question_id]
+    @restricted_options     = session[:restricted_option_ids]
     @unrestricted_questions  = Question.where.not(id: @restricted_questions).pluck(:id)
     
   end
