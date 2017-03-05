@@ -1,6 +1,12 @@
 <% unless @cat_id == 7 %>
 	$(".save-btn").html("Saved");
 <% end %>
-<% if @cat_id < 6 %>
+
+<% if @required_questions.present? %>
+
+	<% @required_questions.each do |x| %>
+	$("#li-<%= x.id %>").addClass("required-box");
+	<% end %>
+<% elsif @cat_id < 6 %>
 	alert("Birth Plan Saved Successfully.");
 <% end %>

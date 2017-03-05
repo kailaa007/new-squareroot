@@ -35,8 +35,11 @@ class BirthPlanAnswersController < ApplicationController
       end
     end
     @@session = session[:answers]
-    session[:restricted_question_id] = Question.where(id: @@session.keys).map(&:restrict_questions).flatten.compact.select{|x| x.ques_status == false}.map(&:base_ques_id)
-    @restricted_questions = session[:restricted_question_id]
+    @restricted_main_option_ids = session[:answers].inject([]){|x,y| x << y.last['checkbox'] || y.last['radio'] }.flatten.compact
+    session[:restricted_question_id] = RestrictQuestion.where(main_ques_id: @@session.keys, ques_status: false, main_option_id: @restricted_main_option_ids).pluck(:base_ques_id)
+    @restricted_questions   = session[:restricted_question_id]
+    @unrestricted_questions  = Question.where.not(id: @restricted_questions).pluck(:id)
+    
   end
 
   def show
@@ -135,6 +138,8 @@ class BirthPlanAnswersController < ApplicationController
         end
       end
     end
+
+    @required_questions = Question.where(:required => true)
     @cat_id = params[:c_id].to_i
     if @cat_id == 6
       current_user.update(:birth_plan_status => true) 

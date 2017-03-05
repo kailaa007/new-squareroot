@@ -137,27 +137,27 @@
         $(this.form).submit();
     });
 
-    $('.radio').on('click', function() {        
-    var chk = $("#"+this.id).prop('checked')
-    var opt_id = this.id.split("--")[1]
-    var ques_id = this.id.split("--")[0]
-    $.ajax({
-      url: '/checklist_answers/restrictions?type=radio&&ques_id='+ques_id+'&&opt_id='+opt_id+'&&checked='+chk,
-      type: 'POST',
-      data: {"completed": ''}
-    });
-  }); 
+  //   $('.radio').on('click', function() {        
+  //   var chk = $("#"+this.id).prop('checked')
+  //   var opt_id = this.id.split("--")[1]
+  //   var ques_id = this.id.split("--")[0]
+  //   $.ajax({
+  //     url: '/checklist_answers/restrictions?type=radio&&ques_id='+ques_id+'&&opt_id='+opt_id+'&&checked='+chk,
+  //     type: 'POST',
+  //     data: {"completed": ''}
+  //   });
+  // }); 
 
-    $('.checkbox-cl').on('change', function() {        
-    var chk = $("#"+this.id).prop('checked')
-    var opt_id = this.id.split("--")[1]
-    var ques_id = this.id.split("--")[0]
-    $.ajax({
-      url: '/checklist_answers/restrictions?type=checkbox&&ques_id='+ques_id+'&&opt_id='+opt_id+'&&checked='+chk,
-      type: 'POST',
-      data: {"completed": ''}
-    });
-  }); 
+  //   $('.checkbox-cl').on('change', function() {        
+  //   var chk = $("#"+this.id).prop('checked')
+  //   var opt_id = this.id.split("--")[1]
+  //   var ques_id = this.id.split("--")[0]
+  //   $.ajax({
+  //     url: '/checklist_answers/restrictions?type=checkbox&&ques_id='+ques_id+'&&opt_id='+opt_id+'&&checked='+chk,
+  //     type: 'POST',
+  //     data: {"completed": ''}
+  //   });
+  // }); 
     <% if @restricted_questions.present? %>
         <% @restricted_questions.each do |rq| %>
             $("#li-<%= rq %>").hide();
