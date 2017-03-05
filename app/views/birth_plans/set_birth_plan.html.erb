@@ -126,14 +126,18 @@
 <% end %> 
 <script type="text/javascript">
     $('.checkbox-cl').on('change', function() {
+        $('#'+this.closest('ol>li').id).removeClass("required-box");
+        
         $(this.form).submit();
     });
 
     $('.radio').on('change', function() {
+        $('#'+this.closest('ol>li').id).removeClass("required-box");
         $(this.form).submit();
     });
 
     $('.textfield').on('keyup', function() {
+        $('#'+this.closest('ol>li').id).removeClass("required-box");
         $(this.form).submit();
     });
 

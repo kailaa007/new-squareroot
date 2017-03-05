@@ -3,10 +3,20 @@
 <% end %>
 
 <% if @required_questions.present? %>
-
 	<% @required_questions.each do |x| %>
-	$("#li-<%= x.id %>").addClass("required-box");
+		
+		if ($("#li-<%= x.id %>").find("input[type='checkbox']").is(':checked')) {
+
+		}
+		else if ($("#li-<%= x.id %>").find("input[type='radio']").is(':checked')) {
+
+		}
+		else{
+			$("#li-<%= x.id %>").addClass("required-box");
+		}
+
 	<% end %>
 <% elsif @cat_id < 6 %>
 	alert("Birth Plan Saved Successfully.");
 <% end %>
+console.log(x);

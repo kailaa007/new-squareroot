@@ -137,6 +137,7 @@ class BirthPlanAnswersController < ApplicationController
           end
         end
       end
+      #current_user.birth_plan_answers.where(question_id: session[:restricted_question_id]).destroy_all
     end
 
     @required_questions = Question.where(:required => true)
