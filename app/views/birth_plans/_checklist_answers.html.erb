@@ -57,8 +57,10 @@
             </div>
             <script type="text/javascript">
                 $(document).on("click", "#add-checklist-<%= index+1 %>", function(){
+
                     var rno = Math.floor((Math.random() * 10000) + 1);
             var getinputVal = jQuery(this).closest(".checklist-content-section-<%= index+1 %>").find("input#add-checklistitem-text-<%= index+1 %>").val();
+            if (getinputVal.trim().length > 0){
             var addchecklist_item = '<div class="checklist-item">';
             addchecklist_item +="<input type='checkbox' name=" + "<%= cat.parameterize.underscore %>" +" class='options checkbox-options new_options' id=" +rno + " checked>" ;                                       
             addchecklist_item +='<label for='+ rno + " id=l-" + rno + ">" + getinputVal +'</label>';
@@ -68,7 +70,7 @@
             setTimeout(function(){
                 jQuery("input#add-checklistitem-text-<%= index+1 %>").val('');
             },10);
-        
+        };
         });
 
             </script>
