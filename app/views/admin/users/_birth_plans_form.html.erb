@@ -61,14 +61,6 @@
     </ol>
 </div>
 </div>
-<div class="birth_plan_pagination desktop">
-    <div class="paggingDiv">
-      
-    </div>
-        <div class= "paggingDiv second">
-        </div>
-        <div class="paggingDiv">
-           <%= link_to "Save", save_session_birth_plan_answers_path(c_id: @cat_id), class: "button nxt-btn", remote: true %>
-        </div>
-    
+<div class="birth_plan_pagination desktop text-center">
+    <%= link_to "Save", save_session_birth_plan_answers_path(c_id: @cat_id), class: "button nxt-btn", remote: true %>
 </div>
