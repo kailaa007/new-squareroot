@@ -23,12 +23,10 @@
 		}
 		
 	<% end %>
-	<% if @opt_blanks.present? %>
-		<% @opt_blanks.each do |opt| %>
-			$("#li-option-<%= opt %>").addClass("required-box");
-		<% end %>
-	<% end %>
+	<% unless @opt_blanks.present? %>
+		
 	alert("Birth Plan Saved Successfully.");
+	<% end %>
 <% elsif @cat_id < 6 %>
 	alert("Birth Plan Saved Successfully.");
 <% end %>
