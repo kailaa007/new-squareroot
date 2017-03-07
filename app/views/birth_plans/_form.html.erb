@@ -29,10 +29,12 @@
                         $(".radio-<%=question.id %>").on('click', function() {
 
                             $(".opt-<%= question.id %>").val('');
-                            $("#te<%= question.id %>--<%= option.id %>--<%= ind+1 %>options").validationEngine('validate') 
-                            
+
                             $(".opt-<%= question.id %>").removeClass('validate[required]');
-                            $(".option-id-<%= option.id %>").addClass('validate[required]');
+                            $(".opt-<%= question.id %>").removeClass('input-box-error');
+                            $("#te<%= question.id %>--<%= option.id %>--<%= ind+1 %>options").addClass('validate[required]');
+
+                            $("#te<%= question.id %>--<%= option.id %>--<%= ind+1 %>options").validationEngine('validate, {focusFirstField : false}') ;
                         });
 
                     </script>
