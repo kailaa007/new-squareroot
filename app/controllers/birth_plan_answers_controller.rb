@@ -106,6 +106,7 @@ class BirthPlanAnswersController < ApplicationController
 
   def save_session
     @birth_plan = BirthPlan.first
+    @opt_blanks = []
     if @@session.present?
       @@session.each do |q_id, values|
         @question = Question.find(q_id)     
@@ -116,7 +117,15 @@ class BirthPlanAnswersController < ApplicationController
             x = current_user.birth_plan_answers.where(question_id: @question.id)
             x.destroy_all if x.present?
             if option_id.present?
-              current_user.birth_plan_answers.create(question_id: @question.id, question: @question.title, ques_type: @question.ques_type, birth_plan_id: @birth_plan.id, answer_options_attributes: [option_id: option_id, textbox_answer: content["text"]]) if option_id.present?
+              @option = Option.find(option_id)
+              if @option.textbox_enable == true && content['text'].present?
+                current_user.birth_plan_answers.create(question_id: @question.id, question: @question.title, ques_type: @question.ques_type, birth_plan_id: @birth_plan.id, answer_options_attributes: [option_id: option_id, textbox_answer: content["text"]]) if option_id.present?
+                @opt_blanks.delete(@option.id)
+              elsif @option.textbox_enable == false
+                current_user.birth_plan_answers.create(question_id: @question.id, question: @question.title, ques_type: @question.ques_type, birth_plan_id: @birth_plan.id, answer_options_attributes: [option_id: option_id])
+              elsif @option.textbox_enable == true && content['text'].blank?
+                @opt_blanks << @option.id
+              end
             end
           when 'checkbox'
             

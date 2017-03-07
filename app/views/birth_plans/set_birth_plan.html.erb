@@ -138,6 +138,7 @@
 
     $('.textfield').on('keyup', function() {
         $('#'+this.closest('ol>li').id).removeClass("required-box");
+        $('#'+this.closest('ul>li').id).removeClass("required-box");
         $(this.form).submit();
     });
 
