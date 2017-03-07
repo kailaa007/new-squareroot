@@ -12,6 +12,14 @@ class SessionsController < Devise::SessionsController
 			respond_with resource, :location => after_sign_in_path_for(resource)
 		end
 	end
+
+	def new
+		@user_ = User.find_by(email: params[:user][:email])
+		self.resource = resource_class.new(sign_in_params)
+	    clean_up_passwords(resource)
+	    yield resource if block_given?
+	    respond_with(resource, serialize_options(resource))
+	end
 	def after_sign_in_path_for(resource)
 		profile_path
 	end
