@@ -13,9 +13,13 @@
     <td><%= question.title %></td>
     <td><%= question.category %></td>
     <td><%= get_ques_type(question.ques_type) %></td>
-    <td style="text-align: center;">
-      <% unless Question.minimum(:order) == question.order %>
-        <%= link_to '+', get_question_admin_birth_plan_path(question.id), class: "btn btn-info btn-lg restlink", :remote => true, id: question.id , style: "    padding: 0px 7px;"%>
+    <td style="text-align: center;"> 
+      <% unless Question.minimum(:order) == question.order %> 
+        <% if RestrictQuestion.where(base_ques_id: question.id).empty? %>
+          <%= link_to '+', get_question_admin_birth_plan_path(question.id), class: "btn btn-info btn-lg restlink", :remote => true, id: question.id , style: "    padding: 0px 7px;"%>
+        <% else %>
+        <%= link_to '+', get_question_admin_birth_plan_path(question.id), class: "btn btn-info btn-lg restlink", :remote => true, id: question.id , style: "    padding: 0px 7px; background: green; border: 1px solid green; color:#fff;"%>
+        <% end %>
       <% end %>  
     </td>    
     <td class="actions" style="text-align: center;">
