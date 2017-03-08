@@ -86,5 +86,9 @@
         jQuery(document).on("click", ".add_fields", function(){
             jQuery(this).closest("ul").append(addFiles);
             jQuery(this).css("display", "none");
-        });        
+        });  
+
+        $('a[disabled=disabled]').click(function(event){
+            event.preventDefault(); 
+        });      
     });

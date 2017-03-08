@@ -49,10 +49,15 @@
                     </li>
                     <% end %> 
                     
-                    <% when 4, 5, 6 %>
+                    <% when 4, 6 %>
                     <li>                      
-                        <input type="text" name="answers[<%= question.id %>][textbox]" class="textfield options <%= question.required == true ? '' : '' %>" id="textbox-<%= question.id %>" value="<%= current_user.birth_plan_answers.find_by(:question_id => question.id).try(:answer) %>", placeholder="<%= question.note %>" >
-                    </li>              
+                        <input type="text" name="answers[<%= question.id %>][textbox]" class="textfield options <%= question.required == true ? 'validate[required]' : '' %>" id="textbox-<%= question.id %>" value="<%= current_user.birth_plan_answers.find_by(:question_id => question.id).try(:answer) %>", placeholder="<%= question.note %>" >
+                    </li> 
+                    <% when 5 %>
+                    <li>                      
+                        <input type="text" name="answers[<%= question.id %>][textbox]" class="validate[custom[email]] <% if question.required? %>validate[required] <% end %> textfield options <%= question.required == true ? '' : '' %>" id="textbox-<%= question.id %>" value="<%= current_user.birth_plan_answers.find_by(:question_id => question.id).try(:answer) %>", placeholder="<%= question.note %>" >
+                    </li>     
+
                     <% end %>
                 </ul>
             </div>
@@ -70,7 +75,7 @@
         <div class= "paggingDiv second"><%= link_to "Save", save_session_birth_plan_answers_path(c_id: @cat_id), class: "button nxt-btn", remote: true %>
         </div>
         <div class="paggingDiv">
-            <%= link_to "Next", set_birth_plan_path(c_id: @cat_id+1), class: "button nxt-btn #{@cat_id == 5 ? 'deactive-1' : ''}", remote: (@cat_id == 5 ? true : false)  %>
+            <%= link_to "Next", set_birth_plan_path(c_id: @cat_id+1), class: "button nxt-btn next-button #{@cat_id == 5 ? 'deactive-1' : ''}", remote: (@cat_id == 5 ? true : false) %>
         </div>
     <% else %>
         <div class= "paggingDiv second">
