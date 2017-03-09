@@ -125,26 +125,13 @@
     <% end %>
 <% end %> 
 <script type="text/javascript">
-    $('.checkbox-cl').on('change', function() {
-        
-        $(this.form).submit();
-    });
-
-    $('.radio').on('change', function() {
-        $('#'+this.closest('ol>li').id).removeClass("required-box");
-        $('#'+this.closest('ul>li').id).find('input[type=text]').addClass("validate[required]")
-        $(this.form).submit();
-    });
-    $('.radio').on('click', function() {
-        $('#'+this.closest('ul>li').id).removeClass("required-box");
-     });
+    
     $('.textfield').on('keyup', function() {
-        $('#'+this.closest('ol>li').id).removeClass("required-box");
-        $('#'+this.closest('ul>li').id).removeClass("required-box");
         $(this.form).submit();
     });
 
-    $('.radio').on('click', function() {        
+    $('.radio').on('click', function() {    
+    $(this.form).submit();    
     var chk = $("#"+this.id).prop('checked')
     var opt_id = this.id.split("--")[1]
     var ques_id = this.id.split("--")[0]

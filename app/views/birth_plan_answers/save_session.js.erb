@@ -2,31 +2,6 @@
 	$(".save-btn").html("Saved");
 <% end %>
 
-<% if @required_questions.present? %>
-	<% @required_questions.each do |x| %>
-		if ($("#li-<%= x.id %>").find("input[type='checkbox']").is(':checked')) {
-		}
-		else if ($("#li-<%= x.id %>").find("input[type='radio']").is(':checked')) {
-		}
-		else{
-			$("#li-<%= x.id %>").addClass("required-box");
-			var txt_sel =  $("#li-<%= x.id %>").find("input[type='text']");
-			if (txt_sel.length > 0){	
-				txt_length = txt_sel.val().trim('').length
-				if (txt_length > 0){
-					$("#li-<%= x.id %>").removeClass("required-box");
-				}
-				else {
-					$("#li-<%= x.id %>").addClass("required-box");
-				}
-			} 
-		}
-		
-	<% end %>
-	<% unless @opt_blanks.present? %>
-		
-	alert("Birth Plan Saved Successfully.");
-	<% end %>
-<% elsif @cat_id < 6 %>
+<% if  @cat_id < 6 %>
 	alert("Birth Plan Saved Successfully.");
 <% end %>
