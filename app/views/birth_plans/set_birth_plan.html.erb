@@ -80,10 +80,10 @@
 <div class="birth_plan_pagination mobile">
     <div class="row">
         <div class="paggingDiv">
-            <span class="currentPage page"><%= @cat_id %></span> OF <span class="totalPages page">9</span> PAGES
+            <span class="currentPage page"><%= @cat_id %></span> OF <span class="totalPages page">5</span> PAGES
         </div>                            
         <div class="paggingDiv">
-            <%= f.submit 'Next', class: "button nxt-btn #{@cat_id == 5 ? 'deactive-1' : ''}" %>
+            <%= link_to "Next", set_birth_plan_path(c_id: @cat_id+1), class: "button nxt-btn #{@cat_id == 5 ? 'deactive-1' : ''}", remote: (@cat_id == 5 ? true : false) %>
         </div>
     </div>
 </div>
