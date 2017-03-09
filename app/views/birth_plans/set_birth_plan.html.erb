@@ -167,8 +167,20 @@
     });
   }); 
 
-    $('.nxt-btn').on('click', function() {  
+    $('.nxt-btn').on('click', function(e) {  
         $("#new_birth_plan_answer").validationEngine('validate');
+        e.preventDefault();
+        var err_length = $(".input-box-error").size();
+        if (err_length > 0){
+
+            alert("errors");
+        }
+        else
+        {
+            <% if  @cat_id < 5 %>
+            window.location.replace("/set_birth_plan?c_id=<%= @cat_id+1 %>");
+            <% end %>
+        }
     }); 
 
     <% if @restricted_questions.present? %>
