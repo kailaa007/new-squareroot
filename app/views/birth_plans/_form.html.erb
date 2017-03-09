@@ -16,7 +16,7 @@
                     <% when 1, 2 %>
                     <% question.options.each_with_index do |option, index| %>
                     <li id="li-option-<%= option.id %>">
-                        <input type="radio" name="answers[<%= question.id %>][radio][option_id]" value="<%= option.id %>" class="options radio radio-<%=question.id %>" id="<%= question.id %>--<%= option.id %>--<%= ind+1 %>options" <%= current_user.birth_plan_answers.map(&:answer_options).flatten.map(&:option_id).flatten.compact.include?(option.id) ? 'checked=checked' : ''%>>
+                        <input type="radio" name="answers[<%= question.id %>][radio][option_id]" value="<%= option.id %>" class="options radio radio-<%=question.id %> <%= question.required == true ? 'validate[required]' : '' %>" id="<%= question.id %>--<%= option.id %>--<%= ind+1 %>options" <%= current_user.birth_plan_answers.map(&:answer_options).flatten.map(&:option_id).flatten.compact.include?(option.id) ? 'checked=checked' : ''%>>
                         <label for="<%= question.id %>--<%= option.id %>--<%= ind+1 %>options"><%= option.option_title %></label>
                             <% if option.description.present? && option.textbox_enable == false %><a class="ques_info" style="display: inline-block;" href="javascript:void(0);" title>   <div class="tooltip_box" ><%= option.description %></div></a>
                             <% end %>
@@ -38,7 +38,7 @@
                     <% question.options.each_with_index do |option, index| %>
                     <li id="li-option-<%= option.id %>">   
                     <%= hidden_field_tag "answers[#{question.id}][checkbox][]", nil %>                                          
-                        <input type="checkbox" name="answers[<%= question.id %>][checkbox][]" class="options checkbox-cl checkbox-<%=question.id %>" id="<%= question.id %>--<%= option.id %>--<%= ind+1 %>options" value="<%= option.id %>" <%= current_user.birth_plan_answers.map(&:answer_options).flatten.map(&:option_id).flatten.compact.include?(option.id) ? 'checked=checked' : ''%>>
+                        <input type="checkbox" name="answers[<%= question.id %>][checkbox][]" class="options checkbox-cl checkbox-<%=question.id %> <%= question.required == true ? '' : '' %>" id="<%= question.id %>--<%= option.id %>--<%= ind+1 %>options" value="<%= option.id %>" <%= current_user.birth_plan_answers.map(&:answer_options).flatten.map(&:option_id).flatten.compact.include?(option.id) ? 'checked=checked' : ''%>>
                         
                         <label for="<%= question.id %>--<%= option.id %>--<%= ind+1 %>options"><%= option.option_title %>
                         </label>
@@ -75,7 +75,8 @@
         <div class= "paggingDiv second"><%= link_to "Save", save_session_birth_plan_answers_path(c_id: @cat_id), class: "button nxt-btn", remote: true %>
         </div>
         <div class="paggingDiv">
-            <%= link_to "Next", set_birth_plan_path(c_id: @cat_id+1), class: "button nxt-btn next-button #{@cat_id == 5 ? 'deactive-1' : ''}", remote: (@cat_id == 5 ? true : false) %>
+            <a class="button nxt-btn next-button <%= @cat_id == 5 ? 'deactive-1' : '' %>">Next</a>
+            <%#= link_to "Next", set_birth_plan_path(c_id: @cat_id+1), class: "button nxt-btn next-button #{@cat_id == 5 ? 'deactive-1' : ''}", remote: (@cat_id == 5 ? true : false) %>
         </div>
     <% else %>
         <div class= "paggingDiv second">

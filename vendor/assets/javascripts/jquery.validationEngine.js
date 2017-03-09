@@ -2076,7 +2076,7 @@
 		// Name of the event triggering field validation
 		validationEventTrigger: "blur",
 		// Automatically scroll viewport to the first error
-		scroll: true,
+		scroll: false,
 		// Focus on the first input
 		focusFirstField:false,
 		// Show prompts, set to false to disable prompts

@@ -30,6 +30,7 @@ class BirthPlansController < ApplicationController
     @restricted_questions  = Question.where(id: current_user.birth_plan_answers.includes(:answer_options).map(&:question_id)).map(&:restrict_questions).flatten.compact.select{|x| x.ques_status == false}.map(&:base_ques_id)
     @restricted_options  = RestrictQuestion.where( main_option_id: current_user.birth_plan_answers.map(&:answer_options).flatten.map(&:option_id), option_status: false).map(&:base_option_id)
     @birth_plan         = BirthPlanAnswer.new
+    session[:answers] = []
   end
 
   def save_session

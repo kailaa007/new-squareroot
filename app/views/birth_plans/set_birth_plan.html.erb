@@ -83,7 +83,7 @@
             <span class="currentPage page"><%= @cat_id %></span> OF <span class="totalPages page">5</span> PAGES
         </div>                            
         <div class="paggingDiv">
-            <%= link_to "Next", set_birth_plan_path(c_id: @cat_id+1), class: "button nxt-btn #{@cat_id == 5 ? 'deactive-1' : ''}", remote: (@cat_id == 5 ? true : false) %>
+            <%= link_to "Next", set_birth_plan_path(c_id: @cat_id+1), class: "button nxt-btn next-button #{@cat_id == 5 ? 'deactive-1' : ''}", remote: (@cat_id == 5 ? true : false) %>
         </div>
     </div>
 </div>
@@ -126,7 +126,6 @@
 <% end %> 
 <script type="text/javascript">
     $('.checkbox-cl').on('change', function() {
-        $('#'+this.closest('ol>li').id).removeClass("required-box");
         
         $(this.form).submit();
     });
@@ -156,7 +155,8 @@
     });
   }); 
 
-    $('.checkbox-cl').on('change', function() {        
+    $('.checkbox-cl').on('change', function() {  
+    $(this.form).submit();      
     var chk = $("#"+this.id).prop('checked')
     var opt_id = this.id.split("--")[1]
     var ques_id = this.id.split("--")[0]
@@ -167,13 +167,13 @@
     });
   }); 
 
-    $('.nxt-btn').on('click', function(e) {  
+    $('.next-button').on('click', function(e) {  
         $("#new_birth_plan_answer").validationEngine('validate');
         e.preventDefault();
         var err_length = $(".input-box-error").size();
         if (err_length > 0){
 
-            alert("errors");
+            alert("Please fill the required fields");
         }
         else
         {
