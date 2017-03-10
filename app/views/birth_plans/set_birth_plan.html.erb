@@ -170,6 +170,25 @@
         }
     }); 
 
+     $('.sve-btn').on('click', function(e) {  
+        $("#new_birth_plan_answer").validationEngine('validate');
+        e.preventDefault();
+        var err_length = $(".input-box-error").size();
+        if (err_length > 0){
+
+            alert("Please fill the required fields");
+        }
+        else {
+            $.ajax({
+              url: '/questions/save_session?c_id='+<%= @cat_id %>,
+              type: 'POST',
+              data: {"completed": ''}
+            });
+            alert("Birth Plan Saved Successfully.");
+        }
+       
+    });
+
     <% if @restricted_questions.present? %>
         <% @restricted_questions.each do |rq| %>
             $("#li-<%= rq %>").hide();
