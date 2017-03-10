@@ -16,7 +16,7 @@
                     <% when 1, 2 %>
                     <% question.options.each_with_index do |option, index| %>
                     <li id="li-option-<%= option.id %>">
-                        <input type="radio" name="answers[<%= question.id %>][radio][option_id]" value="<%= option.id %>" class="options radio radio-<%=question.id %> <%= question.required == true ? 'validate[required]' : '' %>" id="<%= question.id %>--<%= option.id %>--<%= ind+1 %>options" <%= current_user.birth_plan_answers.map(&:answer_options).flatten.map(&:option_id).flatten.compact.include?(option.id) ? 'checked=checked' : ''%>>
+                        <input type="radio" name="answers[<%= question.id %>][radio][option_id]" value="<%= option.id %>" class="options radio radio-<%=question.id %> <%= question.required == true ? '' : '' %>" id="<%= question.id %>--<%= option.id %>--<%= ind+1 %>options" <%= current_user.birth_plan_answers.map(&:answer_options).flatten.map(&:option_id).flatten.compact.include?(option.id) ? 'checked=checked' : ''%>>
                         <label for="<%= question.id %>--<%= option.id %>--<%= ind+1 %>options"><%= option.option_title %></label>
                             <% if option.description.present? && option.textbox_enable == false %><a class="ques_info" style="display: inline-block;" href="javascript:void(0);" title>   <div class="tooltip_box" ><%= option.description %></div></a>
                             <% end %>
