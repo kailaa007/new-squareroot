@@ -21,7 +21,7 @@
                             <% if option.description.present? && option.textbox_enable == false %><a class="ques_info" style="display: inline-block;" href="javascript:void(0);" title>   <div class="tooltip_box" ><%= option.description %></div></a>
                             <% end %>
                             <% if option.textbox_enable == true %>
-                                <input type="text" name="answers[<%= question.id %>][radio][text]" class="textfield validate[condRequired[<%= question.id %>--<%= option.id %>--<%= ind+1 %>options]] options option-id-<%= option.id %> opt-<%= question.id %>" id="te<%= question.id %>--<%= option.id %>--<%= ind+1 %>options" <%= current_user.birth_plan_answers.find_by(:question_id => question.id).present? ? "value=#{current_user.birth_plan_answers.find_by(:question_id => question.id).answer_options.find_by(option_id: option.id).try(:textbox_answer)}" : '' %>,  placeholder= "<%= option.description %>">
+                                <input type="text" name="answers[<%= question.id %>][radio][text]" class="textfield validate[condRequired[<%= question.id %>--<%= option.id %>--<%= ind+1 %>options]] options option-id-<%= option.id %> opt-<%= question.id %>" id="te<%= question.id %>--<%= option.id %>--<%= ind+1 %>options" <%= current_user.birth_plan_answers.find_by(:question_id => question.id).present? ? "value=#{current_user.birth_plan_answers.find_by(:question_id => question.id).answer_options.find_by(option_id: option.id).try(:textbox_answer)}" : '' %> placeholder= "<%= option.description %>">
                             <% end %>
                         
                     </li>
