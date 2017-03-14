@@ -27,7 +27,6 @@
                     </li>
                     <script type="text/javascript">
                         $(".radio-<%=question.id %>").on('click', function() {
-
                             $(".opt-<%= question.id %>").val('');
                             $(".opt-<%= question.id %>").removeClass('validate[required] input-box-error');
                         });
