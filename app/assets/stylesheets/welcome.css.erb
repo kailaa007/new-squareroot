@@ -12354,8 +12354,8 @@ body.facts .country-facts .facts-inner p {
   left: 50%;
   width: 974px;    
   margin:-250px 0 0 -487px;
-  padding: 70px 150px 50px; 
-  background: rgba(111,93,115, 0.74);
+  padding: 60px 120px 52px 152px; 
+  background: rgba(111,93,115, 0.84);
   font-family: "AvrNx";  
   z-index: 1;  
 }
@@ -12363,15 +12363,21 @@ body.facts .country-facts .facts-inner p {
   font-weight: 500;
   font-size: 22px;
   color: #F4C553;
+  margin-bottom: 40px;
+  margin-left: -38px;
+  letter-spacing: 2.7px;
 }
 .birth-intro-popup p{
   font-size: 16px;
   font-weight: 400;
   color: #ffffff;
+  letter-spacing: 2.2px;
+  margin-bottom: 22px;
+  line-height: 22px;
 }
 .btn{
   display: inline-block;
-  padding: 28px 86px;
+  padding: 24px 0px 22px;
   border:1px solid #F4C552;
   font-size: 16px;
   font-weight: 500;
@@ -12382,7 +12388,13 @@ body.facts .country-facts .facts-inner p {
   -moz-transition: .5s ease-in-out;
   -ms-transition: .5s ease-in-out;
   -o-transition: .5s ease-in-out;
-  transition: .5s ease-in-out;    
+  transition: .5s ease-in-out;  
+  margin-top: 25px;
+  margin-left: -36px;  
+  letter-spacing: 2px;
+  max-width: 300px;
+  width: 100%;  
+  border-radius: 0px;
 }
 .btn:focus, .btn:visited{
   color: #F4C552;
@@ -12400,15 +12412,15 @@ body.facts .country-facts .facts-inner p {
   left: 50%;
   margin:0px 0 0 -344px;
   background: #ffffff;
-  padding:70px 105px 15px;
-  z-index: 2;
+  padding:64px 105px 43px;
+  z-index: 999;
   font-family: "AvrNx";  
 }
 .forms-popup a.close-btn,
 .termofuse-popup a.close-btn{
   position: absolute;
-  top: 22px;
-  right: 32px;
+  top: 20px;
+  right: 29px;
   width: 40px;
   height: 40px;
   text-indent: -9999px;
@@ -12417,24 +12429,27 @@ body.facts .country-facts .facts-inner p {
 }
 .forms-popup h4{
   font-family: "AvrNx";
-  font-weight: 500;
+  font-weight: 700;
   font-size: 22px;
   color: #000;
   text-transform: uppercase;
   margin-bottom: 20px;
+  letter-spacing: 4.7px;
+  margin-top: 3px;
+
 }
 .forms-popup input[type="text"], .forms-popup input[type="password"]{
   box-shadow: none;
   border-color:#969696;
-  margin-bottom: 7px;
-  padding:16px 30px;
+  margin-bottom: 8px;
+  padding:17px 30px;
   height: auto;
 }
-.forms-popup input[type="email"], .forms-popup input[type="email"]{
+.forms-popup input[type="email"]{
   box-shadow: none;
   border-color:#969696;
-  margin-bottom: 7px;
-  padding:16px 30px;
+  margin-bottom: 9px;
+  padding:17px 30px;
   height: auto;
 }
 .forms-popup input[type="text"]:focus, .forms-popup input[type="password"]:focus,
@@ -12458,14 +12473,17 @@ body.facts .country-facts .facts-inner p {
   margin-top: 7px;
   background: #f2c252;
   text-align: left; 
-  padding: 18px 30px;
+  padding: 22px 30px 16px;
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: 2px;
 }
 .sign-in-btn-icon{
   position: absolute;
-  width: 30px;
-  height: 20px;
-  top: 15px;
-  right: 30px;
+  width: 32px;
+  height: 22px;
+  top: 18px;
+  right: 32px;
   object-fit: cover;
 }
 a.frgt-pswd-link{
@@ -12473,13 +12491,19 @@ a.frgt-pswd-link{
   font-size: 16px;
   color: #AFAFB0;
   text-transform: capitalize;
+  letter-spacing: 1.8px;
+  margin-top: 7px;
+  display: inline-block;
+  margin-bottom: 10px;
 }
 .sign-up-link-label{
   font-weight: 500;
   color: #000;
+  letter-spacing: 2px;
 }
 .sign-up-link,
 .login-link{
+  margin-left: 12px;
   color: #f2c252;
   text-transform: uppercase;
   -webkit-transition: 0.5s ease-in-out;
@@ -12657,26 +12681,33 @@ input[type="tel"], input[type="time"], input[type="url"], input[type="color"], t
 
 @media only screen and (max-width: 64.0625em){
   .birth-intro-popup{
-    width: 90%;
-    margin-left: -45%;
+    width: 80%;
+    margin-left: -40%;
     padding: 40px 50px;
   }
 }
 @media only screen and (max-width: 40.0625em) {
   .birth-intro-popup{
-    padding: 30px;
+    padding: 20px 34px;
   }
   .btn{
-    padding: 15px 38px;
+    padding: 10px 35px 10px;
     font-size: 12px;
+    letter-spacing: 1.6px;
+    width: 171px;
+    margin-left: 0px;
   }
   .birth-intro-popup p{
     font-size: 12px;
-    line-height: 1.5;
+    line-height: 16px;
+    margin-bottom: 17px;
+    letter-spacing: 1.6px;
   }
   .birth-intro-popup h2{
-    font-size: 14px;
-    letter-spacing: 1px;
+    font-size: 14px;   
+    letter-spacing: 1.7px;
+    margin-left: -5px;
+    margin-bottom: 21px;
   }
 }
 
@@ -12701,6 +12732,9 @@ input[type="tel"], input[type="time"], input[type="url"], input[type="color"], t
   font-weight: 700;
   letter-spacing: 5px;
   margin-bottom: 0px;
+}
+.progress-bar-mobile{
+  display: none;
 }
 .progress-bar{
   position: absolute;
@@ -13506,6 +13540,7 @@ transition: 0.2s ease-in-out;*/
 /*Min width 1600px*/
 @media screen and (max-width: 64em){
   .progress-bar{display: none;}
+  .progress-bar-mobile{display: block;}
   .birth_plan_ques_section input[type="radio"] + label input[type="text"].respective_input, 
   .birth_plan_ques_section input[type="radio"] + label input[type="text"].respective_input.small, 
   .birth_plan_ques_section input[type="checkbox"] + label input[type="text"].respective_input, 
@@ -13521,7 +13556,8 @@ transition: 0.2s ease-in-out;*/
   .heading-due-date div{font-size: 12px;}
   .doc-caption{font-size:20px;}
 
-  .forms-popup input[type="text"], .forms-popup input[type="password"]{padding: 12px 20px;}
+  .forms-popup input[type="text"], .forms-popup input[type="password"], .forms-popup input[type="email"]{padding: 13px 10px;}
+  .forms-popup input[type="password"], .forms-popup input[type="email"]{margin-bottom: 0px;}
   .sign-up-form .columns.lastinput input { border-top-color: transparent; border-left-color: #969696; }
   ._splash_heading{ font-size: 14px; letter-spacing: 1.5px;}
   .birth_plan_welcome .birth_plan_welcome_text p{font-size: 12px; line-height: 1.5;}
@@ -13535,7 +13571,11 @@ transition: 0.2s ease-in-out;*/
   .birth_plan_ques_section .ques_info, .birth_plan_ques_section .add_fields.mobile{display: inline-block; clear: both; background: none;width: auto;height: auto; padding: 8px 20px 5px; position:relative; margin:0px;}
   .birth_plan_pagination.desktop{display: none;}
   .button.nxt-btn, .forms-popup .login-form .button.sign-in-btn, .forms-popup .sign-up-form .button.sign-in-btn, 
-  .forms-popup .forget-pswd-form .button.forget-submit-btn{display: inline-block; font-size: 13px; padding-left: 8px; padding-right: 8px;}
+  .forms-popup .forget-pswd-form .button.forget-submit-btn{display: inline-block; padding-left: 8px; padding-right: 8px; margin-top: 20px; padding: 15px 12px; font-size: 16px; margin-bottom: 24px;}
+  .sign-in-btn-icon {width: 24px; height: 24px;top: 14px;right: 15px;object-fit: cover;}
+  .sign-up-link-label { letter-spacing: 0.5px; margin-bottom: 15px;}
+  .sign-up-link, .login-link {margin-left:2px; letter-spacing: 1px;}
+  a.frgt-pswd-link {font-size: 13px; letter-spacing: 1px;}
   .birth_plan_pagination .paggingDiv, .button.nxt-btn,
   .checklist-popup input[type="radio"] + label, .checklist-popup input[type="checkbox"] + label{font-size: 13px;}
   .birth_plan_pagination .paggingDiv:first-child{width: 35%;}
@@ -13551,11 +13591,11 @@ transition: 0.2s ease-in-out;*/
   .birth_plan_ques_section input[type="checkbox"] + label:before{top: -3px;}
   .birth_plan_ques_section input[type="radio"]:checked + label:after{top: 0px;}
   .birth_plan_ques_section input[type="checkbox"]:checked + label:after{top: 1px;}
-  .checklist-popup, .confirmation-popup, .forms-popup, .termofuse-popup {width: 90%;margin: 0px 0 0 -45%;}
+  .checklist-popup, .confirmation-popup, .forms-popup, .termofuse-popup {width: 92%;margin: 0px 0 0 -46%;}  
   .checklist-popup{padding: 25px 5px 20px 5px}
   .checklist-popup a.close-btn, .confirmation-popup a.close-btn,
-  .forms-popup a.close-btn, .termofuse-popup a.close-btn {top: 22px;right: 22px;width: 30px;height: 30px;}
-  .checklist-popup h4, .confirmation-popup h4, .forms-popup h4, .termofuse-popup h4{font-size: 14px;}
+  .forms-popup a.close-btn, .termofuse-popup a.close-btn {top: 25px;right: 22px;width: 20px;height: 20px;}
+  .checklist-popup h4, .confirmation-popup h4, .forms-popup h4, .termofuse-popup h4{font-size: 14px; letter-spacing: 1.6px; margin-bottom: 33px;}
   .checklist-popup h6, .termofuse-popup h6{font-size: 12px;}
   .add-checklistitem .button.add-checklist{margin-top: 10px;}
   .scrollable .scroll-bar.vertical{right: -12px;}
@@ -13569,7 +13609,7 @@ transition: 0.2s ease-in-out;*/
   .checklist-action{padding-top: 10px;}
   .checklist-popup.showchecklist{z-index: 99;}
   .forms-popup{padding: 0px;}
-  .forms-popup .login-form, .forms-popup .sign-up-form, .forms-popup .forget-pswd-form{padding:25px 20px 5px; z-index: 99;}
+  .forms-popup .login-form, .forms-popup .sign-up-form, .forms-popup .forget-pswd-form{padding:22px 21px 0px; z-index: 99;}
   .termofuse-popup.showtermofuse{padding:55px 20px 25px;}
   .termofuse-popup a.back-btn{left: 22px; font-size: 12px; padding-left: 20px; top: 30px;}
   .termofuse-popup a span.back-btn-icons{width: 15px; height: 15px;top: 1px; left:0px;}
@@ -13588,7 +13628,7 @@ transition: 0.2s ease-in-out;*/
 }
 
 @media screen and (max-width: 62em){
-  .birth_plans .row{width: 90%;}
+  .birth_plans .row{width: 100%;}
 }
 
 @media screen and (min-width: 62.063em){
@@ -13799,7 +13839,7 @@ body.rtl .formError .formErrorArrow {
   background: #ddd;
 }
 
-.input-box-error {
+.input-box-error:before {
   border:#FF0000 1px solid !important;
   padding: 1px;
 }
