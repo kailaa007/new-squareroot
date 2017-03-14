@@ -12584,6 +12584,7 @@ input.iagree + label[for="iAgree"]{
   position: relative;
   padding-left: 30px;
   margin-left: 0px;
+  letter-spacing: 1.5px;
 }
 
 input.iagree + label[for="iAgree"]:before{
@@ -13568,7 +13569,8 @@ transition: 0.2s ease-in-out;*/
   .heading-due-date div{font-size: 12px;}
   .doc-caption{font-size:20px;}
 
-  .forms-popup input[type="text"], .forms-popup input[type="password"], .forms-popup input[type="email"]{padding: 13px 10px;}
+  .forms-popup input[type="text"], .forms-popup input[type="password"], .forms-popup input[type="email"]{padding: 13px 10px 12px;}
+  input.iagree + label[for="iAgree"], input.iagree + label[for="iAgree"] a {letter-spacing: 0.1px; font-size: 11px;}
   .forms-popup input[type="password"], .forms-popup input[type="email"]{margin-bottom: 0px;}
   .sign-up-form .columns.lastinput input { border-top-color: transparent; border-left-color: #969696; }
   ._splash_heading{ font-size: 14px; letter-spacing: 1.5px;}
@@ -13607,7 +13609,7 @@ transition: 0.2s ease-in-out;*/
   .checklist-popup{padding: 25px 5px 20px 5px}
   .checklist-popup a.close-btn, .confirmation-popup a.close-btn,
   .forms-popup a.close-btn, .termofuse-popup a.close-btn {top: 25px;right: 22px;width: 20px;height: 20px;} 
-  .checklist-popup h4, .confirmation-popup h4, .forms-popup h4, .termofuse-popup h4{font-size: 14px; letter-spacing: 1.6px; margin-bottom: 33px;}
+  .checklist-popup h4, .confirmation-popup h4, .forms-popup h4, .termofuse-popup h4{font-size: 14px; letter-spacing: 1.9px; margin-bottom: 33px;}
   .checklist-popup h6, .termofuse-popup h6{font-size: 12px;}
   .forms-popup .forget-pswd-form h4 {margin-bottom: 46px; letter-spacing: 2px; margin-top: 4px;}
   .forms-popup .forget-pswd-form p { max-width: 281px; letter-spacing: 0; padding-left: 0; margin-bottom: 33px; font-size: 13px; line-height: 16px;}
@@ -13636,9 +13638,8 @@ transition: 0.2s ease-in-out;*/
   .name-area, .pswd-area {margin-bottom: 15px;}
   a.button.expand.sign-in-btn,
   p.login-link-label {margin-bottom: 10px;}
-  .forms-popup{
-    z-index: 999;
-  }
+  .forms-popup{z-index: 999;}
+  .forms-popup .sign-up-form .button.sign-in-btn{margin-top: 0px; margin-bottom: 10px;}
 
 }
 
