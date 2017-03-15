@@ -29,8 +29,10 @@
                         $(".radio-<%=question.id %>").on('click', function() {
                             $(".opt-<%= question.id %>").val('');
                             $(".opt-<%= question.id %>").attr('disabled',true);
-                            this.nextElementSibling.nextElementSibling.disabled = false
                             $(".opt-<%= question.id %>").removeClass('validate[required] input-box-error');
+                            if (document.body.contains(this.nextElementSibling.nextElementSibling)){
+                                this.nextElementSibling.nextElementSibling.disabled = false;
+                            }
                         });
 
                     </script>
