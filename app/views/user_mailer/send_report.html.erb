@@ -2,10 +2,12 @@
 <h2><%= @user.first_name.titleize %> Report</h2>
 <table width="100%" style="font-family:'AvrNx';" >
   <% Question::CATEGORY_TYPES.each do |cat| %>
+  <% c_quest = Question.where(:category => cat).pluck(:id) %>
+  <% if current_user.birth_plan_answers.where(:question_id => c_quest).present? %>
   <tr><td></td></tr>
   <tr><td>
   <h3 align='center'><b><u><%= cat %></u></b></h3>
-    <% c_quest = Question.where(:category => cat).pluck(:id) %>
+    
     <% @birth_plan_answers.where(:question_id => c_quest).each_with_index do |ques, ind| %>
       <tr>
         <td><%= ind+1 %>) <%= ques.try(:question) %></td>
@@ -31,5 +33,6 @@
   <% end %>
   </td>
 </tr>
+<% end %>
 </table>
 </div>

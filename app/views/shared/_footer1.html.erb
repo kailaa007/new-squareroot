@@ -67,10 +67,11 @@
         <h2><%= current_user.first_name.titleize %> Report</h2>
         <table width="100%" style="font-family:'AvrNx';" >
           <% Question::CATEGORY_TYPES.each do |cat| %>
+          <% c_quest = Question.where(:category => cat).pluck(:id) %>
+          <% if current_user.birth_plan_answers.where(:question_id => c_quest).present? %>
           <tr><td></td></tr>
           <tr><td>
           <h3 align='center'><b><u><%= cat %></u></b></h3>
-            <% c_quest = Question.where(:category => cat).pluck(:id) %>
             <% current_user.birth_plan_answers.where(:question_id => c_quest).each_with_index do |ques, ind| %>
               <tr>
                 <td><%= ind+1 %>) <%= ques.try(:question) %></td>
@@ -96,6 +97,7 @@
           <% end %>
           </td>
         </tr>
+        <% end %>
         </table>
         </div>
     </div>
@@ -113,9 +115,9 @@
 
           var divToPrint=document.getElementById('DivIdToPrint');
 
-          var newWin=window.open('','_self');
+          var newWin=window.open('','_blank','width=1000');
 
-          newWin.document.open();
+          //newWin.document.open();
 
           newWin.document.write('<html><body onload="window.print()">'+divToPrint.innerHTML+'</body></html>');
 

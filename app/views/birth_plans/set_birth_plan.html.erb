@@ -97,24 +97,32 @@
                 <div id="confirmation-content" class="confirmation-container text-center">
                     <ul>
                         <li>
-                            <div class="confirmation-img">
-                                <div class="confirmation-pic"><%= image_tag 'print.png' %></div>
-                            </div>
-                            <div class="confirmation-caption"><a onclick='printDiv();' >Print</a></div>
+                            <a onclick='printDiv();' >
+                                <div class="confirmation-img">
+                                    <div class="confirmation-pic"><%= image_tag 'print.png' %></div>
+                                </div>
+                                <div class="confirmation-caption">Print</div>
+                            </a>
                         </li>
                         <li>
-                            <div class="confirmation-img">
-                                <div class="confirmation-pic"><%= image_tag 'email.png' %></div>
-                            </div>                            
-                            <div class="confirmation-caption"><%= link_to "Email", send_email_report_birth_plan_path(current_user.id), remote: true, class: 'email-send-btn', onclick: "$('.email-send-btn').html('Email Sent');" %></div>
+                            <a onclick="$('.email-send-btn').html('Email Sent'); $('#email-btn-user').click();" >
+                                <div class="confirmation-img">
+                                    <div class="confirmation-pic"><%= image_tag 'email.png' %></div>
+                                </div>                            
+                                <div class="confirmation-caption">
+                                    <%= link_to "Email", send_email_report_birth_plan_path(current_user.id), remote: true, class: 'email-send-btn', id: "email-btn-user" %>
+                                </div>
+                            </a>
                         </li>
                         <li>
-                            <div class="confirmation-img">
-                                <div class="confirmation-pic"><%= image_tag 'download.png' %></div>
-                            </div>
-                            <div class="confirmation-caption">
-                                <%= link_to "Download", report_birth_plan_answers_path(format: 'pdf'), target: :_blank %>
-                            </div>
+                            <a href="/questions/report.pdf", download="<%= current_user.first_name %>-report" >
+                                <div class="confirmation-img">
+                                    <div class="confirmation-pic"><%= image_tag 'download.png' %></div>
+                                </div>
+                                <div class="confirmation-caption">
+                                    <%= link_to "Download", report_birth_plan_answers_path(format: 'pdf'), target: :_blank, download: "#{current_user.first_name}-report", id: 'download-pdf' %>
+                                </div>
+                            </a>
                         </li>
                     </ul>
                     <%= link_to "Save Answers", save_session_birth_plan_answers_path(c_id: 6), class: "btn next-button save-btn", remote: true %>

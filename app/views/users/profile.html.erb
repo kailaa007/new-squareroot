@@ -29,7 +29,7 @@
 		<div class="columns large-4 large-offset-1">
 			<div  class="profile-options options-download">
 			<% if current_user.birth_plan_answers.present? %>
-				<%= link_to report_birth_plan_answers_path(format: 'pdf'), target: :_blank do%>
+				<%= link_to report_birth_plan_answers_path(format: 'pdf'), target: :_blank, download: "#{current_user.first_name}-report" do%>
 					<span class="profile-options-icon"><%= image_tag 'download.png' %></span>Download PDF
 				<% end %>
 			<% else %>
