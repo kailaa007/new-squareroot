@@ -65,31 +65,38 @@ class BirthPlanAnswersController < ApplicationController
   def report
     @user       = current_user
     @birth_plan_answers    = current_user.birth_plan_answers
-    respond_to do |format|
-      format.html do 
-        render  layout: 'pdf'
+    if params[:print] == 'true'
+      respond_to do |format|
+        format.html do 
+          render  layout: false
+        end
       end
-      format.pdf do
-        render pdf: "report",
-              template: "birth_plan_answers/report.html.erb",
-              layout: 'pdf', 
-              default_header:                 true,
-              header: {
-                html:{        
-                    template: 'shared/pdf_header',          # use :template OR :url
-                    layout:   'pdf',             # optional, use 'pdf_plain' for a pdf_plain.html.pdf.erb file, defaults to main layout
-                }
-              },
-              footer: {
-                html: {
-                  template: 'shared/pdf_footer',          # use :template OR :url
-                    layout:   'pdf',  
-                }
-              },
-              locals: {:birth_plan_answers => @birth_plan_answers, user: @user}
+    else
+      respond_to do |format|
+        format.html do 
+          render  layout: 'pdf'
+        end
+        format.pdf do
+          render pdf: "report",
+                template: "birth_plan_answers/report.html.erb",
+                layout: 'pdf', 
+                default_header:                 true,
+                header: {
+                  html:{        
+                      template: 'shared/pdf_header',          # use :template OR :url
+                      layout:   'pdf',             # optional, use 'pdf_plain' for a pdf_plain.html.pdf.erb file, defaults to main layout
+                  }
+                },
+                footer: {
+                  html: {
+                    template: 'shared/pdf_footer',          # use :template OR :url
+                      layout:   'pdf',  
+                  }
+                },
+                locals: {:birth_plan_answers => @birth_plan_answers, user: @user}
+        end
       end
     end
-
   end   
 
   def edit
