@@ -12488,7 +12488,7 @@ body.facts .country-facts .facts-inner p {
   text-align: left; 
   padding: 22px 30px 16px;
   line-height: 1;
-  font-weight: 700;
+  font-weight: 500;
   letter-spacing: 2px;
 }
 .sign-in-btn-icon{
@@ -12586,6 +12586,8 @@ input.iagree + label[for="iAgree"]{
   padding-left: 30px;
   margin-left: 0px;
   letter-spacing: 1.5px;
+  font-size: 13px;
+  font-weight: 500; 
 }
 
 input.iagree + label[for="iAgree"]:before{
@@ -12729,10 +12731,16 @@ input[type="tel"], input[type="time"], input[type="url"], input[type="color"], t
 
 .birth-plan-splash{
   position: relative;
-  margin-bottom: 4rem;
+  margin-bottom: 51px;
 }
 .birth-plan-splash img{
   max-width: 100%;
+  max-height: 418px;
+  object-fit: cover;
+  width: 100%;
+}
+.row._user_profile_layout{
+max-width: 61.3rem;
 }
 ._splash_heading{
   position: absolute;
@@ -13385,12 +13393,16 @@ transition: 0.2s ease-in-out;*/
 }
 
 /*profile page style*/
-.user-profile-area{
-  border-bottom: 1px solid #d9d9d9;
+.user-profile-area{  
   font-family: "AvrNx";    
   font-size: 16px;
-  letter-spacing: 1px;
-  padding-bottom: 22px;
+  letter-spacing: 1px;  
+  padding-left: 8px;
+  padding-right:8px;
+}
+.user-profile-area .user-profile-area-content{
+  border-bottom: 1px solid #d9d9d9;
+  padding-bottom: 23px;
 }
 .user-profile-area .user-profile-area-content ul{
   margin: 0px;
@@ -13403,38 +13415,46 @@ transition: 0.2s ease-in-out;*/
   font-size: 24px;
   letter-spacing: 1px;
   border-right: 1px solid #d9d9d9;    
-  padding: 0 15px;
+  padding: 0 20px;
 }
 .user-profile-area .user-profile-area-content ul li:first-child{padding-left:0px; }
-.user-profile-area .user-profile-area-content ul li:last-child{border-right: none;}
+.user-profile-area .user-profile-area-content ul li:last-child{border-right: none; padding-left: 7px; letter-spacing: 0;}
 .user-profile-area .user-profile-area-content ul li h3{
   color: #000000;
-  line-height: 1.5;
+  line-height: inherit;
   margin: 0px;
-  padding:0 0 0 50px;
-  background: url(<%= asset_path('user.png') %>)no-repeat center left;
-  background-size: contain;
+  padding:0 0 0 85px;
+  background: url(<%= asset_path('user.png') %>)no-repeat 30px 0;
+  background-size: 40px;
   font-size: 24px;
+  height:40px;
+  letter-spacing: 1.2px;
+  font-family: "AvrNx";
 }
 .user-profile-area .user-profile-area-content ul li a{
   color: #F4C552;
+  font-size: 21px;
 }
 .user-profile-options{
   float: left;
   width: 100%;
   border-bottom: 1px solid #d9d9d9;
-  padding: 20px 0 0; 
+  padding: 39px 0 26px; 
+  margin: 0 8px;
 }
 .user-profile-options .profile-options{
   padding-bottom: 20px;
+  
 }
+
 .user-profile-options .profile-options a{
   position: relative;
   font-size: 16px;
   color: #000;
   font-family: "AvrNx";
-  font-weight: 500;
-  padding-left: 60px;
+  font-weight: 600;
+  padding-left: 56px;
+  letter-spacing: 2.3px;
   line-height: 40px;
   height: 40px;
   display: block;
@@ -13456,57 +13476,103 @@ transition: 0.2s ease-in-out;*/
   left: 0;
   top: 0;
 }
+.user-profile-options .profile-options.options-edit,
+.user-profile-options .profile-options.options-print{
+  padding-left: 14px;
+}
+.user-profile-options .profile-options.options-print{
+  padding-top: 17px;
+}
+.user-profile-options .profile-options.options-download{
+  padding-left: 57px;
+    padding-top: 4px;
+}
+.user-profile-options .profile-options.options-download a{
+  padding-left: 63px;
+}
+.user-profile-options .profile-options.options-download a span.profile-options-icon{
+  top: 4px;
+  width:40px;
+}
+.user-profile-options .profile-options.options-email{
+  padding-top: 13px;
+  padding-left: 56px;
+}
+.user-profile-options .profile-options.options-email a {
+  padding-left: 63px;
+}
+.user-profile-options .profile-options.options-email a span.profile-options-icon{
+  top: 7px;
+  width: 40px;
+}
 .user-profile-options .profile-options a:hover{
   opacity: 1;
 }
 .summery-heading-icon{
   position: absolute;
   top: 15px;
-  left:20px;
+  left: 26px;
   width: 40px;
   height: 30px;
   object-fit: contain;
 }
+span.summery-heading-icon.right {
+  left: initial;
+  right: 31px;
+  width: 105px;
+  top: 10px;
+  height: 83px;
+  overflow: hidden;
+}
 .birth-plan-summery-heading-section{
   float: left;
   width: 100%;
-  padding:30px 0;    
+  padding:32px 0;     
 }
 .birth-plan-summery-heading-section h2{
-  padding-left: 30px; 
+  padding-left: 50px;
+  letter-spacing: 2.7px;
+  font-weight: 500;
+  font-size: 22px;
+  margin-bottom: 48px;
 }
 .birth-plan-summery-heading{
   float: left;
-  width: 100%;
+  width: 97%;
+  margin: 0 1.5%;
   position: relative;
   background: #F4C552;
 
 }
 .summery-heading-area{    
-  padding: 20px 80px;
+  padding: 15px 92px 22px;
 }
 .doc-name{
-  font-size: 18px;
+  font-size: 24px;
   color: #fff;
   font-family: "AvrNx";
   font-weight: 500;
   line-height: 1;
   padding-top: 5px;
-  padding-bottom: 3px;    
+  padding-bottom: 4px;
+  letter-spacing: 1.4px;    
 }
 .doc-caption{
   font-size: 24px;
   color: #fff;
   font-family: "AvrNx";
   font-weight: 500;
-  letter-spacing: 2px;
+  letter-spacing: 2.6px;
   line-height: 1;
 }
 .heading-due-date{
-  background: #f7f7f7;
+  background: #eff3f6;  
+  padding: 6px 7px 7px;
   float: left;;
   width: 100%;
-  padding: 10px;
+  font-family: "AvrNx";
+  font-size: 15px;
+  letter-spacing: 0.3px;
 }
 .heading-due-date div {
   padding-right: 20px;
@@ -13517,11 +13583,12 @@ transition: 0.2s ease-in-out;*/
 }
 .birth-plan-summery h2{
   color: #004290;
-  padding-bottom: 12px;
+  padding-bottom: 20px;
   border-bottom: 1px solid #d9d9d9;
   text-transform: none;
   font-weight: 500;
-  letter-spacing: 0;
+  font-size: 22px;
+  letter-spacing: 2.2px;
 }
 .birth-plan-summery p {
   line-height: 1.4;
@@ -13551,6 +13618,7 @@ transition: 0.2s ease-in-out;*/
 .forms-popup .forget-pswd-form .button.forget-submit-btn{
   text-transform: uppercase;
 }
+p.login-link-label {letter-spacing: 2px;}
 /*Min width 1600px*/
 @media screen and (max-width: 64em){
   .progress-bar{display: none;}
@@ -13638,9 +13706,10 @@ transition: 0.2s ease-in-out;*/
   .duedate-calender {top: 9px;right: 10px;width: 20px;}
   .name-area, .pswd-area {margin-bottom: 15px;}
   a.button.expand.sign-in-btn,
-  p.login-link-label {margin-bottom: 10px;}
+  p.login-link-label {margin-bottom: 10px; letter-spacing: 0.5px;}
   .forms-popup{z-index: 999;}
   .forms-popup .sign-up-form .button.sign-in-btn{margin-top: 0px; margin-bottom: 10px;}
+  .ui-datepicker {left: 50%!important; margin-left: -136px;}
 
 }
 
@@ -13864,6 +13933,9 @@ body.rtl .formError .formErrorArrow {
 .input-box-error {
   border:#FF0000 1px solid !important;
   padding: 1px;
+}
+label.input-box-error{
+  border:none!important;
 }
 
 .alert-success {

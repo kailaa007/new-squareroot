@@ -30,19 +30,19 @@
             <span class="sign-in-btn-icon"><%= image_tag 'arrow.png' %></span>
             <% end %>
             <% end %>
-            <p class="text-center"><a class="frgt-pswd-link" href="#">Forgot password ?</a></p> 
-            <p class="sign-up-link-label">Don’t Have an Account ? <a href="javascript:void(0);" class="sign-up-link">Sign Up</a></p> 
+            <p class="text-center"><a class="frgt-pswd-link" href="#">Forgot password?</a></p> 
+            <p class="sign-up-link-label">Don’t Have an Account? <a href="javascript:void(0);" class="sign-up-link">Sign Up</a></p> 
         </div>
     </div>
     <div class="row forget-pswd-form">
         <a href="javascript:closePopup();" class="close-forget-pswd-form close-btn">close</a>
         <div class="medium-centered large-centered">
-            <h4 class="">Forget Password</h4> 
+            <h4 class="">Forgot Password?</h4> 
             <span id='password-error'></span>  
             <p>Enter you email address to reset your password. You may need to check your spam folder or unblock noreply@squareroots.com</p>  
             <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), remote: true, html: { id: 'forgetPasswordForm', method: :post }, validate: false) do |f| %>
             <%= f.error_notification %>
-            <%= f.input :email, autofocus: true, label:false, placeholder:"Email", :input_html => {id: 'forgot-email-id', :class => "validate[required],custom[email] forgot-email-id" } %>
+            <%= f.input :email, autofocus: true, label:false, placeholder:"Email Address", :input_html => {id: 'forgot-email-id', :class => "validate[required],custom[email] forgot-email-id" } %>
             <%= button_tag "Submit", class: 'button expand forget-submit-btn' do %>Submit
             <span class="sign-in-btn-icon"><%= image_tag 'arrow.png' %></span>
             <% end %>
