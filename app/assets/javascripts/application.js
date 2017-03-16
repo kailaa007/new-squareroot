@@ -29,7 +29,11 @@ $(document).foundation();
 $(document).ready(function() {
 
   
-  $( ".datepicker" ).datepicker({ dateFormat: 'yy-mm-dd' });
+  //$( ".datepicker" ).datepicker({ dateFormat: 'yy-mm-dd' });
+
+  $('.datepicker').attr('readonly','readonly');
+    var asdf = $('.datepicker').datepicker({ dateFormat: 'yy-mm-dd' });
+    $('.datepicker').bind("click touchend",function(){asdf.datepicker("show");});
   
   
   $('input.ques_title').on('keydown', function(event) {
@@ -555,7 +559,9 @@ jQuery(document).ready(function(){
       jQuery(".login-form").hide();
       jQuery(".sign-up-form").fadeIn();
   });
-
+  jQuery(".due_date").on("click", function(e){
+      e.preventDefault();
+  });
   jQuery(".login-link").on("click", function(){
       jQuery(".sign-up-form").hide();
       jQuery(".login-form").fadeIn();
