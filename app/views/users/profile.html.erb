@@ -20,7 +20,7 @@
 			</div>
 			<div class="profile-options options-print">
 				<% if current_user.birth_plan_answers.present? %>
-					<a href='' onclick='printDiv();'><span class="profile-options-icon" ><%= image_tag 'print.png' %></span>Print</a>
+					<a onclick="printJS('/questions/report.pdf')"><span class="profile-options-icon" ><%= image_tag 'print.png' %></span>Print</a>
 				<% else %>
 					<a href='' class='not-active'><span class="profile-options-icon" ><%= image_tag 'print.png' %></span>Print</a>
 			<% end %>
