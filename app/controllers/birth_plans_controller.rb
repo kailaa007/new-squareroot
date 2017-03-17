@@ -37,7 +37,7 @@ class BirthPlansController < ApplicationController
     @birth_plan = BirthPlan.first
     @opt_blanks = []
     @@session = session[:answers]
-    if @@session.present?
+    begin
       @@session.each do |q_id, values|
         @question = Question.find(q_id)     
         values.each do |typ, content|
@@ -78,9 +78,9 @@ class BirthPlansController < ApplicationController
           end
         end
       end
-      #current_user.birth_plan_answers.where(question_id: session[:restricted_question_id]).destroy_all
-    end
-
+      rescue
+        puts 'rescued'
+      end
     @required_questions = Question.where(:required => true)
     @cat_id = params[:c_id].to_i
     if @cat_id == 6
