@@ -1438,6 +1438,25 @@ select {
     right: 91.66667%;
     left: auto
   }
+
+  .set_birth_plan .birth_plan_process .row{max-width: 984px;}
+  .set_birth_plan .birth_plan_welcome {margin: 0 8px;padding: 0px;}
+  .set_birth_plan .birth_plan_process .columns{padding-left: 0;padding-right: 0;}
+  .set_birth_plan .birth_plan_process .birth_plan_welcome_help {top: -41px;right: 3px;}
+  .set_birth_plan .birth_plan_welcome hr {margin: 2px 0 8px;border-color: #004290;}
+  .set_birth_plan .birth_plan_welcome .birth_plan_welcome_text {padding: 10px 0;}
+  .set_birth_plan .birth_plan_welcome .birth_plan_welcome_text p{margin-bottom: 23px;letter-spacing: 0.6px;line-height: 1.39; padding: 0px 25px;}
+  .set_birth_plan .birth_plan_ques_section{padding: 20px 35px 8px;}
+  .set_birth_plan .birth_plan_ques_section ol li{padding-left: 5px;margin-bottom: 38px;}
+  .set_birth_plan .birth_plan_ques_section ol li .option-area ul li {padding-left: 0px;margin-top: 22px 0;}
+  .set_birth_plan .birth_plan_ques_section label{letter-spacing: 0px !important;}
+  .set_birth_plan .birth_plan_ques_section ol li h2{margin-bottom:   24px;letter-spacing: 0.5px;}
+  .set_birth_plan .birth_plan_ques_section input[type="radio"] + label, .birth_plan_ques_section input[type="checkbox"] + label{padding-left: 36px;}
+  .set_birth_plan .birth_plan_ques_section input[type="text"] {padding: 0.8rem 1.2rem;  font-size: 17px;display:inline;background: #fff;margin: 0;}
+  .set_birth_plan .birth_plan_pagination{margin: 25px 11px;padding: 14px 0;letter-spacing: 0.6px;}
+  .set_birth_plan .birth_plan_pagination .paggingDiv .button.nxt-btn{padding: 11px 20px;margin: 4px;}
+
+
 }
 
 button,
@@ -3689,6 +3708,11 @@ meta.foundation-mq-topbar {
   .button-group.stack-for-small>li:first-child .button {
     border-top: 0
   }
+  .set_birth_plan .birth_plan_ques_section input[type="text"] {padding: 0.8rem 1.2rem;  font-size: 17px;display:inline;background: #fff;margin-top: 14px;}
+  .birth_plan_welcome .tooltip_box{position: absolute;left: -320px;top: -5px;}
+  .birth_plan_welcome .tooltip_box:after,.birth_plan_welcome .tooltip_box:before{right: -6%;}
+  .birth_plan_welcome .tooltip_box:before{border-left-color: #f5c453;border-right-color: #fff;}
+
 }
 
 .button-group.radius>* {
@@ -4898,6 +4922,7 @@ button.dropdown.secondary:after {
   .icon-bar.two-up.medium-vertical .item {
     width: auto
   }
+
 }
 
 @media only screen and (min-width: 64.0625em) {
@@ -5547,6 +5572,11 @@ ul.pagination li {
   .medium-only-text-justify {
     text-align: justify !important
   }
+  .set_birth_plan .birth_plan_ques_section input[type="text"] {padding: 0.8rem 1.2rem;  font-size: 17px;display:inline;background: #fff;margin-top: 14px;}
+  .birth_plan_welcome .tooltip_box{position: absolute;left: -320px;top: -5px;}
+  .birth_plan_welcome .tooltip_box:after,.birth_plan_welcome .tooltip_box:before{right: -6%;}
+  .birth_plan_welcome .tooltip_box:before{border-left-color: #f5c453;border-right-color: #fff;}
+
 }
 
 @media only screen and (min-width: 40.0625em) {
@@ -5562,6 +5592,7 @@ ul.pagination li {
   .medium-text-justify {
     text-align: justify !important
   }
+
 }
 
 @media only screen and (min-width: 64.0625em) and (max-width: 90em) {
@@ -5577,6 +5608,10 @@ ul.pagination li {
   .large-only-text-justify {
     text-align: justify !important
   }
+  .set_birth_plan .birth_plan_ques_section input[type="text"] {padding: 0.8rem 1.2rem;  font-size: 17px;display:inline;background: #fff;margin-top: 14px;}
+  .birth_plan_welcome .tooltip_box{position: absolute;left: -320px;top: -5px;}
+  .birth_plan_welcome .tooltip_box:after,.birth_plan_welcome .tooltip_box:before{right: -6%;}
+  .birth_plan_welcome .tooltip_box:before{border-left-color: #f5c453;border-right-color: #fff;}
 }
 
 @media only screen and (min-width: 64.0625em) {
@@ -11342,7 +11377,8 @@ body.policy .framework-section .wheel span.d {
 
 .scrollable .viewport {
   position: relative;
-  overflow: hidden;
+  /*overflow-y: auto !important;*/
+  /*width: 100% !important;*/
 }
 
 .scrollable .viewport .overview {
@@ -13582,13 +13618,16 @@ span.summery-heading-icon.right {
   margin: 0 auto;
 }
 .birth-plan-summery h2{
-  color: #004290;
-  padding-bottom: 20px;
-  border-bottom: 1px solid #d9d9d9;
-  text-transform: none;
-  font-weight: 500;
-  font-size: 22px;
-  letter-spacing: 2.2px;
+    color: #2b405b;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #d9d9d9;
+    text-transform: capitalize;
+    font-weight: 500;
+    font-size: 22px;
+    letter-spacing: 2.2px;
+    margin-top: 36px;
+    margin-bottom: 18px;
+    padding-left: 0px;
 }
 .birth-plan-summery p {
   line-height: 1.4;
@@ -13619,10 +13658,15 @@ span.summery-heading-icon.right {
   text-transform: uppercase;
 }
 p.login-link-label {letter-spacing: 2px;}
+
+.birth-plan-content{background:#fff;border-left: 1px solid #969696;border-right: 1px solid #969696;border-bottom: 1px solid #969696;overflow: hidden;}
+
+
 /*Min width 1600px*/
 @media screen and (max-width: 64em){
   .progress-bar{display: none;}
   .progress-bar-mobile{display: block;}
+  .birth_plan_welcome{margin-top: 40px;}
   .birth_plan_ques_section input[type="radio"] + label input[type="text"].respective_input, 
   .birth_plan_ques_section input[type="radio"] + label input[type="text"].respective_input.small, 
   .birth_plan_ques_section input[type="checkbox"] + label input[type="text"].respective_input, 
@@ -13661,8 +13705,9 @@ p.login-link-label {letter-spacing: 2px;}
   a.frgt-pswd-link {font-size: 13px; letter-spacing: 1px;}
   .birth_plan_pagination .paggingDiv, .button.nxt-btn,
   .checklist-popup input[type="radio"] + label, .checklist-popup input[type="checkbox"] + label{font-size: 13px;}
-  .birth_plan_pagination .paggingDiv:first-child{width: 35%;}
-  .birth_plan_pagination .paggingDiv:last-child{width: 65%;}
+  .birth_plan_pagination .paggingDiv:first-child{width: 35%;padding-left: 24px;}
+  .birth_plan_pagination .paggingDiv:last-child{width: 60%;}
+  .birth_plan_pagination .paggingDiv:last-child .button{margin: 0;}
   .birth_plan_pagination.mobile{display: block; padding-bottom: 0px;}
   .birth_plan_pagination{border-bottom: none;}
   footer{clear: both;}
@@ -13716,22 +13761,22 @@ p.login-link-label {letter-spacing: 2px;}
   .user-profile-area .user-profile-area-content ul {margin: 0;padding: 0px;list-style: none;}
   .user-profile-area .user-profile-area-content ul li:first-child {padding-left: 0px;padding-right: 3px;height: 18px;}
   .user-profile-area .user-profile-area-content ul li:last-child {padding: 0px;}
-  .user-profile-area .user-profile-area-content ul li a{font-size:10px;}
-  .user-profile-area .user-profile-area-content ul li h3{font-size: 10px !important;background: url(/assets/user-184ff095ccab32d96deacd34f1ea9010e45540828b88aaa0b0fab43ee41d791b.png) no-repeat 0px 0px;background-size: 18px;padding-left: 22px;height: 18px;padding-top: 1px;}
-  .user-profile-area .user-profile-area-content {border-bottom: 2px solid #d9d9d9;padding-bottom: 10px;}
+  .user-profile-area .user-profile-area-content ul li a{font-size:10px;font-weight: 500;letter-spacing: 0.8px;}
+  .user-profile-area .user-profile-area-content ul li h3{font-size: 11px;background: url(/assets/user-184ff095ccab32d96deacd34f1ea9010e45540828b88aaa0b0fab43ee41d791b.png) no-repeat 0px 0px;background-size: 18px;padding-left: 22px;height: 18px;padding-top: 1px;letter-spacing: 0.8px;}
+  .user-profile-area .user-profile-area-content {border-bottom: 1px solid #969696;padding-bottom: 10px;}
   
-  .user-profile-options{padding: 14px 0px 0px 12px;margin: 0 0px;border-bottom: 2px solid #d9d9d9;}
+  .user-profile-options{padding: 14px 0px 0px;margin: 0 0px;border-bottom: 1px solid #969696;padding-bottom: 10px;}
   .user-profile-options .small-12{padding-left: 0px;padding-right: 0;}
   .user-profile-options .large-7{padding-left: 0px; width: 56%;}
   .user-profile-options .large-4{padding-left: 0px; padding-right: 0; width: 44%;}
-  .user-profile-options .profile-options.options-download a{padding-left: 38px !important;}
+  .user-profile-options .profile-options.options-download a{padding-left: 44px !important;}
   .user-profile-options .profile-options.options-email a{padding-left: 38px !important;}
-  .user-profile-options .profile-options a,.user-profile-options .profile-options.options-download a{font-size: 10px;font-weight: 600;padding: 0 0 0 29px;line-height: 21px;height: 24px;letter-spacing: 1.3px;opacity: 1;}
+  .user-profile-options .profile-options a,.user-profile-options .profile-options.options-download a{font-size: 11px;font-weight: 500;padding: 0 0 0 35px;line-height: 15px;height: 24px;letter-spacing: 1.3px;opacity: 1;}
   .user-profile-options .profile-options a span.profile-options-icon{width: 18px !important;height: 18px !important; text-align: left;}
 
   .user-profile-options .profile-options.options-edit, .user-profile-options .profile-options.options-print,
   .user-profile-options .profile-options.options-download{padding:0;}
-  .user-profile-options .profile-options.options-email{padding: 13px 0 5px;}
+  .user-profile-options .profile-options.options-email{padding: 13px 0 0;}
   .user-profile-options .profile-options a span.profile-options-icon{top:-2px;}
   .user-profile-options .profile-options.options-print,.user-profile-options .profile-options.options-print{padding-top: 13px;}
   .user-profile-options .profile-options.options-download a span.profile-options-icon{top: 0px;left: 10px;}
@@ -13740,17 +13785,18 @@ p.login-link-label {letter-spacing: 2px;}
   .birth-plan-summery-heading-section {padding: 14px 0;}
   .summery-heading-area {padding: 14px 0;margin: 0px 19px;}
   .birth-plan-summery-heading {left:0;width: 97%;margin: 0 6.7%;}
-  .birth-plan-summery-heading-section h2{font-size: 16px;margin-bottom: 13px;padding-left: 38px;letter-spacing: 2px;}
+  .birth-plan-summery-heading-section-main{text-align:center;}
+  .birth-plan-summery-heading-section h2{font-size: 16px;margin-bottom: 13px;padding-left: 0px;letter-spacing: 2px;}
   .summery-heading-icon {top: 12px;left: 10px;width: 18px;height: 28px;}
-  .summery-heading-area .doc-name{font-size: 10px;padding-top: 0px;padding-left: 12px;}
+  .summery-heading-area .doc-name{font-size: 11px;padding-top: 0px;padding-left: 12px;}
   .summery-heading-area .doc-caption{font-size: 11px; padding-left: 12px; letter-spacing: 1.3px;}
   .birth-plan-summery-heading {width: 87%;margin: 0 6.7%;position: relative;background: #F4C552;}
    span.summery-heading-icon.right {width: 50px;height:50px;right: 15px;}
   .heading-due-date{padding: 0px;letter-spacing: 0.1px;}
   .heading-due-date .right{font-size: 10px;padding: 2px 7px;font-weight: 400;}
-  .birth-plan-summery-content{max-width: 96%;}
+  .birth-plan-summery-content{max-width: 100%;margin-top: 14px;}
   .birth-plan-summery h2{margin-top: 0px;padding-bottom: 4px;margin-bottom: 4px;font-size: 16px;letter-spacing: 2.7px;}
-  .birth-plan-summery p{font-size: 12px;margin: 2px 0px;line-height: 1.20;padding-bottom: 10px;padding-top: 4px; letter-spacing: 1.2px;}
+  .birth-plan-summery p{font-size: 11px;font-weight: 400;margin: 2px 0px;line-height: 1.5;padding-bottom: 10px;padding-top: 4px; letter-spacing: 1.2px;}
 
 }
 
@@ -13763,7 +13809,7 @@ p.login-link-label {letter-spacing: 2px;}
 }
 
 @media screen and (min-width: 64.0625em){
-  .tooltip_box{width: 200px;}    
+  .tooltip_box{width: 300px;}    
 }
 
 @media screen and (min-width: 64.0625em) and (max-width: 73.750em){

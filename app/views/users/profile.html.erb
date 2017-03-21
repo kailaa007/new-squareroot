@@ -12,44 +12,44 @@
 				<li><%= link_to "Log Out", destroy_user_session_path, method: :delete, :class => 'logout-link'  %></li>
 			</ul>
 		</div>
-	</div>
-	<div class='user-profile-options'>
-		<div class="columns small-12 large-7">
-			<div class="profile-options options-edit">
-				<a href="/set_birth_plan" title=""><span class="profile-options-icon"><%= image_tag 'edit_summery.png' %></span><%= current_user.birth_plan_answers.present? ? 'Edit Birth Plan Summary' : 'Start Birth Plan' %></a>
+		<div class='user-profile-options'>
+			<div class="columns small-12 large-7">
+				<div class="profile-options options-edit">
+					<a href="/set_birth_plan" title=""><span class="profile-options-icon"><%= image_tag 'edit_summery.png' %></span><%= current_user.birth_plan_answers.present? ? 'Edit Birth Plan Summary' : 'Start Birth Plan' %></a>
+				</div>
+				<div class="profile-options options-print">
+					<% if current_user.birth_plan_answers.present? %>
+						<a onclick="printJS('/questions/report.pdf?print=true')"><span class="profile-options-icon" ><%= image_tag 'print.png' %></span>Print</a>
+					<% else %>
+						<a href='' class='not-active'><span class="profile-options-icon" ><%= image_tag 'print.png' %></span>Print</a>
+				<% end %>
+				</div>
 			</div>
-			<div class="profile-options options-print">
+			<div class="columns large-4">
+				<div  class="profile-options options-download">
 				<% if current_user.birth_plan_answers.present? %>
-					<a onclick="printJS('/questions/report.pdf?print=true')"><span class="profile-options-icon" ><%= image_tag 'print.png' %></span>Print</a>
+					<%= link_to report_birth_plan_answers_path(format: 'pdf'), target: :_blank, download: "#{current_user.first_name}-report" do%>
+						<span class="profile-options-icon"><%= image_tag 'download.png' %></span>Download PDF
+					<% end %>
 				<% else %>
-					<a href='' class='not-active'><span class="profile-options-icon" ><%= image_tag 'print.png' %></span>Print</a>
-			<% end %>
-			</div>
-		</div>
-		<div class="columns large-4">
-			<div  class="profile-options options-download">
-			<% if current_user.birth_plan_answers.present? %>
-				<%= link_to report_birth_plan_answers_path(format: 'pdf'), target: :_blank, download: "#{current_user.first_name}-report" do%>
-					<span class="profile-options-icon"><%= image_tag 'download.png' %></span>Download PDF
+					<a class='not-active'><span class="profile-options-icon"><%= image_tag 'download.png' %></span>Download PDF</a>
 				<% end %>
-			<% else %>
-				<a class='not-active'><span class="profile-options-icon"><%= image_tag 'download.png' %></span>Download PDF</a>
-			<% end %>
-			</div>
-			<div class="profile-options options-email">
-			<% if current_user.birth_plan_answers.present? %>
-				<%= link_to send_email_report_birth_plan_path(current_user.id), remote: true, class: 'email-send-btn', onclick: "$('.email-send-btn').html('Email Sent');" do%>
-					<span class="profile-options-icon" ><%= image_tag 'email.png' %></span>Email
+				</div>
+				<div class="profile-options options-email">
+				<% if current_user.birth_plan_answers.present? %>
+					<%= link_to send_email_report_birth_plan_path(current_user.id), remote: true, class: 'email-send-btn', onclick: "$('.email-send-btn').html('Email Sent');" do%>
+						<span class="profile-options-icon" ><%= image_tag 'email.png' %></span>Email
+					<% end %>
+				<% else %>
+					<a href="javascript:void(0);" class='not-active'><span class="profile-options-icon"><%= image_tag 'email.png' %></span>Email</a>
 				<% end %>
-			<% else %>
-				<a href="javascript:void(0);" class='not-active'><span class="profile-options-icon"><%= image_tag 'email.png' %></span>Email</a>
-			<% end %>
+				</div>
 			</div>
 		</div>
 	</div>
 	<div class="row">
 		<div class="birth-plan-summery-heading-section">
-			<h2>Square root birth plan</h2>
+			<h2 class="birth-plan-summery-heading-section-main">Square root birth plan</h2>
 			<div class="birth-plan-summery-heading">
 				<div class="summery-heading-area">
 					<span class="summery-heading-icon left"><%= image_tag 'logo_white.png'%></span>
@@ -57,82 +57,84 @@
 					<div class="doc-caption">Birth Plan Summary</div>
 					<span class="summery-heading-icon right"><%= image_tag 'doc_icon.png' %></span>
 				</div>
-				<div class="heading-due-date">
-					<div class="right">Due Date - March 21, 2017</div>
-				</div>
+				<div class="birth-plan-content">
+					<div class="heading-due-date">
+						<div class="right">Due Date - March 21, 2017</div>
+					</div>
+					<div class="birth-plan-summery">                    
+						<div class='columns small-12 medium-6'>
+							<div class="birth-plan-summery-content">
+								<h2>Who &amp; Where </h2>
+								<p>I want to give birth in a Hospital (Presby Medical
+									Center 1300 North Vermount Avenue Los Angeles
+									CA96858-00652).<br><br>
+									I want an OBGYN (Michelle) and a Doula (Rebecca
+									Davidson) to assist me.<br><br>
+									I will also have friends/ family named:<br>
+									Nicholas Cornish and Duncan.<br><br>
+									If I am unable to make a medical decision for me or
+									my baby, Gordon will be making decisions on my
+									behalf.<br><br>
+									I have a pediatrician. Their name and number is
+									Melanie Davidson, +9683685874<br><br>
+								</p>
+								<h2>Environment </h2>
+								<p>lighting preferences: Dimmed<br><br>
+									Sound preferences: I plan on bringing something
+									to listen to <br><br>
+									If possible, no students doctors at anytime</p>
+									<h2>In labor </h2>
+									<p>Labor positions: I’ll be switching it up — Mobility is
+										important to me.<br><br>
+										Desired type of fetal monitoring: Whatever the
+										provider recommends<br><br>
+										I would like to discuss alternatives to an automatic
+										IV, such as a saline lock.<br><br>
+										For pain relief I would like access to: Nitrous oxide
+										and Epidural<br><br>
+										I would like to be coached and told when to push.<br>
+										In the event of a C-section, I would like (1) my
+										companion in the room (2) my vaginal microbiome
+										shared with the baby.</p>			
+										<div class='spacer show-for-small'></div>     
+								</div>                       
+						</div>
+						<div class='columns small-12 medium-6'>
+							<div class="birth-plan-summery-content">
+										<h2>Immediately After Birth </h2>
+										<p>A special tradition I plan on maintaining is:<br>
+											World Health Organization's recommendation.<br><br>
+											I want to initiate breastfeeding immediately.<br><br>
+											I want immediate skin to skin contact.<br><br>
+											I would like to deliver my placenta naturally.<br><br>
+											I would like to keep my placenta.<br><br>
+											I would like to cut the umbilical cord 1-3 minutes
+											after birth, as the WHO recommends.<br><br>
+											I would like my partner to cut the umbilical cord.<br><br>
+											I do not want to bank blood in the cord bank.</p>
+											<h2>Baby Questions </h2>
+											<p>I would like my baby referred to as: Jacob.<br><br>
+												I object to none of the standard course of action
+												after birth (Immediate breastfeeding within one
+												hour, Vitamin K shot, Antibiotic Eye Drops, The first
+												course of Hep B Vaccine.<br><br>
+												I would like the baby with my 24 hours per day.<br><br>
+												I want to give consent everytime your baby must
+												be examined or screened? (Even if it means waking
+												me up).<br><br>
+												I plan on breastfeeding.<br><br>
+												Discuss with me prior to giving my baby an formula.<br><br>
+												I do not need access to donor breastmilk.<br><br>
+												I do not want my baby boy circumcised.</p>
+												<div class='spacer show-for-small'></div>
+								</div>
+							</div>
+						</div>
+					</div>
 			</div>
 
 		</div>                    
 	</div>
-	<div class="birth-plan-summery">                    
-		<div class='columns small-12 medium-6'>
-			<div class="birth-plan-summery-content">
-				<h2>Who &amp; Where </h2>
-				<p>I want to give birth in a Hospital (Presby Medical
-					Center 1300 North Vermount Avenue Los Angeles
-					CA96858-00652).<br><br>
-					I want an OBGYN (Michelle) and a Doula (Rebecca
-					Davidson) to assist me.<br><br>
-					I will also have friends/ family named:<br>
-					Nicholas Cornish and Duncan.<br><br>
-					If I am unable to make a medical decision for me or
-					my baby, Gordon will be making decisions on my
-					behalf.<br><br>
-					I have a pediatrician. Their name and number is
-					Melanie Davidson, +9683685874<br><br>
-				</p>
-				<h2>Environment </h2>
-				<p>lighting preferences: Dimmed<br><br>
-					Sound preferences: I plan on bringing something
-					to listen to <br><br>
-					If possible, no students doctors at anytime</p>
-					<h2>In labor </h2>
-					<p>Labor positions: I’ll be switching it up — Mobility is
-						important to me.<br><br>
-						Desired type of fetal monitoring: Whatever the
-						provider recommends<br><br>
-						I would like to discuss alternatives to an automatic
-						IV, such as a saline lock.<br><br>
-						For pain relief I would like access to: Nitrous oxide
-						and Epidural<br><br>
-						I would like to be coached and told when to push.<br>
-						In the event of a C-section, I would like (1) my
-						companion in the room (2) my vaginal microbiome
-						shared with the baby.</p>			
-						<div class='spacer show-for-small'></div>     
-					</div>                       
-				</div>
-				<div class='columns small-12 medium-6'>
-					<div class="birth-plan-summery-content">
-						<h2>Immediately After Birth </h2>
-						<p>A special tradition I plan on maintaining is:<br>
-							World Health Organization's recommendation.<br><br>
-							I want to initiate breastfeeding immediately.<br><br>
-							I want immediate skin to skin contact.<br><br>
-							I would like to deliver my placenta naturally.<br><br>
-							I would like to keep my placenta.<br><br>
-							I would like to cut the umbilical cord 1-3 minutes
-							after birth, as the WHO recommends.<br><br>
-							I would like my partner to cut the umbilical cord.<br><br>
-							I do not want to bank blood in the cord bank.</p>
-							<h2>Baby Questions </h2>
-							<p>I would like my baby referred to as: Jacob.<br><br>
-								I object to none of the standard course of action
-								after birth (Immediate breastfeeding within one
-								hour, Vitamin K shot, Antibiotic Eye Drops, The first
-								course of Hep B Vaccine.<br><br>
-								I would like the baby with my 24 hours per day.<br><br>
-								I want to give consent everytime your baby must
-								be examined or screened? (Even if it means waking
-								me up).<br><br>
-								I plan on breastfeeding.<br><br>
-								Discuss with me prior to giving my baby an formula.<br><br>
-								I do not need access to donor breastmilk.<br><br>
-								I do not want my baby boy circumcised.</p>
-								<div class='spacer show-for-small'></div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class='clear'></div>
+</div>
+<div class='clear'></div>
 				<% end %>

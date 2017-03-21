@@ -26,8 +26,18 @@
 //= require print.min.js
 
 $(document).foundation();
+$(document).on('click', '.add-checklist', function(){
+  $("#checklist-content").customScrollbar();
 
+})
 $(document).ready(function() {
+  $("#checklist-content").customScrollbar();
+
+  // $('.add-checklist').on('click', function(){
+
+    
+  // });
+   // $("#checklist-content").customScrollbar();
 
   
   //$( ".datepicker" ).datepicker({ dateFormat: 'yy-mm-dd' });
