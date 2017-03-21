@@ -8,7 +8,7 @@
         <% end %>
         <% @questions.each_with_index do |question, ind| %>
         <li id="li-<%= question.id%>">
-            <h2><%= "*" if question.required? %><%= question.title %> <% if question.note.present? %><a class="ques_info" style="display: inline-block;" href="javascript:void(0);" title><div class="tooltip_box"><%= question.note%></div></a><% end %></h2>            
+            <h2><%= question.title %> <% if question.note.present? %><a class="ques_info" style="display: inline-block;" href="javascript:void(0);" title><div class="tooltip_box"><%= question.note%></div></a><% end %></h2>            
             <% ques_type = question.ques_type %>
             <div class="option-area">
                 <ul>
