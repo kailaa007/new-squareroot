@@ -29,7 +29,9 @@ $(document).foundation();
 $(document).on('click', '.add-checklist', function(){
   $("#checklist-content").customScrollbar();
 
-})
+});
+
+
 $(document).ready(function() {
   $("#checklist-content").customScrollbar();
 
@@ -564,6 +566,7 @@ jQuery(document).ready(function(){
 
   jQuery("#getStarted").on("click", function(){
       jQuery("#forms-popup, .login-form").fadeIn();
+      jQuery("body").addClass("bodyOverflow");
   });
 
   jQuery(".sign-up-link").on("click", function(){
@@ -581,6 +584,7 @@ jQuery(document).ready(function(){
   jQuery(".close-login-form, .close-signup-form").on("click", function(){
       jQuery("#forms-popup, .sign-up-form").hide();
       jQuery(".login-form").fadeIn();
+      jQuery("body").removeClass("bodyOverflow");
   });
 
   jQuery(".termsofuse-link").on("click", function(){
@@ -603,11 +607,13 @@ jQuery(document).ready(function(){
       jQuery(".login-form").hide();
       jQuery(".forget-pswd-form").fadeIn();
   });
-
+ 
   jQuery(".close-forget-pswd-form").on("click", function(){
       jQuery("#forms-popup, .forget-pswd-form").hide();
+      jQuery("body").removeClass("bodyOverflow");
 
   });
+
 });
 
 jQuery(window).resize(function(){
