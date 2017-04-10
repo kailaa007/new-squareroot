@@ -1,7 +1,7 @@
 .row
   .columns.small-12
     = link_to 'New', new_admin_team_member_path, :class => 'button radius pull-right secondary'
-    %h2 News
+    %h2 Team
 
     %table.sortable-table{ data: { url: sort_admin_team_members_path } }
       %thead
@@ -20,4 +20,4 @@
             %td= tm.role
             %td.actions= link_to 'Open', admin_team_member_path(tm)
         %tr
-          %td= will_paginate @team_members
+          %td{:colspan => "4"}= will_paginate @team_members

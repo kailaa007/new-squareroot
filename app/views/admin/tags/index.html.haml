@@ -17,4 +17,4 @@
               = link_to 'Edit', edit_admin_tag_path(tag)
               = link_to 'Delete', admin_tag_path(tag), method: :delete, data: { confirm: 'Are you sure?' }
         %tr
-          %td= will_paginate @tags
+          %td{:colspan => "4"}= will_paginate @tags

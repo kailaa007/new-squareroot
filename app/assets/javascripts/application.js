@@ -614,6 +614,14 @@ jQuery(document).ready(function(){
 
   });
 
+  jQuery(".deactive-1").on("click", function(){
+      jQuery("body").addClass("bodyOverflow");
+  });
+
+  jQuery(".close-confirmation-form").on("click", function(){
+      jQuery("body").removeClass("bodyOverflow");
+  });
+
 });
 
 jQuery(window).resize(function(){
