@@ -74,7 +74,6 @@ class Admin::QuestionsController < Admin::ApplicationController
     @questions = Question.order('title asc').paginate(:page => params[:page])
   end
 
-
   private
 
   def get_question

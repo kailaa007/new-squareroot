@@ -1,6 +1,6 @@
 class BirthPlanAnswersController < ApplicationController
   layout 'devise'
-  before_filter :authenticate_user!, except: [:save_session]
+  before_filter :authenticate_user!
   
   def get_restriction
     @restriction = []
