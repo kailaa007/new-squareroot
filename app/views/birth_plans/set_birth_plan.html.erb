@@ -93,7 +93,8 @@
             <a href="javascript:void(0);" class="close-confirmation-form close-btn">close</a>            
             <div class="medium-centered large-centered">
                 <h4 class="text-center">Congratulations</h4> 
-                <p class="text-center">You just completed your birth plan!<br>You can always login to print, email or download it!</p>
+                <p class="text-center">You just completed your birth plan!</p>
+                <p class="text-center">You can always login to print, email or download it!</p>
                 <div id="confirmation-content" class="confirmation-container text-center">
                     <ul>
                         <li>
@@ -120,7 +121,7 @@
                                     <div class="confirmation-pic"><%= image_tag 'download.png' %></div>
                                 </div>
                                 <div class="confirmation-caption">
-                                    <%= link_to "Download", report_birth_plan_answers_path(format: 'pdf'), target: :_blank, download: "#{current_user.first_name}-report", id: 'download-pdf' %>
+                                    <%= link_to "Download PDF", report_birth_plan_answers_path(format: 'pdf'), target: :_blank, download: "#{current_user.first_name}-report", id: 'download-pdf' %>
                                 </div>
                             </a>
                         </li>

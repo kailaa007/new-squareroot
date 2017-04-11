@@ -3911,6 +3911,7 @@ meta.foundation-mq-topbar {
     border-bottom-left-radius: 3px;
     border-bottom-right-radius: 3px
   }
+  .set_birth_plan .birth_plan_ques_section label + input[type="text"]{width: 74%;}
 }
 
 .button-group.round>* {
@@ -5581,8 +5582,66 @@ ul.pagination li {
   .birth_plan_welcome .tooltip_box:after,.birth_plan_welcome .tooltip_box:before{right: -6%;}
   .birth_plan_welcome .tooltip_box:before{border-left-color: #f5c453;border-right-color: #fff;}
   .birth_plan_pagination .paggingDiv{width: 33% !important;padding: 0 45px;}
-  .set_birth_plan .confirmation-popup {width: 94%;top: 56%;left: 33%;}
+  .set_birth_plan .confirmation-popup {width: 94%;top: 56%;left: 33%;padding-left: 0px;padding-right: 0px;}
   #checklist-popup .checklist-container h6{margin-top: 0;}
+  .set_birth_plan .birth_plan_ques_section label + input[type="text"]{width: 74%;}
+}
+@media screen and (max-width:20em) {
+  .set_birth_plan .confirmation-popup{width: 90% !important;left: 5% !important;}
+}
+@media screen and (max-width:29.9999em) {
+  .set_birth_plan .confirmation-popup {
+    padding: 38px 5px 50px;
+    border-radius: 10px;
+    width: 80%;
+    margin-left: 0;
+    margin: auto;
+    left: 10%;
+  }
+  .set_birth_plan .confirmation-popup a.close-btn{
+    top: 10px;
+    right: 12px;
+  }
+  .set_birth_plan .confirmation-popup h4{
+    font-size: 12px;
+    margin-bottom: 16px;
+    letter-spacing: 1.6px;
+    margin-bottom: 18px;
+  }
+  .set_birth_plan .confirmation-popup p {
+    font-size: 10px;
+    line-height: 1.1;
+    letter-spacing: 0.3px;
+  }
+  .set_birth_plan .confirmation-popup .confirmation-container ul {
+    margin: 35px 0 0;
+  }
+  .set_birth_plan .confirmation-popup .confirmation-container ul li {
+    padding: 0 0px;
+  }
+  .set_birth_plan .confirmation-popup .confirmation-container ul li .confirmation-img .confirmation-pic img {
+    max-width: 38%;
+  }
+  .set_birth_plan .confirmation-popup .confirmation-container ul li .confirmation-img {
+    min-height: 40px;
+  }
+  .set_birth_plan .confirmation-popup .confirmation-container ul li a{
+    letter-spacing: 0.4px;
+  }
+  .set_birth_plan .confirmation-popup .confirmation-container a.btn{
+    margin-top: 22px;
+    padding: 10px 22px;
+    font-size: 9px;
+    letter-spacing: 1.2px;
+    margin-left: 0px;
+  }
+  .set_birth_plan .birth_plan_ques_section label + input[type="text"]{width: 70%;}
+  .birth_plans .birth_plan_welcome_help {top: 253px;right: 23px;width: 22px;height: 22px;}
+  .birth_plans .birth_plan_welcome .tooltip_box {position: absolute;left: -272px;top: 30px;}
+  .birth_plans .birth_plan_welcome {margin-top: 18px;padding: 0 25px;}
+  .birth_plans .birth_plan_welcome hr {margin: 0 0 6px;}
+  .birth_plans .birth_plan_welcome .birth_plan_welcome_text p {font-size: 13px;line-height: 16px;font-weight: 500;padding: 0 17px;margin-bottom: 18px;}
+  .birth_plans .birth_plan_welcome .tooltip_box {position: absolute;left: -272px;top: 30px;}
 }
 
 @media only screen and (min-width: 40.0625em) {
@@ -5598,7 +5657,6 @@ ul.pagination li {
   .medium-text-justify {
     text-align: justify !important
   }
-
 }
 
 @media only screen and (min-width: 64.0625em) and (max-width: 90em) {
@@ -12402,7 +12460,7 @@ body.facts .country-facts .facts-inner p {
   width: 974px;    
   margin:-250px 0 0 -487px;
   padding: 60px 120px 52px 152px; 
-  background: rgba(111,93,115, 0.5);
+  background: rgba(117, 95, 115, 0.80);
   font-family: "AvrNx";  
   z-index: 1;  
 }
@@ -12784,6 +12842,7 @@ input[type="tel"], input[type="time"], input[type="url"], input[type="color"], t
   max-height: 418px;
   object-fit: cover;
   width: 100%;
+  border-bottom: 2px solid #d8d6e6;
 }
 .row._user_profile_layout{
 max-width: 61.3rem;
@@ -13222,19 +13281,19 @@ transition: 0.2s ease-in-out;*/
 }
 .checklist-popup,
 .confirmation-popup{
-  position: fixed;
-  width: 60%;    
-  top:50%;
-  left: 50%;
-  margin:0px 0 0 -30%;
-  background: #ffffff;
-  padding:70px 105px 15px;    
-  font-family: "AvrNx";     
+    position: fixed;
+    width: 60%;
+    top: 47%;
+    left: 50%;
+    margin: 0px 0 0 -30%;
+    background: #ffffff;
+    padding: 98px 105px 253px;
+    font-family: "AvrNx";
 }
 .confirmation-popup{
   z-index: 2;
   display: none;
-  padding-bottom: 70px;
+  padding-bottom: 96px;
 }
 
 .checklist-container {
@@ -13290,8 +13349,8 @@ transition: 0.2s ease-in-out;*/
 .checklist-popup a.close-btn,
 .confirmation-popup a.close-btn {
   position: absolute;
-  top: 22px;
-  right: 32px;
+  top: 26px;
+  right: 30px;
   width: 40px;
   height: 40px;
   text-indent: -9999px;
@@ -13422,22 +13481,24 @@ transition: 0.2s ease-in-out;*/
 }
 .confirmation-popup h4{
   color: #004290;
-  letter-spacing: 5px;
+  letter-spacing: 4px;
   font-weight: 600;
   font-size:26px;
-  margin-bottom: 30px;
+  margin-bottom: 34px;
 }
 .confirmation-popup p{
   font-size:22px;
+  letter-spacing: 0.9px;
+  margin-bottom: 5px;
 }
 .confirmation-popup .confirmation-container ul{
-  margin:0;
+  margin:85px 0 0;
   padding: 0;
   list-style: none;     
 }
 .confirmation-popup .confirmation-container ul li{
-  display: inline-block;
-  padding: 0 20px;
+    display: inline-block;
+    padding: 0 35px;
 }
 .confirmation-popup .confirmation-container ul li a{
    color:#000;
@@ -13446,21 +13507,24 @@ transition: 0.2s ease-in-out;*/
 }
 
 .confirmation-popup .confirmation-container ul li .confirmation-img{
-  display: table;
-  text-align: center;   
-  min-height: 100px;    
+    width: 100%;
+    display: table;
+    text-align: center;
+    min-height: 100px;   
 }
 .confirmation-popup .confirmation-container ul li .confirmation-img .confirmation-pic{
   display: table-cell;
-  vertical-align: middle;
 }
 .confirmation-popup .confirmation-container ul li .confirmation-img .confirmation-pic img{
-  max-width: 80%;
+  max-width: 100%;
 }
 .confirmation-popup .confirmation-container a.btn{
-  margin-top: 60px;
-  padding: 13px 50px;
-  text-transform: uppercase;
+    margin-top: 90px;
+    padding: 23px 0;
+    text-transform: uppercase;
+    max-width: 300px;
+    font-weight: 500;
+    margin-left: -5px;
 }
 
 /*profile page style*/
@@ -13497,14 +13561,14 @@ transition: 0.2s ease-in-out;*/
   padding:0 0 0 85px;
   background: url(<%= asset_path('user.png') %>)no-repeat 30px 0;
   background-size: 40px;
-  font-size: 24px;
+  font-size: 25px;
   height:40px;
   letter-spacing: 1.2px;
   font-family: "AvrNx";
 }
 .user-profile-area .user-profile-area-content ul li a{
   color: #F4C552;
-  font-size: 21px;
+  font-size: 20px;
 }
 .user-profile-options{
   float: left;
@@ -13520,16 +13584,17 @@ transition: 0.2s ease-in-out;*/
 
 .user-profile-options .profile-options a{
   position: relative;
-  font-size: 16px;
+  font-size: 18px;
   color: #000;
   font-family: "AvrNx";
   font-weight: 600;
   padding-left: 56px;
-  letter-spacing: 2.3px;
+  letter-spacing: 1.4px;
   line-height: 40px;
   height: 40px;
   display: block;
   opacity: 0.4;
+  text-decoration:none;
   -webkit-transition: 0.5s ease-in-out;
   -moz-transition: 0.5s ease-in-out;
   -ms-transition: 0.5s ease-in-out;
@@ -13549,7 +13614,7 @@ transition: 0.2s ease-in-out;*/
 }
 .user-profile-options .profile-options.options-edit,
 .user-profile-options .profile-options.options-print{
-  padding-left: 14px;
+  padding-left: 6px;
 }
 .user-profile-options .profile-options.options-print{
   padding-top: 17px;
@@ -13605,7 +13670,7 @@ span.summery-heading-icon.right {
   letter-spacing: 2.7px;
   font-weight: 500;
   font-size: 22px;
-  margin-bottom: 48px;
+  margin-bottom: 46px;
 }
 .birth-plan-summery-heading{
   float: left;
@@ -13629,10 +13694,10 @@ span.summery-heading-icon.right {
   letter-spacing: 1.4px;    
 }
 .doc-caption{
-  font-size: 24px;
+  font-size: 26px;
   color: #fff;
   font-family: "AvrNx";
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: 2.6px;
   line-height: 1;
 }
@@ -13678,7 +13743,7 @@ span.summery-heading-icon.right {
   font-size: 12px;
   font-weight: 600;
   text-transform: uppercase;
-  left: calc(5% + 15px);
+  left: calc(5% + 21px);
 }
 .progress-bar-mobile span{
   font-weight: normal;
@@ -13722,7 +13787,7 @@ input[type="checkbox"]{width: 21px;height: 21px;}
   input.iagree + label[for="iAgree"], input.iagree + label[for="iAgree"] a {letter-spacing: 0.1px; font-size: 11px;}
   .forms-popup input[type="password"], .forms-popup input[type="email"]{margin-bottom: 0px;}
   .sign-up-form .columns.lastinput input { border-top-color: transparent; border-left-color: #969696; }
-  ._splash_heading{ font-size: 14px; letter-spacing: 1.5px;}
+  ._splash_heading{ font-size: 14px; letter-spacing: 1.5px;top: calc(50% - 16px);}
   .birth_plan_welcome .birth_plan_welcome_text p{font-size: 12px; line-height: 1.5;font-weight:400;}
   .birth_plan_ques_section {padding: 20px 0px;}
   .birth_plan_ques_section ol li .option-area{margin-left: -28px;}
@@ -13802,24 +13867,25 @@ input[type="checkbox"]{width: 21px;height: 21px;}
   .user-profile-area .user-profile-area-content ul li h3{font-size: 11px;background: url(/assets/user-184ff095ccab32d96deacd34f1ea9010e45540828b88aaa0b0fab43ee41d791b.png) no-repeat 0px 0px;background-size: 18px;padding-left: 22px;height: 18px;padding-top: 1px;letter-spacing: 0.8px;}
   .user-profile-area .user-profile-area-content {border-bottom: 1px solid #969696;padding-bottom: 10px;}
   
-  .user-profile-options{padding: 14px 0px 0px;margin: 0 0px;border-bottom: 1px solid #969696;padding-bottom: 10px;}
+
+  .user-profile-options{padding: 14px 0px 0px;margin: 0 0px;border-bottom: 1px solid #969696;padding-bottom: 4px;}
   .user-profile-options .small-12{padding-left: 0px;padding-right: 0;}
-  .user-profile-options .large-7{padding-left: 0px; width: 56%;}
-  .user-profile-options .large-4{padding-left: 0px; padding-right: 0; width: 44%;}
-  .user-profile-options .profile-options.options-download a{padding-left: 44px !important;}
-  .user-profile-options .profile-options.options-email a{padding-left: 38px !important;}
-  .user-profile-options .profile-options a,.user-profile-options .profile-options.options-download a{font-size: 11px;font-weight: 500;padding: 0 0 0 35px;line-height: 15px;height: 24px;letter-spacing: 1.3px;opacity: 1;}
-  .user-profile-options .profile-options a span.profile-options-icon{width: 18px !important;height: 18px !important; text-align: left;}
+  .user-profile-options .large-7{padding-left: 0px;width: 59%;}
+  .user-profile-options .large-4{padding: 0;width: 41%;}
+  .user-profile-options .profile-options.options-download a{padding-left: 33px !important;}
+  .user-profile-options .profile-options.options-email a{padding-left: 35px !important;}
+  .user-profile-options .profile-options a,.user-profile-options .profile-options.options-download a{font-size: 11px;font-weight: 400;padding: 0 0 0 35px;line-height: 15px;height: 24px;letter-spacing: 0.8px;opacity: 1;}
+  .user-profile-options .profile-options a span.profile-options-icon{width: 18px !important;height: 18px !important; text-align: left;top:0 !important;left: 6px;}
 
   .user-profile-options .profile-options.options-edit, .user-profile-options .profile-options.options-print,
   .user-profile-options .profile-options.options-download{padding:0;}
   .user-profile-options .profile-options.options-email{padding: 13px 0 0;}
-  .user-profile-options .profile-options a span.profile-options-icon{top:-2px;}
   .user-profile-options .profile-options.options-print,.user-profile-options .profile-options.options-print{padding-top: 13px;}
-  .user-profile-options .profile-options.options-download a span.profile-options-icon{top: 0px;left: 10px;}
   .user-profile-options .profile-options.options-email a span.profile-options-icon {top: 0px;left: 10px;}
+  .birth-plan-summery h2{margin-top: 18px;letter-spacing: 2.4px;}
 
-  .birth-plan-summery-heading-section {padding: 14px 0;}
+
+  .birth-plan-summery-heading-section {padding: 14px 0;letter-spacing: 3px;}
   .summery-heading-area {padding: 14px 0;margin: 0px 19px;}
   .birth-plan-summery-heading {left:0;width: 97%;margin: 0 6.7%;}
   .birth-plan-summery-heading-section-main{text-align:center;}
@@ -13830,12 +13896,12 @@ input[type="checkbox"]{width: 21px;height: 21px;}
   .birth-plan-summery-heading {width: 87%;margin: 0 6.7%;position: relative;background: #F4C552;}
    span.summery-heading-icon.right {width: 50px;height:50px;right: 15px;}
   .heading-due-date{padding: 0px;letter-spacing: 0.1px;}
-  .heading-due-date .right{font-size: 10px;padding: 2px 7px;font-weight: 400;}
-  .birth-plan-summery-content{max-width: 100%;margin-top: 14px;}
+  .heading-due-date .right{font-size: 9px;padding: 2px 7px;font-weight: 400;letter-spacing: 0.4px;}
+  .birth-plan-summery-content{max-width: 100%;margin-top: 18px;}
   .birth-plan-summery h2{margin-top: 0px;padding-bottom: 4px;margin-bottom: 4px;font-size: 16px;letter-spacing: 2.7px;}
   .birth-plan-summery p{font-size: 11px;font-weight: 400;margin: 2px 0px;line-height: 1.5;padding-bottom: 10px;padding-top: 4px; letter-spacing: 1.2px;}
   .confirmation-popup .confirmation-container ul li {padding: 0 6px;font-size: 12px;}
-  .set_birth_plan .birth_plan_ques_section label + input[type="text"]{margin-top: 10px;display: inline;}
+  .set_birth_plan .birth_plan_ques_section label + input[type="text"]{margin-top: 0px;display: inline;}
 
 }
 
@@ -13862,7 +13928,7 @@ input[type="checkbox"]{width: 21px;height: 21px;}
 
 @media screen and (min-width: 100.063em){
   .tooltip_box{width: 280px;}   
-  .confirmation-popup{max-width: 870px;margin-left: -435px;} 
+  .confirmation-popup{max-width: 870px;margin-left: -445px;} 
 }
 
 .iAgreeformError {
