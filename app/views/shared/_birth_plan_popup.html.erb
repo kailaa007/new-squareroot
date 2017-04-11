@@ -31,7 +31,7 @@
             <% end %>
             <% end %>
             <p class="text-center"><a class="frgt-pswd-link" href="#">Forgot password?</a></p> 
-            <p class="sign-up-link-label">Don’t Have an Account? <a href="javascript:void(0);" class="sign-up-link">Sign Up</a></p> 
+            <p class="sign-up-link-label">Don’t Have an Account? <a href="javascript:closePopup();" class="sign-up-link">Sign Up</a></p> 
         </div>
     </div>
     <div class="row forget-pswd-form">
@@ -93,7 +93,7 @@
                 <% end %>
             </a>
             <% end %> 
-            <p class="login-link-label" style="font-weight: 500;">Have an Account? <a href="javascript:void(0);" class="login-link">Log In</a></p> 
+            <p class="login-link-label" style="font-weight: 500;">Have an Account? <a href="javascript:closePopup();" class="login-link">Log In</a></p> 
         </div>
     </div>
 </div>
@@ -132,4 +132,5 @@
         updatePromptsPosition:false});
         $("#forgetPasswordForm").validationEngine();
     });
+
 </script>
