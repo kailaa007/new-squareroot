@@ -42,6 +42,8 @@ Rails.application.routes.draw do
       get 'birth_plan_report', on: :member
       post 'birth_plan_report', on: :member
       get 'edit_report', on: :member
+      post 'save_session', on: :member
+      get 'save_questions', on: :member
     end
 
     resources :password_resets
