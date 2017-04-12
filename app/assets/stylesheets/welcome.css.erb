@@ -3711,7 +3711,6 @@ meta.foundation-mq-topbar {
   .birth_plan_welcome .tooltip_box{position: absolute;left: -320px;top: -5px;}
   .birth_plan_welcome .tooltip_box:after,.birth_plan_welcome .tooltip_box:before{right: -6%;}
   .birth_plan_welcome .tooltip_box:before{border-left-color: #f5c453;border-right-color: #fff;}
-  .set_birth_plan .birth_plan_ques_section input[type="text"] {padding: 0.8rem 1.2rem;  font-size: 17px;display:inline;background: #fff;margin: 0;}
 }
 
 .button-group.radius>* {
@@ -5574,7 +5573,7 @@ ul.pagination li {
   }
   .user-profile-options .large-7{padding-left: 0px; width: 56%;}
   .user-profile-options .large-4{padding-left: 0px; padding-right: 0; width: 44%;}
-  .set_birth_plan .birth_plan_ques_section input[type="text"] {padding: 0.8rem 1.2rem;  font-size: 17px;display:inline;background: #fff;margin-top: 14px;}
+  .set_birth_plan .birth_plan_ques_section input[type="text"] {padding: 0.8rem 1.2rem;  font-size: 17px;display:inline;background: #fff;margin-top: 0px;}
   .user-profile-area .user-profile-area-content ul li a{font-weight: 500;}
   ._user_profile_layout .birth-plan-summery-heading-section{padding: 32px 8px;}
   .user-profile-options .profile-options a span.profile-options-icon{left: 10px !important;}
@@ -5642,6 +5641,10 @@ ul.pagination li {
   .birth_plans .birth_plan_welcome hr {margin: 0 0 6px;}
   .birth_plans .birth_plan_welcome .birth_plan_welcome_text p {font-size: 13px;line-height: 16px;font-weight: 500;padding: 0 17px;margin-bottom: 18px;}
   .birth_plans .birth_plan_welcome .tooltip_box {position: absolute;left: -272px;top: 30px;}
+
+  .birth_plans .checklist-popup {padding: 40px 5px 20px 23px;width: 80%;left: 57%;top: 50%;border-radius: 10px;}
+  .birth_plans .checklist-popup a.close-btn{top: 16px;right: 15px;}
+  .birth_plans .checklist-popup h4{font-size: 12px;}
 }
 
 @media only screen and (min-width: 40.0625em) {
@@ -12568,6 +12571,7 @@ body.facts .country-facts .facts-inner p {
   padding:17px 30px;
   height: auto;
 }
+ input[type="email"]{text-transform: lowercase;}
 .forms-popup input[type="text"]:focus, .forms-popup input[type="password"]:focus,
 .forms-popup input[type="text"]:visited, .forms-popup input[type="password"]:visited,
 .forms-popup input[type="text"].datafill, .forms-popup input[type="password"].datafill{
@@ -13760,7 +13764,7 @@ span.summery-heading-icon.right {
 p.login-link-label {letter-spacing: 2px;}
 
 .birth-plan-content{background:#fff;border-left: 1px solid #969696;border-right: 1px solid #969696;border-bottom: 1px solid #969696;overflow: hidden;}
-.button.checklist-btn, .add-checklistitem .button.add-checklist{padding: 10px 22px;width: 73px; height: 39px;}
+.button.checklist-btn, .add-checklistitem .button.add-checklist{padding: 10px 12px;width: 73px; height: 39px;}
 input[type="checkbox"]{width: 21px;height: 21px;}
 
 /*Min width 1600px*/
@@ -13804,8 +13808,9 @@ input[type="checkbox"]{width: 21px;height: 21px;}
   .sign-up-link-label { letter-spacing: 0.5px; margin-bottom: 15px;}
   .sign-up-link, .login-link {margin-left:2px; letter-spacing: 1px;}
   a.frgt-pswd-link {font-size: 13px; letter-spacing: 1px;}
+
   .birth_plan_pagination .paggingDiv, .button.nxt-btn,
-  .checklist-popup input[type="radio"] + label, .checklist-popup input[type="checkbox"] + label{font-size: 13px;}
+  .checklist-popup input[type="radio"] + label, .checklist-popup input[type="checkbox"] + label{font-size: 12px;}
   .birth_plan_pagination .paggingDiv:first-child{width: 35%;padding-left: 24px;}
   .birth_plan_pagination .paggingDiv:last-child{width: 60%;}
   .birth_plan_pagination .paggingDiv:last-child .button{margin: 0;}
@@ -13825,8 +13830,8 @@ input[type="checkbox"]{width: 21px;height: 21px;}
   .checklist-popup a.close-btn, .confirmation-popup a.close-btn,
   .forms-popup a.close-btn, .termofuse-popup a.close-btn {top: 25px;right: 22px;width: 20px;height: 20px;} 
   .checklist-container{margin-top: 0px;}
-  .checklist-popup h4, .confirmation-popup h4, .forms-popup h4, .termofuse-popup h4{font-size: 12px; letter-spacing: 1.9px; margin-bottom: 5px;}
-  .checklist-popup h6, .termofuse-popup h6{font-size: 12px;margin: 10px 0;}
+  .checklist-popup h4, .confirmation-popup h4, .forms-popup h4, .termofuse-popup h4{font-size: 13px; letter-spacing: 1.9px; margin-bottom: 5px;}
+  .checklist-popup h6, .termofuse-popup h6{font-size: 12px;margin: 18px 0;}
   .forms-popup .forget-pswd-form h4 {margin-bottom: 46px; letter-spacing: 2px; margin-top: 4px;}
   .forms-popup .forget-pswd-form p { max-width: 281px; letter-spacing: 0; padding-left: 0; margin-bottom: 33px; font-size: 13px; line-height: 16px;}
   .forms-popup .forget-pswd-form .button.forget-submit-btn{ text-transform: none;}
@@ -13902,7 +13907,7 @@ input[type="checkbox"]{width: 21px;height: 21px;}
   .birth-plan-summery p{font-size: 11px;font-weight: 400;margin: 2px 0px;line-height: 1.5;padding-bottom: 10px;padding-top: 4px; letter-spacing: 1.2px;}
   .confirmation-popup .confirmation-container ul li {padding: 0 6px;font-size: 12px;}
   .set_birth_plan .birth_plan_ques_section label + input[type="text"]{margin-top: 0px;display: inline;}
-
+  checklist-content p{font-size:12px;}
 }
 
 @media screen and (max-width: 62em){
