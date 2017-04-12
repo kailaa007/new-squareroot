@@ -652,6 +652,12 @@ function closePopup() {
   $('input').removeClass('input-box-error');
   $('email').removeClass('input-box-error');
   $('#terms-form-signup').removeClass('input-box-error');
+  $("#password-error").removeClass('error alert-success');
+  $('#signup-error').removeClass('error alert-success');
+  $("#password-error").html('');
+  $('#signup-error').html('');
+  $('#login-error').removeClass('error alert-success');
+  $('#login-error').html('');
 }
 
 $("#user_zipcode").numeric({
