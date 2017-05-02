@@ -12576,6 +12576,11 @@ body.facts .country-facts .facts-inner p {
   height: auto;
 }
  input[type="email"]{text-transform: lowercase;}
+
+input[type="email"]::placeholder{text-transform: capitalize;}
+input[type="email"]::-webkit-input-placeholder{text-transform: capitalize;}
+input[type="email"]:-ms-input-placeholder{text-transform: capitalize;}
+
 .forms-popup input[type="text"]:focus, .forms-popup input[type="password"]:focus,
 .forms-popup input[type="text"]:visited, .forms-popup input[type="password"]:visited,
 .forms-popup input[type="text"].datafill, .forms-popup input[type="password"].datafill{
