@@ -2569,6 +2569,9 @@ meta.foundation-mq-topbar {
     position: relative;
     top: -1px
   }
+  .birth_plan_ques_section ol li {
+    padding-left: 7px !important;
+  }
 }
 
 .top-bar .title-area {
@@ -3677,6 +3680,75 @@ meta.foundation-mq-topbar {
 .button-group.stack-for-small>li:first-child .button {
   border-left: 0
 }
+.bodyOverflow{overflow:hidden;}
+
+@media only screen and (max-width: 1012px) and (min-width: 992px){
+  .birth_plansheader .default .menu ul{
+    text-align: left !important;
+  }
+  .birth_plansheader header.default .menu ul li{
+    margin: 0 11px !important;
+  }
+  .birth_plansheader header.default{display: block !important;}
+}
+@media only screen and (min-device-width : 568px) and (max-device-width : 736px) and (orientation : landscape) {
+ .birth_plans .birth-intro-popup{
+    position: absolute ;
+    padding: 24px 50px;
+ }
+ .birth_plans .birth-intro-popup h2{
+    font-size: 17px;
+    margin-bottom: 10px;
+ }
+ .birth_plans .birth-intro-popup p{
+    font-size: 11px;
+    margin-bottom: 5px;
+ }
+ .birth_plans .btn {
+    padding: 12px 0px 12px;
+    margin-top: 10px;
+    font-size: 14px;
+  }
+ .birth_plans .forms-popup{
+    width: 82%;
+    top: 46%;
+    position: absolute;
+  }
+  .birth_plans .forms-popup h4 {
+  }
+  .birth_plans form .button.sign-in-btn,.birth_plans .forms-popup p,.birth_plans a.frgt-pswd-link{
+  }
+  .bodyOverflow {
+    overflow: visible !important;
+  }
+}
+@media only screen and (max-device-width : 568px) and (orientation : landscape) {
+ .birth_plans .birth-intro-popup{
+    top: 33% !important;
+ }
+  .birth_plans .forms-popup{
+    left: 55% !important;
+  }
+ .video .content{margin-top: 5px !important;}
+}
+@media only screen and (min-device-width : 667px) and (orientation : landscape) {
+ .birth_plans .birth-intro-popup{
+    top: 37%;
+ }
+ .birth_plans .forms-popup{
+    left: 60% ;
+ }
+ .video .content{margin-top: 25px !important;}
+}
+@media only screen and (min-device-width : 736px) and (orientation : landscape) {
+ .birth_plans .birth-intro-popup{
+    top: 37% !important;
+ }
+ .birth_plans .forms-popup{
+    left: 56% !important;
+ }
+ .video .content{margin-top: 25px !important;}
+}
 
 @media only screen and (max-width: 40em) {
   .button-group.stack-for-small>li {
@@ -3708,6 +3780,7 @@ meta.foundation-mq-topbar {
     border-top: 0
   }
   .set_birth_plan .birth_plan_ques_section input[type="text"] {margin-bottom: 0px;padding: 0.8rem 1.2rem;  font-size: 17px;display:inline;background: #fff;margin-top: 0px;}
+  .set_birth_plan .birth_plan_ques_section input[type="text"]::-webkit-input-placeholder{font-size: 12px;}  
   .birth_plan_welcome .tooltip_box{position: absolute;left: -320px;top: -5px;}
   .birth_plan_welcome .tooltip_box:after,.birth_plan_welcome .tooltip_box:before{right: -6%;}
   .birth_plan_welcome .tooltip_box:before{border-left-color: #f5c453;border-right-color: #fff;}
@@ -5586,6 +5659,7 @@ ul.pagination li {
   .set_birth_plan .birth_plan_ques_section label + input[type="text"]{width: 74%;}
 }
 @media screen and (max-width:20em) {
+  .birth_plans .birth-intro-popup{position: absolute;top: 34%;}
   .set_birth_plan .confirmation-popup{width: 90% !important;left: 5% !important;}
 }
 @media screen and (max-width:29.9999em) {
@@ -5634,7 +5708,7 @@ ul.pagination li {
     letter-spacing: 1.2px;
     margin-left: 0px;
   }
-  .set_birth_plan .birth_plan_ques_section label + input[type="text"]{width: 70%;}
+  .set_birth_plan .birth_plan_ques_section label + input[type="text"]{width: 64%;}
   .birth_plans .birth_plan_welcome_help {top: 97%;right: 23px;width: 22px;height: 22px;}
   .birth_plans .birth_plan_welcome .tooltip_box {position: absolute;left: -272px;top: 30px;}
   .birth_plans .birth_plan_welcome {margin-top: 18px;padding: 0 25px;}
@@ -10651,9 +10725,6 @@ header.mobile {
   text-align: left;
   padding-left: 14px
 }
-.bodyOverflow{
-  overflow:hidden!important;
-}
 
 @media only screen and (min-width: 62em) {
   header.mobile {
@@ -12459,6 +12530,7 @@ body.facts .country-facts .facts-inner p {
   height: 100vh;
   background:url(<%= asset_path('bp-bg.jpg') %>) no-repeat center center;
   background-size:cover;
+  opacity: 0.8;
 }
 .birth-intro-popup{
   position: fixed;
@@ -12671,6 +12743,7 @@ a.frgt-pswd-link{
 }
 input#duedate-cal{
   cursor: pointer;
+  background: #fff !important;
 }
 .ui-datepicker{
   background: white;
@@ -12821,6 +12894,8 @@ input[type="tel"], input[type="time"], input[type="url"], input[type="color"], t
 }
 @media only screen and (max-width: 40.0625em) {
   .birth-intro-popup{
+    position: absolute;
+    top: 32%;
     padding: 20px 34px;
   }
   .btn{
@@ -12841,6 +12916,9 @@ input[type="tel"], input[type="time"], input[type="url"], input[type="color"], t
     letter-spacing: 1.7px;
     margin-left: -5px;
     margin-bottom: 21px;
+  }
+  .birth_plans .mobileDisplay{
+    display: none !important;
   }
 }
 
@@ -13086,6 +13164,9 @@ right: -8.5px;
   position: relative;
   padding-left: 40px;
   margin-left: 0px;
+  display: -webkit-inline-box;
+  min-height: 24px;
+  line-height: 24px;
 }
 .birth_plan_ques_section input[type="radio"] + label:before{
   content: '';
@@ -13831,7 +13912,7 @@ input[type="checkbox"]{width: 21px;height: 21px;}
   .birth_plan_ques_section input[type="checkbox"] + label input[type="text"].respective_input, 
   .birth_plan_ques_section input[type="checkbox"] + label input[type="text"].respective_input.small{max-width: 135px;}
   .birth_plan_ques_section input[type="radio"] + label:before,
-  .birth_plan_ques_section input[type="checkbox"] + label:before{top: -3px;}
+  .birth_plan_ques_section input[type="checkbox"] + label:before{top: 1px;}
   .birth_plan_ques_section input[type="radio"]:checked + label:after{top: 0px;}
   .birth_plan_ques_section input[type="checkbox"]:checked + label:after{top: 1px;}
   .checklist-popup, .confirmation-popup, .forms-popup, .termofuse-popup {width: 92%;margin: 0px 0 0 -46%;}  
@@ -13911,18 +13992,19 @@ input[type="checkbox"]{width: 21px;height: 21px;}
    span.summery-heading-icon.right {width: 50px;height:50px;right: 15px;}
   .heading-due-date{padding: 0px;letter-spacing: 0.1px;}
   .heading-due-date .right{font-size: 9px;padding: 2px 7px;font-weight: 400;letter-spacing: 0.4px;}
-  .birth-plan-summery-content{max-width: 100%;margin-top: 18px;}
+  .birth-plan-summery-content{max-width: 100%;margin-top: 22px;}
+  .birth-plan-summery-content .spacer{height: 0;}
   .birth-plan-summery h2{margin-top: 0px;padding-bottom: 4px;margin-bottom: 4px;font-size: 16px;letter-spacing: 2.7px;}
-  .birth-plan-summery p{font-size: 11px;font-weight: 400;margin: 2px 0px;line-height: 1.5;padding-bottom: 10px;padding-top: 4px; letter-spacing: 1.2px;}
+  .birth-plan-summery p{font-size: 11px;font-weight: 400;margin: 2px 0px;line-height: 1.5;padding-bottom: 0px;padding-top: 4px; letter-spacing: 1.2px;}
   .confirmation-popup .confirmation-container ul li {padding: 0 6px;font-size: 12px;}
-  .set_birth_plan .birth_plan_ques_section label + input[type="text"]{margin-top: 0px;display: inline;}
+  .set_birth_plan .birth_plan_ques_section label + input[type="text"]{margin-top: 0px;display: inline;padding: 0px 10px;}
   .checklist-item{margin-bottom: 12px;}
   .checklist-popup input[type="checkbox"] + label{line-height: 25px;}
   .checklist-content p{font-size:12px;}
   .add-checklistitem .button.add-checklist {width: 66px;height: 42px;padding: 12px;}
 
 }
-
+.profile .nomargin{margin-top:0;}
 @media screen and (max-width: 62em){
   .birth_plans .row{width: 100%;}
 }

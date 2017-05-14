@@ -571,7 +571,7 @@ jQuery(document).ready(function(){
 
   jQuery(".sign-up-link").on("click", function(){
       jQuery(".login-form").hide();
-      jQuery(".sign-up-form").fadeIn();
+      jQuery(".sign-up-form").fadeIn();     
   });
   jQuery(".due_date").on("click", function(e){
       e.preventDefault();
@@ -585,8 +585,12 @@ jQuery(document).ready(function(){
       jQuery("#forms-popup, .sign-up-form").hide();
       jQuery(".login-form").fadeIn();
       jQuery("body").removeClass("bodyOverflow");
-  });
 
+     jQuery("#ui-datepicker-div").hide();
+  });
+  jQuery(document).on('click', '.user_due_date', function(){
+    jQuery("#ui-datepicker-div").show();
+  })
   jQuery(".termsofuse-link").on("click", function(){
       jQuery("#forms-popup, .sign-up-form").hide();
       jQuery(".login-form").fadeIn();
