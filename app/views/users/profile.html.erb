@@ -38,7 +38,7 @@
 				</div>
 				<div class="profile-options options-email">
 				<% if current_user.birth_plan_answers.present? %>
-					<%= link_to send_email_report_birth_plan_path(current_user.id), remote: true, class: 'email-send-btn', onclick: "$('.email-send-btn').html('Email Sent');" do%>
+					<%= link_to send_email_report_birth_plan_path(current_user.id), remote: true, class: 'email-send-btn' do%>
 						<span class="profile-options-icon" ><%= image_tag 'email.png' %></span>Email
 					<% end %>
 				<% else %>
@@ -141,4 +141,9 @@
 	</div>
 </div>
 <div class='clear'></div>
+<script type="text/javascript">
+	$(document).on('click', '.email-send-btn' ,function(){
+		$(this).append("<span class="profile-options-icon" ><img src='http://localhost:3000/assets/email-f9ddd05a51bde50f48d46234b0fbcaa39584c8e63a2b6c6600cfe265d28f0e13.png' alt=''></span>Email Sent");
+	});
+</script>
 				<% end %>
