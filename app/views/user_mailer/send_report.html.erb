@@ -4,7 +4,7 @@
     <img style="margin: auto;display: block;" width="99" height="56" src="https://squareroot.herokuapp.com/assets/logo-9b5cf4107c1750dbc4f233801adfebc34f38e6fe42d61e2d395f2300d47744e6.png" alt="img"> 
   </tr>
   <tr>
-    <td style="background: #f2bc37;color: #FFF;padding: 10px;margin: 0;font-size: 20px;font-weight: bold;"><%= @user.first_name.titleize %> Report</td>
+    <td style="background: #f2bc37;color: #FFF;padding: 10px;margin: 0;font-size: 20px;font-weight: bold;"><span style="float:left"><%= @user.first_name.titleize %> Report</span><span style="float: right;"></span></td>
   </tr>
 
   <% Question::CATEGORY_TYPES.each do |cat| %>
@@ -16,7 +16,7 @@
       
       <% @birth_plan_answers.where(:question_id => c_quest).each_with_index do |ques, ind| %>
         <tr>
-          <td style="color: #004290;"><%= ind+1 %>) <%= ques.try(:question) %></td>
+          <td><%= ind+1 %>) <%= ques.try(:question) %></td>
         </tr>
         <tr>
           <td>
