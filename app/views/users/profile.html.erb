@@ -60,7 +60,7 @@
 				</div>
 				<div class="birth-plan-content">
 					<div class="heading-due-date">
-						<div class="right">Due Date - March 21, 2017</div>
+						<div class="right">Due Date - <%= current_user.due_date.strftime("%B %d, %Y") if current_user.due_date.present? %></div>
 					</div>
 					<div class="birth-plan-summery">                    
 						<div class='columns small-12 medium-6'>
