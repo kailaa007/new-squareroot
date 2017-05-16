@@ -1,22 +1,22 @@
-<table id="send-report" width="100%" style="font-family:'AvrNx';border:1px solid #000;">
-  <tr id="send-head" style="background: #004290;padding: 10px 33px;position: relative; z-index: 99;">
-    <%= link_to image_tag('logo.png', width: 99, height: 56), video_path %>
+<table width="800px" style="font-family:'AvrNx';border:1px solid #000;" cellspacing="0" cellpadding="8">
+  <tr id="m_-4263218024952355501send-head" style="background:#004290;padding:10px 33px">
+    <td>
+    <img style="margin: auto;display: block;" width="99" height="56" src="https://squareroot.herokuapp.com/assets/logo-9b5cf4107c1750dbc4f233801adfebc34f38e6fe42d61e2d395f2300d47744e6.png" alt="img"> 
   </tr>
   <tr>
-    <td><h2><%= @user.first_name.titleize %> Report</h2></td>
+    <td style="background: #f2bc37;color: #FFF;padding: 10px;margin: 0;font-size: 20px;font-weight: bold;"><%= @user.first_name.titleize %> Report</td>
   </tr>
 
   <% Question::CATEGORY_TYPES.each do |cat| %>
   <% c_quest = Question.where(:category => cat).pluck(:id) %>
   <% if @user.birth_plan_answers.where(:question_id => c_quest).present? %>
-  <tr><td></td></tr>
-  <tr id="send-title">
+  <tr>
     <td>
-      <h3 align='center'><b><u><%= cat %></u></b></h3>
+      <h3 align='center'><b><%= cat %></b></h3>
       
       <% @birth_plan_answers.where(:question_id => c_quest).each_with_index do |ques, ind| %>
         <tr>
-          <td><%= ind+1 %>) <%= ques.try(:question) %></td>
+          <td style="color: #004290;"><%= ind+1 %>) <%= ques.try(:question) %></td>
         </tr>
         <tr>
           <td>
@@ -34,15 +34,12 @@
               <% end %>
           </td>
         </tr>  
-        <tr><td></td></tr>  
       <% end %>
     <% end %>
     </td>
   </tr>
+  <tr>
+    <td style="background: #f2bc37;color: #FFF;padding: 10px;margin: 0;font-size: 20px;font-weight: bold;">The mission of Square Roots<sup style="font-size: 10px;">TM</sup> is to define and empower healthy birth</td>
+  </tr>
 <% end %>
-<style>
-#send-report{border:1px solid #000;}
-#send-head{background: #004290;padding: 10px 33px;position: relative; z-index: 99;}
-#send-mid{border-bottom: 1px solid #000;}
-</style>
 </table>
