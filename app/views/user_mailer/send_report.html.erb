@@ -12,7 +12,7 @@
   <% if @user.birth_plan_answers.where(:question_id => c_quest).present? %>
   <tr>
     <td>
-      <h3 align='center'><b><%= cat %></b></h3>
+      <h3 align='center' style="border-bottom: 1px solid #000;"><b><%= cat %></b></h3>
       
       <% @birth_plan_answers.where(:question_id => c_quest).each_with_index do |ques, ind| %>
         <tr>
@@ -47,8 +47,8 @@
     </tr>
     <tr>
       <td style="background: #F4C552;color: #FFF;text-align: center;">
-          <a style="padding: 10px 20px;margin:2px;border: 1px solid white;color: #fff;" href="#">Play Video</a>
-          <a style="padding: 10px 20px;margin:2px;border: 1px solid white;color: #fff;" href="#" target="_blank" href="mailto:info@squareroots.com">Contact Us</a>
+          <a style="padding: 10px 20px;margin:2px;border: 1px solid white;color: #fff;" href="https://squareroot.herokuapp.com/">Play Video</a>
+          <a style="padding: 10px 20px;margin:2px;border: 1px solid white;color: #fff;" target="_blank" href="mailto:info@squareroots.com">Contact Us</a>
       </td>
     </tr>
     <tr><td></td></tr>
