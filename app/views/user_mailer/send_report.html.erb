@@ -1,6 +1,6 @@
-<table class="send-report" width="100%" style="font-family:'AvrNx';">
-  <tr class="send-head">
-   <%= wicked_pdf_image_tag('pdf_log.png') %>
+<table id="send-report" width="100%" style="font-family:'AvrNx';border:1px solid #000;">
+  <tr id="send-head" style="background: #004290;padding: 10px 33px;position: relative; z-index: 99;">
+    <%= link_to image_tag('logo.png', width: 99, height: 56), video_path %>
   </tr>
   <tr>
     <td><h2><%= @user.first_name.titleize %> Report</h2></td>
@@ -10,7 +10,7 @@
   <% c_quest = Question.where(:category => cat).pluck(:id) %>
   <% if @user.birth_plan_answers.where(:question_id => c_quest).present? %>
   <tr><td></td></tr>
-  <tr class="send-mid">
+  <tr id="send-title">
     <td>
       <h3 align='center'><b><u><%= cat %></u></b></h3>
       
@@ -41,8 +41,8 @@
   </tr>
 <% end %>
 <style>
-.send-report{border:1px solid #000;}
-.send-head{background: #ccc;}
-.send-mid{border-bottom: 1px solid #000;}
+#send-report{border:1px solid #000;}
+#send-head{background: #004290;padding: 10px 33px;position: relative; z-index: 99;}
+#send-mid{border-bottom: 1px solid #000;}
 </style>
 </table>
