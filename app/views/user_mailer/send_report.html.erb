@@ -4,7 +4,7 @@
     <img style="margin: auto;display: block;" width="99" height="56" src="https://squareroot.herokuapp.com/assets/logo-9b5cf4107c1750dbc4f233801adfebc34f38e6fe42d61e2d395f2300d47744e6.png" alt="img"> 
   </tr>
   <tr>
-    <td style="background: #f2bc37;color: #FFF;padding: 10px;margin: 0;font-size: 20px;font-weight: bold;"><span style="float:left"><%= @user.first_name.titleize %> Report</span><span style="float: right;"></span></td>
+    <td style="background: #f2bc37;color: #FFF;padding: 10px;margin: 0;font-size: 20px;font-weight: bold;"><span style="float:left"><%= @user.first_name.titleize %> Report</span><span style="float: right;"><%= @user.due_date.titleize %></span></td>
   </tr>
 
   <% Question::CATEGORY_TYPES.each do |cat| %>
@@ -39,6 +39,7 @@
     </td>
   </tr>
 <% end %>
+    <tr><td></td></tr>
   <tfoot style="background: #F4C552;color: #FFF;padding: 10px;margin: 0;font-size: 16px;font-weight: bold;text-align: center;">
     <tr><td></td></tr>
     <tr>
@@ -46,8 +47,8 @@
     </tr>
     <tr>
       <td style="background: #F4C552;color: #FFF;text-align: center;">
-          <a style="padding: 10px 20px;margin:2px;border: 1px solid white;color: #fff;" href="#">Play Video</a>
-          <a style="padding: 10px 20px;margin:2px;border: 1px solid white;color: #fff;" href="#" target="_blank" href="mailto:info@squareroots.com">Contact Us</a>
+          <a style="padding: 10px 20px;margin:2px;border: 1px solid white;color: #fff;" href="https://squareroot.herokuapp.com/">Play Video</a>
+          <a style="padding: 10px 20px;margin:2px;border: 1px solid white;color: #fff;" target="_blank" href="mailto:info@squareroots.com">Contact Us</a>
       </td>
     </tr>
     <tr><td></td></tr>
