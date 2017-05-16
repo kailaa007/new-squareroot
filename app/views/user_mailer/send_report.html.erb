@@ -12,7 +12,7 @@
   <% if @user.birth_plan_answers.where(:question_id => c_quest).present? %>
   <tr>
     <td>
-      <h3 align='center' style="border-bottom: 1px solid #000;"><b><%= cat %></b></h3>
+      <h3 align='center'><b style="border-bottom: 1px solid #000;"><%= cat %></b></h3>
       
       <% @birth_plan_answers.where(:question_id => c_quest).each_with_index do |ques, ind| %>
         <tr>
