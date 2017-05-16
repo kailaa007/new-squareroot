@@ -1,38 +1,48 @@
-<div class="row">
-<h2><%= @user.first_name.titleize %> Report</h2>
-<table width="100%" style="font-family:'AvrNx';" >
+<table class="send-report" width="100%" style="font-family:'AvrNx';">
+  <tr class="send-head">
+   <%= wicked_pdf_image_tag('pdf_log.png') %>
+  </tr>
+  <tr>
+    <td><h2><%= @user.first_name.titleize %> Report</h2></td>
+  </tr>
+
   <% Question::CATEGORY_TYPES.each do |cat| %>
   <% c_quest = Question.where(:category => cat).pluck(:id) %>
   <% if @user.birth_plan_answers.where(:question_id => c_quest).present? %>
   <tr><td></td></tr>
-  <tr><td>
-  <h3 align='center'><b><u><%= cat %></u></b></h3>
-    
-    <% @birth_plan_answers.where(:question_id => c_quest).each_with_index do |ques, ind| %>
-      <tr>
-        <td><%= ind+1 %>) <%= ques.try(:question) %></td>
-      </tr>
-      <tr>
-        <td>
-            <% if ques.answer.present? %>
-                <%= ques.answer %>
-            <% else %>
-                <% if  ques.answer_options.present? %>
-                    <% ques.answer_options.each do |answer| %>
-                        <%= answer.option.try(:option_title) %>
-                        <% if answer.textbox_answer.present? %>
-                            : <b><%= answer.textbox_answer %></b>
-                        <% end %><br>
-                    <% end %>
-                <% end %>
-            <% end %>
-        </td>
-      </tr>  
-      <tr><td></td></tr>  
+  <tr class="send-mid">
+    <td>
+      <h3 align='center'><b><u><%= cat %></u></b></h3>
+      
+      <% @birth_plan_answers.where(:question_id => c_quest).each_with_index do |ques, ind| %>
+        <tr>
+          <td><%= ind+1 %>) <%= ques.try(:question) %></td>
+        </tr>
+        <tr>
+          <td>
+              <% if ques.answer.present? %>
+                  <%= ques.answer %>
+              <% else %>
+                  <% if  ques.answer_options.present? %>
+                      <% ques.answer_options.each do |answer| %>
+                          <%= answer.option.try(:option_title) %>
+                          <% if answer.textbox_answer.present? %>
+                              : <b><%= answer.textbox_answer %></b>
+                          <% end %><br>
+                      <% end %>
+                  <% end %>
+              <% end %>
+          </td>
+        </tr>  
+        <tr><td></td></tr>  
+      <% end %>
     <% end %>
-  <% end %>
-  </td>
-</tr>
+    </td>
+  </tr>
 <% end %>
+<style>
+.send-report{border:1px solid #000;}
+.send-head{background: #ccc;}
+.send-mid{border-bottom: 1px solid #000;}
+</style>
 </table>
-</div>
