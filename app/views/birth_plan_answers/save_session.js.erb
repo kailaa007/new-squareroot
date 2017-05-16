@@ -1,3 +1,4 @@
-<% unless @cat_id == 7 %>
-	$(".save-btn").html("Saved");
+$(".save-btn").html("Saved");
+<% if @cat_id == 6 %>
+	window.location = "<%= birth_plans_path %>";
 <% end %>
