@@ -8,6 +8,7 @@
     }, 10000);
 <% end %>
 <% if resource.errors.blank? %>
-alert("Sign Up Sucessfully..!")
+$("#signup-success").hide();
+$("#signup-success-msg").show();
 window.location.replace("/profile");
 <% end %>

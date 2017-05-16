@@ -52,48 +52,53 @@
     <div class="row sign-up-form">
         <a href="javascript:closePopup();" class="close-signup-form close-btn">close</a>
         <div class="medium-centered large-centered">
-            <h4 class="">Sign up now</h4> 
-            <span id='signup-error'></span>
-            <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), remote: true, validate: false, :html => {:id => "signUpForm"}) do |f| %> 
-            <%= f.error_notification %>
-            <div class="input-area name-area">
-                <div class="small-12 medium-6 large-6 columns padnone">
-                    <%= f.input :first_name, label: false, placeholder: 'First Name', :input_html => {:class => "half validate[required], maxSize[25]" } %>
+            <div id="signup-success">
+                <h4 class="">Sign up now</h4> 
+                <span id='signup-error'></span>
+                <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), remote: true, validate: false, :html => {:id => "signUpForm"}) do |f| %> 
+                <%= f.error_notification %>
+                <div class="input-area name-area">
+                    <div class="small-12 medium-6 large-6 columns padnone">
+                        <%= f.input :first_name, label: false, placeholder: 'First Name', :input_html => {:class => "half validate[required], maxSize[25]" } %>
+                    </div>
+                    <div class="small-12 medium-6 large-6 columns padnone lastinput">
+                        <%= f.input :last_name, label: false, placeholder: 'Last Name', :input_html => {:class => "half, maxSize[25]" } %>
+                    </div>
                 </div>
-                <div class="small-12 medium-6 large-6 columns padnone lastinput">
-                    <%= f.input :last_name, label: false, placeholder: 'Last Name', :input_html => {:class => "half, maxSize[25]" } %>
-                </div>
-            </div>
-            <div class="input-area pswd-area">                    
-                <%= f.input :email, label: false, placeholder: 'Email', :input_html => {id: 'signup-email-id',:class => "validate[required],custom[email]" } %>                    
-                <div class="small-12 medium-6 large-6 columns padnone brdtoptrans">
-                    <%= f.input :password, label: false , placeholder: 'Password', :input_html => {:class => "validate[required], maxSize[12]", id: 'password' } %>
-                </div>
-                <div class="small-12 medium-6 large-6 columns padnone lastinput brdtoptrans">
-                    <%= f.input :password_confirmation, label: false, placeholder: 'Confirm Password', :input_html => {:class => "validate[required],equals[password], maxSize[12]" } %>                        
-                </div>
-                <div class="small-6 columns padnone brdtoptrans">
-                    <%= f.input :zipcode, label: false, placeholder: 'Zip code', as: :string, :input_html => {:class => "validate[required], custom[integer], minSize[5], maxSize[5]" } %>
-                </div>
-                <div class="small-6 columns padnone lastinput brdtoptrans">
-                    <%= f.input :due_date, label: false, placeholder: 'Due Date', :input_html => {:class => "due_date datepicker validate[required]", id: 'duedate-cal' }, as: :string %>
-                    <a href="javascript:void(0);" class="duedate-calender">
-                        <%= image_tag 'calendar_icon.png' %>
-                    </a>
-                </div>
-            </div>                         
+                <div class="input-area pswd-area">                    
+                    <%= f.input :email, label: false, placeholder: 'Email', :input_html => {id: 'signup-email-id',:class => "validate[required],custom[email]" } %>                    
+                    <div class="small-12 medium-6 large-6 columns padnone brdtoptrans">
+                        <%= f.input :password, label: false , placeholder: 'Password', :input_html => {:class => "validate[required], maxSize[12]", id: 'password' } %>
+                    </div>
+                    <div class="small-12 medium-6 large-6 columns padnone lastinput brdtoptrans">
+                        <%= f.input :password_confirmation, label: false, placeholder: 'Confirm Password', :input_html => {:class => "validate[required],equals[password], maxSize[12]" } %>                        
+                    </div>
+                    <div class="small-6 columns padnone brdtoptrans">
+                        <%= f.input :zipcode, label: false, placeholder: 'Zip code', as: :string, :input_html => {:class => "validate[required], custom[integer], minSize[5], maxSize[5]" } %>
+                    </div>
+                    <div class="small-6 columns padnone lastinput brdtoptrans">
+                        <%= f.input :due_date, label: false, placeholder: 'Due Date', :input_html => {:class => "due_date datepicker validate[required]", id: 'duedate-cal' }, as: :string %>
+                        <a href="javascript:void(0);" class="duedate-calender">
+                            <%= image_tag 'calendar_icon.png' %>
+                        </a>
+                    </div>
+                </div>                         
 
-            <p>                
-                <%= f.check_box :terms_n_condition, id: "iAgree", class: "validate[required] iagree" %>
-                <label for="iAgree" id='terms-form-signup'>I agree to the <a class="termsofuse-link" href="javascript:void(0);">Terms of Use</a> and <a class="privacy-link" href="javascript:void(0);">Privacy Statement</a>.</label>
-            </p>
-            <a>
-                <%= button_tag "Next", class: 'button expand sign-in-btn' do %>Next
-                <span class="sign-in-btn-icon"><%= image_tag 'arrow.png' %></span>
-                <% end %>
-            </a>
-            <% end %> 
-            <p class="login-link-label" style="font-weight: 500;">Have an Account? <a href="javascript:closePopup();" class="login-link">Log In</a></p> 
+                <p>                
+                    <%= f.check_box :terms_n_condition, id: "iAgree", class: "validate[required] iagree" %>
+                    <label for="iAgree" id='terms-form-signup'>I agree to the <a class="termsofuse-link" href="javascript:void(0);">Terms of Use</a> and <a class="privacy-link" href="javascript:void(0);">Privacy Statement</a>.</label>
+                </p>
+                <a>
+                    <%= button_tag "Next", class: 'button expand sign-in-btn' do %>Next
+                    <span class="sign-in-btn-icon"><%= image_tag 'arrow.png' %></span>
+                    <% end %>
+                </a>
+                <% end %> 
+                <p class="login-link-label" style="font-weight: 500;">Have an Account? <a href="javascript:closePopup();" class="login-link">Log In</a></p> 
+            </div>
+            <div id="signup-success-msg">
+                <h2>Sign Up Successfully..!</h2>
+            </div>
         </div>
     </div>
 </div>
