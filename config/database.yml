@@ -10,9 +10,9 @@ default: &default
 
 development:
   <<: *default
-  database: squareroots
-  username: pguser
-  password: pguser
+  database: squareroot_dev
+  #username: pguser
+  #password: pguser
 
 production:
   adapter: postgresql
