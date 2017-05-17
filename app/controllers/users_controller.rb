@@ -4,6 +4,7 @@ class UsersController < ApplicationController
 	before_action :clear_session, only: [:profile]
 	
 	def profile
+		redirect_to set_birth_plan_path if current_user.birth_plan_answers.blank?
 	end
 
 	def clear_session
