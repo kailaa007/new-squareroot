@@ -65,13 +65,16 @@
                        For any medical questions, please refer to your care provider. We would, however, love your feedback on the birth plan itself. If you have any questions or concerns regarding the content or formatting of this page, please let us know by emailing Katie@squareroots.com
                    </div>
                </a>
+               <% if @cat_id == 1 %>
                <hr><hr>
                <div class="text-center birth_plan_welcome_text">
                 <p>Hello and welcome to your birth plan!</p>
                 <p>We hope that you ﬁnd this helpful and leave feeling more prepared for your big day! If at any point you would like more information, you can click the (i) to read more about your options. You can also skip any questions that you are unsure about, and if you run out of time, you can always save your progress to return to ﬁll it in later.</p>
                 <p>Thank you and congratulations!</p>
                 <hr><hr>
-            </div>
+                <% end %>
+                </div>
+                <%= Question::CATEGORY_TYPES[@cat_id-1] %>
         </div>
         <%= render 'birth_plans/form', f: f %>
     </div>                    
@@ -83,7 +86,7 @@
             <span class="currentPage page"><%= @cat_id %></span> OF <span class="totalPages page">5</span> PAGES
         </div>                            
         <div class="paggingDiv">
-            <%= link_to "Next", set_birth_plan_path(c_id: @cat_id+1), class: "button nxt-btn next-button #{@cat_id == 5 ? 'deactive-1' : ''}", remote: (@cat_id == 5 ? true : false) %>
+            <%= link_to "#{ @cat_id == 5 ? 'Save' : 'Next'}", set_birth_plan_path(c_id: @cat_id+1), class: "button nxt-btn next-button #{@cat_id == 5 ? 'deactive-1' : ''}", remote: (@cat_id == 5 ? true : false) %>
         </div>
     </div>
 </div>
