@@ -2,21 +2,20 @@
   .title Menu
   %ul
     %li= link_to 'Play Video', '#', class: 'play-video'
-    %li= link_to 'What We Do', what_path
-    %li= link_to 'The Facts', facts_path
+    %li= link_to 'What We Do', what_path, class: "#{params[:action] == 'what' ? 'active-menu-bar' : ''}"
+    %li= link_to 'The Facts', facts_path, class: "#{params[:action] == 'facts' ? 'active-menu-bar' : ''}"
     / %li
     /   = link_to 'Framework:', framework_path
     /   %ul
     /     %li= link_to 'Science', framework_path
     /     %li= link_to 'Solutions', solutions_path
     /     %li= link_to 'Culture', culture_path
-    %li= link_to 'Birth Plan', profile_path
     -if current_user.present?
       %li= link_to 'Birth Plan', profile_path
     -else
-      %li= link_to 'Birth Plan', birth_plans_path
-    %li= link_to 'Team', team_path
-    %li= link_to 'News', news_index_path
+      %li= link_to 'Birth Plan', birth_plans_path, class: "#{params[:action] == 'birth_plans' ? 'active-menu-bar' : ''}"
+    %li= link_to 'Team', team_path, class: "#{params[:action] == 'team' ? 'active-menu-bar' : ''}"
+    %li= link_to 'News', news_index_path, class: "#{params[:action] == 'news' ? 'active-menu-bar' : ''}"
     / %li= link_to 'Projects', projects_path
     %li= mail_to 'info@squareroots.com', 'Contact Us', :class => 'last', target: '_blank'
 
@@ -76,7 +75,7 @@
     \#{link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'}
   - else
     
-
+=console
 .row
   .columns.small-12
 
