@@ -5,7 +5,7 @@
     <div class="progress-bar">
         <div class="row">
             <ul>
-                <li class="step-1 first <%= 'active' if @cat_id >= 1 %>">
+                <li class="step-1 first <%= 'active-saved' if @cat_id >= 1 %> <%= 'active' if @cat_id == 1 %>">
                     <h4>WHO &amp; WHERE</h4>
                     <span class="small-oval"></span>
                     <span class="large-oval"></span>
@@ -14,7 +14,7 @@
                         <div class="active-oval-text">WHO<br>&amp;<br>WHERE</div>
                     </span>
                 </li>
-                <li class="step-2 <%= 'active' if @cat_id >= 2 %>">
+                <li class="step-2 <%= 'active-saved' if @cat_id >= 2 %> <%= 'active' if @cat_id == 2 %>">
                     <h4>ENVIRONMENT</h4>
                     <span class="small-oval"></span>
                     <span class="large-oval"></span>
@@ -23,7 +23,7 @@
                         <div class="active-oval-text">ENVIRONMENT</div>
                     </span>
                 </li>
-                <li class="step-3 <%= 'active' if @cat_id >= 3 %>">
+                <li class="step-3 <%= 'active-saved' if @cat_id >= 3 %> <%= 'active' if @cat_id == 3 %>">
                     <h4>In Labor</h4>
                     <span class="small-oval"></span>
                     <span class="large-oval"></span>
@@ -32,7 +32,7 @@
                         <div class="active-oval-text">In Labor</div>
                     </span>
                 </li>
-                <li class="step-4 <%= 'active' if @cat_id >= 4 %>">
+                <li class="step-4 <%= 'active-saved' if @cat_id >= 4 %> <%= 'active' if @cat_id == 4 %>">
                     <h4>IMMEDIATELY AFTER BIRTH</h4>
                     <span class="small-oval"></span>
                     <span class="large-oval"></span>
@@ -41,7 +41,7 @@
                         <div class="active-oval-text">IMMEDIATELY<br>AFTER<br>BIRTH</div>
                     </span>
                 </li>
-                <li class="step-5 last <%= 'active' if @cat_id >= 5 %>">
+                <li class="step-5 last <%= 'active-saved' if @cat_id >= 5 %> <%= 'active' if @cat_id == 5 %>">
                     <h4>YOUR NEWBORN</h4>
                     <span class="small-oval"></span>
                     <span class="large-oval"></span>

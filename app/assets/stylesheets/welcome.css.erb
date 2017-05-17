@@ -13021,7 +13021,7 @@ right: -8.5px;
   position: absolute;
   top: -1px;
   width: 100%;
-  background: #f5c453;
+  background: #fcd99c;
   height: 3px;
   left: 0;
   z-index: 0;
@@ -13073,10 +13073,12 @@ right: -8.5px;
 }
 .progress-bar ul li.active .large-oval,
 .progress-bar ul li.active .large-oval-last,
-.progress-bar ul li.active .dark-line,
 .progress-bar ul li.active .active-oval{
   opacity: 1;
 }
+.progress-bar ul li.active-saved .large-oval,
+.progress-bar ul li.active-saved .dark-line{opacity: 1;}
+.progress-bar ul li.active .dark-line{opacity: 0 !important;}
 
 .birth_plan_process{    
   min-height: 150px;

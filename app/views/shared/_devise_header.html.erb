@@ -8,6 +8,9 @@
       <%= link_to 'What We Do', what_path %>
     </li>
     <li>
+      <%= link_to 'Birth Plan', birth_plans_path, class: 'active-menu-bar' %>
+    </li>
+    <li>
       <%= link_to 'The Facts', facts_path %>
     </li>
     <!-- %li
@@ -22,9 +25,6 @@
     -->
     <!--     %li= link_to 'Culture', culture_path
     -->
-    <li>
-      <%= link_to 'Birth Plan', birth_plans_path, class: 'active-menu-bar' %>
-    </li>
     <li>
       <%= link_to 'Team', team_path %>
     </li>
@@ -56,6 +56,11 @@
         <% end %>
       </li>
       <li>
+        <%= link_to_unless_current 'Birth Plan', birth_plans_path, class: 'active-menu-bar' do %>
+          <span>Birth Plan</span>
+        <% end %>
+      </li>
+      <li>
         <%= link_to_unless_current 'The Facts', facts_path do %>
           <span>The Facts</span>
         <% end %>
@@ -64,12 +69,6 @@
       -->
       <!--   = link_to_unless_current 'Framework', framework_path do
       -->
-      <li>
-        <%= link_to_unless_current 'Birth Plan', birth_plans_path, class: 'active-menu-bar' do %>
-          <span>Birth Plan</span>
-        <% end %>
-      </li>
-      
       <li>
         <%= link_to_unless_current 'Team', team_path do %>
           <span>Team</span>
