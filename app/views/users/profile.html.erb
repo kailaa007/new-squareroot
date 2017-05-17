@@ -66,12 +66,13 @@
 						<div class='columns small-12 medium-6'>
 							<div class="birth-plan-summery-content">
 								<h2>Who &amp; Where </h2>
-								<p>
 									<% cat = 'WHO & WHERE' %>
 									  <% c_quest = Question.where(:category => cat).pluck(:id) %>
 									  <% if current_user.birth_plan_answers.where(:question_id => c_quest).present? %>
 									    <% current_user.birth_plan_answers.where(:question_id => c_quest).each_with_index do |ques, ind| %>
-									      <%= ques.try(:question) %>:
+									   <p>
+									      <%= ques.try(:question) %>
+									   <br>
 									            <% if ques.answer.present? %>
 									                <%= ques.answer %>
 									            <% else %>
@@ -82,20 +83,20 @@
 									                            : <b><%= answer.textbox_answer %></b>
 									                        <% end %><br>
 									                    <% end %>
+									                   	</p>
 									                <% end %>
 									            <% end %>
 									    <% end %>
-									  <br><br>
 									<% end %>
-									<br><br>
-								</p>
 								<br>
 								<h2 class="nomargin">Environment </h2>
-								<p><% cat = 'ENVIRONMENT' %>
+								<% cat = 'ENVIRONMENT' %>
 									  <% c_quest = Question.where(:category => cat).pluck(:id) %>
 									  <% if current_user.birth_plan_answers.where(:question_id => c_quest).present? %>
 									    <% current_user.birth_plan_answers.where(:question_id => c_quest).each_with_index do |ques, ind| %>
-									      <%= ques.try(:question) %>:
+									    <p>
+									      <%= ques.try(:question) %>
+									     <br>
 									            <% if ques.answer.present? %>
 									                <%= ques.answer %>
 									            <% else %>
@@ -106,19 +107,20 @@
 									                            : <b><%= answer.textbox_answer %></b>
 									                        <% end %><br>
 									                    <% end %>
+									                    </p>
 									                <% end %>
 									            <% end %>
 									    <% end %>
-									  <br><br>
 									<% end %>
-									<br><br></p>
 									<br>
 									<h2 class="nomargin">In labor </h2>
-									<p><% cat = 'IN LABOR' %>
+									<% cat = 'IN LABOR' %>
 										  <% c_quest = Question.where(:category => cat).pluck(:id) %>
 										  <% if current_user.birth_plan_answers.where(:question_id => c_quest).present? %>
 										    <% current_user.birth_plan_answers.where(:question_id => c_quest).each_with_index do |ques, ind| %>
-										      <%= ques.try(:question) %>:
+										    <p>
+										      <%= ques.try(:question) %>
+										     <br>
 										            <% if ques.answer.present? %>
 										                <%= ques.answer %>
 										            <% else %>
@@ -129,24 +131,24 @@
 										                            : <b><%= answer.textbox_answer %></b>
 										                        <% end %><br>
 										                    <% end %>
+										                    </p>
 										                <% end %>
 										            <% end %>
 										    <% end %>
-										  <br><br>
 										<% end %>
-										<br><br></p>			
 									<div class='spacer show-for-small'></div>     
 								</div>                       
 						</div>
 						<div class='columns small-12 medium-6'>
 							<div class="birth-plan-summery-content">
 										<h2>Immediately After Birth </h2>
-										<p>
-											<% cat = 'IMMEDIATELY AFTER BIRTH' %>
+										<% cat = 'IMMEDIATELY AFTER BIRTH' %>
 											  <% c_quest = Question.where(:category => cat).pluck(:id) %>
 											  <% if current_user.birth_plan_answers.where(:question_id => c_quest).present? %>
 											    <% current_user.birth_plan_answers.where(:question_id => c_quest).each_with_index do |ques, ind| %>
-											      <%= ques.try(:question) %>:
+											  <p>
+											      <%= ques.try(:question) %>
+											  <br>
 											            <% if ques.answer.present? %>
 											                <%= ques.answer %>
 											            <% else %>
@@ -157,19 +159,20 @@
 											                            : <b><%= answer.textbox_answer %></b>
 											                        <% end %><br>
 											                    <% end %>
+											                    </p>
 											                <% end %>
 											            <% end %>
 											    <% end %>
-											  <br><br>
 											<% end %>
-											<br><br></p>
 											<br>
 											<h2 class="nomargin">Baby Questions </h2>
-											<p><% cat = 'YOUR NEW BORN' %>
+											<% cat = 'YOUR NEW BORN' %>
 											  <% c_quest = Question.where(:category => cat).pluck(:id) %>
 											  <% if current_user.birth_plan_answers.where(:question_id => c_quest).present? %>
 											    <% current_user.birth_plan_answers.where(:question_id => c_quest).each_with_index do |ques, ind| %>
-											      <%= ques.try(:question) %>:
+											   <p>
+											      <%= ques.try(:question) %>
+											    <br>
 											            <% if ques.answer.present? %>
 											                <%= ques.answer %>
 											            <% else %>
@@ -180,12 +183,11 @@
 											                            : <b><%= answer.textbox_answer %></b>
 											                        <% end %><br>
 											                    <% end %>
+											                    </p>
 											                <% end %>
 											            <% end %>
 											    <% end %>
-											  <br><br>
 											<% end %>
-											<br><br></p><br>
 										<div class='spacer show-for-small'></div>
 								</div>
 							</div>
