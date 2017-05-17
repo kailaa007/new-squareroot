@@ -8,5 +8,8 @@
     }, 10000);
 <% end %>
 <% if resource.errors.blank? %>
+$("#signup-success").hide();
+$(".forms-popup").addClass("signup-success-main");
+$("#signup-success-msg").show();
 window.location.replace("/profile");
 <% end %>
