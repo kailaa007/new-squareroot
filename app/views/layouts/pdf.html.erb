@@ -33,8 +33,24 @@
 			  text-align: center;
 			  color:#fff;				}
 		</style>
+		<style type="text/css">
+
+			.page-break { 
+			  display: block; 
+			  clear: both; 
+			  page-break-after: always; 
+			}
+
+			.pdf-content{
+			  text-align: justify;
+			  font-size: 10pt;
+			  line-height: 1.5;
+			  font-family: "Times New Roman", Times, serif;
+			}
+
+			</style>
 </head>
-<body> 
+<body onload="number_pages()"> 
   <%= render "shared/pdf_header" %>
 	  <div class="container">
 	    <%= yield %>
