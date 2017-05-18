@@ -70,7 +70,9 @@
 									<% @questions = Question.where(:category => cat) %>
 					                <% @questions.each do |question| %>
 					                    <% ques = current_user.birth_plan_answers.find_by(:question_id => question.id) %>
-					                    <%= question.try(:title) %><br>
+					                <p>
+					                    <%= question.try(:title) %>
+					                    <br>
 				                            <% if ques.present? %>
 				                                <% if ques.answer.present? %>
 				                                    <%= ques.answer %>
@@ -79,23 +81,25 @@
 				                                        <% ques.answer_options.each do |answer| %>
 				                                            <%= answer.option.try(:option_title) %>
 				                                            <% if answer.textbox_answer.present? %>
-				                                                : <b><%= answer.textbox_answer %></b>
+				                                                : <%= answer.textbox_answer %>
 				                                            <% end %><br>
 				                                        <% end %>
+				                                        </p>
 				                                    <% end %>
 				                                <% end %>
 				                            <% else %>
 				                                Not Filled
 				                            <% end %>
-					                     <br><br>
 					                <% end %>
-								<br>
+								<div class='spacer show-for-small'></div>     
 								<h2 class="nomargin">Environment </h2>
 								<% cat = 'ENVIRONMENT' %>
 									  <% @questions = Question.where(:category => cat) %>
 					                <% @questions.each do |question| %>
 					                    <% ques = current_user.birth_plan_answers.find_by(:question_id => question.id) %>
-					                    <%= question.try(:title) %><br>
+					                <p>
+					                    <%= question.try(:title) %>
+					                    <br>
 				                            <% if ques.present? %>
 				                                <% if ques.answer.present? %>
 				                                    <%= ques.answer %>
@@ -104,23 +108,25 @@
 				                                        <% ques.answer_options.each do |answer| %>
 				                                            <%= answer.option.try(:option_title) %>
 				                                            <% if answer.textbox_answer.present? %>
-				                                                : <b><%= answer.textbox_answer %></b>
+				                                                : <%= answer.textbox_answer %>
 				                                            <% end %><br>
 				                                        <% end %>
+				                                        </p>
 				                                    <% end %>
 				                                <% end %>
 				                            <% else %>
 				                                Not Filled
 				                            <% end %>
-					                     <br><br>
 					                <% end %>
-									<br>
+									<div class='spacer show-for-small'></div>     
 									<h2 class="nomargin">In labor </h2>
 									<% cat = 'IN LABOR' %>
 										  <% @questions = Question.where(:category => cat) %>
 						                <% @questions.each do |question| %>
 						                    <% ques = current_user.birth_plan_answers.find_by(:question_id => question.id) %>
-						                    <%= question.try(:title) %><br>
+						                <p>
+						                    <%= question.try(:title) %>
+						                    <br>
 					                            <% if ques.present? %>
 					                                <% if ques.answer.present? %>
 					                                    <%= ques.answer %>
@@ -129,17 +135,16 @@
 					                                        <% ques.answer_options.each do |answer| %>
 					                                            <%= answer.option.try(:option_title) %>
 					                                            <% if answer.textbox_answer.present? %>
-					                                                : <b><%= answer.textbox_answer %></b>
+					                                                : <%= answer.textbox_answer %>
 					                                            <% end %><br>
 					                                        <% end %>
+					                                        </p>
 					                                    <% end %>
 					                                <% end %>
 					                            <% else %>
 					                                Not Filled
 					                            <% end %>
-						                     <br>
 						                <% end %>
-									<div class='spacer show-for-small'></div>     
 								</div>                       
 						</div>
 						<div class='columns small-12 medium-6'>
@@ -149,7 +154,9 @@
 											  	<% @questions = Question.where(:category => cat) %>
 								                <% @questions.each do |question| %>
 								                    <% ques = current_user.birth_plan_answers.find_by(:question_id => question.id) %>
-								                    <%= question.try(:title) %><br>
+								                <p>
+								                    <%= question.try(:title) %>
+								                    <br>
 							                            <% if ques.present? %>
 							                                <% if ques.answer.present? %>
 							                                    <%= ques.answer %>
@@ -158,23 +165,25 @@
 							                                        <% ques.answer_options.each do |answer| %>
 							                                            <%= answer.option.try(:option_title) %>
 							                                            <% if answer.textbox_answer.present? %>
-							                                                : <b><%= answer.textbox_answer %></b>
+							                                                : <%= answer.textbox_answer %>
 							                                            <% end %><br>
 							                                        <% end %>
+							                                        </p>
 							                                    <% end %>
 							                                <% end %>
 							                            <% else %>
 							                                Not Filled
 							                            <% end %>
-								                     <br><br>
 								                <% end %>
-											<br>
+											<div class='spacer show-for-small'></div>     
 											<h2 class="nomargin">Baby Questions </h2>
 											<% cat = 'YOUR NEW BORN' %>
 											  	<% @questions = Question.where(:category => cat) %>
 								                <% @questions.each do |question| %>
 								                    <% ques = current_user.birth_plan_answers.find_by(:question_id => question.id) %>
-								                    <%= question.try(:title) %><br>
+								                <p>
+								                    <%= question.try(:title) %>
+								                    <br>
 							                            <% if ques.present? %>
 							                                <% if ques.answer.present? %>
 							                                    <%= ques.answer %>
@@ -183,15 +192,15 @@
 							                                        <% ques.answer_options.each do |answer| %>
 							                                            <%= answer.option.try(:option_title) %>
 							                                            <% if answer.textbox_answer.present? %>
-							                                                : <b><%= answer.textbox_answer %></b>
+							                                                : <%= answer.textbox_answer %>
 							                                            <% end %><br>
 							                                        <% end %>
+							                                        </p>
 							                                    <% end %>
 							                                <% end %>
 							                            <% else %>
 							                                Not Filled
 							                            <% end %>
-								                     <br><br>
 								                <% end %>
 										<div class='spacer show-for-small'></div>
 								</div>
