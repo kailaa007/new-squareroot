@@ -1,13 +1,13 @@
-<div class="pdf-content">
-    <% Question::CATEGORY_TYPES.each do |cat| %>
+
+    <% Question::CATEGORY_TYPES.each_with_index do |cat, index| %>
+        <div class="pdf-content">
         <div class="row">
             <h2><%= @user.first_name.titleize %> Report</h2>
             <table width="100%" style="font-family:'AvrNx';" >
                 <% @questions = Question.where(:category => cat) %>
                 <h3 align='center'><b><u><%= cat %></u></b></h3>
-                <% @questions.each_with_index do |question, index| %>
+                <% @questions.each do |question| %>
                     <% ques = @birth_plan_answers.find_by(:question_id => question.id) %>
-                    
                      <tr>
                       <td>Q.<%= index+1 %>: <%= question.try(:title) %></td>
                     </tr>
@@ -34,6 +34,8 @@
                 <% end %>
             </table>
         </div>
+        </div>
+        <div><br><%= "Page #{index+1}" %></div>
         <div class="page-break"></div>
     <% end %>
-</div>
+

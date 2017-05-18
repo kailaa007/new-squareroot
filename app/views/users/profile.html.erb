@@ -67,75 +67,78 @@
 							<div class="birth-plan-summery-content">
 								<h2>Who &amp; Where </h2>
 									<% cat = 'WHO & WHERE' %>
-									  <% c_quest = Question.where(:category => cat).pluck(:id) %>
-									  <% if current_user.birth_plan_answers.where(:question_id => c_quest).present? %>
-									    <% current_user.birth_plan_answers.where(:question_id => c_quest).each_with_index do |ques, ind| %>
-									   <p>
-									      <%= ques.try(:question) %>
-									   <br>
-									            <% if ques.answer.present? %>
-									                <%= ques.answer %>
-									            <% else %>
-									                <% if  ques.answer_options.present? %>
-									                    <% ques.answer_options.each do |answer| %>
-									                        <%= answer.option.try(:option_title) %>
-									                        <% if answer.textbox_answer.present? %>
-									                            : <b><%= answer.textbox_answer %></b>
-									                        <% end %><br>
-									                    <% end %>
-									                   	</p>
-									                <% end %>
-									            <% end %>
-									    <% end %>
-									<% end %>
+									<% @questions = Question.where(:category => cat) %>
+					                <% @questions.each do |question| %>
+					                    <% ques = current_user.birth_plan_answers.find_by(:question_id => question.id) %>
+					                    <%= question.try(:title) %><br>
+				                            <% if ques.present? %>
+				                                <% if ques.answer.present? %>
+				                                    <%= ques.answer %>
+				                                <% else %>
+				                                    <% if  ques.answer_options.present? %>
+				                                        <% ques.answer_options.each do |answer| %>
+				                                            <%= answer.option.try(:option_title) %>
+				                                            <% if answer.textbox_answer.present? %>
+				                                                : <b><%= answer.textbox_answer %></b>
+				                                            <% end %><br>
+				                                        <% end %>
+				                                    <% end %>
+				                                <% end %>
+				                            <% else %>
+				                                Not Filled
+				                            <% end %>
+					                     <br><br>
+					                <% end %>
 								<br>
 								<h2 class="nomargin">Environment </h2>
 								<% cat = 'ENVIRONMENT' %>
-									  <% c_quest = Question.where(:category => cat).pluck(:id) %>
-									  <% if current_user.birth_plan_answers.where(:question_id => c_quest).present? %>
-									    <% current_user.birth_plan_answers.where(:question_id => c_quest).each_with_index do |ques, ind| %>
-									    <p>
-									      <%= ques.try(:question) %>
-									     <br>
-									            <% if ques.answer.present? %>
-									                <%= ques.answer %>
-									            <% else %>
-									                <% if  ques.answer_options.present? %>
-									                    <% ques.answer_options.each do |answer| %>
-									                        <%= answer.option.try(:option_title) %>
-									                        <% if answer.textbox_answer.present? %>
-									                            : <b><%= answer.textbox_answer %></b>
-									                        <% end %><br>
-									                    <% end %>
-									                    </p>
-									                <% end %>
-									            <% end %>
-									    <% end %>
-									<% end %>
+									  <% @questions = Question.where(:category => cat) %>
+					                <% @questions.each do |question| %>
+					                    <% ques = current_user.birth_plan_answers.find_by(:question_id => question.id) %>
+					                    <%= question.try(:title) %><br>
+				                            <% if ques.present? %>
+				                                <% if ques.answer.present? %>
+				                                    <%= ques.answer %>
+				                                <% else %>
+				                                    <% if  ques.answer_options.present? %>
+				                                        <% ques.answer_options.each do |answer| %>
+				                                            <%= answer.option.try(:option_title) %>
+				                                            <% if answer.textbox_answer.present? %>
+				                                                : <b><%= answer.textbox_answer %></b>
+				                                            <% end %><br>
+				                                        <% end %>
+				                                    <% end %>
+				                                <% end %>
+				                            <% else %>
+				                                Not Filled
+				                            <% end %>
+					                     <br><br>
+					                <% end %>
 									<br>
 									<h2 class="nomargin">In labor </h2>
 									<% cat = 'IN LABOR' %>
-										  <% c_quest = Question.where(:category => cat).pluck(:id) %>
-										  <% if current_user.birth_plan_answers.where(:question_id => c_quest).present? %>
-										    <% current_user.birth_plan_answers.where(:question_id => c_quest).each_with_index do |ques, ind| %>
-										    <p>
-										      <%= ques.try(:question) %>
-										     <br>
-										            <% if ques.answer.present? %>
-										                <%= ques.answer %>
-										            <% else %>
-										                <% if  ques.answer_options.present? %>
-										                    <% ques.answer_options.each do |answer| %>
-										                        <%= answer.option.try(:option_title) %>
-										                        <% if answer.textbox_answer.present? %>
-										                            : <b><%= answer.textbox_answer %></b>
-										                        <% end %><br>
-										                    <% end %>
-										                    </p>
-										                <% end %>
-										            <% end %>
-										    <% end %>
-										<% end %>
+										  <% @questions = Question.where(:category => cat) %>
+						                <% @questions.each do |question| %>
+						                    <% ques = current_user.birth_plan_answers.find_by(:question_id => question.id) %>
+						                    <%= question.try(:title) %><br>
+					                            <% if ques.present? %>
+					                                <% if ques.answer.present? %>
+					                                    <%= ques.answer %>
+					                                <% else %>
+					                                    <% if  ques.answer_options.present? %>
+					                                        <% ques.answer_options.each do |answer| %>
+					                                            <%= answer.option.try(:option_title) %>
+					                                            <% if answer.textbox_answer.present? %>
+					                                                : <b><%= answer.textbox_answer %></b>
+					                                            <% end %><br>
+					                                        <% end %>
+					                                    <% end %>
+					                                <% end %>
+					                            <% else %>
+					                                Not Filled
+					                            <% end %>
+						                     <br>
+						                <% end %>
 									<div class='spacer show-for-small'></div>     
 								</div>                       
 						</div>
@@ -143,51 +146,53 @@
 							<div class="birth-plan-summery-content">
 										<h2>Immediately After Birth </h2>
 										<% cat = 'IMMEDIATELY AFTER BIRTH' %>
-											  <% c_quest = Question.where(:category => cat).pluck(:id) %>
-											  <% if current_user.birth_plan_answers.where(:question_id => c_quest).present? %>
-											    <% current_user.birth_plan_answers.where(:question_id => c_quest).each_with_index do |ques, ind| %>
-											  <p>
-											      <%= ques.try(:question) %>
-											  <br>
-											            <% if ques.answer.present? %>
-											                <%= ques.answer %>
-											            <% else %>
-											                <% if  ques.answer_options.present? %>
-											                    <% ques.answer_options.each do |answer| %>
-											                        <%= answer.option.try(:option_title) %>
-											                        <% if answer.textbox_answer.present? %>
-											                            : <b><%= answer.textbox_answer %></b>
-											                        <% end %><br>
-											                    <% end %>
-											                    </p>
-											                <% end %>
-											            <% end %>
-											    <% end %>
-											<% end %>
+											  	<% @questions = Question.where(:category => cat) %>
+								                <% @questions.each do |question| %>
+								                    <% ques = current_user.birth_plan_answers.find_by(:question_id => question.id) %>
+								                    <%= question.try(:title) %><br>
+							                            <% if ques.present? %>
+							                                <% if ques.answer.present? %>
+							                                    <%= ques.answer %>
+							                                <% else %>
+							                                    <% if  ques.answer_options.present? %>
+							                                        <% ques.answer_options.each do |answer| %>
+							                                            <%= answer.option.try(:option_title) %>
+							                                            <% if answer.textbox_answer.present? %>
+							                                                : <b><%= answer.textbox_answer %></b>
+							                                            <% end %><br>
+							                                        <% end %>
+							                                    <% end %>
+							                                <% end %>
+							                            <% else %>
+							                                Not Filled
+							                            <% end %>
+								                     <br><br>
+								                <% end %>
 											<br>
 											<h2 class="nomargin">Baby Questions </h2>
 											<% cat = 'YOUR NEW BORN' %>
-											  <% c_quest = Question.where(:category => cat).pluck(:id) %>
-											  <% if current_user.birth_plan_answers.where(:question_id => c_quest).present? %>
-											    <% current_user.birth_plan_answers.where(:question_id => c_quest).each_with_index do |ques, ind| %>
-											   <p>
-											      <%= ques.try(:question) %>
-											    <br>
-											            <% if ques.answer.present? %>
-											                <%= ques.answer %>
-											            <% else %>
-											                <% if  ques.answer_options.present? %>
-											                    <% ques.answer_options.each do |answer| %>
-											                        <%= answer.option.try(:option_title) %>
-											                        <% if answer.textbox_answer.present? %>
-											                            : <b><%= answer.textbox_answer %></b>
-											                        <% end %><br>
-											                    <% end %>
-											                    </p>
-											                <% end %>
-											            <% end %>
-											    <% end %>
-											<% end %>
+											  	<% @questions = Question.where(:category => cat) %>
+								                <% @questions.each do |question| %>
+								                    <% ques = current_user.birth_plan_answers.find_by(:question_id => question.id) %>
+								                    <%= question.try(:title) %><br>
+							                            <% if ques.present? %>
+							                                <% if ques.answer.present? %>
+							                                    <%= ques.answer %>
+							                                <% else %>
+							                                    <% if  ques.answer_options.present? %>
+							                                        <% ques.answer_options.each do |answer| %>
+							                                            <%= answer.option.try(:option_title) %>
+							                                            <% if answer.textbox_answer.present? %>
+							                                                : <b><%= answer.textbox_answer %></b>
+							                                            <% end %><br>
+							                                        <% end %>
+							                                    <% end %>
+							                                <% end %>
+							                            <% else %>
+							                                Not Filled
+							                            <% end %>
+								                     <br><br>
+								                <% end %>
 										<div class='spacer show-for-small'></div>
 								</div>
 							</div>
