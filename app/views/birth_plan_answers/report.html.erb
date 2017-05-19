@@ -21,7 +21,7 @@
             <table width="100%" style="font-family:'AvrNx';" >
                 <% @questions = Question.where(:category => cat) %>
                 <h3 align='center'><b><u><%= cat %></u></b></h3>
-                <% @questions.each do |question| %>
+                <% @questions.each_with_index do |question, index| %>
                     <% ques = @birth_plan_answers.find_by(:question_id => question.id) %>
                      <tr>
                       <td>Q.<%= index+1 %>: <%= question.try(:title) %></td>
