@@ -3,10 +3,6 @@
   %ul
     %li= link_to 'Play Video', '#', class: 'play-video'
     %li= link_to 'What We Do', what_path, class: "#{params[:action] == 'what' ? 'active-menu-bar' : ''}"
-    -if current_user.present?
-      %li= link_to 'Birth Plan', profile_path
-    -else
-      %li= link_to 'Birth Plan', birth_plans_path, class: "#{params[:action] == 'birth_plans' ? 'active-menu-bar' : ''}"
     %li= link_to 'The Facts', facts_path, class: "#{params[:action] == 'facts' ? 'active-menu-bar' : ''}"
     / %li
     /   = link_to 'Framework:', framework_path
@@ -17,6 +13,10 @@
     %li= link_to 'Team', team_path, class: "#{params[:action] == 'team' ? 'active-menu-bar' : ''}"
     %li= link_to 'News', news_index_path, class: "#{params[:action] == 'news' ? 'active-menu-bar' : ''}"
     / %li= link_to 'Projects', projects_path
+    -if current_user.present?
+      %li= link_to 'Birth Plan', profile_path
+    -else
+      %li= link_to 'Birth Plan', birth_plans_path, class: "#{params[:action] == 'birth_plans' ? 'active-menu-bar' : ''}"
     %li= mail_to 'info@squareroots.com', 'Contact Us', :class => 'last', target: '_blank'
 
 %header.default
@@ -31,13 +31,6 @@
         = link_to_unless_current 'What We Do', what_path do
           %span What We Do
       %li
-        -if current_user.present?
-          = link_to_unless_current 'Birth PLan', profile_path do
-            %span Birth Plan
-        -else
-          = link_to_unless_current 'Birth PLan', birth_plans_path do
-            %span Birth Plan
-      %li
         = link_to_unless_current 'The Facts', facts_path do
           %span The Facts
       %li
@@ -46,6 +39,13 @@
       %li
         = link_to_unless_current 'News', news_index_path do
           %span News
+      %li
+        -if current_user.present?
+          = link_to_unless_current 'Birth PLan', profile_path do
+            %span Birth Plan
+        -else
+          = link_to_unless_current 'Birth PLan', birth_plans_path do
+            %span Birth Plan
       %li
         = mail_to 'info@squareroots.com', 'Contact Us', :class => 'last', target: '_blank'
   .clear
