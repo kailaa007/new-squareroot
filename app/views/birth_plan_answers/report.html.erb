@@ -20,7 +20,7 @@
             <h2><%= @user.first_name.titleize %> Report</h2>
             <table width="100%" style="font-family:'AvrNx';" >
                 <% @questions = Question.where(:category => cat) %>
-                <h3 align='center'><b><u><%= cat %></u></b></h3>
+                <h3 align='center'><u><%= cat %></u></h3>
                 <% @questions.each_with_index do |question, index| %>
                     <% ques = @birth_plan_answers.find_by(:question_id => question.id) %>
                      <tr>
@@ -36,7 +36,7 @@
                                         <% ques.answer_options.each do |answer| %>
                                             <%= answer.option.try(:option_title) %>
                                             <% if answer.textbox_answer.present? %>
-                                                : <b><%= answer.textbox_answer %></b>
+                                                : <%= answer.textbox_answer %>
                                             <% end %><br>
                                         <% end %>
                                     <% end %>
