@@ -87,12 +87,12 @@ class BirthPlanAnswersController < ApplicationController
                       layout:   'pdf',             # optional, use 'pdf_plain' for a pdf_plain.html.pdf.erb file, defaults to main layout
                   }
                 },
-                footer: {
-                  html: {
-                    template: 'shared/pdf_footer',          # use :template OR :url
-                      layout:   'pdf',  
-                  }
-                },
+               # footer: {
+                #   html: {
+                #     template: 'shared/pdf_footer',          # use :template OR :url
+                #       layout:   'pdf',  
+                 #  }
+               #  },
                 locals: {:birth_plan_answers => @birth_plan_answers, user: @user}
         end
       end
