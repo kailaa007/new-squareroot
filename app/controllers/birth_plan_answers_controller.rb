@@ -81,18 +81,6 @@ class BirthPlanAnswersController < ApplicationController
                 template: "birth_plan_answers/report.html.erb",
                 layout: 'pdf', 
                 default_header:                 true,
-                header: {
-                  html:{        
-                      template: 'shared/pdf_header',          # use :template OR :url
-                      layout:   'pdf',             # optional, use 'pdf_plain' for a pdf_plain.html.pdf.erb file, defaults to main layout
-                  }
-                },
-                footer: {
-                  html: {
-                    template: '#',          # use :template OR :url
-                      layout:   'pdf',  
-                  }
-                },
                 locals: {:birth_plan_answers => @birth_plan_answers, user: @user}
         end
       end
