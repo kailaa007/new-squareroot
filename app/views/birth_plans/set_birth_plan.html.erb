@@ -177,6 +177,11 @@
         }
         else
         {
+            $.ajax({
+              url: '/birth_plans/save_session?c_id='+<%= @cat_id %>,
+              type: 'POST',
+              data: {"completed": ''}
+            });
             <% if  @cat_id < 5 %>
             window.location.replace("/set_birth_plan?c_id=<%= @cat_id+1 %>");
             <% end %>
