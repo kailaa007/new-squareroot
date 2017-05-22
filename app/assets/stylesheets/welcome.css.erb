@@ -5659,6 +5659,11 @@ ul.pagination li {
   .set_birth_plan .birth_plan_ques_section label + input[type="text"]{width: 74%;}
   .scrollable .viewport{width: 95% !important;}
 }
+@media (max-width: 768px){
+  .set_birth_plan .birth_plan_ques_section label+input[type="text"]{
+    margin-top: 15px;
+  }
+}
 @media screen and (max-width:20em) {
   .birth_plans .birth-intro-popup{position: absolute;top: 34%;}
   .set_birth_plan .confirmation-popup{width: 90% !important;left: 5% !important;}
@@ -13078,6 +13083,7 @@ right: -8.5px;
 }
 .progress-bar ul li.active-saved .large-oval,
 .progress-bar ul li.active-saved .dark-line{opacity: 1;}
+.progress-bar ul li:first-child.active .dark-line{opacity: 1 !important;}
 .progress-bar ul li.active .dark-line{opacity: 0 !important;}
 
 .birth_plan_process{    
