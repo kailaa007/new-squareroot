@@ -1,0 +1,23 @@
+<% if @restricted_questions.present? %>
+    <% @restricted_questions.each do |rq| %>
+        $("#li-<%= rq %>").hide();
+    <% end %>
+<% end %>
+<% if @unrestricted_questions.present? %>
+    <% @unrestricted_questions.each do |unr| %>
+        $("#li-<%= unr %>").show();
+    <% end %>
+<% end %>
+
+
+<% @restricted_questions.each do |restrict_question| %>
+	$(".radio-<%= restrict_question %>").removeAttr("checked");
+	$(".checkbox-<%= restrict_question %>").removeAttr("checked");
+	$("#textbox-<%= restrict_question %>").val('');
+<% end %>
+
+<% if @restricted_options.present? %>
+    <% @restricted_options.each do |ro| %>
+        $("#li-option-<%= ro %>").hide();
+    <% end %>
+<% end %>

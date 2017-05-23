@@ -15,13 +15,13 @@
           <%= link_to 'Tags', admin_tags_path %>
         </li>
         <li>
-          <%= link_to 'Birth Plan', admin_birth_plans_path %>       
+          <%= link_to 'Birth Plan', admin_birth_plans_path, class: "#{params[:controller] == 'admin/birth_plans' ? 'active-menu-bar' : '' }" %>       
         </li>
         <li>
-          <%= link_to 'Admins', admin_administrators_path %>
+          <%= link_to 'Admins', admin_administrators_path, class: "#{params[:controller] == 'admin/administrators' ? 'active-menu-bar' : '' }" %>
         </li>
         <li>
-          <%= link_to 'Users', admin_users_path %>
+          <%= link_to 'Users', admin_users_path, class: "#{params[:controller] == 'admin/users' ? 'active-menu-bar' : '' }" %>
         </li>
         <li>
           <%= link_to 'Logout', admin_logout_path %>

@@ -23,13 +23,13 @@
     <!--     %li= link_to 'Culture', culture_path
     -->
     <li>
-      <%= link_to 'Birth Plan', birth_plans_path %>
-    </li>
-    <li>
       <%= link_to 'Team', team_path %>
     </li>
     <li>
       <%= link_to 'News', news_index_path %>
+    </li>
+    <li>
+      <%= link_to 'Birth Plan', birth_plans_path, class: 'active-menu-bar' %>
     </li>
     <li>
       <%= mail_to 'info@squareroots.com', 'Contact Us', :class => 'last', target: '_blank' %>
@@ -65,12 +65,6 @@
       <!--   = link_to_unless_current 'Framework', framework_path do
       -->
       <li>
-        <%= link_to_unless_current 'Birth Plan', birth_plans_path do %>
-          <span>Birth Plan</span>
-        <% end %>
-      </li>
-      
-      <li>
         <%= link_to_unless_current 'Team', team_path do %>
           <span>Team</span>
         <% end %>
@@ -78,6 +72,11 @@
       <li>
         <%= link_to_unless_current 'News', news_index_path do %>
           <span>News</span>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to_unless_current 'Birth Plan', birth_plans_path, class: 'active-menu-bar' do %>
+          <span>Birth Plan</span>
         <% end %>
       </li>
       <li>

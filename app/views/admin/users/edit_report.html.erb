@@ -1,0 +1,63 @@
+<%= form_for @birth_plan, url: save_session_admin_user_path, remote: true, method: :post do |f| %>
+<%= f.hidden_field :c_id, value: @cat_id %>
+<div class="birth_plan_process section">
+    <div class="row">
+        <div class="columns small-12">
+            <div class="birth_plan_welcome">
+                <%= link_to 'Back', birth_plan_report_admin_user_path(@user) %>
+               <div class="text-center birth_plan_welcome_text">
+                 <hr><%= @user.first_name.titleize %>'s Report<hr>
+            </div>
+        </div>
+        <%= render 'admin/users/birth_plans_form', f: f %>
+    </div>                    
+</div>
+</div>
+
+<% end %>
+<script type="text/javascript">
+    $('.checkbox-cl').on('change', function() {
+       
+        $(this.form).submit();
+    });
+
+    $('.radio').on('change', function() {
+      
+        $(this.form).submit();
+    });
+
+    $('.textfield').on('keyup', function() {
+        
+        $(this.form).submit();
+    });
+
+    <% if @restricted_questions.present? %>
+        <% @restricted_questions.each do |rq| %>
+            $("#li-<%= rq %>").hide();
+        <% end %>
+    <% end %>
+     <% if @restricted_options.present? %>
+        <% @restricted_options.each do |ro| %>
+            $("#li-option-<%= ro %>").hide();
+        <% end %>
+    <% end %>    
+    $('.admin-side-btn').on('click', function(e) {  
+        $("#new_birth_plan_answer").validationEngine('validate');
+        e.preventDefault();
+        var err_length = $(".input-box-error").size();
+        if (err_length > 0){
+
+            alert("Please fill the required fields.");
+        }
+        else {
+            $.ajax({
+              url: '/admin/users/'+<%= @user.id %>+'/save_questions?c_id=101?c_id='+101,
+              type: 'POST',
+              data: {"completed": ''}
+            });
+            alert("Birth Plan Saved Successfully.");
+        }
+       
+    });
+
+</script>

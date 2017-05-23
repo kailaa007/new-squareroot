@@ -1,6 +1,4 @@
-//= require jquery-ui/datepicker
-//= require jquery-ui/sortable
-//= require jquery-ui/effect-highlight
+//= require jquery-ui
 //= require fastclick
 //= require jquery.cookie
 //= require placeholder
@@ -16,15 +14,39 @@
 //= require slideshow
 //= require jquery_nested_form
 //= require best_in_place
-//= require jquery-ui
 //= require best_in_place.jquery-ui
 //= require jquery.custom-scrollbar
+//= require rails.validations
+//= require rails.validations.simple_form
+//= require rails.validations.customValidatiors
+//= require welcome
+//= require jquery.validationEngine.js
+//= require jquery.validationEngine-en.js
+//= require jquery.alphanum.js
+//= require print.min.js
+
 $(document).foundation();
+$(document).on('click', '.add-checklist', function(){
+  $("#checklist-content").customScrollbar();
+
+});
+
 
 $(document).ready(function() {
+  $("#checklist-content").customScrollbar();
+
+  // $('.add-checklist').on('click', function(){
+
+    
+  // });
+   // $("#checklist-content").customScrollbar();
 
   
-  $( ".datepicker" ).datepicker({ dateFormat: 'yy-mm-dd' });
+  //$( ".datepicker" ).datepicker({ dateFormat: 'yy-mm-dd' });
+
+  $('.datepicker').attr('readonly','readonly');
+    var asdf = $('.datepicker').datepicker({ dateFormat: 'yy-mm-dd' });
+    $('.datepicker').bind("click touchend",function(){asdf.datepicker("show");});
   
   
   $('input.ques_title').on('keydown', function(event) {
@@ -135,7 +157,7 @@ $(document).on('click', '.base_question :checkbox', function (e) {
 });
 
 $(document).ready(function() { 
-
+  
   $('form#new_question').submit(function(){
     var qesTitle = $('#question_title').val();
     var qesType = $('#question_ques_type').val();
@@ -396,7 +418,7 @@ $(document).ready(function() {
 	    $('.phase-fields').css("display", "none");
 	}
 
-	$('select').on('change', function() {
+	$('#question_ques_type').on('change', function() {
 	    var ques_type =  this.value;
 	    if(ques_type==2 || ques_type == 3){
 	      $('.phase-fields').css("display", "block");
@@ -405,6 +427,13 @@ $(document).ready(function() {
 	      $('.phase-fields').css("display", "none");
 	    }    
 	}); 
+
+  var eqt = $('form.edit_question #question_ques_type').val();
+  if(eqt != '' && eqt != 'undefined'){  
+    if(eqt == 2 || eqt == 3){ 
+      $('#question_ques_type').trigger('change'); 
+    } 
+  } 
 
 	$(".new_question, .edit_question").submit(function(e){
       var selectOption = $("#question_ques_type").find(":selected").val();
@@ -427,18 +456,6 @@ $(document).ready(function() {
 });
 
 jQuery(document).ready(function(){
-
-  $("form#signUpForm").bind("ajax:success", function(e, data, status, xhr) {
-    console.log(data);
-    if (data.success) {
-      //$('#sign_in').modal('hide');
-      //$('#sign_in_button').hide();
-      //return $('#submit_comment').slideToggle(1000, "easeOutBack");
-      return alert('success!');
-    } else {
-      return alert('failure11!');
-    }
-  });
 
   jQuery("#frmSignUp_123").click(function(){
     var user_first_name = jQuery("#user_first_name").val();
@@ -549,13 +566,16 @@ jQuery(document).ready(function(){
 
   jQuery("#getStarted").on("click", function(){
       jQuery("#forms-popup, .login-form").fadeIn();
+      jQuery("body").addClass("bodyOverflow");
   });
 
   jQuery(".sign-up-link").on("click", function(){
       jQuery(".login-form").hide();
-      jQuery(".sign-up-form").fadeIn();
+      jQuery(".sign-up-form").fadeIn();     
   });
-
+  jQuery(".due_date").on("click", function(e){
+      e.preventDefault();
+  });
   jQuery(".login-link").on("click", function(){
       jQuery(".sign-up-form").hide();
       jQuery(".login-form").fadeIn();
@@ -564,8 +584,13 @@ jQuery(document).ready(function(){
   jQuery(".close-login-form, .close-signup-form").on("click", function(){
       jQuery("#forms-popup, .sign-up-form").hide();
       jQuery(".login-form").fadeIn();
-  });
+      jQuery("body").removeClass("bodyOverflow");
 
+     jQuery("#ui-datepicker-div").hide();
+  });
+  jQuery(document).on('click', '.user_due_date', function(){
+    jQuery("#ui-datepicker-div").show();
+  })
   jQuery(".termsofuse-link").on("click", function(){
       jQuery("#forms-popup, .sign-up-form").hide();
       jQuery(".login-form").fadeIn();
@@ -586,11 +611,21 @@ jQuery(document).ready(function(){
       jQuery(".login-form").hide();
       jQuery(".forget-pswd-form").fadeIn();
   });
-
+ 
   jQuery(".close-forget-pswd-form").on("click", function(){
       jQuery("#forms-popup, .forget-pswd-form").hide();
+      jQuery("body").removeClass("bodyOverflow");
 
   });
+
+  jQuery(".deactive-1").on("click", function(){
+      jQuery("body").addClass("bodyOverflow");
+  });
+
+  jQuery(".close-confirmation-form").on("click", function(){
+      jQuery("body").removeClass("bodyOverflow");
+  });
+
 });
 
 jQuery(window).resize(function(){
@@ -602,4 +637,75 @@ function getpopupHeight() {
   jQuery("#birth-intro-popup").css("marginTop",  -getpopupH);
   var getFormsPopupH = jQuery("#forms-popup").innerHeight()/2;
   jQuery("#forms-popup").css("marginTop", -getFormsPopupH);
+  
+  $(".ques_info, .help").hover(function() {
+      // var getTooltipBoxH = jQuery(this).find(".tooltip_box").innerHeight()/2;
+      // jQuery(this).find(".tooltip_box").css("bottom", -getTooltipBoxH-4);
+      jQuery(this).find(".tooltip_box").addClass("showtooltipbox")
+  },
+  function() {
+      jQuery(this).find(".tooltip_box").removeClass("showtooltipbox")
+  });
 }
+
+function closePopup() {
+  $('#signUpForm')[0].reset();
+  $('#loginForm')[0].reset();
+  $('#forgetPasswordForm')[0].reset();
+  $(".formError").remove();
+  $('input').removeClass('input-box-error');
+  $('email').removeClass('input-box-error');
+  $('#terms-form-signup').removeClass('input-box-error');
+  $("#password-error").removeClass('error alert-success');
+  $('#signup-error').removeClass('error alert-success');
+  $("#password-error").html('');
+  $('#signup-error').html('');
+  $('#login-error').removeClass('error alert-success');
+  $('#login-error').html('');
+}
+
+$("#user_zipcode").numeric({
+    allowSpace: false, 
+    maxDigits: 5
+  });
+
+$("#password").alphanum({
+    allowSpace: false, 
+    allow :    '~!@#$%^&*()_+{}:">?<,./;'
+  });
+
+$("#user_password_confirmation").alphanum({
+    allowSpace: false, 
+    allow :    '~!@#$%^&*()_+{}:">?<,./;'
+  });
+
+$("#user_password").alphanum({
+    allowSpace: false, 
+    allow :    '~!@#$%^&*()_+{}:">?<,./;'
+  });
+
+$("#user_first_name").alpha({
+    allowSpace: true, 
+    maxLength: 25
+  });
+$("#user_last_name").alpha({
+    allowSpace: true, 
+    maxLength: 25
+  });
+
+$('#signUpForm').submit(function() {
+  if ($("#iAgree").is(':checked') == false){
+    $("#terms-form-signup").addClass("input-box-error");
+  };
+});
+
+$('#iAgree').on("click", function(){
+  if ($("#iAgree").is(':checked') == true){
+    $("#terms-form-signup").removeClass("input-box-error");
+  }
+  else{
+    $("#terms-form-signup").addClass("input-box-error");
+  }
+  ;
+
+})

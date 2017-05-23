@@ -21,3 +21,4 @@
 #/config/database.yml
 /config/amazon.yml
 /public/system
+/.byebug_history

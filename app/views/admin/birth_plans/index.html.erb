@@ -6,15 +6,16 @@
     <div class="columns small-12 medium-8 title_top">
       <%= f.label :title, class: "label_top" %>
       <%= f.text_field :title, required: true , class: "input_top" %>
-      <%= f.submit "submit", :class => 'button radius pull-right top_btm' %>
+      <%= f.submit "Submit", :class => 'button radius pull-right top_btm' %>
     </div> 
   </div>
 <% end %>   
 
 <div class="row">
-  <div class="col-md-12" style="padding-left: 0;display: table;">
+  <div class="col-md-12" style="padding-left: 0;padding-right: 0;display: table;">
     <h2 style="vertical-align: middle;display: table-cell;">Questions</h2>
-    <button type="button" class="btn btn-info btn-lg add_button" id="show-form">Add Question</button>
+    <button type="button" class="btn-info btn-lg add_button" id="show-form">Add Question</button>
+    <%= link_to "Checklist", admin_checklists_path, class: 'btn-info btn-lg add_button', style: 'margin-right: 10px;' %>
   </div> 
 </div>
 
@@ -27,6 +28,8 @@
         <%= nested_form_for [ :admin, @question ], html: {novalidate: false} do |f| %>
           <div class="row">
             <div class="columns small-12 medium-12">
+              <label>Category Type <span style="color: red">*</span></label>
+              <%= f.select :category, Question::CATEGORY_TYPES, onclick: "javascript:void(0);" %>
               <%= f.label :title do %>
                 Title <span style="color: red">*</span>
               <% end %>
@@ -69,17 +72,18 @@
 
     <div class="row">
       <div id="sort_errors"></div>
-      <table class="sortable-table ui-sortable" data-url="/admin/birth_plans/sort" width="100%">
+      <table class="index-list sortable-table ui-sortable" data-url="/admin/birth_plans/sort" width="100%">
         <thead>
           <tr>
             <th width="5%" style="text-align: center;">Order</th>
-            <th width="55%">Title</th>
+            <th width="40%">Title</th>
+            <th width="15%">Category</th>
             <th width="15%">Type</th>
             <th width="10%" style="text-align: center;">Restriction</th>
             <th width="15%" style="text-align: center;">Action</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody id="questions">
            <%= render 'list' %>
         </tbody>
       </table>  

@@ -7,20 +7,33 @@ class Question < ActiveRecord::Base
     'Email Field' => 5,
     'Input Field' => 6,
   }
-  before_save :capitalize_title
+
+  CATEGORY_TYPES = [
+    'WHO & WHERE',
+    'ENVIRONMENT',
+    'IN LABOR',
+    'IMMEDIATELY AFTER BIRTH',
+    'YOUR NEW BORN'
+  ].freeze
+  
+  #before_save :capitalize_title
   before_create :set_order	
   self.per_page = 10
   validates_presence_of :title, :ques_type
-  validates_uniqueness_of :order, allow_nil: true, allow_blank: true
+  validates :category, presence: true
+  #validates_uniqueness_of :order, allow_nil: true, allow_blank: true
   #gems
   extend FriendlyId
   friendly_id :title, use: :slugged
 
   #attr_accessor :title, :type, :note
-  has_many :options, dependent: :destroy
+  has_many :options
 
-  has_many :birth_plan_questions, dependent: :destroy
+  has_many :birth_plan_questions
   has_many :birth_plans, through: :birth_plan_questions
+
+  has_many :restrict_questions, :class_name => "RestrictQuestion",
+    :foreign_key => 'main_ques_id', :dependent => :destroy
 
   accepts_nested_attributes_for :options, allow_destroy: true
 
@@ -42,5 +55,5 @@ class Question < ActiveRecord::Base
     else
       self.order = Question.maximum('order') +1
     end  
-  end  
+  end 
 end

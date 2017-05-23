@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Title:
+  = @checklist_answer.title
+%p
+  %b User:
+  = @checklist_answer.user_id
+%p
+  %b Checklist:
+  = @checklist_answer.checklist_id
+
+= link_to 'Edit', edit_checklist_answer_path(@checklist_answer)
+\|
+= link_to 'Back', checklist_answers_path

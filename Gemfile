@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.3.0'
+ruby '2.3.1'
 
 gem 'rails_12factor', group: :production
 gem 'rails', '4.2.4'
@@ -24,11 +24,15 @@ gem 'pdfkit'
 gem 'wkhtmltopdf-binary'
 gem 'best_in_place'
 gem 'wicked_pdf'
+gem 'client_side_validations'
+gem 'client_side_validations-simple_form'
 
 group :development, :test do
   gem 'byebug'
   gem 'web-console', '~> 2.0'
-  gem 'spring'
+  gem 'spring'  
+  gem 'mailcatcher'
+  gem 'hirb'
 end
 
 gem 'unicorn'

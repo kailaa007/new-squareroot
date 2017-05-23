@@ -1,0 +1,10 @@
+= simple_form_for(@checklist_answer) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :title
+    = f.input :user_id
+    = f.input :checklist_id
+
+  .form-actions
+    = f.button :submit

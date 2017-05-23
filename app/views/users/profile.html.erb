@@ -1,0 +1,221 @@
+<% if user_signed_in? %>
+<div class='birth-plan-splash'>
+	<%= image_tag 'profile-pic.jpg' %>
+    <h2 class="_splash_heading">Your Birth Plan Journey</h2>
+</div>
+<div class='row _user_profile_layout'>
+	<div class='columns small-12 user-profile-area'>
+		<div class="user-profile-area-content">
+			<ul>
+				<li>
+					<h3><%= "#{(current_user.try(:first_name)).try(:humanize)} #{(current_user.try(:last_name)).try(:humanize)}" %></h3>                                
+				</li>
+				<li><%= link_to "Log Out", destroy_user_session_path, method: :delete, :class => 'logout-link'  %></li>
+			</ul>
+		</div>
+		<div class='user-profile-options'>
+			<div class="columns small-12 large-7">
+				<div class="profile-options options-edit">
+					<a href="/set_birth_plan" title=""><span class="profile-options-icon"><%= image_tag 'edit_summery.png' %></span><%= current_user.birth_plan_answers.present? ? 'Edit Birth Plan Summary' : 'Start Birth Plan' %></a>
+				</div>
+				<div class="profile-options options-print">
+					<% if current_user.birth_plan_answers.present? %>
+						<a onclick="printJS('/questions/report.pdf?print=true')"><span class="profile-options-icon" ><%= image_tag 'print.png' %></span>Print</a>
+					<% else %>
+						<a href='' class='not-active'><span class="profile-options-icon" ><%= image_tag 'print.png' %></span>Print</a>
+				<% end %>
+				</div>
+			</div>
+			<div class="columns large-4">
+				<div  class="profile-options options-download">
+				<% if current_user.birth_plan_answers.present? %>
+					<%= link_to report_birth_plan_answers_path(format: 'pdf'), target: :_blank, download: "#{current_user.first_name}-report" do%>
+						<span class="profile-options-icon"><%= image_tag 'download.png' %></span>Download PDF
+					<% end %>
+				<% else %>
+					<a class='not-active'><span class="profile-options-icon"><%= image_tag 'download.png' %></span>Download PDF</a>
+				<% end %>
+				</div>
+				<div class="profile-options options-email">
+				<% if current_user.birth_plan_answers.present? %>
+					<%= link_to send_email_report_birth_plan_path(current_user.id), remote: true, class: 'email-send-btn' do%>
+						<span class="profile-options-icon" ><%= image_tag 'email.png' %></span>Email
+					<% end %>
+				<% else %>
+					<a href="javascript:void(0);" class='not-active'><span class="profile-options-icon"><%= image_tag 'email.png' %></span>Email</a>
+				<% end %>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="birth-plan-summery-heading-section">
+			<h2 class="birth-plan-summery-heading-section-main">Square roots birth plan</h2>
+			<div class="birth-plan-summery-heading">
+				<div class="summery-heading-area">
+					<span class="summery-heading-icon left"><%= image_tag 'logo_white.png'%></span>
+					<div class="doc-name"><%= "#{(current_user.try(:first_name)).try(:humanize)} #{(current_user.try(:last_name)).try(:humanize)}" %>,</div>
+					<div class="doc-caption">Birth Plan Summary</div>
+					<span class="summery-heading-icon right"><%= image_tag 'doc_icon.png' %></span>
+				</div>
+				<div class="birth-plan-content">
+					<div class="heading-due-date">
+						<div class="right">Due Date - <%= current_user.due_date.strftime("%B %d, %Y") if current_user.due_date.present? %></div>
+					</div>
+					<div class="birth-plan-summery">                    
+						<div class='columns small-12 medium-6'>
+							<div class="birth-plan-summery-content">
+								<h2>Who &amp; Where </h2>
+									<% cat = 'WHO & WHERE' %>
+									<% @questions = Question.where(:category => cat) %>
+					                <% @questions.each do |question| %>
+					                    <% ques = current_user.birth_plan_answers.find_by(:question_id => question.id) %>
+					                <p>
+					                    <%= question.try(:title) %>
+					                    <br>
+				                            <% if ques.present? %>
+				                                <% if ques.answer.present? %>
+				                                    <%= ques.answer %>
+				                                <% else %>
+				                                    <% if  ques.answer_options.present? %>
+				                                        <% ques.answer_options.each do |answer| %>
+				                                            <%= answer.option.try(:option_title) %>
+				                                            <% if answer.textbox_answer.present? %>
+				                                                : <%= answer.textbox_answer %>
+				                                            <% end %><br>
+				                                        <% end %>
+				                                        </p>
+				                                    <% end %>
+				                                <% end %>
+				                            <% else %>
+				                                Not Filled
+				                            <% end %>
+					                <% end %>
+								<div class='spacer show-for-small'></div>     
+								<h2 class="nomargin">Environment </h2>
+								<% cat = 'ENVIRONMENT' %>
+									  <% @questions = Question.where(:category => cat) %>
+					                <% @questions.each do |question| %>
+					                    <% ques = current_user.birth_plan_answers.find_by(:question_id => question.id) %>
+					                <p>
+					                    <%= question.try(:title) %>
+					                    <br>
+				                            <% if ques.present? %>
+				                                <% if ques.answer.present? %>
+				                                    <%= ques.answer %>
+				                                <% else %>
+				                                    <% if  ques.answer_options.present? %>
+				                                        <% ques.answer_options.each do |answer| %>
+				                                            <%= answer.option.try(:option_title) %>
+				                                            <% if answer.textbox_answer.present? %>
+				                                                : <%= answer.textbox_answer %>
+				                                            <% end %><br>
+				                                        <% end %>
+				                                        </p>
+				                                    <% end %>
+				                                <% end %>
+				                            <% else %>
+				                                Not Filled
+				                            <% end %>
+					                <% end %>
+									<div class='spacer show-for-small'></div>     
+									<h2 class="nomargin">In labor </h2>
+									<% cat = 'IN LABOR' %>
+										  <% @questions = Question.where(:category => cat) %>
+						                <% @questions.each do |question| %>
+						                    <% ques = current_user.birth_plan_answers.find_by(:question_id => question.id) %>
+						                <p>
+						                    <%= question.try(:title) %>
+						                    <br>
+					                            <% if ques.present? %>
+					                                <% if ques.answer.present? %>
+					                                    <%= ques.answer %>
+					                                <% else %>
+					                                    <% if  ques.answer_options.present? %>
+					                                        <% ques.answer_options.each do |answer| %>
+					                                            <%= answer.option.try(:option_title) %>
+					                                            <% if answer.textbox_answer.present? %>
+					                                                : <%= answer.textbox_answer %>
+					                                            <% end %><br>
+					                                        <% end %>
+					                                        </p>
+					                                    <% end %>
+					                                <% end %>
+					                            <% else %>
+					                                Not Filled
+					                            <% end %>
+						                <% end %>
+								</div>                       
+						</div>
+						<div class='columns small-12 medium-6'>
+							<div class="birth-plan-summery-content">
+										<h2>Immediately After Birth </h2>
+										<% cat = 'IMMEDIATELY AFTER BIRTH' %>
+											  	<% @questions = Question.where(:category => cat) %>
+								                <% @questions.each do |question| %>
+								                    <% ques = current_user.birth_plan_answers.find_by(:question_id => question.id) %>
+								                <p>
+								                    <%= question.try(:title) %>
+								                    <br>
+							                            <% if ques.present? %>
+							                                <% if ques.answer.present? %>
+							                                    <%= ques.answer %>
+							                                <% else %>
+							                                    <% if  ques.answer_options.present? %>
+							                                        <% ques.answer_options.each do |answer| %>
+							                                            <%= answer.option.try(:option_title) %>
+							                                            <% if answer.textbox_answer.present? %>
+							                                                : <%= answer.textbox_answer %>
+							                                            <% end %><br>
+							                                        <% end %>
+							                                        </p>
+							                                    <% end %>
+							                                <% end %>
+							                            <% else %>
+							                                Not Filled
+							                            <% end %>
+								                <% end %>
+											<div class='spacer show-for-small'></div>     
+											<h2 class="nomargin">Baby Questions </h2>
+											<% cat = 'YOUR NEW BORN' %>
+											  	<% @questions = Question.where(:category => cat) %>
+								                <% @questions.each do |question| %>
+								                    <% ques = current_user.birth_plan_answers.find_by(:question_id => question.id) %>
+								                <p>
+								                    <%= question.try(:title) %>
+								                    <br>
+							                            <% if ques.present? %>
+							                                <% if ques.answer.present? %>
+							                                    <%= ques.answer %>
+							                                <% else %>
+							                                    <% if  ques.answer_options.present? %>
+							                                        <% ques.answer_options.each do |answer| %>
+							                                            <%= answer.option.try(:option_title) %>
+							                                            <% if answer.textbox_answer.present? %>
+							                                                : <%= answer.textbox_answer %>
+							                                            <% end %><br>
+							                                        <% end %>
+							                                        </p>
+							                                    <% end %>
+							                                <% end %>
+							                            <% else %>
+							                                Not Filled
+							                            <% end %>
+								                <% end %>
+										<div class='spacer show-for-small'></div>
+								</div>
+							</div>
+						</div>
+					</div>
+			</div>
+
+		</div>                    
+	</div>
+</div>
+<div class='clear'></div>
+<script type="text/javascript">
+	$(document).one('click', '.email-send-btn' ,function(){
+		$(this).append("Sent");
+	});
+</script>
+				<% end %>

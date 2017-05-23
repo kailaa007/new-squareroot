@@ -1,0 +1,56 @@
+<table width="800px" style="font-family:'AvrNx';border:1px solid #000;" cellspacing="0" cellpadding="8">
+  <tr id="m_-4263218024952355501send-head" style="background:#004290;padding:10px 33px">
+    <td>
+    <img style="margin: auto;display: block;" width="99" height="56" src="https://squareroot.herokuapp.com/assets/logo-9b5cf4107c1750dbc4f233801adfebc34f38e6fe42d61e2d395f2300d47744e6.png" alt="img"> 
+  </tr>
+  <tr>
+    <td style="background: #f2bc37;color: #FFF;padding: 10px;margin: 0;font-size: 20px;font-weight: bold;"><%= @user.first_name.titleize %> Report</td>
+  </tr>
+
+  <% Question::CATEGORY_TYPES.each do |cat| %>
+  <% c_quest = Question.where(:category => cat).pluck(:id) %>
+  <% if @user.birth_plan_answers.where(:question_id => c_quest).present? %>
+  <tr>
+    <td>
+      <h3 align='center'><b style="border-bottom: 1px solid #000;"><%= cat %></b></h3>
+      
+      <% @birth_plan_answers.where(:question_id => c_quest).each_with_index do |ques, ind| %>
+        <tr>
+          <td><%= ind+1 %>) <%= ques.try(:question) %></td>
+        </tr>
+        <tr>
+          <td>
+              <% if ques.answer.present? %>
+                  <%= ques.answer %>
+              <% else %>
+                  <% if  ques.answer_options.present? %>
+                      <% ques.answer_options.each do |answer| %>
+                          <%= answer.option.try(:option_title) %>
+                          <% if answer.textbox_answer.present? %>
+                              : <b><%= answer.textbox_answer %></b>
+                          <% end %><br>
+                      <% end %>
+                  <% end %>
+              <% end %>
+          </td>
+        </tr>  
+      <% end %>
+    <% end %>
+    </td>
+  </tr>
+<% end %>
+    <tr><td></td></tr>
+<tfoot style="background: #F4C552;color: #FFF;padding: 10px;margin: 0;font-size: 16px;font-weight: bold;text-align: center;">
+    <tr><td></td></tr>
+    <tr>
+      <td >Square Roots<sup style="font-size: 10px;">TM</sup> is a mission-driven company focused on pregnancy health and wellness.</td>
+    </tr>
+    <tr>
+      <td style="background: #F4C552;color: #FFF;text-align: center;">
+          <a style="padding: 10px 20px;margin:2px;border: 1px solid white;color: #fff;" href="https://squareroot.herokuapp.com/">Play Video</a>
+          <a style="padding: 10px 20px;margin:2px;border: 1px solid white;color: #fff;" target="_blank" href="mailto:info@squareroots.com">Contact Us</a>
+      </td>
+    </tr>
+    <tr><td></td></tr>
+  </tfoot>
+</table>

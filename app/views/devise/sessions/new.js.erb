@@ -1,0 +1,12 @@
+<% if @user_.present? %>
+	$("#login-error").html("The email or password that you've entered is incorrect. ");
+<% else %>
+	$("#login-error").html("User doesn't exist. ");
+<% end %>
+$("#login-error").addClass("error");
+setTimeout(function(){
+        $("#login-error").removeClass('error');
+        $("#login-error").html('');
+}, 5000);
+$(".login-email-id").addClass("input-box-error");
+$(".login-pswd").addClass("input-box-error");

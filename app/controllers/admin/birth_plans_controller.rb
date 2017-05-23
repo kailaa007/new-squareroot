@@ -35,29 +35,40 @@ class Admin::BirthPlansController < Admin::ApplicationController
     @birth_plan = BirthPlan.find(params[:id])
     if @birth_plan.update(birth_plan_params)
       flash[:success] = 'Birth Plan updated.'
-      redirect_to admin_birth_plans_path
+      if params[:birth_plan][:checklist_on].present?
+        redirect_to admin_checklists_path
+      else
+        redirect_to admin_birth_plans_path
+      end
     else
       render :edit
     end
   end
 
-  def sort
-    #ques_order"=>[4, 5, 6, 7], "ques_id"=>["41", "37", "40", "42"]
-    params[:sort] =  Hash[params[:ques_id].zip params[:ques_order]]
-    params[:sort].each do |k, v|
-      question = Question.find(k)
-      if question.present?
-        if question.update_attributes(order: v)
-          @questions = Question.ordered
-          flash[:notice] = "done"
-        else
-          flash[:notice] = "jzsfgjskdgfk"
-          redirect_to admin_birth_plans_path
-          return
-        end  
-      end  
+  def sort 
+    params[:sort].each do |k, v| 
+      Question.find(k).update(order: v)
     end
-  end  
+    head :ok
+  end
+  
+  # def sort
+  #   #ques_order"=>[4, 5, 6, 7], "ques_id"=>["41", "37", "40", "42"]
+  #   params[:sort] =  Hash[params[:ques_id].zip params[:ques_order]]
+  #   params[:sort].each do |k, v|
+  #     question = Question.find(k)
+  #     if question.present?
+  #       if question.update_attributes(order: v)
+  #         @questions = Question.ordered
+  #         flash[:notice] = "done"
+  #       else
+  #         flash[:notice] = "jzsfgjskdgfk"
+  #         redirect_to admin_birth_plans_path
+  #         return
+  #       end  
+  #     end  
+  #   end
+  # end  
 
   def index
     @birth_plan = BirthPlan.first
@@ -112,7 +123,7 @@ class Admin::BirthPlansController < Admin::ApplicationController
   private
 
   def birth_plan_params
-    params.require(:birth_plan).permit(:title, :status, :description, question_attributes: [:id])
+    params.require(:birth_plan).permit(:title, :status, :description, :checklist_on, question_attributes: [:id])
   end
 
 end

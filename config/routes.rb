@@ -1,8 +1,14 @@
 Rails.application.routes.draw do
 
+  
+  resources :checklist_answers do
+    post 'toggle', on: :collection
+    post 'restrictions', on: :collection    
+  end
+  resources :checklists
    devise_for :users,
     controllers: {
-       registrations: :registrations,
+       registrations: :registrations, sessions: :sessions, passwords: :passwords
       },
     path_names: {
       password: 'forgot',
@@ -11,15 +17,15 @@ Rails.application.routes.draw do
     }
     
   as :user do  
-    get '/login', to: 'devise/sessions#new' 
-    post 'login', to: 'devise/sessions#new' 
+    get '/login', to: 'sessions#new' 
+    post 'login', to: 'sessions#new' 
     get '/sign_up', to: 'registrations#new'
     get '/edit_profile', to: "devise/registrations#edit"
-    get "/forgot/new", to: "devise/passwords#new"
+    get "/forgot/new", to: "passwords#new"
   end  
   
   namespace :admin do
-    resources :administrators, :news, :tags, :questions
+    resources :administrators, :news, :tags, :questions, :checklists   
     resources :birth_plans do
       get "assign_ques", on: :collection
       post "assign_ques", on: :collection
@@ -35,6 +41,9 @@ Rails.application.routes.draw do
     resources :users do 
       get 'birth_plan_report', on: :member
       post 'birth_plan_report', on: :member
+      get 'edit_report', on: :member
+      post 'save_session', on: :member
+      get 'save_questions', on: :member
     end
 
     resources :password_resets
@@ -60,6 +69,7 @@ Rails.application.routes.draw do
     get 'index', to: 'birth_plans#index'
     get 'active_plan', on: :collection
     post 'answer', on: :member
+    get 'send_email_report', on: :member  
   end  
   
   get '/get_restriction', to: 'birth_plan_answers#get_restriction'
@@ -67,8 +77,10 @@ Rails.application.routes.draw do
 
   resources :birth_plan_answers, :path => 'questions' do
     get :report, on: :collection
+    get 'save_session', on: :collection
   end  
-  
+  get "/profile", to: "users#profile", as: "profile"
+  get "/set_birth_plan", to: "birth_plans#set_birth_plan", as: "set_birth_plan"  
   root to: 'public#video'
 
 end

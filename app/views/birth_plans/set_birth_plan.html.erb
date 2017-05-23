@@ -1,0 +1,220 @@
+<div class="birth-plan-splash">
+    <%= image_tag('quetion_header.jpg') %>
+    <h2 class="_splash_heading">Your Birth Plan Journey</h2>
+    <div class="progress-bar-mobile"><%= Question::CATEGORY_TYPES[@cat_id-1] %> <span><%= @cat_id %>/5</span></div>
+    <div class="progress-bar">
+        <div class="row">
+            <ul>
+                <li class="step-1 first <%= 'active-saved' if @cat_id >= 1 %> <%= 'active' if @cat_id == 1 %>">
+                    <h4>WHO &amp; WHERE</h4>
+                    <span class="small-oval"></span>
+                    <span class="large-oval"></span>
+                    <span class="dark-line"></span>
+                    <span class="active-oval">
+                        <div class="active-oval-text">WHO<br>&amp;<br>WHERE</div>
+                    </span>
+                </li>
+                <li class="step-2 <%= 'active-saved' if @cat_id >= 2 %> <%= 'active' if @cat_id == 2 %>">
+                    <h4>ENVIRONMENT</h4>
+                    <span class="small-oval"></span>
+                    <span class="large-oval"></span>
+                    <span class="dark-line"></span>
+                    <span class="active-oval">
+                        <div class="active-oval-text">ENVIRONMENT</div>
+                    </span>
+                </li>
+                <li class="step-3 <%= 'active-saved' if @cat_id >= 3 %> <%= 'active' if @cat_id == 3 %>">
+                    <h4>In Labor</h4>
+                    <span class="small-oval"></span>
+                    <span class="large-oval"></span>
+                    <span class="dark-line"></span>
+                    <span class="active-oval">
+                        <div class="active-oval-text">In Labor</div>
+                    </span>
+                </li>
+                <li class="step-4 <%= 'active-saved' if @cat_id >= 4 %> <%= 'active' if @cat_id == 4 %>">
+                    <h4>IMMEDIATELY AFTER BIRTH</h4>
+                    <span class="small-oval"></span>
+                    <span class="large-oval"></span>
+                    <span class="dark-line"></span>
+                    <span class="active-oval">
+                        <div class="active-oval-text">IMMEDIATELY<br>AFTER<br>BIRTH</div>
+                    </span>
+                </li>
+                <li class="step-5 last <%= 'active-saved' if @cat_id >= 5 %> <%= 'active' if @cat_id == 5 %>">
+                    <h4>YOUR NEWBORN</h4>
+                    <span class="small-oval"></span>
+                    <span class="large-oval"></span>
+                    <span class="dark-line"></span>
+                    <span class="active-oval">
+                        <div class="active-oval-text">YOUR<br>NEWBORN</div>
+                    </span>
+                </li>                            
+            </ul>
+        </div>
+    </div>
+</div>
+<%= form_for @birth_plan, url: birth_plan_answers_path, remote: true, method: :post do |f| %>
+<%= f.hidden_field :c_id, value: @cat_id %>
+<div class="birth_plan_process section">
+    <div class="row">
+        <div class="columns small-12">
+            <div class="birth_plan_welcome">
+               <% if @cat_id == 1 %>
+
+                <a class="birth_plan_welcome_help help" href="javascript:void(0);" title="">
+                    <div class="tooltip_box">
+                       For any medical questions, please refer to your care provider. We would, however, love your feedback on the birth plan itself. If you have any questions or concerns regarding the content or formatting of this page, please let us know by emailing Katie@squareroots.com
+                   </div>
+               </a>
+               <hr><hr>
+               <div class="text-center birth_plan_welcome_text">
+                <p>Hello and welcome to your birth plan!</p>
+                <p>We hope that you ﬁnd this helpful and leave feeling more prepared for your big day! If at any point you would like more information, you can click the (i) to read more about your options. You can also skip any questions that you are unsure about, and if you run out of time, you can always save your progress to return to ﬁll it in later.</p>
+                <p>Thank you and congratulations!</p>
+                <hr><hr>
+               </div>
+                <% end %>
+              <!--  <%= Question::CATEGORY_TYPES[@cat_id-1] %>!-->
+        </div>
+        <%= render 'birth_plans/form', f: f %>
+    </div>                    
+</div>
+</div>
+<div class="birth_plan_pagination mobile">
+    <div class="row">
+        <div class="paggingDiv">
+            <span class="currentPage page"><%= @cat_id %></span> OF <span class="totalPages page">5</span> PAGES
+        </div>                            
+        <div class="paggingDiv">
+            <%= link_to "#{ @cat_id == 5 ? 'Save' : 'Next'}", set_birth_plan_path(c_id: @cat_id+1), class: "button nxt-btn next-button #{@cat_id == 5 ? 'deactive-1' : ''}", remote: (@cat_id == 5 ? true : false) %>
+        </div>
+    </div>
+</div>
+<% if @cat_id == 5 %>
+<div id="confirmation-popup" class="confirmation-popup" style="margin-top: -257.5px;">
+        <div class="row termofuse-section">
+            <a href="javascript:void(0);" class="close-confirmation-form close-btn">close</a>            
+            <div class="medium-centered large-centered">
+                <h4 class="text-center">Congratulations</h4> 
+                <p class="text-center">You just completed your birth plan!</p>
+                <p class="text-center">You can always login to print, email or download it!</p>
+                <div id="confirmation-content" class="confirmation-container text-center">
+                    <ul>
+                        <li>
+                            <a onclick="printJS('/questions/report.pdf?print=true')" >
+                                <div class="confirmation-img">
+                                    <div class="confirmation-pic"><%= image_tag 'print.png' %></div>
+                                </div>
+                                <div class="confirmation-caption">Print</div>
+                            </a>
+                        </li>
+                        <li>
+                            <a onclick="$('.email-send-btn').html('Email Sent'); $('#email-btn-user').click();" >
+                                <div class="confirmation-img">
+                                    <div class="confirmation-pic"><%= image_tag 'email.png' %></div>
+                                </div>                            
+                                <div class="confirmation-caption">
+                                    <%= link_to "Email", send_email_report_birth_plan_path(current_user.id), remote: true, class: 'email-send-btn', id: "email-btn-user" %>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/questions/report.pdf", download="<%= current_user.first_name %>-report" >
+                                <div class="confirmation-img">
+                                    <div class="confirmation-pic"><%= image_tag 'download.png' %></div>
+                                </div>
+                                <div class="confirmation-caption">
+                                    <%= link_to "Download PDF", report_birth_plan_answers_path(format: 'pdf'), target: :_blank, download: "#{current_user.first_name}-report", id: 'download-pdf' %>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                    <%= link_to "Save Answers", save_session_birth_plan_answers_path(c_id: 6), class: "btn next-button save-btn", remote: true %>
+                </div>
+            </div>
+        </div>
+    </div>
+    <% end %>
+<% end %> 
+<script type="text/javascript">
+    
+    $('.textfield').on('keyup', function() {
+        $(this.form).submit();
+    });
+
+    $('.radio').on('click', function() {    
+    $(this.form).submit();    
+    var chk = $("#"+this.id).prop('checked')
+    var opt_id = this.id.split("--")[1]
+    var ques_id = this.id.split("--")[0]
+    $.ajax({
+      url: '/checklist_answers/restrictions?type=radio&&ques_id='+ques_id+'&&opt_id='+opt_id+'&&checked='+chk,
+      type: 'POST',
+      data: {"completed": ''}
+    });
+  }); 
+
+    $('.checkbox-cl').on('change', function() {  
+    $(this.form).submit();      
+    var chk = $("#"+this.id).prop('checked')
+    var opt_id = this.id.split("--")[1]
+    var ques_id = this.id.split("--")[0]
+    $.ajax({
+      url: '/checklist_answers/restrictions?type=checkbox&&ques_id='+ques_id+'&&opt_id='+opt_id+'&&checked='+chk,
+      type: 'POST',
+      data: {"completed": ''}
+    });
+  }); 
+
+    $('.next-button').on('click', function(e) {  
+        $("#new_birth_plan_answer").validationEngine('validate');
+        e.preventDefault();
+        var err_length = $(".input-box-error").size();
+        if (err_length > 0){
+
+            alert("Please fill the required fields.");
+        }
+        else
+        {
+            $.ajax({
+              url: '/birth_plans/save_session?c_id='+<%= @cat_id %>,
+              type: 'POST',
+              data: {"completed": ''}
+            });
+            <% if  @cat_id < 5 %>
+            window.location.replace("/set_birth_plan?c_id=<%= @cat_id+1 %>");
+            <% end %>
+        }
+    }); 
+
+     $('.sve-btn').on('click', function(e) {  
+        $("#new_birth_plan_answer").validationEngine('validate');
+        e.preventDefault();
+        var err_length = $(".input-box-error").size();
+        if (err_length > 0){
+
+            alert("Please fill the required fields.");
+        }
+        else {
+            $.ajax({
+              url: '/birth_plans/save_session?c_id='+<%= @cat_id %>,
+              type: 'POST',
+              data: {"completed": ''}
+            });
+            alert("Birth Plan Saved Successfully.");
+        }
+       
+    });
+
+    <% if @restricted_questions.present? %>
+        <% @restricted_questions.each do |rq| %>
+            $("#li-<%= rq %>").hide();
+        <% end %>
+    <% end %>
+     <% if @restricted_options.present? %>
+        <% @restricted_options.each do |ro| %>
+            $("#li-option-<%= ro %>").hide();
+        <% end %>
+    <% end %>    
+</script>

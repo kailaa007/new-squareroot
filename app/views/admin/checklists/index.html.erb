@@ -1,0 +1,34 @@
+<div class='row'>
+  <%= link_to 'Back', admin_birth_plans_path, class: '' %>
+</div>
+<div class="row">
+  <h2>Listing checklists</h2>
+</div>
+<div class="row">
+  <div id="sort_errors">
+    <%= form_for [:admin, @birth_plan] do |f| %>
+      <%= f.select :checklist_on, Question::CATEGORY_TYPES, :prompt => "Select category type", onclick: "javascript:void(0);" %>
+      <%= f.submit %> 
+    <% end %>
+    <%= link_to 'New Checklist', new_admin_checklist_path, class: 'button radius pull-right secondary' %>
+  </div>
+  <table class="sortable-table ui-sortable" data-url="/admin/birth_plans/sort" width="100%">
+    <thead>
+      <tr>
+        <th>Title</th> 
+        <th>Category</th> 
+        <th width="25%" style="text-align: center;"></th>
+      </tr>
+    </thead>
+    <tbody>
+     <% @checklists.each do |checklist| %>
+     <tr>
+      <td><%= checklist.title %></td>
+      <td><%= checklist.category %></td>
+      <td class='actions'><%= link_to 'Edit', edit_admin_checklist_path(checklist) %><%= link_to 'Destroy', admin_checklist_path(checklist), :method => :delete, :data => { :confirm => 'Are you sure?' } %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>

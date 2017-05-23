@@ -1,0 +1,25 @@
+%h1 Listing checklist_answers
+
+%table
+  %thead
+    %tr
+      %th Title
+      %th User
+      %th Checklist
+      %th
+      %th
+      %th
+
+  %tbody
+    - @checklist_answers.each do |checklist_answer|
+      %tr
+        %td= checklist_answer.title
+        %td= checklist_answer.user_id
+        %td= checklist_answer.checklist_id
+        %td= link_to 'Show', checklist_answer
+        %td= link_to 'Edit', edit_checklist_answer_path(checklist_answer)
+        %td= link_to 'Destroy', checklist_answer, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Checklist answer', new_checklist_answer_path

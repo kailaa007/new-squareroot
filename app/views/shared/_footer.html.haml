@@ -1,7 +1,7 @@
 %footer
   .mainfooter
     .tagline
-      %span The mission of Square Roots&trade; is to define and empower healthy birth.
+      %span Square Roots&trade; is a mission-driven company focused on pregnancy health and wellness.
     .footer-buttons
       = link_to 'Play Video', '#', :class => 'play-video'
       = link_to 'Play Video', '#', :class => 'play-video-direct'
@@ -25,11 +25,13 @@
       .modal-body
         .form-inputs.main_form_box_l
           %h2.form_head Log in
-          = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+          = simple_form_for(resource, as: resource_name, url: user_session_path, validate: true, :html => {:id => "sign_in_user"}) do |f|
+            = f.error_notification
+            #errors-list
             .one-full
-              = f.input :email, required: true, autofocus: true, label: false, placeholder: 'Email'
+              = f.input :email, autofocus: true, label: false, placeholder: 'Email'
             .one-full
-              = f.input :password, required: true, label: false, placeholder: 'Password'
+              = f.input :password, label: false, placeholder: 'Password'
             .one-full
               %span.term_class.squaredThree1
                 = f.check_box :remember_me, :id => "squaredThree1", :class => "input_box1"
@@ -52,7 +54,7 @@
       .modal-body
         .form-inputs.main_form_box
           %h2.form_head SIGN UP NOW
-          = simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+          = simple_form_for(resource, as: resource_name, url: registration_path(resource_name), validate: true) do |f|
             = f.error_notification
             .mr_btm
               .one-half
@@ -90,7 +92,7 @@
       .modal-body
         .form-inputs.main_form_box
           %h2.form_head Forgot your password?
-          = simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
+          = simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }, validate: true) do |f|
             = f.error_notification
             = f.input :email, required: true, autofocus: true, label:false, placeholder:"Email"
             .form-actions
@@ -111,7 +113,7 @@
       .modal-body
         .form-inputs.main_form_box
           %h2.form_head Resend confirmation instructions
-          = simple_form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f|
+          = simple_form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }, validate: true) do |f|
             = f.error_notification
             = f.full_error :confirmation_token
             = f.input :email, required: true, autofocus: true,label:false, placeholder:"Email"
@@ -122,3 +124,8 @@
                 %a{"data-target" => "#loginModal", :type => "button", :style => "color: #f4c553;margin-left: 10px;", :class => "cls_modal"}LOG IN
                 %a{"data-target" => "#signupModal", :type => "button", :style => "color: #f4c553;margin-left: 10px;", :class => "cls_modal"} SIGN UP   
                 %a{"data-target" => "#fgModal", :type => "button", :style => "color: #f4c553;margin-left: 10px;", :class => "cls_modal"} FORGET PASSWORD
+
+:javascript
+  $(".modal").on('keyup', function() {
+    $('form[data-validate]').enableClientSideValidations();
+  });

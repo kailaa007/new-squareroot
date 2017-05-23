@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161216124750) do
+ActiveRecord::Schema.define(version: 20170303091923) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,64 @@ ActiveRecord::Schema.define(version: 20161216124750) do
     t.string   "password_digest"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.boolean  "super_admin"
+    t.string   "reset_token"
+    t.datetime "resent_sent_at"
+    t.string   "auth_token"
+  end
+
+  create_table "answer_options", force: :cascade do |t|
+    t.integer "birth_plan_answer_id"
+    t.integer "option_id"
+    t.text    "textbox_answer"
+  end
+
+  create_table "birth_plan_answers", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "question"
+    t.integer  "ques_type"
+    t.text     "answer"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "birth_plan_id"
+    t.integer  "question_id"
+  end
+
+  create_table "birth_plan_questions", force: :cascade do |t|
+    t.integer  "birth_plan_id"
+    t.integer  "question_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "order"
+  end
+
+  create_table "birth_plans", force: :cascade do |t|
+    t.string   "title"
+    t.boolean  "status"
+    t.text     "description"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.string   "slug"
+    t.string   "checklist_on"
+  end
+
+  add_index "birth_plans", ["slug"], name: "index_birth_plans_on_slug", unique: true, using: :btree
+
+  create_table "checklist_answers", force: :cascade do |t|
+    t.string   "title"
+    t.integer  "user_id"
+    t.integer  "checklist_id"
+    t.string   "category"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  create_table "checklists", force: :cascade do |t|
+    t.string   "title"
+    t.string   "category"
+    t.string   "sub_category"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
@@ -53,6 +111,42 @@ ActiveRecord::Schema.define(version: 20161216124750) do
   add_index "news", ["slug"], name: "index_news_on_slug", unique: true, using: :btree
   add_index "news", ["tag_id"], name: "index_news_on_tag_id", using: :btree
 
+  create_table "options", force: :cascade do |t|
+    t.string   "option_title"
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.integer  "question_id"
+    t.boolean  "textbox_enable", default: false
+    t.string   "description"
+  end
+
+  add_index "options", ["question_id"], name: "index_options_on_question_id", using: :btree
+
+  create_table "questions", force: :cascade do |t|
+    t.string   "title"
+    t.integer  "ques_type"
+    t.text     "note"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "slug"
+    t.boolean  "required"
+    t.integer  "order"
+    t.string   "category"
+  end
+
+  add_index "questions", ["slug"], name: "index_questions_on_slug", unique: true, using: :btree
+
+  create_table "restrict_questions", force: :cascade do |t|
+    t.integer  "main_ques_id"
+    t.integer  "base_ques_id"
+    t.boolean  "ques_status"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.integer  "base_option_id"
+    t.integer  "main_option_id"
+    t.boolean  "option_status"
+  end
+
   create_table "tags", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
@@ -80,7 +174,6 @@ ActiveRecord::Schema.define(version: 20161216124750) do
   create_table "users", force: :cascade do |t|
     t.string   "first_name"
     t.string   "last_name"
-    t.integer  "age"
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
@@ -91,10 +184,19 @@ ActiveRecord::Schema.define(version: 20161216124750) do
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string   "unconfirmed_email"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.integer  "zipcode"
+    t.date     "due_date"
+    t.boolean  "terms_n_condition"
+    t.boolean  "birth_plan_status"
   end
 
+  add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
