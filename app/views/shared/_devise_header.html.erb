@@ -56,11 +56,6 @@
         <% end %>
       </li>
       <li>
-        <%= link_to_unless_current 'Birth Plan', birth_plans_path, class: 'active-menu-bar' do %>
-          <span>Birth Plan</span>
-        <% end %>
-      </li>
-      <li>
         <%= link_to_unless_current 'The Facts', facts_path do %>
           <span>The Facts</span>
         <% end %>
@@ -77,6 +72,11 @@
       <li>
         <%= link_to_unless_current 'News', news_index_path do %>
           <span>News</span>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to_unless_current 'Birth Plan', birth_plans_path, class: 'active-menu-bar' do %>
+          <span>Birth Plan</span>
         <% end %>
       </li>
       <li>
