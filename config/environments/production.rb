@@ -81,11 +81,11 @@ Rails.application.configure do
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    :address => "email-smtp.us-west-2.amazonaws.com",
+    :address => "smtp.gmail.com",
     :port => "587",
     :domain => "mobikasa.com",
-    :user_name => "AKIAJ3RRSACVMHH6NARQ",
-    :password => "y/pcelJHgCghONTkw4lXfdjcazLLk1WrAYXie3Vl",
+    :user_name => "amitkumar@mobikasa.com",
+    :password => "mobikasa@123",
     :authentication => "plain",
     :enable_starttls_auto => true
   } 
